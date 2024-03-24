@@ -1,15 +1,20 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.HolyCup;
-import com.bucikft.Person.Student;
 
-public class HolyCupTest {
-    private Student Test3Student = new Student();
-    private HolyCup Test3HolyCup = new HolyCup();
+public class HolyCupTest extends ItemTest{
+    private HolyCup TestHolyCup = new HolyCup();
 
-    public void HolyCupTest() {
-        Test3HolyCup.effect(Test3Student);
-
-        System.out.println("Az Logarléchez vezető út megjelent.");
+    public void holyCupTest() {
+        TestStudent.pickUp(TestHolyCup);
+        try {
+            TestStudent.use(TestHolyCup);
+            System.out.println("A Szent Söröspohár használata sikeres volt.");
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("A Szent Söröspohár használata sikertelen.");
+        } finally {
+            System.out.println("A teszt véget ért.\n");
+        }
     }
 }

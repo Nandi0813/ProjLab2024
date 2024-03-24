@@ -13,6 +13,14 @@ public class Professor extends Person {
     public Professor() {
         this.killedStudents = new ArrayList<>();
     }
+    private int stunned = 0;
+    public void stun(int n) {
+        stunned = n;
+    }
+    public int isStunned() {
+        return stunned;
+    }
+
 
     public void addKilledStudent(Student killedStudent) {
         killedStudents.add(killedStudent);
@@ -26,10 +34,6 @@ public class Professor extends Person {
         student.setAlive(false);
     }
 
-    @Override
-    public void move(Room room) {
-
-    }
 
     @Override
     public void pickUp(Item item) {

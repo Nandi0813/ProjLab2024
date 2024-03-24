@@ -15,6 +15,8 @@ public class Room {
     private List<Door> doorList;
     private List<Person> personList;
 
+    public boolean hasExit = false; // only for testing
+
     public Room() {
         this.itemsList = new ArrayList<>();
         this.doorList = new ArrayList<>();
@@ -34,6 +36,7 @@ public class Room {
 
     public boolean isGassed() { return this.gassed; }
     public void setIsGassed(boolean gassed) { this.gassed = gassed; }
+
 
     public List<Item> getItemsList() { return this.itemsList; }
     public List<Door> getDoorList() { return this.doorList; }

@@ -13,12 +13,17 @@ public class HolyCup extends Item{
         turns = newTurns;
     }
 
-    public void effect(Student user){
-        if(!this.getBroken()) {
-            this.setBroken(true);
-        } else {
-            System.out.println("A Szent Söröspohár már el lett használva.");
-        }
-    }
+    public void effect(Student user) throws IllegalStateException {
+        // test if item broken
+        if(this.getBroken()) throw new IllegalStateException("A Szent Söröspohár már el lett használva!");
 
+        // display path to SlipStick
+        // todo implement path display
+        System.out.println("*Logarléchez vezető út megjelent*");
+
+        // break item
+        this.setBroken(true);
+
+
+    }
 }

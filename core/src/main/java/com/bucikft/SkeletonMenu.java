@@ -1,7 +1,6 @@
 package com.bucikft;
 
-import com.bucikft.Tests.DKCUseTest;
-import com.bucikft.Tests.EnergyDrinkTest;
+import com.bucikft.Tests.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -91,28 +90,34 @@ public class SkeletonMenu {
                     test2.EnergyDrinkTest();
                     break;
                 case 3:
-
+                    HolyCupTest test3 = new HolyCupTest();
+                    test3.holyCupTest();
                     break;
                 case 4:
 
                     break;
                 case 5:
-
+                    ZynUseTest test5 = new ZynUseTest();
+                    test5.zynUseTest();
                     break;
                 case 6:
-
+                    TVSZUseTest test6 = new TVSZUseTest();
+                    //test6.TVSZUseTest();
                     break;
                 case 7:
-
+                    TransistorUseTest test7 = new TransistorUseTest();
+                    test7.transistorUseTest();
                     break;
                 case 8:
 
                     break;
                 case 9:
-
+                    MaskUseTest test9 = new MaskUseTest();
+                    test9.MaskTest();
                     break;
                 case 10:
-
+                    HammerUseTest test10 = new HammerUseTest();
+                    test10.HammerTest();
                     break;
                 case 11:
                     choice = 11;

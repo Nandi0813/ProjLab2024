@@ -1,26 +1,19 @@
 package com.bucikft.Tests;
-import com.bucikft.Person.Student;
 import com.bucikft.Items.*;
 
-public class EnergyDrinkTest {
-    private Student Test1Student = new Student();
+public class EnergyDrinkTest extends ItemTest {
     private EnergyDrink Test1EnergyDrink = new EnergyDrink();
 
     public void EnergyDrinkTest() {
-        Test1Student.setMovesLeft(0);
-        if (Test1Student.getMovesLeft() == 0) {
-            System.out.println("Test1Student-nek nincs több lépése.");
-            Test1EnergyDrink.effect(Test1Student);
-            System.out.println("Test1Student Endzsót használt.");
-            if(Test1Student.getMovesLeft() == 1) {
-                System.out.println("Test1Student-nek egy lépése van.\nSikeres teszt");
-            }
-            else {
-                System.out.println("Sikertelen teszt");
-            }
-        }
-        else {
-            System.out.println("Sikertelen teszt");
+        System.out.println("\nEndzsó használatának tesztelése.");
+        TestStudent.pickUp(Test1EnergyDrink);
+        try {
+            TestStudent.use(Test1EnergyDrink);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("A tárgy használata sikertelen.");
+        } finally {
+            System.out.println("A teszt véget ért.\n");
         }
     }
 }

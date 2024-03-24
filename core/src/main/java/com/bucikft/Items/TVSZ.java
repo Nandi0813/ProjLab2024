@@ -6,6 +6,16 @@ public class TVSZ extends Item {
     private int health;
 
     public void effect(Student user) {
+        // test if broken
+        if (getBroken() || health <0) throw new IllegalStateException("A TVSZ már el lett használva!");
+
+        // protect user from professor
+        // todo: implement protection
+        System.out.print("*A TVSZ megvédi a felhasználóját a professzoroktól*");
+
+        // decrease health and break item
+        health--;
+        if (health == 0) setBroken(true);
 
     }
 

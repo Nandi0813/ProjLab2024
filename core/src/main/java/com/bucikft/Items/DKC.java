@@ -4,17 +4,16 @@ import com.bucikft.Person.Student;
 
 public class DKC extends Item {
 
-    public void effect(Student user) {
-        if(!user.getCurrentRoom().isGassed()){
-            if(!this.getBroken()) {
-                user.getCurrentRoom().setIsGassed(true);
-                this.setBroken(true);
-            }
-            else{
-                System.out.println("A DKC már el lett használva.");
-            }
-        } else{
-            System.out.println("A szoba nem volt gázzal teli!");
-        }
+    public void effect(Student user) throws IllegalStateException {
+        // test if room gassed or item broken
+        if(user.getCurrentRoom().isGassed()) throw new IllegalStateException("A szoba már gázzal teli");
+        if( this.getBroken()) throw new IllegalStateException("A DKC már el lett használva");
+
+        // gas room
+        user.getCurrentRoom().setIsGassed(true);
+        System.out.println("*A szoba gázzal lett feltöltve*");
+
+        // break item
+        this.setBroken(true);
     }
 }
