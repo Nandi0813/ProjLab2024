@@ -103,7 +103,7 @@ public class SkeletonMenu {
                     break;
                 case 6:
                     TVSZUseTest test6 = new TVSZUseTest();
-                    //test6.TVSZUseTest();
+                    test6.TVSZUseTest();
                     break;
                 case 7:
                     TransistorUseTest test7 = new TransistorUseTest();

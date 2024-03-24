@@ -40,7 +40,36 @@ public abstract class Person {
         // decrement movesLeft
         // todo decrement moves left
     }
-    public abstract void pickUp(Item item);
+
+    public void pickUp(Item item) {
+        Scanner scanner = new Scanner(System.in);
+
+        // test if player has moves left
+        // todo
+        System.out.println("Van még lépése hátra a játékosnak? y/n: ");
+        boolean choice = scanner.next().equals("y");
+        if (!choice) throw new IllegalStateException("A játékosnak nincs több lépése.");
+
+        // test if item is in the same room
+        // todo
+        System.out.println("A tárgy a játékos szobájában van? y/n: ");
+        choice = scanner.next().equals("y");
+        if (!choice) throw new IllegalStateException("A tárgy nem a játékos szobájában van.");
+
+        // test if inventory full
+        // todo
+        System.out.println("A játékos eszköztárja tele van? y/n: ");
+        choice = scanner.next().equals("y");
+        if (choice) throw new IllegalStateException("A játékos táskája tele van.");
+
+        // pick up item
+        // todo implement picking up item
+        System.out.println("*A játékos felvette a tárgyat*");
+
+        // decrement usesLeft
+        // todo decrement uses left
+
+    }
 
     public Room getCurrentRoom() { return this.currentRoom; }
     public void setCurrentRoom(Room currentRoom) { this.currentRoom = currentRoom; }

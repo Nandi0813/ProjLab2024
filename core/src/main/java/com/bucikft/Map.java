@@ -14,6 +14,10 @@ public class Map {
         this.itemList = new ArrayList<>();
     }
 
+    /*
+     * A függvény egy szobát két szobára bont fel.
+     * @param room A bontandó szoba
+     */
     public void split(Room room) {
 
     }
