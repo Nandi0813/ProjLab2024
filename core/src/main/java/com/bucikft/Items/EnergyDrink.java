@@ -1,17 +1,25 @@
 package com.bucikft.Items;
+
 import com.bucikft.Person.Student;
 
-public class EnergyDrink extends Item{
+/**
+ * Represents an Energy Drink item, which increases the remaining steps of a Student when used by said Student.
+ */
+public class EnergyDrink extends Item {
 
-    public void effect(Student user) throws IllegalStateException{
-        // test if broken
-        if(this.getBroken()) throw new IllegalStateException("Az Endzsó már el lett használva");
+    /**
+     * Applies the effect of the Energy Drink item on the user (a student).
+     *
+     * @param user The student who uses the Energy Drink item.
+     * @throws IllegalStateException If the Energy Drink item is already broken.
+     */
+    public void effect(Student user) throws IllegalStateException {
 
-        // increase moves left
-        user.setMovesLeft(user.getMovesLeft() + 1);
-        System.out.println("*Az Endzsó elfogyasztása után a hallgató még egy lépést tehet*");
+        // Increase moves left
+        // Todo: Implement increasing the remaining steps of the student
+        System.out.println("*After consuming the Energy Drink, the student can take one more step*");
 
-        // break item
+        // Break item
         this.setBroken(true);
     }
 }

@@ -5,24 +5,32 @@ import com.bucikft.Tests.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Represents the menu for conducting skeleton tests in the game.
+ */
 public class SkeletonMenu {
 
     private static int bigChoice = 0;
 
+    /**
+     * The main method for running the skeleton menu.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        while(bigChoice != 3) {
-            System.out.println("Szkeleton teszt");
-            System.out.println("1. Tárgy interakciók");
-            System.out.println("2. Hallgató interakciók");
-            System.out.println("3. Kilépés");
-            System.out.print("Válasszon menüpontot: ");
+        while (bigChoice != 3) {
+            System.out.println("Skeleton test");
+            System.out.println("1. Item interactions");
+            System.out.println("2. Student interactions");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
 
             try {
                 bigChoice = scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Adjon meg egy helyes menüpontot (1, 2, 3)");
+                System.out.println("Please enter a valid menu option (1, 2, 3)");
                 scanner.next();
                 continue;
             }
@@ -35,29 +43,28 @@ public class SkeletonMenu {
                     handleStudentInteractions(scanner);
                     break;
                 case 3:
-                    System.out.println("Ügyesen kiléptél. Szép munka barátom!");
+                    System.out.println("You have successfully exited. Goodbye!");
                     break;
                 default:
-                    System.out.println("Adjon meg egy helyes menupontot (1, 2, 3)");
+                    System.out.println("Please enter a valid menu option (1, 2, 3)");
                     break;
             }
         }
         scanner.close();
     }
 
-    private static void handleStudentInteractions(Scanner scanner){
-
+    private static void handleStudentInteractions(Scanner scanner) {
         int choice = 0;
         while (choice != 3) {
-            System.out.println("Hallgató interakciók:");
-            System.out.println("1. Hallgató mozgatása");
-            System.out.println("2. Hallgató megölése");
-            System.out.println("3. Visszalépés");
-            System.out.print("Válasszon interakciót: ");
+            System.out.println("Student interactions:");
+            System.out.println("1. Move student");
+            System.out.println("2. Kill student");
+            System.out.println("3. Go back");
+            System.out.print("Choose an interaction: ");
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Adjon meg egy helyes menüpontot.");
+                System.out.println("Please enter a valid menu option.");
                 scanner.next();
                 continue;
             }
@@ -75,35 +82,34 @@ public class SkeletonMenu {
                     bigChoice = 0;
                     return;
                 default:
-                    System.out.println("Adjon meg egy helyes menüpontot!");
+                    System.out.println("Please enter a valid menu option!");
                     break;
             }
         }
-
     }
 
-    private static void handleItemInteractions(Scanner scanner){
+    private static void handleItemInteractions(Scanner scanner) {
         int choice = 0;
 
-        while(choice != 11) {
-            System.out.println("Tárgy interakciók:");
-            System.out.println("1. DKC használata");
-            System.out.println("2. Endzsó használata");
-            System.out.println("3. Szent Söröspohár használata");
-            System.out.println("4. Nedves táblatörlő rongy használata");
-            System.out.println("5. Snüci használata");
-            System.out.println("6. TVSZ használata");
-            System.out.println("7. Tranzisztorok használata");
-            System.out.println("8. Tárgy lehelyezése");
-            System.out.println("9. Maszk használata");
-            System.out.println("10. Martin Kalapácsának használata");
-            System.out.println("11. Visszalépés");
-            System.out.print("Válasszon interakciót: ");
+        while (choice != 11) {
+            System.out.println("Item interactions:");
+            System.out.println("1. Use DKC");
+            System.out.println("2. Use Energy Drink");
+            System.out.println("3. Use Holy Cup");
+            System.out.println("4. Use Wet Rag");
+            System.out.println("5. Use Zyn");
+            System.out.println("6. Use TVSZ");
+            System.out.println("7. Use Transistors");
+            System.out.println("8. Drop Item");
+            System.out.println("9. Use Mask");
+            System.out.println("10. Use Hammer");
+            System.out.println("11. Go back");
+            System.out.print("Choose an interaction: ");
 
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Adjon meg egy helyes menüpontot.");
+                System.out.println("Please enter a valid menu option.");
                 scanner.next();
                 continue;
             }
@@ -154,7 +160,7 @@ public class SkeletonMenu {
                     bigChoice = 0;
                     return;
                 default:
-                    System.out.println("Adjon meg egy helyes menüpontot!");
+                    System.out.println("Please enter a valid menu option!");
                     break;
             }
         }

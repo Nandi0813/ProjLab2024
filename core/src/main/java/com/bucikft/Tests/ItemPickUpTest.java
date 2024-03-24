@@ -4,20 +4,25 @@ import com.bucikft.Items.DKC;
 import com.bucikft.Items.Item;
 import com.bucikft.Person.Student;
 
+/**
+ * Class for testing the picking up of items by students.
+ */
 public class ItemPickUpTest {
     private Item TestItem = new DKC();
     private Student TestStudent = new Student();
 
-    public void ItemPickUpTest() {
-        System.out.println("\nTárgy felvétele tesztelése.");
+    /**
+     * Method to perform the item pick-up test.
+     */
+    public void itemPickUpTest() {
+        System.out.println("\nTesting item pick-up.");
         try {
             TestStudent.pickUp(TestItem);
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
-            System.out.println("A tárgy felvétele sikertelen.");
+            System.out.println("Failed to pick up the item.");
         } finally {
-            System.out.println("A teszt véget ért.\n");
+            System.out.println("End of the test.\n");
         }
-
     }
 }
