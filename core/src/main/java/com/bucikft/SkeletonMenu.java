@@ -46,12 +46,40 @@ public class SkeletonMenu {
     }
 
     private static void handleStudentInteractions(Scanner scanner){
-        System.out.println("Hallgató interakciók:");
-        System.out.println("1. Hallgató mozgatása");
-        System.out.println("2. Hallgató megölése");
-        System.out.println("3. Visszalépés");
-        System.out.print("Válasszon interakciót: ");
-        int choice = scanner.nextInt();
+
+        int choice = 0;
+        while (choice != 3) {
+            System.out.println("Hallgató interakciók:");
+            System.out.println("1. Hallgató mozgatása");
+            System.out.println("2. Hallgató megölése");
+            System.out.println("3. Visszalépés");
+            System.out.print("Válasszon interakciót: ");
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Adjon meg egy helyes menüpontot.");
+                scanner.next();
+                continue;
+            }
+            switch (choice) {
+                case 1:
+                    StudentMoveTest test1 = new StudentMoveTest();
+                    test1.studentMoveTest();
+                    break;
+                case 2:
+                    StudentKillTest test2 = new StudentKillTest();
+                    test2.studentKillTest();
+                    break;
+                case 3:
+                    choice = 3;
+                    bigChoice = 0;
+                    return;
+                default:
+                    System.out.println("Adjon meg egy helyes menüpontot!");
+                    break;
+            }
+        }
+
     }
 
     private static void handleItemInteractions(Scanner scanner){
@@ -87,7 +115,7 @@ public class SkeletonMenu {
                     break;
                 case 2:
                     EnergyDrinkTest test2 = new EnergyDrinkTest();
-                    test2.EnergyDrinkTest();
+                    test2.energyDrinkTest();
                     break;
                 case 3:
                     HolyCupTest test3 = new HolyCupTest();
@@ -111,15 +139,15 @@ public class SkeletonMenu {
                     break;
                 case 8:
                     ItemDropTest test8 = new ItemDropTest();
-                    // todo
+                    test8.itemDropTest();
                     break;
                 case 9:
                     MaskUseTest test9 = new MaskUseTest();
-                    test9.MaskTest();
+                    test9.maskTest();
                     break;
                 case 10:
                     HammerUseTest test10 = new HammerUseTest();
-                    test10.HammerTest();
+                    test10.hammerTest();
                     break;
                 case 11:
                     choice = 11;

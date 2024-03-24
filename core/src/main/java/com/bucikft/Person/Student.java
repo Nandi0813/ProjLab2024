@@ -19,6 +19,22 @@ public class Student extends Person {
     }
 
     public void drop(Item item) {
+        Scanner scanner = new Scanner(System.in);
+
+        // test if room has enough room for the item
+        // todo
+        System.out.println("Van elég hely a szobában a tárgynak? y/n: ");
+        boolean choice = scanner.next().equals("y");
+        if (!choice) throw new IllegalStateException("Nincs elég hely a tárgynak a szobában.");
+
+        // drop item
+        // todo
+        System.out.println("*A tárgy lehelyeződött a szobában*");
+
+        // remove item from inventory
+        // todo
+        System.out.println("*A tárgy eltávolítva a játékos eszköztárjából*");
+
 
     }
 

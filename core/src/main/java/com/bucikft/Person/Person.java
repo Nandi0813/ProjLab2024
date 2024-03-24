@@ -35,7 +35,7 @@ public abstract class Person {
 
         // move person to room
         // todo: implement movement
-        System.out.println();
+        System.out.println("*Személy átmozgatva*");
 
         // decrement movesLeft
         // todo decrement moves left

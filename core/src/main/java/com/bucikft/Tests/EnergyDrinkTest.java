@@ -6,7 +6,7 @@ public class EnergyDrinkTest {
     private EnergyDrink TestEnergyDrink = new EnergyDrink();
     private Student TestStudent = new Student();
 
-    public void EnergyDrinkTest() {
+    public void energyDrinkTest() {
         System.out.println("\nEndzsó használatának tesztelése.");
         try {
             TestStudent.use(TestEnergyDrink);

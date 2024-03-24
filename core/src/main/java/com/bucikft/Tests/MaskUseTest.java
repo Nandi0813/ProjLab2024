@@ -7,7 +7,7 @@ public class MaskUseTest {
     private Mask TestMask = new Mask();
     private Student TestStudent = new Student();
 
-    public void MaskTest() {
+    public void maskTest() {
         System.out.println("\nMaszk használatának tesztelése.");
         try {
             TestStudent.use(TestMask);

@@ -16,7 +16,7 @@ public class StudentMoveTest {
             System.out.println(e.getMessage());
             System.out.println("A teszt sikertelen.");
         } finally {
-            System.out.println("A teszt véget ért.");
+            System.out.println("A teszt véget ért.\n");
         }
     }
 }

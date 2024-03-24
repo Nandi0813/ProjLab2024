@@ -7,7 +7,7 @@ public class StudentKillTest {
     private Student TestStudent = new Student();
     private Professor TestProfessor = new Professor();
 
-    public void StudentKillTest() {
+    public void studentKillTest() {
         System.out.println("\nHallgató megölésének tesztelése.");
         try {
             TestProfessor.killStudent(TestStudent);
