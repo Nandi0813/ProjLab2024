@@ -9,8 +9,7 @@ public class Map {
     private List<Room> roomList;
     private List<Item> itemList;
 
-    public Map()
-    {
+    public Map(){
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
     }

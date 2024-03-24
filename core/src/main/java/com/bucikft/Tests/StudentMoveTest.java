@@ -9,7 +9,6 @@ public class StudentMoveTest {
     public Room TestRoom2 = new Room();
     public void studentMoveTest() {
         // Test student move
-        TestStudent.setCurrentRoom(TestRoom1);
         try {
             TestStudent.move(TestRoom2);
         }

@@ -3,14 +3,19 @@ package com.bucikft.Person;
 import com.bucikft.Items.Item;
 import com.bucikft.Items.Transistor;
 
+import java.util.Scanner;
+
 public class Student extends Person {
 
     private boolean alive;
     private boolean masked = false;
 
     public void use(Item item) {
-        if (movesLeft>0) item.effect(this);
-        else System.out.println("A játékosnak nincs több lépése, így nem használhat tárgyat.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("A hallgató tud még tárgyat használni körében? y/n: ");
+        boolean choice = scanner.next().charAt(0)=='y';
+        if (!choice) throw new IllegalStateException("A hallgató nem tud több tárgyat használni.");
+        item.effect(this);
     }
 
     public void drop(Item item) {

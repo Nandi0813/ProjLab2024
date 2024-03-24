@@ -1,15 +1,15 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.HolyCup;
+import com.bucikft.Person.Student;
 
-public class HolyCupTest extends ItemTest{
+public class HolyCupTest {
     private HolyCup TestHolyCup = new HolyCup();
+    private Student TestStudent = new Student();
 
     public void holyCupTest() {
-        TestStudent.pickUp(TestHolyCup);
         try {
             TestStudent.use(TestHolyCup);
-            System.out.println("A Szent Söröspohár használata sikeres volt.");
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
             System.out.println("A Szent Söröspohár használata sikertelen.");

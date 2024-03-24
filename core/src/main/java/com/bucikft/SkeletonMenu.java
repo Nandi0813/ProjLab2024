@@ -94,7 +94,8 @@ public class SkeletonMenu {
                     test3.holyCupTest();
                     break;
                 case 4:
-
+                    WetRagUseTest test4 = new WetRagUseTest();
+                    test4.wetRagUseTest();
                     break;
                 case 5:
                     ZynUseTest test5 = new ZynUseTest();
@@ -109,7 +110,8 @@ public class SkeletonMenu {
                     test7.transistorUseTest();
                     break;
                 case 8:
-
+                    ItemDropTest test8 = new ItemDropTest();
+                    // todo
                     break;
                 case 9:
                     MaskUseTest test9 = new MaskUseTest();

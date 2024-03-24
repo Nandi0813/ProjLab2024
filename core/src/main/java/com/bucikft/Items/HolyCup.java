@@ -14,8 +14,6 @@ public class HolyCup extends Item{
     }
 
     public void effect(Student user) throws IllegalStateException {
-        // test if item broken
-        if(this.getBroken()) throw new IllegalStateException("A Szent Söröspohár már el lett használva!");
 
         // display path to SlipStick
         // todo implement path display

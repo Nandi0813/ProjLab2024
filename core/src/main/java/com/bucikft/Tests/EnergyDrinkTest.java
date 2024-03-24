@@ -1,14 +1,15 @@
 package com.bucikft.Tests;
 import com.bucikft.Items.*;
+import com.bucikft.Person.Student;
 
-public class EnergyDrinkTest extends ItemTest {
-    private EnergyDrink Test1EnergyDrink = new EnergyDrink();
+public class EnergyDrinkTest {
+    private EnergyDrink TestEnergyDrink = new EnergyDrink();
+    private Student TestStudent = new Student();
 
     public void EnergyDrinkTest() {
         System.out.println("\nEndzsó használatának tesztelése.");
-        TestStudent.pickUp(Test1EnergyDrink);
         try {
-            TestStudent.use(Test1EnergyDrink);
+            TestStudent.use(TestEnergyDrink);
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
             System.out.println("A tárgy használata sikertelen.");

@@ -1,12 +1,14 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.TVSZ;
+import com.bucikft.Person.Student;
 
-public class TVSZUseTest extends ItemTest {
+public class TVSZUseTest {
     private TVSZ TestTVSZ = new TVSZ();
+    private Student TestStudent = new Student();
+
     public void TVSZUseTest() {
         System.out.println("\nTVSZ használatának tesztelése.");
-        TestStudent.pickUp(TestTVSZ);
         try {
             TestStudent.use(TestTVSZ);
         } catch (IllegalStateException e) {

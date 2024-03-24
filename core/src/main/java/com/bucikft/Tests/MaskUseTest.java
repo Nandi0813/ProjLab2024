@@ -1,16 +1,14 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.Mask;
+import com.bucikft.Person.Student;
 
-public class MaskUseTest extends ItemTest{
+public class MaskUseTest {
     private Mask TestMask = new Mask();
+    private Student TestStudent = new Student();
 
     public void MaskTest() {
         System.out.println("\nMaszk használatának tesztelése.");
-        System.out.print("A hallgató már maszkot visel? y/n: ");
-        boolean choice = scanner.next().charAt(0)=='y';
-        TestStudent.setMasked(choice);
-        TestStudent.pickUp(TestMask);
         try {
             TestStudent.use(TestMask);
         } catch (IllegalStateException e) {

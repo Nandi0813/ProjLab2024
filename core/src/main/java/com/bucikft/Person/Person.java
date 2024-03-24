@@ -4,6 +4,7 @@ import com.bucikft.Room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class Person {
 
@@ -18,16 +19,26 @@ public abstract class Person {
     }
 
     public void move(Room room) {
-        // test if person has moves left
-        if (this.movesLeft < 0) throw new IllegalStateException("A játékosnak nincs több lépése.");
+        Scanner scanner = new Scanner(System.in);
+
+        // test if player has moves left
+        // todo
+        System.out.println("Van még lépése hátra a játékosnak? y/n: ");
+        boolean choice = scanner.next().equals("y");
+        if (!choice) throw new IllegalStateException("A játékosnak nincs több lépése.");
+
         // test if rooms are neighbors
         // todo
+        System.out.println("A szobák szomszédosak? y/n: ");
+        choice = scanner.next().equals("y");
+        if (!choice) throw new IllegalStateException("A szobák nem szomszédosak.");
 
         // move person to room
-        // todo
+        // todo: implement movement
         System.out.println();
+
         // decrement movesLeft
-        this.movesLeft--;
+        // todo decrement moves left
     }
     public abstract void pickUp(Item item);
 

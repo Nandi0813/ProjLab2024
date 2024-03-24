@@ -15,7 +15,6 @@ public class Room {
     private List<Door> doorList;
     private List<Person> personList;
 
-    public boolean hasExit = false; // only for testing
 
     public Room() {
         this.itemsList = new ArrayList<>();

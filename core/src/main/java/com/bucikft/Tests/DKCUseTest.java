@@ -1,15 +1,14 @@
 package com.bucikft.Tests;
 import com.bucikft.Items.DKC;
+import com.bucikft.Person.Student;
 
-public class DKCUseTest extends ItemTest {
+
+public class DKCUseTest {
     private DKC TestDKC = new DKC();
+    private Student TestStudent = new Student();
 
     public void DKCTest() {
         System.out.println("\nDKC használatának tesztelése.");
-        System.out.print("A szoba már gázzal teli? y/n: ");
-        boolean choice = scanner.next().charAt(0)=='y';
-        TestRoom.setIsGassed(choice);
-        TestStudent.pickUp(TestDKC);
         try {
             TestStudent.use(TestDKC);
         } catch (IllegalStateException e) {

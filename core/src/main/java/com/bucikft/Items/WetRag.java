@@ -6,14 +6,9 @@ import com.bucikft.Person.Student;
 public class WetRag extends Item{
 
     public void effect(Student user){
-        // test if broken
-        if (getBroken()) throw new IllegalStateException("A Nedves Táblarörlő Rongy már el lett használva!");
 
         // stun all professors in room
-        for (Person p : user.getCurrentRoom().getPersonList()){
-            if (p instanceof Professor) ((Professor) p).stun(3);
-
-        }
+        // todo: implement stunning professors
         System.out.print("*A Nedves Táblarörlő Rongy megbénítja a professzorokat*");
 
 

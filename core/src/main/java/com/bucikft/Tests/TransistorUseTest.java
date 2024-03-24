@@ -1,21 +1,16 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.Transistor;
+import com.bucikft.Person.Student;
 
-public class TransistorUseTest extends ItemTest {
+public class TransistorUseTest {
     private Transistor TestTransistor1 = new Transistor();
     private Transistor TestTransistor2 = new Transistor();
+    private Student TestStudent = new Student();
+
     public void transistorUseTest() {
         System.out.println("\nTranzisztor használatának tesztelése.");
-        TestStudent.pickUp(TestTransistor1);
-        TestStudent.pickUp(TestTransistor2);
         System.out.println("A tranzisztorok párosítása.");
-        System.out.print("Párosítva lettek már? y/n: ");
-        boolean choice = scanner.next().equals("y");
-        if (choice) {
-            TestTransistor1.pair = TestTransistor2;
-            TestTransistor2.pair = TestTransistor1;
-        }
         try {
             TestStudent.join(TestTransistor1, TestTransistor2);
         } catch (IllegalStateException e) {
@@ -23,9 +18,6 @@ public class TransistorUseTest extends ItemTest {
             System.out.println("A tranzisztorok párosítása sikertelen.");
         }
         System.out.println("A tranzisztorok használata.");
-        System.out.print("A tranzisztor párja le van téve? y/n: ");
-        choice = scanner.next().equals("y");
-        if (choice) TestTransistor2.putDown = true;
         try {
             TestStudent.use(TestTransistor1);
         } catch (IllegalStateException e) {
