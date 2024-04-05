@@ -1,5 +1,6 @@
 package com.bucikft.Items;
 
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 import java.util.Scanner;

@@ -1,6 +1,6 @@
 package com.bucikft.Person;
 
-import com.bucikft.Items.Item;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
 
 import java.util.Scanner;

@@ -1,6 +1,6 @@
 package com.bucikft.Person;
 
-import com.bucikft.Items.Item;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Room;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public abstract class Person {
     /**
      * Constructor to initialize a Person object.
      */
-    public Person() {
+    protected Person() {
         this.itemList = new ArrayList<>();
     }
 

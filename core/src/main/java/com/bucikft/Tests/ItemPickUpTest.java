@@ -1,7 +1,7 @@
 package com.bucikft.Tests;
 
 import com.bucikft.Items.DKC;
-import com.bucikft.Items.Item;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 /**

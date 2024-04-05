@@ -1,4 +1,4 @@
-package com.bucikft.Items;
+package com.bucikft.Items.Interface;
 
 import com.bucikft.Person.Student;
 
@@ -7,14 +7,20 @@ import com.bucikft.Person.Student;
  */
 public abstract class Item {
 
-    private boolean broken = false; // Indicates whether the item is broken or not.
+    protected boolean falseItem;
+    protected boolean broken; // Indicates whether the item is broken or not.
+
+    protected Item() {
+        this.falseItem = false;
+        this.broken = false;
+    }
 
     /**
      * Gets the status of the item (broken or not).
      *
      * @return True if the item is broken, false otherwise.
      */
-    public boolean getBroken() {
+    public boolean isBroken() {
         return broken;
     }
 

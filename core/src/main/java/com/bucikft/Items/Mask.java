@@ -1,5 +1,7 @@
 package com.bucikft.Items;
 
+import com.bucikft.Items.Interface.FalseItem;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 import java.util.Scanner;
@@ -7,7 +9,11 @@ import java.util.Scanner;
 /**
  * Represents a Mask item, which can be equipped and used to defend a Student from poison gas.
  */
-public class Mask extends Item {
+public class Mask extends Item implements FalseItem {
+
+    public Mask(final boolean isFalseItem) {
+        this.falseItem = isFalseItem;
+    }
 
     /**
      * Applies the effect of the Mask item on the user (a student).
@@ -32,4 +38,10 @@ public class Mask extends Item {
         // Break item
         this.setBroken(true);
     }
+
+    @Override
+    public boolean isFalse() {
+        return this.falseItem;
+    }
+
 }

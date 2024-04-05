@@ -7,7 +7,7 @@ import com.bucikft.Person.Student;
  * Class for testing the use of TVSZ.
  */
 public class TVSZUseTest {
-    private TVSZ TestTVSZ = new TVSZ();
+    private TVSZ TestTVSZ = new TVSZ(false);
     private Student TestStudent = new Student();
 
     /**

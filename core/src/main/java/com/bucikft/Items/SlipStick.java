@@ -1,5 +1,7 @@
 package com.bucikft.Items;
 
+import com.bucikft.Items.Interface.FalseItem;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 import java.util.Scanner;
@@ -7,7 +9,11 @@ import java.util.Scanner;
 /**
  * Represents a SlipStick item, which can open the Emergency Exit.
  */
-public class SlipStick extends Item {
+public class SlipStick extends Item implements FalseItem {
+
+    public SlipStick(final boolean isFalseItem) {
+        this.falseItem = isFalseItem;
+    }
 
     /**
      * Applies the effect of the SlipStick item on the user (a student).
@@ -33,4 +39,10 @@ public class SlipStick extends Item {
         // Break the item
         this.setBroken(true);
     }
+
+    @Override
+    public boolean isFalse() {
+        return this.falseItem;
+    }
+
 }

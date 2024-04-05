@@ -8,7 +8,7 @@ import com.bucikft.Person.Student;
  */
 public class ItemDropTest {
     private Student TestStudent = new Student();
-    private SlipStick TestSlipStick = new SlipStick();
+    private SlipStick TestSlipStick = new SlipStick(false);
 
     /**
      * Method to perform the item drop test.

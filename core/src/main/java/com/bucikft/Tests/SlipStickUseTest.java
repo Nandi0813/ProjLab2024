@@ -7,7 +7,7 @@ import com.bucikft.Person.Student;
  * Class for testing the use of SlipStick items by students.
  */
 public class SlipStickUseTest {
-    private SlipStick TestSlipStick = new SlipStick();
+    private SlipStick TestSlipStick = new SlipStick(false);
     private Student TestStudent = new Student();
 
     /**

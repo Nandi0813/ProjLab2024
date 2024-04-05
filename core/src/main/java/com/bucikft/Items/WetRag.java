@@ -1,7 +1,6 @@
 package com.bucikft.Items;
 
-import com.bucikft.Person.Person;
-import com.bucikft.Person.Professor;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 /**

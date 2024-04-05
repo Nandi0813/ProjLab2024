@@ -1,7 +1,7 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
-import com.bucikft.Items.Item;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 
 import java.util.ArrayList;
@@ -13,7 +13,8 @@ import java.util.List;
 public class Room {
 
     private int capacity;
-    private boolean gassed = false;
+    private boolean gassed;
+    private boolean isSticky;
     private List<Item> itemsList;
     private List<Door> doorList;
     private List<Person> personList;
@@ -22,6 +23,8 @@ public class Room {
      * Initializes a new room.
      */
     public Room() {
+        this.gassed = false;
+        this.isSticky = false;
         this.itemsList = new ArrayList<>();
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
@@ -83,6 +86,21 @@ public class Room {
      */
     public void setIsGassed(boolean gassed) {
         this.gassed = gassed;
+    }
+
+    /**
+     * Checks if the room is sticky.
+     * @return True if the room is sticky, false otherwise.
+     */
+    public boolean isSticky() {
+        return this.isSticky;
+    }
+
+    /**
+     * Sets the sticky status of the room.
+     */
+    public void setSticky(boolean sticky) {
+        this.isSticky = sticky;
     }
 
     /**

@@ -1,9 +1,11 @@
 package com.bucikft.Items;
 
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 /**
  * Represents a Holy Cup item, which shows the shortest path to the SlipStick when used by a Student.
+ * When used, the student loses a random item from his/her inventory.
  */
 public class HolyCup extends Item {
 

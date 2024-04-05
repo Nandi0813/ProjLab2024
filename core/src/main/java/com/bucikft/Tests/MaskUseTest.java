@@ -7,7 +7,7 @@ import com.bucikft.Person.Student;
  * Class for testing the use of masks by students.
  */
 public class MaskUseTest {
-    private Mask TestMask = new Mask();
+    private Mask TestMask = new Mask(false);
     private Student TestStudent = new Student();
 
     /**
