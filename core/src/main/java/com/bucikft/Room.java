@@ -13,11 +13,14 @@ import java.util.List;
 public class Room {
 
     private int capacity;
+    private int itemCapacity; // Added to track the how many items can be in room
     private boolean gassed;
     private boolean isSticky;
     private List<Item> itemsList;
     private List<Door> doorList;
     private List<Person> personList;
+
+    private String ID;
 
     /**
      * Initializes a new room.
@@ -30,33 +33,6 @@ public class Room {
         this.personList = new ArrayList<>();
     }
 
-    /**
-     * Removes and returns an item from the specified coordinates in the room.
-     *
-     * @param x The x-coordinate of the item.
-     * @param y The y-coordinate of the item.
-     * @return The removed item.
-     */
-    public Item popItem(int x, int y) {
-        return null;
-    }
-
-    /**
-     * Retrieves the neighbor room of the specified coordinates in the room.
-     *
-     * @param x The x-coordinate of the neighbor.
-     * @param y The y-coordinate of the neighbor.
-     * @return The neighbor room.
-     */
-    public Room getNeighbor(int x, int y) {
-        return null;
-    }
-
-    /**
-     * Retrieves the capacity of the room.
-     *
-     * @return The capacity of the room.
-     */
     public int getCapacity() {
         return this.capacity;
     }
@@ -84,7 +60,7 @@ public class Room {
      *
      * @param gassed The gassed status to set.
      */
-    public void setIsGassed(boolean gassed) {
+    public void setGassed(boolean gassed) {
         this.gassed = gassed;
     }
 
@@ -130,4 +106,10 @@ public class Room {
         return this.personList;
     }
 
+    public int getItemCapacity() {
+        return this.itemCapacity;
+    }
+    public String getID() {
+        return this.ID;
+    }
 }

@@ -1,5 +1,7 @@
 package com.bucikft.Items;
 
+import com.bucikft.Door.Door;
+import com.bucikft.Door.Exit;
 import com.bucikft.Items.Interface.FalseItem;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
@@ -22,19 +24,20 @@ public class SlipStick extends Item implements FalseItem {
      * @throws IllegalStateException If the room does not have an emergency exit or if the SlipStick item is already broken.
      */
     public void effect(Student user) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-
         // Check if the room has an emergency exit
-        // Todo: Implement checking if room has emergency exit
-        System.out.print("Does the room have an emergency exit? (y/n): ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) {
-            throw new IllegalStateException("The room does not have an emergency exit.");
+        boolean hasEmergencyExit = false;
+        Exit exit = null;
+        for (Door door : user.getCurrentRoom().getDoorList()) {
+            if (door instanceof Exit) {
+                hasEmergencyExit = true;
+                exit = (Exit) door;
+                break;
+            }
         }
+        if (!hasEmergencyExit) throw new IllegalStateException("The room does not have an emergency exit.");
 
         // Open the exit
-        // Todo: Implement exit opening
-        System.out.println("*The emergency exit has opened*");
+        exit.open();
 
         // Break the item
         this.setBroken(true);
@@ -43,6 +46,11 @@ public class SlipStick extends Item implements FalseItem {
     @Override
     public boolean isFalse() {
         return this.falseItem;
+    }
+
+    @Override
+    public String toString() {
+        return "SlipStick#" + ID;
     }
 
 }

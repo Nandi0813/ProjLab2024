@@ -23,8 +23,7 @@ public class TVSZ extends Item implements FalseItem {
     public void effect(Student user){
 
         // Protect the user from professors
-        // Todo: Implement protection
-        System.out.println("*The TVSZ protects the user from professors*");
+        user.setProtected(true);
 
         // Decrease health and break the item if health reaches zero
         health--;
@@ -54,6 +53,11 @@ public class TVSZ extends Item implements FalseItem {
     @Override
     public boolean isFalse() {
         return this.falseItem;
+    }
+
+    @Override
+    public String toString() {
+        return "TVSZ#"+ID+" remaining uses: "+health;
     }
 
 }

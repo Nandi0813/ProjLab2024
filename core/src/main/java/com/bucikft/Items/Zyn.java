@@ -1,8 +1,11 @@
 package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,21 +20,30 @@ public class Zyn extends Item {
      * @throws IllegalStateException If there is no dead student in the room or if the Zyn item is broken.
      */
     public void effect(Student user) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-
         // Test if there is a dead student in the room
-        // Todo: Implement check, for now ask tester
-        System.out.println("Is there a dead student in the room? (y/n): ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) {
-            throw new IllegalStateException("There is no dead student in the room.");
+        boolean deadStudentExists = false;
+        List<Student> deadStudents = new ArrayList<Student>();
+        for (Person person : user.getCurrentRoom().getPersonList()) {
+            if (person instanceof Student) {
+                Student student = (Student) person;
+                if (!student.isAlive()) {
+                    deadStudentExists = true;
+                    deadStudents.add(student);
+                }
+            }
         }
+        if (!deadStudentExists) throw new IllegalStateException("There is no dead student in the room.");
 
-        // Revive the first dead student in the room
-        // Todo: Implement reviving
-        System.out.println("*The Zyn revives the first dead student in the room*");
+        // Revive the dead students in the room
+        for (Student deadStudent : deadStudents) {
+            deadStudent.setAlive(true);
+        }
 
         // Break item
         setBroken(true);
+    }
+    @Override
+    public String toString() {
+        return "Zyn#" + ID;
     }
 }

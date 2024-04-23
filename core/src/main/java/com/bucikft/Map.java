@@ -1,6 +1,9 @@
 package com.bucikft;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Cleaner;
+import com.bucikft.Person.Professor;
+import com.bucikft.Person.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +19,40 @@ public class Map {
     /**
      * Initializes a new map.
      */
-    public Map(){
+    public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners){
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
+        // generate rooms
+        for (int i = 0; i < mapSize; i++) {
+            Room room = new Room();
+            roomList.add(room);
+        }
+        // generate doors between rooms
+
+        // TODO I HAVE NO IDEA HOW WE'RE GONNA DO THE GENERATION OF THE MAP XDDD
+
+
+        // generate items and put them in rooms
+
+
+        // put students in rooms
+        for (Student student : students) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(student);
+        }
+        // put professors in rooms
+        for (Professor professor : professors) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(professor);
+        }
+        // put cleaners in rooms
+        for (Cleaner cleaner : cleaners) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(cleaner);
+        }
     }
 
     /**

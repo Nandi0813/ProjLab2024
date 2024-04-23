@@ -18,19 +18,17 @@ public class DKC extends Item {
      */
     public void effect(Student user) throws IllegalStateException {
         // Test if room is filled with gas
-        // Todo: Test if room is gas filled, meanwhile ask tester
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Is the room already filled with gas? (y/n): ");
-        boolean choice = scanner.next().charAt(0) == 'y';
-        if (choice) {
-            throw new IllegalStateException("The room is already filled with gas.");
-        }
+        if (user.getCurrentRoom().isGassed()) throw new IllegalStateException("The room is already filled with gas.");
 
         // Gas the room
-        // Todo: Implement filling the room with gas
-        System.out.println("*The room has been filled with gas*");
+        user.getCurrentRoom().setGassed(true);
 
         // Break the item
         this.setBroken(true);
+    }
+
+    @Override
+    public String toString() {
+        return "DKC#" + ID;
     }
 }

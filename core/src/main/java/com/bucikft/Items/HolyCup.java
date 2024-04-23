@@ -44,4 +44,9 @@ public class HolyCup extends Item {
         // Break the item
         this.setBroken(true);
     }
+
+    @Override
+    public String toString() {
+        return "HolyCup#" + ID;
+    }
 }

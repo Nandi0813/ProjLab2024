@@ -1,6 +1,8 @@
 package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Person;
+import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
 /**
@@ -16,10 +18,17 @@ public class WetRag extends Item {
     public void effect(Student user) {
 
         // Stun all professors in the room
-        // Todo: Implement stunning professors
-        System.out.print("*The Wet Rag stuns all professors*");
+        for (Person person : user.getCurrentRoom().getPersonList()) {
+            if (person instanceof Professor) {
+                ((Professor) person).stun(3);
+            }
+        }
 
         // Break item
         setBroken(true);
+    }
+    @Override
+    public String toString() {
+        return "WetRag#"+ID;
     }
 }

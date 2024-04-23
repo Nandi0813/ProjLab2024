@@ -17,10 +17,14 @@ public class EnergyDrink extends Item {
     public void effect(Student user) throws IllegalStateException {
 
         // Increase moves left
-        // Todo: Implement increasing the remaining steps of the student
-        System.out.println("*After consuming the Energy Drink, the student can take one more step*");
+        user.setMovesLeft(user.getMovesLeft() + 1);
 
         // Break item
         this.setBroken(true);
+    }
+
+    @Override
+    public String toString() {
+        return "EnergyDrink#" + ID;
     }
 }

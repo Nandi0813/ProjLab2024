@@ -10,8 +10,13 @@ import java.util.Scanner;
  */
 public class Student extends Person {
 
-    private boolean alive;
+    private boolean alive = true;
     private boolean masked = false;
+    private boolean protection = false; // Counter to track protection duration
+
+    public Student(String name) {
+        super(name);
+    }
 
     /**
      * Uses the specified item.
@@ -20,10 +25,7 @@ public class Student extends Person {
      * @throws IllegalStateException If the student cannot use more items in their turn.
      */
     public void use(Item item) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Can the student use more items in their turn? (y/n): ");
-        boolean choice = scanner.next().charAt(0)=='y';
-        if (!choice) throw new IllegalStateException("The student cannot use more items.");
+        if (usesLeft <= 0) throw new IllegalStateException("The student cannot use more items in their turn.");
         item.effect(this);
     }
 
@@ -34,21 +36,19 @@ public class Student extends Person {
      * @throws IllegalStateException If there is not enough room in the room for the item.
      */
     public void drop(Item item) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
 
         // Test if room has enough room for the item
-        // todo
-        System.out.println("Is there enough room in the room for the item? (y/n): ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) throw new IllegalStateException("There is not enough room for the item in the room.");
+        if (this.getCurrentRoom().getItemsList().size() >= this.getCurrentRoom().getItemCapacity())
+            throw new IllegalStateException("There is not enough room for the item in the room.");
 
         // Drop item
-        // todo
-        System.out.println("*The item has been dropped in the room*");
+        this.getCurrentRoom().getItemsList().add(item);
 
         // Remove item from inventory
-        // todo
-        System.out.println("*The item has been removed from the player's inventory*");
+        this.itemList.remove(item);
+
+        // Set item to not picked up
+        item.setPickedUp(false);
     }
 
     /**
@@ -57,16 +57,8 @@ public class Student extends Person {
      * @return true if the student can be killed, otherwise false.
      */
     public boolean isKillable() {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void pickUp(Item item) throws IllegalStateException {
-        if (itemList.size()>5) throw new IllegalStateException("The player has no more space for items.");
-        itemList.add(item); // Only for testing, pickUp mechanism will be different
+        // for now, could be other things too
+        return !protection;
     }
 
     /**
@@ -80,7 +72,6 @@ public class Student extends Person {
         if (t1.pair != null || t2.pair != null) throw new IllegalStateException("The transistors already have pairs.");
         t1.pair = t2;
         t2.pair = t1;
-        System.out.println("The transistors have been paired.");
     }
 
     /**
@@ -88,26 +79,43 @@ public class Student extends Person {
      *
      * @return true if the student is alive, otherwise false.
      */
-    public boolean isAlive() { return this.alive; }
+    public boolean isAlive() {
+        return this.alive;
+    }
 
     /**
      * Sets the status of the student's life.
      *
      * @param alive The status of the student's life.
      */
-    public void setAlive(final boolean alive) { this.alive = alive; }
+    public void setAlive(final boolean alive) {
+        this.alive = alive;
+    }
 
     /**
      * Checks if the student is masked.
      *
      * @return true if the student is masked, otherwise false.
      */
-    public boolean isMasked() { return this.masked; }
+    public boolean isMasked() {
+        return this.masked;
+    }
 
     /**
      * Sets the status of the student's mask.
      *
      * @param masked The status of the student's mask.
      */
-    public void setMasked(final boolean masked) { this.masked = masked; }
+    public void setMasked(final boolean masked) {
+        this.masked = masked;
+    }
+
+    public void setProtected(boolean prot) {
+        this.protection = prot;
+    }
+
+    @Override
+    public String toString() {
+        return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead");
+    }
 }

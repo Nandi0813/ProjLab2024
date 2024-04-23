@@ -12,11 +12,13 @@ import java.util.Scanner;
 public class Professor extends Person {
 
     private List<Student> killedStudents; // List to keep track of killed students
+    private int killsLeft; // Counter to track the number of kills left in this round
 
     /**
      * Constructor to initialize a Professor object.
      */
-    public Professor() {
+    public Professor(String name) {
+        super(name);
         this.killedStudents = new ArrayList<>();
     }
 
@@ -68,41 +70,34 @@ public class Professor extends Person {
         Scanner scanner = new Scanner(System.in);
 
         // Check if student is in the same room
-        // Todo
-        System.out.println("A hallgató és a professzor egy szobában vannak? y/n: ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) throw new IllegalStateException("A hallgató és a professzor nem egy szobában vannak.");
+        if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("A hallgató és a professzor nem egy szobában vannak.");
 
         // Check if student is alive
-        // Todo
-        System.out.println("A hallgató él? y/n: ");
-        choice = scanner.next().equals("y");
-        if (!choice) throw new IllegalStateException("A hallgató már halott.");
+        if (!student.isAlive()) throw new IllegalStateException("A hallgató már halott.");
 
         // Check if student is protected
-        // Todo
-        System.out.println("A hallgató védve van? y/n: ");
-        choice = scanner.next().equals("y");
-        if (choice) throw new IllegalStateException("A hallgató védve van.");
+        if (!student.isKillable()) throw new IllegalStateException("A hallgató védve van.");
 
         // Check if prof has moves left in his turn
-        // Todo
-        System.out.println("Van még lépése hátra a professzornak? y/n: ");
-        choice = scanner.next().equals("y");
-        if (!choice) throw new IllegalStateException("A professzornak nincs több lépése.");
+        if (this.movesLeft<=0) throw new IllegalStateException("A professzornak nincs több lépése.");
 
 
         // Kill student
-        // Todo
-        System.out.println("*A hallgató meghalt*");
+        student.setAlive(false);
 
-        // Todo:
         // Decrease moves of professor
+        this.killsLeft--;
         // Add to killed students
+        this.addKilledStudent(student);
+
     }
 
     @Override
     public void pickUp(Item item) {
         // Method overridden from superclass, not used in Professor class
+    }
+
+    public void setKillsLeft(int i) {
+        this.killsLeft = i;
     }
 }

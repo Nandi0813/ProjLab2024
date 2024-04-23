@@ -9,6 +9,8 @@ public abstract class Item {
 
     protected boolean falseItem;
     protected boolean broken; // Indicates whether the item is broken or not.
+    protected boolean pickedUp; // Indicates whether the item has been picked up or not.
+    protected String ID;
 
     protected Item() {
         this.falseItem = false;
@@ -39,4 +41,15 @@ public abstract class Item {
      * @param user The student who uses the item.
      */
     public abstract void effect(Student user);
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+ "#" + ID;
+    }
+    public void setPickedUp(boolean pickedUp) {
+        this.pickedUp = pickedUp;
+    }
+    public boolean isPickedUp() {
+        return pickedUp;
+    }
 }

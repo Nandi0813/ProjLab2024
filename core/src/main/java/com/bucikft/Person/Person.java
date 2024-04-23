@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Room;
 
@@ -17,12 +18,18 @@ public abstract class Person {
     protected int usesLeft; // Added so we can track moves and uses separately
     protected List<Item> itemList;
     protected Room currentRoom;
+    private String Name;
+    protected int capacity; // Added to track the capacity of the inventory
 
     /**
      * Constructor to initialize a Person object.
      */
-    protected Person() {
+    protected Person(String name) {
         this.itemList = new ArrayList<>();
+        this.name = name;
+        this.movesLeft = 1;
+        this.usesLeft = 1;
+        this.capacity = 5;
     }
 
     /**
@@ -35,27 +42,32 @@ public abstract class Person {
         Scanner scanner = new Scanner(System.in);
 
         // Test if the player has moves left
-        // Todo
-        System.out.println("Does the player have moves left? (y/n): ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) {
+        if (this.movesLeft <= 0) {
             throw new IllegalStateException("The player has no more moves left.");
         }
 
         // Test if the rooms are neighbors
-        // Todo
-        System.out.println("Are the rooms neighbors? (y/n): ");
-        choice = scanner.next().equals("y");
-        if (!choice) {
+        boolean neighbor = false;
+        for (Door door : this.currentRoom.getDoorList()) {
+            if (room.getDoorList().contains(door)) {
+                neighbor = true;
+                break;
+            }
+        }
+        if (!neighbor) {
             throw new IllegalStateException("The rooms are not neighbors.");
         }
 
         // Move the person to the room
-        // Todo: Implement movement
-        System.out.println("*Person moved*");
+        this.currentRoom.getPersonList().remove(this);
+        room.getPersonList().add(this);
 
         // Decrement movesLeft
-        // Todo: Decrement moves left
+        this.movesLeft--;
+    }
+
+    public int getUsesLeft() {
+        return this.usesLeft;
     }
 
     /**
@@ -65,40 +77,35 @@ public abstract class Person {
      * @throws IllegalStateException If the player has no moves left, if the item is not in the same room, or if the inventory is full.
      */
     public void pickUp(Item item) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-
-        // Test if the player has moves left
-        // Todo
-        System.out.println("Does the player have moves left? (y/n): ");
-        boolean choice = scanner.next().equals("y");
-        if (!choice) {
-            throw new IllegalStateException("The player has no more moves left.");
-        }
+        // removed uses left test because they should be able to pick up as many items as they want
 
         // Test if the item is in the same room
-        // Todo
-        System.out.println("Is the item in the player's room? (y/n): ");
-        choice = scanner.next().equals("y");
-        if (!choice) {
-            throw new IllegalStateException("The item is not in the player's room.");
+        if (!this.currentRoom.getItemsList().contains(item)) {
+            throw new IllegalStateException("The item is not in the same room.");
         }
 
         // Test if the inventory is full
-        // Todo
-        System.out.println("Is the player's inventory full? (y/n): ");
-        choice = scanner.next().equals("y");
-        if (choice) {
+        if (this.itemList.size() >= this.capacity) {
             throw new IllegalStateException("The player's inventory is full.");
         }
 
         // Pick up the item
-        // Todo: Implement picking up item
-        System.out.println("*The player picked up the item*");
+        this.currentRoom.getItemsList().remove(item);
+        this.itemList.add(item);
+
+        // Set item to picked up
+        item.setPickedUp(true);
 
         // Decrement usesLeft
-        // Todo: Decrement uses left
+        this.usesLeft--;
+    }
+    public String getName() {
+        return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     /**
      * Gets the current room of the person.
      *
@@ -106,6 +113,10 @@ public abstract class Person {
      */
     public Room getCurrentRoom() {
         return this.currentRoom;
+    }
+
+    public List<Item> getInventory() {
+        return this.itemList;
     }
 
     /**
@@ -133,5 +144,13 @@ public abstract class Person {
      */
     public void setMovesLeft(int movesLeft) {
         this.movesLeft = movesLeft;
+    }
+
+    public void setUsesLeft(int i) {
+        this.usesLeft = i;
+    }
+
+    public List<Item> getItemList() {
+        return this.itemList;
     }
 }
