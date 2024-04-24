@@ -2,12 +2,16 @@ package com.bucikft;
 
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
+import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,6 +22,34 @@ public class Map {
     private List<Room> roomList;
     private List<Item> itemList;
 
+    private static <T> List<Item> generateItem(Class<T> itemClass, int mapSize, IDmaker idMaker) {
+        int itemCount = (int)( Math.random() * (mapSize/3)+1);
+        List<Item> items = new ArrayList<>();
+        try {
+            // Get the constructor of the specified class with the appropriate parameter types
+
+            Constructor<T> constructor = itemClass.getDeclaredConstructor(String.class, boolean.class);
+            boolean falseItem = false;
+            if (itemClass.equals(TVSZ.class) || itemClass.equals(SlipStick.class) || itemClass.equals(Mask.class)) {
+                if (itemCount>1) {
+                    falseItem = true;
+                }
+            }
+            if (itemClass.equals(Transistor.class)) itemCount*=2;
+            for (int i = 0; i < itemCount; i++) {
+                // Create a new instance of the specified class using the constructor and provided arguments
+                T newItem = constructor.newInstance(idMaker.makeID(), i == 0 && falseItem);
+                // You can initialize any properties or perform additional setup here
+                items.add((Item)newItem);
+            }
+            return items;
+
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            System.out.println(e.getMessage());// Handle the exception appropriately
+            return null; // Or some default value indicating failure
+        }
+
+    }
     private Room findRoom(int x, int y) {
         for (Room room : roomList) {
             if (room.getX() == x && room.getY() == y) {
@@ -48,10 +80,6 @@ public class Map {
                 roomList.add(room);
             }
         }
-        // x x x x
-        // x x x x
-        // x x x x
-        // x x x x
 
         // generate doors between rooms
         for (Room room : roomList) {
@@ -81,8 +109,19 @@ public class Map {
             }
 
         }
-
+        List<Class<?>> itemClasses = new ArrayList<>(Arrays.asList(AirFreshener.class,DKC.class, Mask.class, SlipStick.class, TVSZ.class, EnergyDrink.class, Hammer.class, HolyCup.class, WetRag.class, Zyn.class, Transistor.class));
         // generate items and put them in rooms
+        for (Class<?> itemClass : itemClasses) {
+            List<Item> items = generateItem(itemClass, mapSize, idMaker);
+            itemList.addAll(items);
+            for (Item item : items) {
+                // todo test for capacity of room
+                int randomRoomIndex = (int) (Math.random() * roomList.size());
+                Room randomRoom = roomList.get(randomRoomIndex);
+                randomRoom.getItemsList().add(item);
+            }
+        }
+
 
 
         // put students in rooms
