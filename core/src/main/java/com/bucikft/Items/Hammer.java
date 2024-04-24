@@ -3,15 +3,13 @@ package com.bucikft.Items;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
-import java.util.Scanner;
-
 /**
  * Represents a Hammer item, which can split a room when used by a student.
  */
 public class Hammer extends Item {
 
-    public Hammer(String ID) {
-        super(ID);
+    public Hammer(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /**
@@ -21,7 +19,7 @@ public class Hammer extends Item {
      * @throws IllegalStateException If the room cannot be split.
      */
     public void effect(Student user) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
+        // Scanner scanner = new Scanner(System.in);
 
         // Test if room is big enough for splitting
         if (user.getCurrentRoom().getItemCapacity()>=2) throw new IllegalStateException("The room cannot be split.");

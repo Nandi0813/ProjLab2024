@@ -9,8 +9,8 @@ import com.bucikft.Person.Student;
  */
 public class HolyCup extends Item {
 
-    public HolyCup(String ID) {
-        super(ID);
+    public HolyCup(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
         this.turns = 0;
     }
 

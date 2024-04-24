@@ -15,26 +15,26 @@ public class Spawn implements Command {
         Room room = game.getFocusedPerson().getCurrentRoom();
         switch(args[1]) {
             case "DKC":
-                DKC dkc = new DKC(idMaker.makeID());
+                DKC dkc = new DKC(idMaker.makeID(), false);
                 room.getItemsList().add(dkc);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("DKC spawned in room " + room);
                 break;
             case "EnergyDrink":
 
-                EnergyDrink eg = new EnergyDrink(idMaker.makeID());
+                EnergyDrink eg = new EnergyDrink(idMaker.makeID(), false);
                 room.getItemsList().add(eg);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("EnergyDrink spawned in room " + room);
                 break;
             case "Hammer":
-                Hammer h = new Hammer(idMaker.makeID());
+                Hammer h = new Hammer(idMaker.makeID(), false);
                 room.getItemsList().add(h);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("Hammer spawned in room " + room);
                 break;
             case "HolyCup":
-                HolyCup c = new HolyCup(idMaker.makeID());
+                HolyCup c = new HolyCup(idMaker.makeID(), false);
                 room.getItemsList().add(c);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("HolyCup spawned in room " + room);
@@ -52,7 +52,7 @@ public class Spawn implements Command {
                 System.out.println("SlipStick spawned in room " + room);
                 break;
             case "Transistor":
-                Transistor t = new Transistor(idMaker.makeID());
+                Transistor t = new Transistor(idMaker.makeID(), false);
                 room.getItemsList().add(t);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("Transistor spawned in room " + room);
@@ -64,19 +64,19 @@ public class Spawn implements Command {
                 System.out.println("TVSZ spawned in room " + room);
                 break;
             case "WetRag":
-                WetRag wr = new WetRag(idMaker.makeID());
+                WetRag wr = new WetRag(idMaker.makeID(), false);
                 room.getItemsList().add(wr);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("WetRag spawned in room " + room);
                 break;
             case "Zyn":
-                Zyn z = new Zyn(idMaker.makeID());
+                Zyn z = new Zyn(idMaker.makeID(), false);
                 room.getItemsList().add(z);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("Zyn spawned in room " + room);
                 break;
             case "AirFreshener":
-                AirFreshener af = new AirFreshener(idMaker.makeID());
+                AirFreshener af = new AirFreshener(idMaker.makeID(), false);
                 room.getItemsList().add(af);
                 room.setItemCapacity(room.getItemCapacity() + 1);
                 System.out.println("AirFreshener spawned in room " + room);

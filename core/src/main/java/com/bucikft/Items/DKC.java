@@ -3,15 +3,13 @@ package com.bucikft.Items;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
-import java.util.Scanner;
-
 /**
  * Represents the DKC item, which fills a room with gas when used by a Student.
  */
 public class DKC extends Item {
 
-    public DKC(String ID) {
-        super(ID);
+    public DKC(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /**

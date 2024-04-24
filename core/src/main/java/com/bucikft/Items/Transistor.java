@@ -3,15 +3,13 @@ package com.bucikft.Items;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
-import java.util.Scanner;
-
 /**
  * Represents a Transistor item, which can be used to teleport between rooms.
  */
 public class Transistor extends Item {
 
-    public Transistor(String ID) {
-        super(ID);
+    public Transistor(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /** The paired Transistor item. */

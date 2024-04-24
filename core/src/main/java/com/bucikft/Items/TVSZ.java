@@ -1,18 +1,17 @@
 package com.bucikft.Items;
 
-import com.bucikft.Items.Interface.FalseItem;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
 /**
  * Represents a TVSZ item, which can protect a Student from professors.
  */
-public class TVSZ extends Item implements FalseItem {
+public class TVSZ extends Item {
 
     private int health; // The health points of the TVSZ item.
 
     public TVSZ(String ID, final boolean isFalseItem) {
-        super(ID);
+        super(ID, isFalseItem);
         this.falseItem = isFalseItem;
     }
 
@@ -49,11 +48,6 @@ public class TVSZ extends Item implements FalseItem {
      */
     public int getHealth() {
         return health;
-    }
-
-    @Override
-    public boolean isFalse() {
-        return this.falseItem;
     }
 
     @Override

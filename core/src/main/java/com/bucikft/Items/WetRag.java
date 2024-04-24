@@ -10,8 +10,8 @@ import com.bucikft.Person.Student;
  */
 public class WetRag extends Item {
 
-    public WetRag(String ID) {
-        super(ID);
+    public WetRag(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /**

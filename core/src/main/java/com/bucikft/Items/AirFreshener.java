@@ -7,8 +7,8 @@ import com.bucikft.Person.Student;
  * A single-use item. It neutralizes the gas effect when placed in a gassed room.
  */
 public class AirFreshener extends Item {
-    public AirFreshener(String ID) {
-        super(ID);
+    public AirFreshener(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /**

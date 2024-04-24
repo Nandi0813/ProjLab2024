@@ -6,15 +6,14 @@ import com.bucikft.Person.Student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Represents a Zyn item, which can revive the first dead student in the room when used by a student.
  */
 public class Zyn extends Item {
 
-    public Zyn(String ID) {
-        super(ID);
+    public Zyn(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem);
     }
 
     /**
@@ -26,10 +25,9 @@ public class Zyn extends Item {
     public void effect(Student user) throws IllegalStateException {
         // Test if there is a dead student in the room
         boolean deadStudentExists = false;
-        List<Student> deadStudents = new ArrayList<Student>();
+        List<Student> deadStudents = new ArrayList<>();
         for (Person person : user.getCurrentRoom().getPersonList()) {
-            if (person instanceof Student) {
-                Student student = (Student) person;
+            if (person instanceof Student student) {
                 if (!student.isAlive()) {
                     deadStudentExists = true;
                     deadStudents.add(student);
