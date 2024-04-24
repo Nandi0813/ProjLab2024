@@ -32,7 +32,6 @@ public class RoundManager {
             student.setMovesLeft(1);
             student.setUsesLeft(1);
         }
-        if (currentRound == 1) return;
 
         // TODO do AI movement and actions of professors and cleaners
         System.out.println("playing AI turns....");
@@ -50,9 +49,7 @@ public class RoundManager {
         }
         // set turn to 0
         currentTurn = 0;
-        System.out.println(game.getStudents().get(0));
         game.setFocusedPerson(game.getStudents().get(0));
-        System.out.println("aaaaaaaa");
     }
 
     public void nextTurn() {
