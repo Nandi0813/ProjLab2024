@@ -11,7 +11,8 @@ public class TVSZ extends Item implements FalseItem {
 
     private int health; // The health points of the TVSZ item.
 
-    public TVSZ(final boolean isFalseItem) {
+    public TVSZ(String ID, final boolean isFalseItem) {
+        super(ID);
         this.falseItem = isFalseItem;
     }
 

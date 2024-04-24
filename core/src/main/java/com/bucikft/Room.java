@@ -25,12 +25,15 @@ public class Room {
     /**
      * Initializes a new room.
      */
-    public Room() {
+    public Room(String s) {
         this.gassed = false;
         this.isSticky = false;
         this.itemsList = new ArrayList<>();
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
+        this.capacity = 5;
+        this.itemCapacity = 5;
+        this.ID = s;
     }
 
     public int getCapacity() {
@@ -111,5 +114,13 @@ public class Room {
     }
     public String getID() {
         return this.ID;
+    }
+
+    public void setItemCapacity(int i) {
+        this.itemCapacity = i;
+    }
+    @Override
+    public String toString() {
+        return "Room#"+this.ID;
     }
 }

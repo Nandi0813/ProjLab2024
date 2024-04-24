@@ -1,11 +1,9 @@
 package com.bucikft;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
-import com.bucikft.commands.Command;
-import com.bucikft.commands.Debug;
-import com.bucikft.commands.ExitCommand;
-import com.bucikft.commands.Start;
+import com.bucikft.commands.*;
 
 import java.sql.SQLOutput;
 import java.util.HashMap;
@@ -21,6 +19,13 @@ public class ConsoleUI {
         commands.put("debug", new Debug());
         commands.put("start", new Start());
         commands.put("exit", new ExitCommand());
+        commands.put("next", new Next());
+        commands.put("skip", new Skip());
+        commands.put("pickup", new PickUp());
+        commands.put("spawn", new Spawn());
+        commands.put("drop", new Drop());
+        commands.put("menu", new MenuCommand());
+        commands.put("use", new Use());
     }
     public void readCommands() throws IllegalArgumentException {
         System.out.println("please enter a command:");
@@ -38,14 +43,20 @@ public class ConsoleUI {
             System.out.println();
         }
         int turn = game.getRoundManager().getCurrentTurn();
-        Student currentPlayer = game.getStudents().get(turn);
+        Person currentPlayer = game.getFocusedPerson();
 
         // draw map
         System.out.println("game with " + game.getStudents().size() + " players");
+        System.out.println("current room: " + currentPlayer.getCurrentRoom());
+        System.out.println(currentPlayer.getCurrentRoom().isGassed()? "room is gassed" : "room is not gassed");
         System.out.println("current round: " + game.getRoundManager().getCurrentRound());
         System.out.println("current player: "+ currentPlayer);
         System.out.println("moves left: " + currentPlayer.getMovesLeft());
         System.out.println("uses left: " + currentPlayer.getUsesLeft());
+        System.out.println("\nitems in room:");
+        for (Item item : currentPlayer.getCurrentRoom().getItemsList()) {
+            System.out.println(item);
+        }
         System.out.println("\ninventory:");
         for (Item item : currentPlayer.getItemList()) {
             System.out.println(item);

@@ -27,6 +27,9 @@ public class Student extends Person {
     public void use(Item item) throws IllegalStateException {
         if (usesLeft <= 0) throw new IllegalStateException("The student cannot use more items in their turn.");
         item.effect(this);
+        if (item.isBroken()) {
+            this.itemList.remove(item);
+        }
     }
 
     /**

@@ -10,6 +10,10 @@ import com.bucikft.Person.Student;
  */
 public class WetRag extends Item {
 
+    public WetRag(String ID) {
+        super(ID);
+    }
+
     /**
      * Applies the effect of the Wet Rag item, stunning all professors in the room.
      *

@@ -13,7 +13,11 @@ public class Menu {
         Game game = new Game();
         System.out.println("welcome to the game!");
         while(!game.isStarted()) {
-            game.getUI().readCommands();
+            try {
+                game.getUI().readCommands();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
 

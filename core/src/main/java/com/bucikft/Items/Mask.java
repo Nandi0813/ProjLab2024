@@ -11,7 +11,8 @@ import java.util.Scanner;
  */
 public class Mask extends Item implements FalseItem {
 
-    public Mask(final boolean isFalseItem) {
+    public Mask(String ID, final boolean isFalseItem) {
+        super(ID);
         this.falseItem = isFalseItem;
     }
 

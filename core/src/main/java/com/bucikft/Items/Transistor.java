@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class Transistor extends Item {
 
+    public Transistor(String ID) {
+        super(ID);
+    }
+
     /** The paired Transistor item. */
     public Transistor pair = null;
 

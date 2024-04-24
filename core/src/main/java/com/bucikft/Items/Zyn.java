@@ -13,6 +13,10 @@ import java.util.Scanner;
  */
 public class Zyn extends Item {
 
+    public Zyn(String ID) {
+        super(ID);
+    }
+
     /**
      * Applies the effect of the Zyn item, reviving the first dead student in the room.
      *

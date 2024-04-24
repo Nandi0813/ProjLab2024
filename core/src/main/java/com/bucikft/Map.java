@@ -19,12 +19,12 @@ public class Map {
     /**
      * Initializes a new map.
      */
-    public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners){
+    public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners, IDmaker idMaker){
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
         // generate rooms
         for (int i = 0; i < mapSize; i++) {
-            Room room = new Room();
+            Room room = new Room(idMaker.makeID());
             roomList.add(room);
         }
         // generate doors between rooms
@@ -40,6 +40,7 @@ public class Map {
             int randomRoomIndex = (int) (Math.random() * roomList.size());
             Room randomRoom = roomList.get(randomRoomIndex);
             randomRoom.getPersonList().add(student);
+            student.setCurrentRoom(randomRoom);
         }
         // put professors in rooms
         for (Professor professor : professors) {

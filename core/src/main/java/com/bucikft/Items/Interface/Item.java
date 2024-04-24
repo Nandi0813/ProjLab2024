@@ -12,9 +12,10 @@ public abstract class Item {
     protected boolean pickedUp; // Indicates whether the item has been picked up or not.
     protected String ID;
 
-    protected Item() {
+    protected Item(String ID) {
         this.falseItem = false;
         this.broken = false;
+        this.ID = ID;
     }
 
     /**
@@ -51,5 +52,9 @@ public abstract class Item {
     }
     public boolean isPickedUp() {
         return pickedUp;
+    }
+
+    public String getID() {
+        return ID;
     }
 }

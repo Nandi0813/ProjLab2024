@@ -13,7 +13,8 @@ import java.util.Scanner;
  */
 public class SlipStick extends Item implements FalseItem {
 
-    public SlipStick(final boolean isFalseItem) {
+    public SlipStick(String ID, final boolean isFalseItem) {
+        super(ID);
         this.falseItem = isFalseItem;
     }
 

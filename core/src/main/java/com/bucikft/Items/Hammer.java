@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class Hammer extends Item {
 
+    public Hammer(String ID) {
+        super(ID);
+    }
+
     /**
      * Applies the effect of the Hammer item on the user (a student).
      *
@@ -20,7 +24,7 @@ public class Hammer extends Item {
         Scanner scanner = new Scanner(System.in);
 
         // Test if room is big enough for splitting
-        if (user.getCurrentRoom().getCapacity()>=2) throw new IllegalStateException("The room cannot be split.");
+        if (user.getCurrentRoom().getItemCapacity()>=2) throw new IllegalStateException("The room cannot be split.");
 
         // Split room
         // Todo: Implement room splitting

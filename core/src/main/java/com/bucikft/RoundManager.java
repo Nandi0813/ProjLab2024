@@ -27,13 +27,18 @@ public class RoundManager {
      */
     public void nextRound() {
         currentRound++;
+        // reset student characters
         for (Student student: game.getStudents()) {
             student.setMovesLeft(1);
             student.setUsesLeft(1);
         }
         if (currentRound == 1) return;
-        // TODO do AI movement and actions of professors and cleaners
 
+        // TODO do AI movement and actions of professors and cleaners
+        System.out.println("playing AI turns....");
+
+
+        // reset ai characters
         for (Professor professor: game.getProfessors()) {
             professor.setMovesLeft(1);
             professor.setUsesLeft(1);
@@ -43,17 +48,29 @@ public class RoundManager {
             cleaner.setMovesLeft(1);
             cleaner.setUsesLeft(1);
         }
+        // set turn to 0
         currentTurn = 0;
-        while (currentTurn < game.getStudents().size()) {
-            game.setFocusedPerson(game.getStudents().get(currentTurn));
+        System.out.println(game.getStudents().get(0));
+        game.setFocusedPerson(game.getStudents().get(0));
+        System.out.println("aaaaaaaa");
+    }
 
-            currentTurn++;
+    public void nextTurn() {
+        currentTurn++;
+        if (currentTurn == game.getStudents().size()) {
+            nextRound();
+        } else {
+            game.setFocusedPerson(game.getStudents().get(currentTurn));
         }
     }
 
     public void play() {
         ConsoleUI ui = game.getUI();
-        nextRound();
+        game.setFocusedPerson(game.getStudents().get(0));
+        for (Student student: game.getStudents()) {
+            student.setMovesLeft(1);
+            student.setUsesLeft(1);
+        }
         while (game.isStarted()) {
             try {
                 if (!game.getDebugMode()) ui.printGameState();
@@ -63,6 +80,7 @@ public class RoundManager {
             }
         }
     }
+
     /**
      * Ends the current round.
      */

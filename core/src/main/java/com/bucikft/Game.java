@@ -55,7 +55,7 @@ public class Game {
         Cleaner cleaner = new Cleaner(idMaker.makeID());
         this.cleaners.add(cleaner);
 
-        this.map = new Map(mapSize, students, professors, cleaners);
+        this.map = new Map(mapSize, students, professors, cleaners, idMaker);
         this.started = true;
         this.roundManager.play();
 

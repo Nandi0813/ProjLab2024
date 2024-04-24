@@ -97,7 +97,7 @@ public abstract class Person {
         item.setPickedUp(true);
 
         // Decrement usesLeft
-        this.usesLeft--;
+        //this.usesLeft--;
     }
     public String getName() {
         return this.name;

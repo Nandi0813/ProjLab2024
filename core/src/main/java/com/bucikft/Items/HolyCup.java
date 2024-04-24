@@ -9,6 +9,11 @@ import com.bucikft.Person.Student;
  */
 public class HolyCup extends Item {
 
+    public HolyCup(String ID) {
+        super(ID);
+        this.turns = 0;
+    }
+
     private int turns; // The number of turns remaining until the effect of the Holy Cup wears off.
 
     /**

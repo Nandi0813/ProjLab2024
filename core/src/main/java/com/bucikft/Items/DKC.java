@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class DKC extends Item {
 
+    public DKC(String ID) {
+        super(ID);
+    }
+
     /**
      * Applies the effect of the DKC item on the user (a student).
      *
