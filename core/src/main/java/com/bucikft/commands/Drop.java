@@ -7,7 +7,7 @@ import com.bucikft.Person.Student;
 public class Drop implements Command {
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2) throw new IllegalArgumentException("Invalid number of arguments");
+        if (args.length != 2) throw new IllegalArgumentException("invalid number of arguments");
         Student student = (Student) game.getFocusedPerson();
         String[] item = args[1].split("#");
         for (Item i : student.getItemList()) {

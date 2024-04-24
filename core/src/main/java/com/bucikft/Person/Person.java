@@ -20,6 +20,14 @@ public abstract class Person {
     protected Room currentRoom;
     private String Name;
     protected int capacity; // Added to track the capacity of the inventory
+    protected boolean godMode = false;
+
+    public void setGodMode(boolean godMode) {
+        this.godMode = godMode;
+    }
+    public boolean isGodMode() {
+        return this.godMode;
+    }
 
     /**
      * Constructor to initialize a Person object.
@@ -42,7 +50,7 @@ public abstract class Person {
         Scanner scanner = new Scanner(System.in);
 
         // Test if the player has moves left
-        if (this.movesLeft <= 0) {
+        if (!godMode && this.movesLeft <= 0) {
             throw new IllegalStateException("The player has no more moves left.");
         }
 
@@ -61,9 +69,10 @@ public abstract class Person {
         // Move the person to the room
         this.currentRoom.getPersonList().remove(this);
         room.getPersonList().add(this);
+        this.currentRoom = room;
 
         // Decrement movesLeft
-        this.movesLeft--;
+        if (!godMode) movesLeft--;
     }
 
     public int getUsesLeft() {

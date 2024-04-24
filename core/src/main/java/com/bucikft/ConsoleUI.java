@@ -1,5 +1,6 @@
 package com.bucikft;
 
+import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
@@ -26,6 +27,8 @@ public class ConsoleUI {
         commands.put("drop", new Drop());
         commands.put("menu", new MenuCommand());
         commands.put("use", new Use());
+        commands.put("move", new Move());
+        commands.put("godmode", new Godmode());
     }
     public void readCommands() throws IllegalArgumentException {
         System.out.println("please enter a command:");
@@ -53,6 +56,10 @@ public class ConsoleUI {
         System.out.println("current player: "+ currentPlayer);
         System.out.println("moves left: " + currentPlayer.getMovesLeft());
         System.out.println("uses left: " + currentPlayer.getUsesLeft());
+        System.out.println("doors in room:");
+        for (Door door : currentPlayer.getCurrentRoom().getDoorList()) {
+            door.printDoor(currentPlayer.getCurrentRoom());
+        }
         System.out.println("\nitems in room:");
         for (Item item : currentPlayer.getCurrentRoom().getItemsList()) {
             System.out.println(item);

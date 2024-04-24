@@ -1,9 +1,14 @@
 package com.bucikft.Door;
-
+import com.bucikft.Room;
 /**
  * Represents the emergency exit, a special type of door typically used for exiting the labyrinth.
  */
 public class Exit extends Door {
+
+    public Exit(Room roomFrom, Room roomTo, DoorLocation location) {
+        super(roomFrom, roomTo, location);
+        isOpen = false;
+    }
 
     private boolean isOpen; // Indicates whether the exit door is currently open or closed.
 
