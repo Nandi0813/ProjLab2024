@@ -1,15 +1,19 @@
 package com.bucikft;
 
+import com.bucikft.Door.Door;
+import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
+
+import java.util.Random;
 
 /**
  * Manages the rounds in the game.
  */
 public class RoundManager {
 
-    private Game game;
+    private final Game game;
     private int currentRound = 0;
     private int currentTurn = 0;
 
@@ -34,7 +38,45 @@ public class RoundManager {
         }
 
         // TODO do AI movement and actions of professors and cleaners
-        System.out.println("playing AI turns....");
+        Random rand = new Random();
+
+        for (Professor professor: game.getProfessors()) {
+            while (professor.getMovesLeft() > 0) {
+                Room currentRoom = professor.getCurrentRoom();
+                Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
+
+                Room roomTo;
+                if (door.getRoomFrom() == currentRoom) {
+                    roomTo = door.getRoomTo();
+                } else {
+                    roomTo = door.getRoomFrom();
+                }
+
+                professor.setCurrentRoom(roomTo);
+                currentRoom.getPersonList().remove(professor);
+                roomTo.getPersonList().add(professor);
+                professor.setMovesLeft(professor.getMovesLeft() - 1);
+            }
+        }
+
+        for (Cleaner cleaner: game.getCleaners()) {
+            while (cleaner.getMovesLeft() > 0) {
+                Room currentRoom = cleaner.getCurrentRoom();
+                Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
+
+                Room roomTo;
+                if (door.getRoomFrom() == currentRoom) {
+                    roomTo = door.getRoomTo();
+                } else {
+                    roomTo = door.getRoomFrom();
+                }
+
+                cleaner.setCurrentRoom(roomTo);
+                currentRoom.getPersonList().remove(cleaner);
+                roomTo.getPersonList().add(cleaner);
+                cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
+            }
+        }
 
 
         // reset ai characters
