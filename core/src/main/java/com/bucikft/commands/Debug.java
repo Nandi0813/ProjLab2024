@@ -7,6 +7,6 @@ public class Debug implements Command {
     @Override
     public void execute(Game game, String[] args) {
         game.setDebugMode();
-        System.out.println("debug mode " + (game.getDebugMode() ? "ON" : "OFF"));
+        System.out.println("\ndebug mode " + (game.getDebugMode() ? "ON" : "OFF"));
     }
 }

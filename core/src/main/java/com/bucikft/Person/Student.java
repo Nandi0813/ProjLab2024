@@ -81,9 +81,7 @@ public class Student extends Person {
      * @throws IllegalStateException If either of the transistors already has a pair.
      */
     public void join(Transistor t1, Transistor t2) throws IllegalStateException {
-        if (t1.pair != null || t2.pair != null) throw new IllegalStateException("The transistors already have pairs.");
-        t1.pair = t2;
-        t2.pair = t1;
+        t1.connect(t2,this );
     }
 
     /**

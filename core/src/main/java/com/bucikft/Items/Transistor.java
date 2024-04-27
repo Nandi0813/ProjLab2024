@@ -16,18 +16,17 @@ public class Transistor extends Item {
 
     /** The paired Transistor item. */
     public Transistor pair = null;
-    private Room currentRoom;
 
-    public Room getCurrentRoom() {
-        return currentRoom;
+
+
+    public void connect(Transistor t, Student user) throws IllegalStateException {
+        if(user.getCurrentRoom().getItemsList().contains(t) && !t.pickedUp) {
+            pair = t;
+            System.out.println("\n Transistors paired.\n");
+        }
+        else
+            throw new IllegalStateException("Cannot connect transistors.");
     }
-
-    public void setCurrentRoom(Room r){
-        currentRoom = r;
-    }
-
-
-
     /**
      * Applies the effect of the Transistor item on the user (a student).
      *
@@ -35,20 +34,17 @@ public class Transistor extends Item {
      * @throws IllegalStateException If the Transistor doesn't have a pair or if the pair hasn't been put down.
      */
     public void effect(Student user) throws IllegalStateException {
-        // Test if Transistor has a pair
         if (pair == null) throw new IllegalStateException("The Transistor doesn't have a pair.");
+        if (pair.pickedUp) throw new IllegalStateException("The pair has been picked up.");
 
-        // Test if pair has been put down
-        if (pair.pickedUp) throw new IllegalStateException("The pair Transistor hasn't been put down.");
-
-        // Teleport if the Transistor has a pair
-        // Todo: Implement teleportation
-        for each(Room r: Menu.getGame().getMap().getRoomList()){
-
+        for(Room r: Menu.getGame().getMap().getRoomList()){
+            if(r.getItemsList().contains(pair))
+                if(r.getCapacity() > r.getPersonList().size())
+                    Menu.getGame().getMap().move(user,r);
+                else
+                    throw new IllegalStateException("Room is full, cannot teleport.");
         }
 
-
-        // Break items
         this.setBroken(true);
         this.pair.setBroken(true);
     }

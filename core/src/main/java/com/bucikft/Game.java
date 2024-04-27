@@ -25,6 +25,7 @@ public class Game {
     private boolean started = false;
     private ProtoTest protoTest;
     private IDmaker idMaker = new IDmaker();
+    private boolean noAi = false;
 
     /**
      * Initializes a new game.
@@ -69,6 +70,10 @@ public class Game {
         this.focusedPerson = person;
     }
 
+    public boolean getNoAi(){ return noAi; }
+
+    public void setNoAi(boolean newai){ noAi = newai; }
+
     /**
      * Ends the game.
      */
@@ -111,9 +116,7 @@ public class Game {
     public void setDebugMode() {
         this.debug = !this.debug;
     }
-    public boolean getDebugMode() {
-        return this.debug;
-    }
+    public boolean getDebugMode() { return this.debug; }
 
 
     public List<Professor> getProfessors() {

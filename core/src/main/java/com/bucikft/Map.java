@@ -22,18 +22,6 @@ public class Map {
 
 
     public Map(int mapSize, IDmaker idMaker){
-        items.put("AirFreshener", new AirFreshener(idMaker.makeID(), false));
-        items.put("DKC", new DKC(idMaker.makeID(), false));
-        items.put("EnergyDrink", new EnergyDrink(idMaker.makeID(), false));
-        items.put("HolyCup", new HolyCup(idMaker.makeID(), false));
-        items.put("Hammer", new Hammer(idMaker.makeID(), false));
-        items.put("SlipStick", new SlipStick(idMaker.makeID(), false));
-        items.put("Transistor", new Transistor(idMaker.makeID(), false));
-        items.put("TVSZ", new TVSZ(idMaker.makeID(), false));
-        items.put("WetRag", new WetRag(idMaker.makeID(), false));
-        items.put("Zyn", new Zyn(idMaker.makeID(), false));
-        items.put("Mask", new Mask(idMaker.makeID(), false));
-
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
 

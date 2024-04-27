@@ -1,7 +1,9 @@
 package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Menu;
 import com.bucikft.Person.Student;
+import com.bucikft.Room;
 
 /**
  * Represents a Holy Cup item, which shows the shortest path to the SlipStick when used by a Student.
@@ -46,7 +48,6 @@ public class HolyCup extends Item {
         // Todo: Implement path display
         System.out.println("*The path to SlipStick has appeared*");
 
-        // Break the item
         this.setBroken(true);
     }
 

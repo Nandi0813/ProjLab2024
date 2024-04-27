@@ -34,6 +34,8 @@ public class ConsoleUI {
         commands.put("godmode", new Godmode());
         commands.put("load", new Load());
         commands.put("force", new Force());
+        commands.put("join", new Join());
+        commands.put("noai",new NoAI());
     }
     public void readCommands() throws IllegalArgumentException {
         if(game.getProtoTest().getTestMode()){

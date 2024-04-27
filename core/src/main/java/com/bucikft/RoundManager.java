@@ -40,7 +40,7 @@ public class RoundManager {
         Random rand = new Random();
 
         for (Professor professor: game.getProfessors()) {
-            if (professor.getMovesLeft() > 0) {
+            if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi()) {
                 Room currentRoom = professor.getCurrentRoom();
                 Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
 
