@@ -1,0 +1,30 @@
+
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(€©¬¤8…êñ‰ò1
+i
+java:S2095+"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(Œ‹ù8¹êñ‰ò1
+F	java:S106<"+Replace this use of System.out by a logger.(£Òø8Äêñ‰ò1
+U
+java:S1854K"8Remove this useless assignment to local variable "turn".(Øè‹Â8Åêñ‰ò1
+L	java:S106I"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8Åêñ‰ò1
+F
+java:S1481K")Remove this unused "turn" local variable.(Øè‹Â8Æêñ‰ò1
+G	java:S106O"+Replace this use of System.out by a logger.(àªøë8Æêñ‰ò1
+L	java:S106P"+Replace this use of System.out by a logger.(Âª÷›şÿÿÿÿ8Æêñ‰ò1
+L	java:S106Q"+Replace this use of System.out by a logger.(Ñİáøÿÿÿÿ8Æêñ‰ò1
+L	java:S106R"+Replace this use of System.out by a logger.(Ì×Ûÿÿÿÿÿ8Æêñ‰ò1
+G	java:S106S"+Replace this use of System.out by a logger.(ÛÂ8Çêñ‰ò1
+G	java:S106T"+Replace this use of System.out by a logger.(Áşá·8Çêñ‰ò1
+L	java:S106V"+Replace this use of System.out by a logger.(Æİ…üûÿÿÿÿ8Çêñ‰ò1
+G	java:S106X"+Replace this use of System.out by a logger.(ë¹£“8Çêñ‰ò1
+L	java:S106Y"+Replace this use of System.out by a logger.(¾¶¸íûÿÿÿÿ8Çêñ‰ò1
+F	java:S106Z"+Replace this use of System.out by a logger.(«âÌ8Çêñ‰ò1
+F	java:S106^"+Replace this use of System.out by a logger.(ƒÉø@8Çêñ‰ò1
+G	java:S106`"+Replace this use of System.out by a logger.(Òà´Ç8Èêñ‰ò1
+G	java:S106b"+Replace this use of System.out by a logger.(–³‰8Èêñ‰ò1
+G	java:S106e"+Replace this use of System.out by a logger.(Òà´Ç8Èêñ‰ò1
+G	java:S106i"+Replace this use of System.out by a logger.(–ñ–à8Èêñ‰ò1
+T
+java:S1128"7Remove this unused import 'com.bucikft.Person.Student'.(Ÿ­Àª8Èêñ‰ò1
+Q
+java:S1128"/Remove this unused import 'java.sql.SQLOutput'.(ê¤òÃùÿÿÿÿ8Èêñ‰ò1
