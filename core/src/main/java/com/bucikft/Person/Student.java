@@ -30,6 +30,7 @@ public class Student extends Person {
         if (item.isBroken()) {
             this.itemList.remove(item);
         }
+        usesLeft--;
     }
 
     /**

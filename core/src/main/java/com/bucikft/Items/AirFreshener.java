@@ -17,7 +17,14 @@ public class AirFreshener extends Item {
      * @param user The student who uses the item.
      */
     @Override
-    public void effect(Student user) {
+    public void effect(Student user) throws IllegalStateException{
+        if(user.getCurrentRoom().isGassed()){
+            user.getCurrentRoom().setGassed(false);
+            this.setBroken(true);
+        }
+        else{
+            throw new IllegalStateException("The room is not filled with gas.");
+        }
 
     }
 

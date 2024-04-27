@@ -5,6 +5,7 @@ import com.bucikft.Door.Exit;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Cleaner;
+import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 import com.bucikft.commands.*;
@@ -84,9 +85,6 @@ public class Map {
         }
     }
 
-    public void placePeople(String people){
-
-    }
 
     /**
      * Splits a room into two rooms.
@@ -94,7 +92,31 @@ public class Map {
      * @param room The room to split.
      */
     public void split(Room room) {
+        Room newRoom = new Room(roomList.size());
+        newRoom.setGassed(room.isGassed());
+        newRoom.setSticky(room.isSticky());
 
+        int halfCapacity = room.getCapacity()/2;
+        room.setCapacity(room.getCapacity()-halfCapacity);
+        newRoom.setCapacity(halfCapacity);
+
+        int halfItemCapacity = room.getItemCapacity()/2;
+        room.setItemCapacity(room.getItemCapacity()-halfItemCapacity);
+        newRoom.setItemCapacity(halfItemCapacity);
+
+        if(room.getItemsList().size() > halfItemCapacity ){
+            for(int i = halfItemCapacity; i < room.getItemsList().size(); i++){
+                newRoom.getItemsList().add(room.getItemsList().remove(i));
+            }
+        }
+
+        for (Person p : room.getPersonList()) {
+
+        }
+
+        for (Door d : room.getDoorList()) {
+
+        }
     }
 
     /**

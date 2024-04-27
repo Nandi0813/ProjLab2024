@@ -29,6 +29,8 @@ public class ConsoleUI {
         commands.put("use", new Use());
         commands.put("move", new Move());
         commands.put("godmode", new Godmode());
+        commands.put("load", new Load());
+        commands.put("force", new Force());
     }
     public void readCommands() throws IllegalArgumentException {
         System.out.println("please enter a command:");

@@ -2,6 +2,7 @@ package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
+import com.bucikft.Room;
 
 /**
  * Represents a Transistor item, which can be used to teleport between rooms.
@@ -14,6 +15,15 @@ public class Transistor extends Item {
 
     /** The paired Transistor item. */
     public Transistor pair = null;
+    private Room currentRoom;
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room r){
+        currentRoom = r;
+    }
 
 
 
@@ -32,6 +42,7 @@ public class Transistor extends Item {
 
         // Teleport if the Transistor has a pair
         // Todo: Implement teleportation
+
 
         // Break items
         this.setBroken(true);
