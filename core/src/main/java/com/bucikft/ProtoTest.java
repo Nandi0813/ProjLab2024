@@ -1,16 +1,19 @@
+
 package com.bucikft;
 
 import com.bucikft.commands.*;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
 public class ProtoTest {
 
+    public boolean protoTestbool = false;
+
     private Game game;
-    private HashMap<String, Command> commands = new HashMap<String, Command>();
     public ProtoTest(Game game){
         this.game = game;
         this.protoTestbool = true;
@@ -18,7 +21,15 @@ public class ProtoTest {
 
     }
 
-
+    public void mainLoop() {
+        while (protoTestbool){
+            try {
+                game.getUI().readCommands();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     public void MapLoad(String filePath){
         try {

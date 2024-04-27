@@ -56,6 +56,10 @@ public class ConsoleUI {
         System.out.println(currentPlayer.getCurrentRoom().isGassed()? "room is gassed" : "room is not gassed");
         System.out.println("current round: " + game.getRoundManager().getCurrentRound());
         System.out.println("current player: "+ currentPlayer);
+        System.out.println("in the room: "+ currentPlayer);
+        for (Person p : currentPlayer.getCurrentRoom().getPersonList()) {
+            if(p != currentPlayer) System.out.println("\t" + p.toString());
+        }
         System.out.println("moves left: " + currentPlayer.getMovesLeft());
         System.out.println("uses left: " + currentPlayer.getUsesLeft());
         System.out.println("doors in room:");
