@@ -1,0 +1,7 @@
+bemenetek + palyak
+Hammer use
+Trazistor use
+noai
+force parancsok
+debug
+ami nem kell kiszedni

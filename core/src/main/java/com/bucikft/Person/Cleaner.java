@@ -20,4 +20,9 @@ public class Cleaner extends Person {
         // remove all other people from the room
     }
 
+    @Override
+    public String toString() {
+        return "Cleaner#" + this.getName();
+    }
+
 }

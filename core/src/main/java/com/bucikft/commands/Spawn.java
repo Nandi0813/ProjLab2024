@@ -7,12 +7,12 @@ import com.bucikft.Person.Professor;
 import com.bucikft.Room;
 
 public class Spawn implements Command {
-    IDmaker idMaker = new IDmaker();
     @Override
     public void execute(Game game, String[] args) {
         if (!game.getDebugMode()) throw new IllegalArgumentException("debug mode not ON");
         if (args.length != 2) throw new IllegalArgumentException("Invalid number of arguments");
         Room room = game.getFocusedPerson().getCurrentRoom();
+        IDmaker idMaker = game.getIdMaker();
         switch(args[1]) {
             case "DKC":
                 DKC dkc = new DKC(idMaker.makeID(), false);

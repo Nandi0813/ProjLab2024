@@ -1,23 +1,36 @@
 package com.bucikft.commands;
+import com.bucikft.Door.Door;
 import com.bucikft.Game;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
 
-/*public class Move implements Command {
+public class Move implements Command {
     @Override
-     void execute(Game game, String[] args) {
+    public void execute(Game game, String[] args) {
         if (args.length != 2) throw new IllegalArgumentException("invalid number of arguments");
         try {
-            DoorLocation location = DoorLocation.valueOf(args[1].toUpperCase());
             Student student = (Student) game.getFocusedPerson();
-            Room current = student.getCurrentRoom();
-            Room next = current.getRoom(location);
-            if (next == null) {
-                System.out.println("no door in that direction");
-                return;
+            Room room = student.getCurrentRoom();
+            int roomnumber = Integer.parseInt(args[1]);
+            Room roomto = game.getMap().getRoomList().get(roomnumber);
+            if(student.getMovesLeft() > 0){
+                if (roomto.getPersonList().size() + 1 <= roomto.getCapacity()) {
+                    for (Door d : room.getDoorList()) {
+                        if (roomto == d.getRoomTo() || roomto == d.getRoomFrom()) {
+                            student.setCurrentRoom(roomto);
+                            room.getPersonList().remove(student);
+                            roomto.getPersonList().add(student);
+                            student.setMovesLeft(student.getMovesLeft() - 1);
+                        } else {
+                            System.out.println("Door is not a pointing to a neighbouring room.");
+                        }
+                    }
+
+                }
             }
-            student.move(next);
-            System.out.println("student "+ student +" moved to room "+ next);
+            else{
+                System.out.println("No moves left.");
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("invalid direction");
         } catch (IllegalStateException e) {
@@ -25,4 +38,4 @@ import com.bucikft.Room;
         }
 
     }
-    */
+}

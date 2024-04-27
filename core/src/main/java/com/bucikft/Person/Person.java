@@ -18,7 +18,6 @@ public abstract class Person {
     protected int usesLeft; // Added so we can track moves and uses separately
     protected List<Item> itemList;
     protected Room currentRoom;
-    private String Name;
     protected int capacity; // Added to track the capacity of the inventory
     protected boolean godMode = false;
 

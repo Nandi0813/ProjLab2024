@@ -13,23 +13,14 @@ public class ProtoTest {
     private HashMap<String, Command> commands = new HashMap<String, Command>();
     public ProtoTest(Game game){
         this.game = game;
-        commands.put("debug", new Debug());
-        commands.put("start", new Start());
-        commands.put("exit", new ExitCommand());
-        commands.put("next", new Next());
-        commands.put("skip", new Skip());
-        commands.put("pickup", new PickUp());
-        commands.put("spawn", new Spawn());
-        commands.put("drop", new Drop());
-        commands.put("menu", new MenuCommand());
-        commands.put("use", new Use());
-        //commands.put("move", new Move());
-        commands.put("godmode", new Godmode());
+        this.protoTestbool = true;
+        ConsoleUI cui = new ConsoleUI(game);
+
     }
 
 
 
-    public void MapGenerate(String filePath){
+    public void MapLoad(String filePath){
         try {
             // Create a FileReader object
             FileReader fileReader = new FileReader(filePath);
@@ -56,15 +47,16 @@ public class ProtoTest {
                     game.generateItems(line);
                 }
                 else if (i == 3){
-                    String [] parts = line.split(" ");
-                    game.placePeople(parts);
+                    game.placePeople(line);
                 }
-                System.out.println(line);
                 i++;
             }
 
             // Close the BufferedReader
             bufferedReader.close();
+            game.setIsStarted(true);
+            game.startGame();
+            mainLoop();
         } catch (IOException e) {
             // Handle IOException
             e.printStackTrace();

@@ -24,9 +24,9 @@ public class Game {
     private Person focusedPerson;
     private ConsoleUI UI;
     private boolean debug = false;
-    private IDmaker idMaker = new IDmaker();
     private boolean started = false;
-
+    private ProtoTest protoTest;
+    private IDmaker idMaker = new IDmaker();
 
     /**
      * Initializes a new game.
@@ -38,34 +38,33 @@ public class Game {
         this.professors = new ArrayList<>();
         this.cleaners = new ArrayList<>();
         this.UI = new ConsoleUI(this);
+        this.protoTest = new ProtoTest(this);
 
     }
 
     /**
      * Starts the game.
      */
-    public void startGame(int playerCount, int mapSize) {
-        // create students and professors with unique id-s
-        // number of professors may change based on future agreements
-        for (int i = 0; i < playerCount; i++) {
-            Student student = new Student(idMaker.makeID());
-            this.students.add(student);
-            Professor professor = new Professor(idMaker.makeID());
-            this.professors.add(professor);
-        }
-        Cleaner cleaner = new Cleaner(idMaker.makeID());
-        this.cleaners.add(cleaner);
-
-        this.map = new Map(mapSize, students, professors, cleaners, idMaker);
+    public void startGame() {
         this.started = true;
         this.roundManager.play();
 
     }
 
+    public ProtoTest getProtoTest(){
+        return protoTest;
+    }
 
+    public void setIsStarted(boolean started) {
+        this.started = started;
+    }
 
     public boolean isStarted() {
         return this.started;
+    }
+
+    public IDmaker getIdMaker() {
+        return idMaker;
     }
 
     public void setFocusedPerson(Person person) {
@@ -165,25 +164,49 @@ public class Game {
     }
 
     public void placePeople(String people) {
-        String[] parts = people.split(":");
+        String[] parts = people.split("\\s+");
         int roomNumber = -1;
+
         for (String part : parts) {
-            part = part.trim();
-            if (part.matches("\\d+")) {
-                roomNumber = Integer.parseInt(part);
-            } else {
-                String[] peopletoplace = part.split(",");
-                for (String p : peopletoplace) {
-                    String[] type =  p.trim().split("#");
-                    if(type[0].equals("St")){
-                        students.get(Integer.parseInt(type[1])).setCurrentRoom(roomNumber);
-                    }
-                    Item itemToGenerate = this.items.get(item.trim());
-                    roomList.get(roomNumber-1).getItemsList().add(itemToGenerate);
-                    itemList.add(itemToGenerate);
+            part = part.replace(",", "");
+            if(part.contains(":")){
+                roomNumber = Integer.parseInt(part.split(":")[0]);
+                String name = part.split(":")[1];
+                String[] n = name.split("#");
+                int id = Integer.parseInt(n[1]);
+                if (n[0].equals("St")) {
+                    students.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(students.get(id-1));
+                }
+                else if (n[0].equals("Te")) {
+                    professors.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(professors.get(id-1));
+                }
+                else if (n[0].equals("Cl")) {
+                    cleaners.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(cleaners.get(id-1));
                 }
             }
+            else{
+                String[] n = part.split("#");
+                int id = Integer.parseInt(n[1]);
+                if (n[0].equals("St")) {
+                    students.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(students.get(id-1));
+
+                }
+                else if (n[0].equals("Te")) {
+                    professors.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(professors.get(id-1));
+                }
+                else if (n[0].equals("Cl")) {
+                    cleaners.get(id-1).setCurrentRoom(map.getRoomList().get(roomNumber-1));
+                    map.getRoomList().get(roomNumber-1).getPersonList().add(cleaners.get(id-1));
+                }
+            }
+
         }
+
     }
 
 }

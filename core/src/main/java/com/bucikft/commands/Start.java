@@ -17,7 +17,6 @@ public class Start implements Command {
                 return;
             }
             System.out.println("game started with " + playerCount + " players, " + mapSize + " size");
-            game.startGame(playerCount, mapSize);
         } catch (NumberFormatException e) {
             System.out.println("invalid arguments");
             return;

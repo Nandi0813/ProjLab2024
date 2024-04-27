@@ -100,4 +100,9 @@ public class Professor extends Person {
     public void setKillsLeft(int i) {
         this.killsLeft = i;
     }
+
+    @Override
+    public String toString() {
+        return "Professor#" + this.getName();
+    }
 }
