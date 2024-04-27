@@ -2,8 +2,14 @@ package com.bucikft;
 
 public class Menu {
 
+    private static Game game;
+
+    public static Game getGame() {
+        return game;
+    }
+
     public static void main(String[] args) {
-        Game game = new Game();
+        game = new Game();
         System.out.println("welcome to the game!");
         while(!game.isStarted()) {
             try {

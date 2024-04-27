@@ -9,6 +9,7 @@ import com.bucikft.Person.Person;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents the game map.
@@ -78,7 +79,6 @@ public class Map {
         }
     }
 
-
     /**
      * Splits a room into two rooms.
      *
@@ -97,19 +97,24 @@ public class Map {
         room.setItemCapacity(room.getItemCapacity()-halfItemCapacity);
         newRoom.setItemCapacity(halfItemCapacity);
 
-        if(room.getItemsList().size() > halfItemCapacity ){
+        if (room.getItemsList().size() > halfItemCapacity ){
             for(int i = halfItemCapacity; i < room.getItemsList().size(); i++){
                 newRoom.getItemsList().add(room.getItemsList().remove(i));
             }
         }
 
+        Random rand = new Random();
         for (Person p : room.getPersonList()) {
-
+            if (rand.nextInt(2) % 2 == 0 && newRoom.getPersonList().size() <= newRoom.getCapacity()) {
+                newRoom.getPersonList().add(p);
+            } else {
+                room.getPersonList().add(p);
+            }
         }
 
-        for (Door d : room.getDoorList()) {
-
-        }
+        Door newDoor = new Door(room, newRoom);
+        room.getDoorList().add(newDoor);
+        newRoom.getDoorList().add(newDoor);
     }
 
     /**
