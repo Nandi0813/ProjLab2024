@@ -1,0 +1,6 @@
+debug
+noai
+pickup SlipStick#9
+move 1
+use SlipStick#9
+exit

@@ -1,0 +1,5 @@
+debug
+noai
+skip
+move 1
+exit

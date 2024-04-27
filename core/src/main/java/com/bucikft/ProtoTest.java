@@ -11,7 +11,10 @@ import java.util.HashMap;
 
 public class ProtoTest {
 
-    public boolean protoTestbool = false;
+    private boolean protoTestbool = false;
+    private boolean testmode = false;
+    
+    String filePath;
 
     private Game game;
     public ProtoTest(Game game){
@@ -31,7 +34,11 @@ public class ProtoTest {
         }
     }
 
-    public void MapLoad(String filePath){
+    public void MapLoad(String filePath, boolean testmode, String in){
+        this.testmode = testmode;
+        if (testmode){
+            this.filePath = in;
+        }
         try {
             // Create a FileReader object
             FileReader fileReader = new FileReader(filePath);
@@ -72,5 +79,23 @@ public class ProtoTest {
             // Handle IOException
             e.printStackTrace();
         }
+    }
+
+    public void setTestMode(boolean testMode){
+        this.testmode = testMode;
+    }
+
+    public boolean getTestMode(){
+        return this.testmode;
+    }
+    public String getFilePath(){
+        return this.filePath;
+    }
+    public void setFilepath(String filePath){
+        this.filePath = filePath;
+    }
+
+    public void setProtoTestbool(boolean protoTestbool){
+        this.protoTestbool = protoTestbool;
     }
 }

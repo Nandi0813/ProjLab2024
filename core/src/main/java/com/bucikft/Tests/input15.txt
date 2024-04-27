@@ -1,0 +1,6 @@
+debug
+noai
+force kill Pr#1 St#2
+pickup Zyn#13
+use Zyn#13
+exit

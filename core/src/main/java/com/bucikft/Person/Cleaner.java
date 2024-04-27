@@ -21,6 +21,11 @@ public class Cleaner extends Person {
     }
 
     @Override
+    public boolean canMove() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Cleaner#" + this.getName();
     }

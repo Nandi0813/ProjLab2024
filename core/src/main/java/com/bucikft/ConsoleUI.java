@@ -6,6 +6,9 @@ import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 import com.bucikft.commands.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -33,14 +36,34 @@ public class ConsoleUI {
         commands.put("force", new Force());
     }
     public void readCommands() throws IllegalArgumentException {
-        System.out.println("please enter a command:");
-        String command = scanner.nextLine();
-        String[] commandParts = command.split(" ");
+        if(game.getProtoTest().getTestMode()){
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader(game.getProtoTest().getFilePath()));
+                String line;
+            while ((line = reader.readLine()) != null) {
+                String[] commandParts = line.split(" ");
+                if (commands.containsKey(commandParts[0])) {
+                    commands.get(commandParts[0]).execute(game, commandParts);
+                } else {
+                    throw new IllegalArgumentException("invalid command");
+                }
+                game.getUI().printGameState();
+            }
+            game.getProtoTest().setProtoTestbool(false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("please enter a command:");
+            String command = scanner.nextLine();
+            String[] commandParts = command.split(" ");
             if (commands.containsKey(commandParts[0])) {
                 commands.get(commandParts[0]).execute(game, commandParts);
             } else {
                 throw new IllegalArgumentException("invalid command");
             }
+        }
     }
 
     public void printGameState() {

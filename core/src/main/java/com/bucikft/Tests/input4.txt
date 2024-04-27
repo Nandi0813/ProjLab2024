@@ -1,0 +1,5 @@
+debug
+noai
+pickup HolyCup#7
+use HolyCup#7
+exit

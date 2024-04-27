@@ -1,0 +1,4 @@
+debug
+noai
+force move Cl#1 1
+exit

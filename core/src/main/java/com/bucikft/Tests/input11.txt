@@ -1,0 +1,4 @@
+debug
+noai
+forcekill Pr#2 St#1
+exit

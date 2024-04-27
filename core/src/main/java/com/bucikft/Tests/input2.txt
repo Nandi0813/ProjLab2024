@@ -1,0 +1,7 @@
+debug
+noai
+force gas Room#1
+pickup AirFreshener#5
+move 1
+use AirFreshener#5
+exit

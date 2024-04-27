@@ -10,7 +10,7 @@ public class Load implements Command{
             return;
         }
         try {
-            game.getProtoTest().MapLoad(args[1]);
+            game.getProtoTest().MapLoad(args[1], true, null);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

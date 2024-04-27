@@ -1,0 +1,6 @@
+debug
+noai
+skip
+pickup DKC#4
+use DKC#4
+exit

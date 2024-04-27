@@ -1,0 +1,5 @@
+debug
+noai
+pickup TVSZ#11
+use TVSZ#11
+exit

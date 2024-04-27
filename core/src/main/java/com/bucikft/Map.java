@@ -6,10 +6,7 @@ import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Represents the game map.
@@ -18,7 +15,10 @@ public class Map {
 
     private final List<Room> roomList;
     private final List<Item> itemList;
-    private final java.util.Map<String, Item> items = new HashMap<>();
+
+    private final ArrayList<String> itemNames = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
+
 
 
     public Map(int mapSize, IDmaker idMaker){
@@ -72,7 +72,44 @@ public class Map {
             if (part.matches("\\d+")) {
                 roomNumber = Integer.parseInt(part);
             } else {
-                Item itemToGenerate = this.items.get(part.trim());
+                Item itemToGenerate = null;
+                switch (part.trim()){
+                    case "AirFreshener":
+                        itemToGenerate = new AirFreshener(idMaker.makeID(), false);
+                        break;
+                    case "DKC":
+                        itemToGenerate = new DKC(idMaker.makeID(), false);
+                        break;
+                    case "EnergyDrink":
+                        itemToGenerate = new EnergyDrink(idMaker.makeID(), false);
+                        break;
+                    case "HolyCup":
+                        itemToGenerate = new HolyCup(idMaker.makeID(), false);
+                        break;
+                    case "Hammer":
+                        itemToGenerate = new Hammer(idMaker.makeID(), false);
+                        break;
+                    case "SlipStick":
+                        itemToGenerate = new SlipStick(idMaker.makeID(), false);
+                        break;
+                    case "Transistor":
+                        itemToGenerate = new Transistor(idMaker.makeID(), false);
+                        break;
+                    case "TVSZ":
+                        itemToGenerate = new TVSZ(idMaker.makeID(), false);
+                        break;
+                    case "WetRag":
+                        itemToGenerate = new WetRag(idMaker.makeID(), false);
+                        break;
+                    case "Zyn":
+                        itemToGenerate = new Zyn(idMaker.makeID(), false);
+                        break;
+                    case "Mask":
+                        itemToGenerate = new Mask(idMaker.makeID(), false);
+                        break;
+                    default:
+                }
+
                 roomList.get(roomNumber-1).getItemsList().add(itemToGenerate);
                 itemList.add(itemToGenerate);
             }
