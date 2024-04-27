@@ -12,6 +12,15 @@ public class Menu {
 
     private static int bigChoice = 0;
 
+    public static String mapPath = System.getProperty("user.dir") + File.separator +
+            "core" + File.separator +
+            "src" + File.separator +
+            "main" + File.separator +
+            "java" + File.separator +
+            "com" + File.separator +
+            "bucikft" + File.separator +
+            "map.txt";
+
     public static Game getGame() {
         return game;
     }

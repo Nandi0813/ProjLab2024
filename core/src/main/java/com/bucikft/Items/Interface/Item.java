@@ -1,6 +1,8 @@
 package com.bucikft.Items.Interface;
 
+import com.bucikft.Menu;
 import com.bucikft.Person.Student;
+import com.bucikft.Room;
 
 /**
  * Represents an abstract Item.
@@ -52,6 +54,11 @@ public abstract class Item {
         return this.getClass().getSimpleName()+ "#" + ID;
     }
     public void setPickedUp(boolean pickedUp) {
+        for (Room r : Menu.getGame().getMap().getRoomList()) {
+            if (r.getItemsList().contains(this)) {
+                if (r.isSticky()) return;
+            }
+        }
         this.pickedUp = pickedUp;
     }
     public boolean isPickedUp() {

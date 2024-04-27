@@ -42,6 +42,7 @@ public class Professor extends Person {
         return stunned;
     }
 
+
     /**
      * Adds a killed student to the list.
      *
@@ -58,6 +59,10 @@ public class Professor extends Person {
      */
     public void removeKilledStudent(Student killedStudent) {
         killedStudents.remove(killedStudent);
+    }
+
+    public boolean canMove() {
+        return this.isStunned() == 0;
     }
 
     /**

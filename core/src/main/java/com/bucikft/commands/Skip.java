@@ -6,6 +6,6 @@ public class Skip implements Command {
     @Override
     public void execute(Game game, String[] args) {
         if (!game.getDebugMode()) throw new IllegalArgumentException("debug mode not ON");
-        game.getRoundManager().nextRound();
+        game.getRoundManager().nextTurn();
     }
 }
