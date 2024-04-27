@@ -5,8 +5,8 @@ import com.bucikft.Room;
  */
 public class Exit extends Door {
 
-    public Exit(Room roomFrom, Room roomTo, DoorLocation location) {
-        super(roomFrom, roomTo, location);
+    public Exit(Room roomFrom, Room roomTo) {
+        super(roomFrom, roomTo);
         isOpen = false;
     }
 

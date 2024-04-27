@@ -1,7 +1,6 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
-import com.bucikft.Door.DoorLocation;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 
@@ -23,19 +22,16 @@ public class Room {
 
     private String ID;
     private final int x;
-    private final int y;
 
     public int getX() {
         return this.x;
     }
-    public int getY() {
-        return this.y;
-    }
+
 
     /**
      * Initializes a new room.
      */
-    public Room(int x, int y) {
+    public Room(int x) {
         this.gassed = false;
         this.isSticky = false;
         this.itemsList = new ArrayList<>();
@@ -43,9 +39,8 @@ public class Room {
         this.personList = new ArrayList<>();
         this.capacity = 5;
         this.itemCapacity = 5;
-        this.ID = "Room#"+x+y;
+        this.ID = "Room#"+x;
         this.x = x;
-        this.y = y;
 
     }
 
@@ -137,16 +132,4 @@ public class Room {
         return "Room#"+this.ID;
     }
 
-    public Room getRoom(DoorLocation location) {
-        for (Door door : doorList) {
-            if (door.getLocationFrom() == location && door.getRoomFrom() == this) {
-                return door.getRoomTo();
-            } else if(door.getLocationTo() == location && door.getRoomTo() == this) {
-                return door.getRoomFrom();
-            }
-        }
-        return null;
-    }
-
-    // RoomFrom=1 RoomTo=2
 }

@@ -1,12 +1,11 @@
 package com.bucikft.commands;
-import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
 
-public class Move implements Command {
+/*public class Move implements Command {
     @Override
-    public void execute(Game game, String[] args) {
+     void execute(Game game, String[] args) {
         if (args.length != 2) throw new IllegalArgumentException("invalid number of arguments");
         try {
             DoorLocation location = DoorLocation.valueOf(args[1].toUpperCase());
@@ -26,4 +25,4 @@ public class Move implements Command {
         }
 
     }
-}
+    */

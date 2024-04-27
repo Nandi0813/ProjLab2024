@@ -1,5 +1,6 @@
 package com.bucikft;
 
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
@@ -60,6 +61,8 @@ public class Game {
         this.roundManager.play();
 
     }
+
+
 
     public boolean isStarted() {
         return this.started;
@@ -127,4 +130,60 @@ public class Game {
     public ConsoleUI getUI() {
         return UI;
     }
+
+    public void generateStudents(int number) {
+        for(int i = 0; i < number; i++){
+            Student student = new Student(idMaker.makeID());
+            this.students.add(student);
+        }
+    }
+
+    public void generateRooms(int number){
+            this.map = new Map(number, students, professors, cleaners, idMaker);
+    }
+
+    public void generateProfessors(int number) {
+        for (int i = 0; i < number; i++) {
+            Professor professor = new Professor(idMaker.makeID());
+            this.professors.add(professor);
+        }
+    }
+
+    public void generateCleaners(int number) {
+        for (int i = 0; i < number; i++) {
+            Cleaner cleaner = new Cleaner(idMaker.makeID());
+            this.cleaners.add(cleaner);
+        }
+    }
+
+    public void generateDoors(String[] parts) {
+        this.map.generateDoors(parts);
+    }
+
+    public void generateItems(String parts) {
+        this.map.generateItems(parts);
+    }
+
+    public void placePeople(String people) {
+        String[] parts = people.split(":");
+        int roomNumber = -1;
+        for (String part : parts) {
+            part = part.trim();
+            if (part.matches("\\d+")) {
+                roomNumber = Integer.parseInt(part);
+            } else {
+                String[] peopletoplace = part.split(",");
+                for (String p : peopletoplace) {
+                    String[] type =  p.trim().split("#");
+                    if(type[0].equals("St")){
+                        students.get(Integer.parseInt(type[1])).setCurrentRoom(roomNumber);
+                    }
+                    Item itemToGenerate = this.items.get(item.trim());
+                    roomList.get(roomNumber-1).getItemsList().add(itemToGenerate);
+                    itemList.add(itemToGenerate);
+                }
+            }
+        }
+    }
+
 }

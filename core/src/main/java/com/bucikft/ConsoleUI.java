@@ -27,7 +27,7 @@ public class ConsoleUI {
         commands.put("drop", new Drop());
         commands.put("menu", new MenuCommand());
         commands.put("use", new Use());
-        commands.put("move", new Move());
+        //commands.put("move", new Move());
         commands.put("godmode", new Godmode());
     }
     public void readCommands() throws IllegalArgumentException {
