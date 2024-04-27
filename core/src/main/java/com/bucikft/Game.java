@@ -1,12 +1,10 @@
 package com.bucikft;
 
-import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,7 +136,7 @@ public class Game {
     }
 
     public void generateRooms(int number){
-            this.map = new Map(number, students, professors, cleaners, idMaker);
+            this.map = new Map(number, idMaker);
     }
 
     public void generateProfessors(int number) {

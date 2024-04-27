@@ -4,16 +4,9 @@ import com.bucikft.Door.Door;
 import com.bucikft.Door.Exit;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
-import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
-import com.bucikft.Person.Professor;
-import com.bucikft.Person.Student;
-import com.bucikft.commands.*;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,12 +15,12 @@ import java.util.List;
  */
 public class Map {
 
-    private List<Room> roomList;
-    private List<Item> itemList;
-    private HashMap<String, Item> items = new HashMap<>();
+    private final List<Room> roomList;
+    private final List<Item> itemList;
+    private final java.util.Map<String, Item> items = new HashMap<>();
 
 
-    public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners, IDmaker idMaker){
+    public Map(int mapSize, IDmaker idMaker){
         items.put("AirFreshener", new AirFreshener(idMaker.makeID(), false));
         items.put("DKC", new DKC(idMaker.makeID(), false));
         items.put("EnergyDrink", new EnergyDrink(idMaker.makeID(), false));
