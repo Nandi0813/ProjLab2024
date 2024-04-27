@@ -2,6 +2,7 @@ package com.bucikft.commands;
 
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
@@ -80,13 +81,43 @@ public class Force implements Command {
                 }
                 break;
             case "kill":
-
+                n = args[2].split("#");
+                String[] victim = args[3].split("#");
+                if (n[0].equals("Pr")) {
+                    boolean found = false;
+                    for (Person p : game.getProfessors()) {
+                        if (p.getName().equals(n[1])) {
+                            for(Student v : game.getStudents()) {
+                                if (v.getName().equals(victim[1])) {
+                                    v.setAlive(false);
+                                    v.getCurrentRoom().getPersonList().remove(v);
+                                }
+                            }
+                            found = true;
+                        }
+                    }
+                    if (!found) System.out.println("No professor found with the given ID.");
+                }
                 break;
             case "air":
-
-                break;
+                String[] cleaner = args[2].split("#");
+                if (cleaner[0].equals("Cl")) {
+                    boolean found = false;
+                    for (Cleaner p : game.getCleaners()) {
+                        if (p.getName().equals(cleaner[1])) {
+                            p.getCurrentRoom().setGassed(false);
+                            found = true;
+                        }
+                    }
+                if (!found) System.out.println("No cleaner found with the given ID.");
+            }
+            break;
             case "gas":
-
+                for (Room r : game.getMap().getRoomList()) {
+                    if (r.getID().equals("Room#" + args[2])) {
+                        r.setGassed(true);
+                    }
+                }
                 break;
             }
         }
