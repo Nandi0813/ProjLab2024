@@ -16,17 +16,11 @@ public class Room {
     private int itemCapacity; // Added to track the how many items can be in room
     private boolean gassed;
     private boolean isSticky;
-    private List<Item> itemsList;
-    private List<Door> doorList;
-    private List<Person> personList;
+    private final List<Item> itemsList;
+    private final List<Door> doorList;
+    private final List<Person> personList;
 
-    private String ID;
-    private final int x;
-
-    public int getX() {
-        return this.x;
-    }
-
+    private final String ID;
 
     /**
      * Initializes a new room.
@@ -40,8 +34,6 @@ public class Room {
         this.capacity = 5;
         this.itemCapacity = 5;
         this.ID = "Room#"+x;
-        this.x = x;
-
     }
 
     public int getCapacity() {

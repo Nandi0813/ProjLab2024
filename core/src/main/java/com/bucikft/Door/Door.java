@@ -45,6 +45,13 @@ public class Door {
         return this.roomTo;
     }
 
+    public Room getWhereTo(Room roomFrom)
+    {
+        if (this.roomFrom == roomFrom)
+            return this.roomTo;
+        return this.roomFrom;
+    }
+
     /**
      * Sets the room to which the door leads.
      *

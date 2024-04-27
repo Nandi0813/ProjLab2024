@@ -37,44 +37,40 @@ public class RoundManager {
             student.setUsesLeft(1);
         }
 
-        // TODO do AI movement and actions of professors and cleaners
         Random rand = new Random();
 
         for (Professor professor: game.getProfessors()) {
-            while (professor.getMovesLeft() > 0) {
+            if (professor.getMovesLeft() > 0) {
                 Room currentRoom = professor.getCurrentRoom();
                 Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
 
-                Room roomTo;
-                if (door.getRoomFrom() == currentRoom) {
-                    roomTo = door.getRoomTo();
-                } else {
-                    roomTo = door.getRoomFrom();
-                }
+                Room roomTo = door.getWhereTo(currentRoom);
 
-                professor.setCurrentRoom(roomTo);
-                currentRoom.getPersonList().remove(professor);
-                roomTo.getPersonList().add(professor);
-                professor.setMovesLeft(professor.getMovesLeft() - 1);
+                game.getMap().move(professor, roomTo);
+
+                for (Person p : roomTo.getPersonList()) {
+                    if (professor.getMovesLeft() == 0)
+                        break;
+
+                    if (p instanceof Student s) {
+                        try {
+                            professor.killStudent(s);
+                        } catch (IllegalStateException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
             }
         }
 
         for (Cleaner cleaner: game.getCleaners()) {
-            while (cleaner.getMovesLeft() > 0) {
+            if (cleaner.getMovesLeft() > 0) {
                 Room currentRoom = cleaner.getCurrentRoom();
                 Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
 
-                Room roomTo;
-                if (door.getRoomFrom() == currentRoom) {
-                    roomTo = door.getRoomTo();
-                } else {
-                    roomTo = door.getRoomFrom();
-                }
+                Room roomTo = door.getWhereTo(currentRoom);
 
-                cleaner.setCurrentRoom(roomTo);
-                currentRoom.getPersonList().remove(cleaner);
-                roomTo.getPersonList().add(cleaner);
-                cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
+                game.getMap().move(cleaner, roomTo);
             }
         }
 

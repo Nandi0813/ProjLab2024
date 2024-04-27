@@ -1,5 +1,6 @@
 package com.bucikft.Items;
 
+import com.bucikft.Menu;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
@@ -42,6 +43,9 @@ public class Transistor extends Item {
 
         // Teleport if the Transistor has a pair
         // Todo: Implement teleportation
+        for each(Room r: Menu.getGame().getMap().getRoomList()){
+
+        }
 
 
         // Break items

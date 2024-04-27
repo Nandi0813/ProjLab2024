@@ -67,8 +67,6 @@ public class Professor extends Person {
      * @throws IllegalStateException If the student and the professor are not in the same room, if the student is already dead, if the student is protected, or if the professor has no moves left.
      */
     public void killStudent(Student student) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-
         // Check if student is in the same room
         if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("A hallgató és a professzor nem egy szobában vannak.");
 
@@ -79,8 +77,7 @@ public class Professor extends Person {
         if (!student.isKillable()) throw new IllegalStateException("A hallgató védve van.");
 
         // Check if prof has moves left in his turn
-        if (this.movesLeft<=0) throw new IllegalStateException("A professzornak nincs több lépése.");
-
+        if (this.movesLeft <= 0) throw new IllegalStateException("A professzornak nincs több lépése.");
 
         // Kill student
         student.setAlive(false);
@@ -89,7 +86,6 @@ public class Professor extends Person {
         this.killsLeft--;
         // Add to killed students
         this.addKilledStudent(student);
-
     }
 
     @Override

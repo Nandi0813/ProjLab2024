@@ -79,6 +79,17 @@ public class Map {
         }
     }
 
+    public void move(Person person, Room roomTo)
+    {
+        person.setCurrentRoom(roomTo);
+
+        Room currentRoom = person.getCurrentRoom();
+        currentRoom.getPersonList().remove(person);
+
+        roomTo.getPersonList().add(person);
+        person.setMovesLeft(person.getMovesLeft() - 1);
+    }
+
     /**
      * Splits a room into two rooms.
      *
