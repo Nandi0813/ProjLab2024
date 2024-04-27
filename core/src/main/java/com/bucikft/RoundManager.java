@@ -1,12 +1,9 @@
 package com.bucikft;
 
-import com.bucikft.Door.Door;
 import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
-
-import java.util.Random;
 
 /**
  * Manages the rounds in the game.
@@ -31,25 +28,26 @@ public class RoundManager {
      */
     public void nextRound() {
         currentRound++;
+
         // reset student characters
         for (Student student: game.getStudents()) {
             student.setMovesLeft(1);
             student.setUsesLeft(1);
         }
 
-        Random rand = new Random();
-
         for (Professor professor: game.getProfessors()) {
             if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi()) {
                 Room currentRoom = professor.getCurrentRoom();
-                Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
-
-                Room roomTo = door.getWhereTo(currentRoom);
+                Room roomTo = currentRoom.getRandomNeighbourRoom();
 
                 game.getMap().move(professor, roomTo);
+                professor.setMovesLeft(professor.getMovesLeft() - 1);
 
                 for (Person p : roomTo.getPersonList()) {
                     if (professor.getMovesLeft() == 0)
+                        break;
+
+                    if (professor.getKillsLeft() == 0)
                         break;
 
                     if (p instanceof Student s) {
@@ -66,11 +64,23 @@ public class RoundManager {
         for (Cleaner cleaner: game.getCleaners()) {
             if (cleaner.getMovesLeft() > 0) {
                 Room currentRoom = cleaner.getCurrentRoom();
-                Door door = currentRoom.getDoorList().get(rand.nextInt(currentRoom.getDoorList().size() - 1));
-
-                Room roomTo = door.getWhereTo(currentRoom);
+                Room roomTo = currentRoom.getRandomNeighbourRoom();
 
                 game.getMap().move(cleaner, roomTo);
+                cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
+
+                for (Person p : roomTo.getPersonList()) {
+                    if (p.canMove()) {
+                        Room randomRoom = roomTo.getRandomNeighbourRoom();
+                        game.getMap().move(p, randomRoom);
+                    }
+                }
+
+                if (roomTo.isGassed())
+                    roomTo.setGassed(false);
+
+                if (roomTo.isSticky())
+                    roomTo.setSticky(false);
             }
         }
 

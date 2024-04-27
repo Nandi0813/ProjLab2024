@@ -1,21 +1,30 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
+import com.bucikft.Door.Exit;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents a room in the game.
  */
 public class Room {
 
+    private static Random rand = new Random();
+
     private int capacity;
     private int itemCapacity; // Added to track the how many items can be in room
     private boolean gassed;
+
+    // Attributes related to cleaning
+    public static final int STICKY_AT = 6;
+    private int visitorsSinceLastCleaning;
     private boolean isSticky;
+
     private final List<Item> itemsList;
     private final List<Door> doorList;
     private final List<Person> personList;
@@ -36,6 +45,22 @@ public class Room {
         this.ID = "Room#"+x;
     }
 
+    public Room getRandomNeighbourRoom() {
+        for (Door door : this.getDoorList())
+        {
+            if (door instanceof Exit) continue;
+
+            Room room = door.getWhereTo(this);
+            if (!room.isMaxCapacity())
+                return room;
+        }
+        
+        return null;
+    }
+
+    /**
+     * @return The capacity of the room.
+     */
     public int getCapacity() {
         return this.capacity;
     }
@@ -47,6 +72,13 @@ public class Room {
      */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    /**
+     * @return Whether the room is at maximum capacity or not
+     */
+    public boolean isMaxCapacity() {
+        return this.getCapacity() < this.getPersonList().size();
     }
 
     /**
@@ -66,6 +98,16 @@ public class Room {
     public void setGassed(boolean gassed) {
         this.gassed = gassed;
     }
+
+    /**
+     * @return The number of visitors since the last cleaning happened by a cleaner.
+     */
+    public int getVisitorsSinceLastCleaning() { return this.visitorsSinceLastCleaning; }
+
+    /**
+     * @param visitorsSinceLastCleaning The number of visitors since the last cleaning.
+     */
+    public void setVisitorsSinceLastCleaning(int visitorsSinceLastCleaning) { this.visitorsSinceLastCleaning = visitorsSinceLastCleaning; }
 
     /**
      * Checks if the room is sticky.

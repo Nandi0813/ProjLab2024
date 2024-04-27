@@ -20,7 +20,6 @@ public class Map {
     private final ArrayList<Item> items = new ArrayList<>();
 
 
-
     public Map(int mapSize, IDmaker idMaker){
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
@@ -33,6 +32,11 @@ public class Map {
         }
     }
 
+    /**
+     * Generate the doors by a given string array
+     *
+     * @param doorLocations string array from config file
+     */
     public void generateDoors(String[] doorLocations){
         for (String doorLocation : doorLocations) {
             if(doorLocation.contains("-")) {
@@ -52,7 +56,13 @@ public class Map {
         }
     }
 
+    /**
+     * Generate the items by a given string.
+     *
+     * @param itemsToGenerate string from the config file
+     */
     public void generateItems(String itemsToGenerate){
+        IDmaker idMaker = Menu.getGame().getIdMaker();
         String[] parts = itemsToGenerate.split("\\s+");
         int roomNumber = -1;
         for (String part : parts) {
@@ -104,15 +114,27 @@ public class Map {
         }
     }
 
+    /**
+     * Moves the person to a certain room.
+     *
+     * @param person The person who moves.
+     * @param roomTo The room where he moves to.
+     */
     public void move(Person person, Room roomTo)
     {
+        if (roomTo == null)
+            throw new IllegalStateException("No roomTo parameter.");
+
         person.setCurrentRoom(roomTo);
 
         Room currentRoom = person.getCurrentRoom();
         currentRoom.getPersonList().remove(person);
 
         roomTo.getPersonList().add(person);
-        person.setMovesLeft(person.getMovesLeft() - 1);
+
+        roomTo.setVisitorsSinceLastCleaning(roomTo.getVisitorsSinceLastCleaning() + 1);
+        if (roomTo.getVisitorsSinceLastCleaning() >= Room.STICKY_AT)
+            roomTo.setSticky(true);
     }
 
     /**

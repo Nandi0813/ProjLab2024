@@ -20,8 +20,10 @@ public class TVSZ extends Item {
      *
      * @param user The student who uses the TVSZ item.
      */
-    public void effect(Student user){
-
+    @Override
+    public void effect(Student user) {
+        if (this.isFalse())
+            throw new IllegalStateException("This item is a false item. No result.");
         // Protect the user from professors
         user.setProtected(true);
 

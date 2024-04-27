@@ -1,3 +1,4 @@
 
 debug
 ami nem kell kiszedni
+legyen is false item

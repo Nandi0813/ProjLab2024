@@ -145,6 +145,8 @@ public abstract class Person {
         return this.movesLeft;
     }
 
+    public abstract boolean canMove();
+
     /**
      * Sets the number of moves left for the person.
      *

@@ -22,6 +22,9 @@ public class SlipStick extends Item {
      * @throws IllegalStateException If the room does not have an emergency exit or if the SlipStick item is already broken.
      */
     public void effect(Student user) throws IllegalStateException {
+        if (this.isFalse())
+            throw new IllegalStateException("This item is a false item. No result.");
+
         // Check if the room has an emergency exit
         boolean hasEmergencyExit = false;
         Exit exit = null;

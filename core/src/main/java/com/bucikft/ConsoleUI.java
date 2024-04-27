@@ -95,10 +95,13 @@ public class ConsoleUI {
         for (Item item : currentPlayer.getCurrentRoom().getItemsList()) {
             System.out.println(item);
         }
-        System.out.println("\ninventory:");
-        for (Item item : currentPlayer.getItemList()) {
-            System.out.println(item);
+        System.out.println("\ninventory: ");
+        if (!currentPlayer.getItemList().isEmpty()) {
+            for (Item item : currentPlayer.getItemList()) {
+                System.out.println(item);
+            }
         }
-
+        else
+            System.out.println("empty");
     }
 }

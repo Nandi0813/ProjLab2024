@@ -43,10 +43,15 @@ public class HolyCup extends Item {
      * @throws IllegalStateException If the item is already broken.
      */
     public void effect(Student user) throws IllegalStateException {
+        Room slipRoom = null;
+        for (Room r : Menu.getGame().getMap().getRoomList()) {
+            for (Item item : r.getItemsList()) {
+                if (item instanceof SlipStick s && !s.isFalse())
+                    slipRoom = r;
+            }
+        }
 
-        // Display the path to SlipStick
-        // Todo: Implement path display
-        System.out.println("*The path to SlipStick has appeared*");
+        System.out.println("The Slip Stick is in " + slipRoom);
 
         this.setBroken(true);
     }

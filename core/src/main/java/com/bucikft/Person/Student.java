@@ -32,7 +32,11 @@ public class Student extends Person {
         if (item.isBroken())
             throw new IllegalStateException("The item is broken.");
 
-        item.effect(this);
+        try {
+            item.effect(this);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
 
         if (item.isBroken()) {
             this.itemList.remove(item);
@@ -122,6 +126,11 @@ public class Student extends Person {
 
     public void setProtected(boolean prot) {
         this.protection = prot;
+    }
+
+    @Override
+    public boolean canMove() {
+        return this.isAlive();
     }
 
     @Override

@@ -98,6 +98,8 @@ public class Professor extends Person {
         // Method overridden from superclass, not used in Professor class
     }
 
+    public int getKillsLeft() { return this.killsLeft; }
+
     public void setKillsLeft(int i) {
         this.killsLeft = i;
     }

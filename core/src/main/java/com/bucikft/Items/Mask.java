@@ -20,7 +20,6 @@ public class Mask extends Item {
      * @throws IllegalStateException If the student is already wearing a mask.
      */
     public void effect(Student user) throws IllegalStateException {
-        // Scanner scanner = new Scanner(System.in);
         // Test if user is already wearing a mask
         if (user.isMasked()) throw new IllegalStateException("The student is already wearing a mask");
         if (this.isFalse()) {
