@@ -21,6 +21,7 @@ public class Move implements Command {
                     for (Door d : room.getDoorList()) {
                         if (roomTo == d.getRoomTo() || roomTo == d.getRoomFrom()) {
                             Menu.getGame().getMap().move(student, roomTo);
+                            System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + " through " + d);
                         } else {
                             System.out.println("Door is not a pointing to a neighbouring room.");
                         }

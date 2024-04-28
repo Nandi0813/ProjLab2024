@@ -104,5 +104,7 @@ public class ConsoleUI {
         }
         else
             System.out.println("empty");
+
+        System.out.println("Current student: Student#" + game.getFocusedPerson().getName());
     }
 }

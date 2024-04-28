@@ -163,7 +163,7 @@ public class Room {
     }
     @Override
     public String toString() {
-        return "Room#"+this.ID;
+        return this.ID;
     }
 
 }

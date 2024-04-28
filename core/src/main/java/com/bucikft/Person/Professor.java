@@ -87,6 +87,8 @@ public class Professor extends Person {
         // Kill student
         student.setAlive(false);
 
+        System.out.printf("Professor#%s killed Student#%s\n", this.getName(), student.getName());
+
         // Decrease moves of professor
         this.killsLeft--;
         // Add to killed students

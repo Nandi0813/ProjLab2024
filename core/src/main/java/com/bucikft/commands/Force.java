@@ -28,6 +28,7 @@ public class Force implements Command {
                             p.setCurrentRoom(game.getMap().getRoomList().get(Integer.parseInt(args[3])));
                             current.getPersonList().remove(p);
                             p.getCurrentRoom().getPersonList().add(p);
+                            System.out.println(p + " moved to " + p.getCurrentRoom());
                             found = true;
                         }
                     }
@@ -40,6 +41,7 @@ public class Force implements Command {
                             p.setCurrentRoom(game.getMap().getRoomList().get(Integer.parseInt(args[3])));
                             current.getPersonList().remove(p);
                             p.getCurrentRoom().getPersonList().add(p);
+                            System.out.println(p + "moved to Room#" + p.getCurrentRoom() );
                             found = true;
                         }
                     }
@@ -53,6 +55,8 @@ public class Force implements Command {
                             p.setCurrentRoom(game.getMap().getRoomList().get(Integer.parseInt(args[3])));
                             current.getPersonList().remove(p);
                             p.getCurrentRoom().getPersonList().add(p);
+                            System.out.println(p + " moved to Room#" + p.getCurrentRoom());
+
                             found = true;
                         }
                     }
@@ -92,6 +96,7 @@ public class Force implements Command {
                                 if (v.getName().equals(victim[1])) {
                                     v.setAlive(false);
                                     v.getCurrentRoom().getPersonList().remove(v);
+                                    System.out.println("forcekill from" + p + " professor to " + v + " student");
                                 }
                             }
                             found = true;
@@ -113,6 +118,7 @@ public class Force implements Command {
                                     s.getCurrentRoom().getPersonList().remove(s);
                                     s.setCurrentRoom(randomRoom);
                                     randomRoom.getPersonList().add(s);
+                                    System.out.println("forceair from " + p + " cleaner");
                                 }
                             }
                             found = true;
@@ -125,6 +131,7 @@ public class Force implements Command {
                 for (Room r : game.getMap().getRoomList()) {
                     if (r.getID().equals(args[2])) {
                         r.setGassed(true);
+                        System.out.println("forcefully gassed room Room#" + r);
                     }
                 }
                 break;

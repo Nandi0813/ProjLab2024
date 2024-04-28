@@ -1,6 +1,6 @@
 debug
 noai
+skip
 pickup TVSZ#11
 use TVSZ#11
-forcekill Pr#2 St#1
-exit
+force kill Pr#2 St#1
