@@ -10,9 +10,9 @@ import com.bucikft.Person.Student;
  */
 public class RoundManager {
 
-    private final Game game;
-    private int currentRound = 0;
-    private int currentTurn = 0;
+    private final Game game; // The game to manage rounds for
+    private int currentRound = 0; // The current round number
+    private int currentTurn = 0; // The current turn number
 
     /**
      * Initializes a new round manager for the specified game.
@@ -113,6 +113,9 @@ public class RoundManager {
         game.setFocusedPerson(game.getStudents().get(0));
     }
 
+    /**
+     * Moves to the next turn.
+     */
     public void nextTurn() {
         currentTurn++;
         if (currentTurn >= game.getStudents().size()) {
@@ -122,6 +125,9 @@ public class RoundManager {
         }
     }
 
+    /**
+     * Starts the game.
+     */
     public void play() {
         ConsoleUI ui = game.getUI();
         game.setFocusedPerson(game.getStudents().get(0));
@@ -140,13 +146,6 @@ public class RoundManager {
     }
 
     /**
-     * Ends the current round.
-     */
-    public void endRound() {
-
-    }
-
-    /**
      * Retrieves the current round number.
      *
      * @return The current round number.
@@ -156,14 +155,9 @@ public class RoundManager {
     }
 
     /**
-     * Sets the current round number.
-     *
-     * @param currentRound The round number to set.
+     * Retrieves the current turn number.
+     * @return The current turn number.
      */
-    public void setCurrentRound(final int currentRound) {
-        this.currentRound = currentRound;
-    }
-
     public int getCurrentTurn() {
         return currentTurn;
     }

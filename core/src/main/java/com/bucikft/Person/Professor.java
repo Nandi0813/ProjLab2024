@@ -83,12 +83,24 @@ public class Professor extends Person {
         // Method overridden from superclass, not used in Professor class
     }
 
+    /**
+     * Resets the professor's moves and the list of killed students.
+     * @return The number of kills left.
+     */
     public int getKillsLeft() { return this.killsLeft; }
 
+    /**
+     * Sets the number of kills left for the professor.
+     * @param i The number of kills left.
+     */
     public void setKillsLeft(int i) {
         this.killsLeft = i;
     }
 
+    /**
+     * Returns a string representation of the professor.
+     * @return The string representation of the professor.
+     */
     @Override
     public String toString() {
         if (this.getStunned() <= 0) {

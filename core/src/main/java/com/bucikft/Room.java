@@ -14,22 +14,20 @@ import java.util.Random;
  */
 public class Room {
 
-    private static Random rand = new Random();
-
-    private int capacity;
+    private int capacity; // Added to track the capacity of the room
     private int itemCapacity; // Added to track the how many items can be in room
-    private boolean gassed;
+    private boolean gassed; // Added to track if the room is gassed
 
     // Attributes related to cleaning
     public static final int STICKY_AT = 6;
     private int visitorsSinceLastCleaning;
     private boolean isSticky;
 
-    private final List<Item> itemsList;
-    private final List<Door> doorList;
-    private final List<Person> personList;
+    private final List<Item> itemsList; // Added to track the items in the room
+    private final List<Door> doorList; // Added to track the doors in the room
+    private final List<Person> personList; // Added to track the persons in the room
 
-    private final String ID;
+    private final String ID; // Added to track the ID of the room
 
     /**
      * Initializes a new room.
@@ -151,16 +149,30 @@ public class Room {
         return this.personList;
     }
 
+    /**
+     * Retrieves the capacity of the room.
+     * @return The capacity of the room.
+     */
     public int getItemCapacity() {
         return this.itemCapacity;
     }
+
+    /**
+     * Retrieves the ID of the room.
+     * @return The ID of the room.
+     */
     public String getID() {
         return this.ID;
     }
 
+    /**
+     * Sets the item capacity of the room.
+     * @param i The item capacity to set.
+     */
     public void setItemCapacity(int i) {
         this.itemCapacity = i;
     }
+
     @Override
     public String toString() {
         return this.ID;

@@ -1,29 +1,31 @@
 
 package com.bucikft;
 
-import com.bucikft.commands.*;
-
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ProtoTest {
 
-    private boolean protoTestbool;
-    private boolean testmode = false;
+    private boolean protoTestbool; // Added to keep track of the proto test state
+    private boolean testmode = false; // Added to keep track of the test mode
     
-    String filePath;
+    String filePath; // Added to keep track of the file path
 
-    private Game game;
-    public ProtoTest(Game game){
+    private final Game game; // Added to keep track of the game
+
+    /**
+     * Constructor to initialize a ProtoTest object.
+     * @param game The game object to store.
+     */
+    public ProtoTest(Game game) {
         this.game = game;
         this.protoTestbool = true;
-        ConsoleUI cui = new ConsoleUI(game);
-
     }
 
+    /**
+     * The main loop of the proto test.
+     */
     public void mainLoop() {
         while (protoTestbool){
             try {
@@ -34,6 +36,12 @@ public class ProtoTest {
         }
     }
 
+    /**
+     * Loads the map from the specified file path.
+     * @param filePath The file path to load the map from.
+     * @param testmode The test mode to set.
+     * @param in The input to set.
+     */
     public void MapLoad(String filePath, boolean testmode, String in){
         this.testmode = testmode;
         if (testmode){
@@ -81,20 +89,34 @@ public class ProtoTest {
         }
     }
 
-    public void setTestMode(boolean testMode){
-        this.testmode = testMode;
-    }
-
+    /**
+     * Gets the test mode of the proto test.
+     * @return The test mode of the proto test.
+     */
     public boolean getTestMode(){
         return this.testmode;
     }
+
+    /**
+     * Gets the file path of the proto test.
+     * @return The file path of the proto test.
+     */
     public String getFilePath(){
         return this.filePath;
     }
+
+    /**
+     * Sets the file path of the proto test.
+     * @param filePath The file path to set.
+     */
     public void setFilepath(String filePath){
         this.filePath = filePath;
     }
 
+    /**
+     * Sets the test mode of the proto test.
+     * @param protoTestbool The test mode to set.
+     */
     public void setProtoTestbool(boolean protoTestbool){
         this.protoTestbool = protoTestbool;
     }

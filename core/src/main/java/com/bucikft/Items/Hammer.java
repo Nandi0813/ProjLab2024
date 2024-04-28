@@ -10,6 +10,11 @@ import com.bucikft.Room;
  */
 public class Hammer extends Item {
 
+    /**
+     * The constructor of the Hammer class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public Hammer(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }
@@ -35,6 +40,10 @@ public class Hammer extends Item {
         this.setBroken(true);
     }
 
+    /**
+     * Returns a string representation of the Hammer item.
+     * @return The string representation of the Hammer item.
+     */
     @Override
     public String toString() {
         return "Hammer#" + ID;

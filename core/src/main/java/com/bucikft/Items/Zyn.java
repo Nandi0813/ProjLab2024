@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class Zyn extends Item {
 
+    /**
+     * The constructor of the Zyn class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public Zyn(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }
@@ -42,8 +47,14 @@ public class Zyn extends Item {
         // Break item
         setBroken(true);
     }
+
+    /**
+     * Returns a string representation of the Zyn item.
+     * @return The string representation of the Zyn item.
+     */
     @Override
     public String toString() {
         return "Zyn#" + ID;
     }
+
 }

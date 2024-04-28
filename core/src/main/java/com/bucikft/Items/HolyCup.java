@@ -13,27 +13,6 @@ public class HolyCup extends Item {
 
     public HolyCup(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
-        this.turns = 0;
-    }
-
-    private int turns; // The number of turns remaining until the effect of the Holy Cup wears off.
-
-    /**
-     * Gets the number of turns remaining until the effect wears off.
-     *
-     * @return The number of turns remaining.
-     */
-    public int getTurns() {
-        return turns;
-    }
-
-    /**
-     * Sets the number of turns remaining until the effect wears off.
-     *
-     * @param newTurns The new number of turns remaining.
-     */
-    public void setTurns(int newTurns) {
-        turns = newTurns;
     }
 
     /**
@@ -56,6 +35,10 @@ public class HolyCup extends Item {
         this.setBroken(true);
     }
 
+    /**
+     * Returns a string representation of the Holy Cup item.
+     * @return The string representation of the Holy Cup item.
+     */
     @Override
     public String toString() {
         return "HolyCup#" + ID;

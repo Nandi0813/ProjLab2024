@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static Game game;
+    private static Game game; // Added to keep track of the game
 
-    private static int bigChoice = 0;
+    private static int bigChoice = 0; // Added to keep track of the menu choice
 
+    /**
+     * The path to the map file.
+     */
     public static String mapPath = System.getProperty("user.dir") + File.separator +
             "core" + File.separator +
             "src" + File.separator +
@@ -19,10 +22,18 @@ public class Menu {
             "bucikft" + File.separator +
             "map.txt";
 
+    /**
+     * Retrieves the game object.
+     * @return The game object.
+     */
     public static Game getGame() {
         return game;
     }
 
+    /**
+     * The main method of the game.
+     * @param args The arguments of the game.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -48,8 +59,6 @@ public class Menu {
                         try {
                             System.out.println("welcome to the game!");
                             System.out.println("Enter a map file:");
-                            String path = scanner.next();
-                            String currentDirectory = System.getProperty("user.dir");
                             game.getProtoTest().MapLoad(mapPath, false, null);
                             System.out.println(game.isStarted());
                         } catch (IllegalArgumentException e) {
@@ -71,6 +80,10 @@ public class Menu {
         scanner.close();
     }
 
+    /**
+     * Handles the tests.
+     * @param scanner The scanner object to read user input.
+     */
     private static void handleTests(Scanner scanner) {
         int choice = 0;
         while (choice != 16) {

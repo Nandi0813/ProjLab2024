@@ -8,6 +8,11 @@ import com.bucikft.Person.Student;
  */
 public class Mask extends Item {
 
+    /**
+     * The constructor of the Mask class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public Mask(String ID, final boolean isFalseItem) {
         super(ID, isFalseItem);
         this.falseItem = isFalseItem;
@@ -33,6 +38,10 @@ public class Mask extends Item {
         this.setBroken(true);
     }
 
+    /**
+     * Returns a string representation of the Mask item.
+     * @return The string representation of the Mask item.
+     */
     @Override
     public String toString() {
         return "Mask#" + ID;

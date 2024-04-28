@@ -9,11 +9,16 @@ import com.bucikft.Room;
  */
 public abstract class Item {
 
-    protected boolean falseItem;
+    protected boolean falseItem; // Indicates whether the item is a false item or not.
     protected boolean broken; // Indicates whether the item is broken or not.
     protected boolean pickedUp; // Indicates whether the item has been picked up or not.
-    protected String ID;
+    protected String ID; // The unique identifier of the item.
 
+    /**
+     * The constructor of the Item class.
+     * @param ID The unique identifier of the item.
+     * @param falseItem Indicates whether the item is a false item or not.
+     */
     protected Item(String ID, boolean falseItem) {
         this.falseItem = falseItem;
         this.broken = false;
@@ -45,10 +50,18 @@ public abstract class Item {
      */
     public abstract void effect(Student user);
 
+    /**
+     * Indicates whether the item is a false item or not.
+     * @return True if the item is a false item, false otherwise.
+     */
     public boolean isFalse() {
         return this.falseItem;
     }
 
+    /**
+     * Returns the string representation of the item.
+     * @return The string representation of the item.
+     */
     @Override
     public String toString() {
         return this.getClass().getSimpleName()+ "#" + ID;
@@ -63,10 +76,19 @@ public abstract class Item {
         }
         this.pickedUp = pickedUp;
     }
+
+    /**
+     * Indicates whether the item has been picked up or not.
+     * @return True if the item has been picked up, false otherwise.
+     */
     public boolean isPickedUp() {
         return pickedUp;
     }
 
+    /**
+     * Gets the unique identifier of the item.
+     * @return The unique identifier of the item.
+     */
     public String getID() {
         return ID;
     }

@@ -1,0 +1,17 @@
+com/bucikft/commands/PickUp.class
+com/bucikft/commands/ExitCommand.class
+com/bucikft/commands/Skip.class
+com/bucikft/commands/Start.class
+com/bucikft/Menu.class
+com/bucikft/ConsoleUI.class
+com/bucikft/commands/Use.class
+com/bucikft/IDmaker.class
+com/bucikft/Items/AirFreshener.class
+com/bucikft/commands/MenuCommand.class
+com/bucikft/commands/Next.class
+com/bucikft/Items/Interface/Item.class
+com/bucikft/commands/Debug.class
+com/bucikft/Person/Cleaner.class
+com/bucikft/commands/Drop.class
+com/bucikft/commands/Spawn.class
+com/bucikft/commands/Command.class

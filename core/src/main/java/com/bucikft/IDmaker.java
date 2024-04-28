@@ -1,8 +1,18 @@
 package com.bucikft;
 
 public class IDmaker {
-   private int id;
+
+    /**
+     * The ID of the ID maker.
+     */
+    private int id;
+
+    /**
+     * The constructor of the ID maker.
+     * @return The ID.
+     */
     public String makeID() {
         return Integer.toString(id++);
     }
+
 }

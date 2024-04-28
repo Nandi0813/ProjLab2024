@@ -13,19 +13,19 @@ import java.util.List;
  */
 public class Game {
 
-    private Map map;
-    private RoundManager roundManager;
-    private List<Student> students;
-    private List<Student> deadStudents;
-    private List<Professor> professors; // added to keep track of professors
-    private List<Cleaner> cleaners; // added to keep track of cleaners
-    private Person focusedPerson;
-    private ConsoleUI UI;
-    private boolean debug = false;
-    private boolean started = false;
-    private ProtoTest protoTest;
-    private IDmaker idMaker = new IDmaker();
-    private boolean noAi = false;
+    private Map map; // Added to keep track of the map
+    private final RoundManager roundManager; // Added to keep track of the round manager
+    private final List<Student> students; // Added to keep track of students
+    private final List<Student> deadStudents; // Added to keep track of dead students
+    private final List<Professor> professors; // added to keep track of professors
+    private final List<Cleaner> cleaners; // added to keep track of cleaners
+    private Person focusedPerson; // Added to keep track of the focused person
+    private final ConsoleUI UI; // Added to keep track of the UI
+    private boolean debug = false; // Added to keep track of the debug mode
+    private boolean started = false; // Added to keep track of the game state
+    private final ProtoTest protoTest; // Added to keep track of the proto test
+    private final IDmaker idMaker = new IDmaker(); // Added to keep track of the ID maker
+    private boolean noAi = false; // Added to keep track of the AI state
 
     /**
      * Initializes a new game.
@@ -50,29 +50,57 @@ public class Game {
 
     }
 
+    /**
+     * Retrieves the ProtoTest object.
+     * @return The ProtoTest object.
+     */
     public ProtoTest getProtoTest(){
         return protoTest;
     }
 
+    /**
+     * Sets the game state.
+     * @param started The game state to set.
+     */
     public void setIsStarted(boolean started) {
         this.started = started;
     }
 
+    /**
+     * Retrieves the game state.
+     * @return The game state.
+     */
     public boolean isStarted() {
         return this.started;
     }
 
+    /**
+     * Retrieves the ID maker.
+     * @return The ID maker.
+     */
     public IDmaker getIdMaker() {
         return idMaker;
     }
 
+    /**
+     * Sets the focused person.
+     * @param person The person to set as focused.
+     */
     public void setFocusedPerson(Person person) {
         this.focusedPerson = person;
     }
 
-    public boolean getNoAi(){ return noAi; }
+    /**
+     * Retrieves the focused person.
+     * @return The focused person.
+     */
+    public boolean getNoAi() { return noAi; }
 
-    public void setNoAi(boolean newai){ noAi = newai; }
+    /**
+     * Sets the AI state.
+     * @param newai The AI state to set.
+     */
+    public void setNoAi(boolean newai) { noAi = newai; }
 
     /**
      * Ends the game.
@@ -101,32 +129,53 @@ public class Game {
 
     /**
      * Retrieves the list of dead students in the game.
-     *
      * @return The list of dead students.
      */
-    public List<Student> getDeadStudents() {
-        return this.deadStudents;
-    }
     public RoundManager getRoundManager() {
         return roundManager;
     }
+
+    /**
+     * Retrieves the list of dead students in the game.
+     * @return The list of dead students.
+     */
     public Person getFocusedPerson() {
         return focusedPerson;
     }
+
+    /**
+     * Retrieves the list of dead students in the game.
+     */
     public void setDebugMode() {
         this.debug = !this.debug;
     }
+
+    /**
+     * Retrieves the debug mode.
+     * @return The debug mode.
+     */
     public boolean getDebugMode() { return this.debug; }
 
-
+    /**
+     * Retrieves the list of dead students in the game.
+     * @return The list of dead students.
+     */
     public List<Professor> getProfessors() {
         return professors;
     }
 
+    /**
+     * Retrieves the list of dead students in the game.
+     * @return The list of dead students.
+     */
     public List<Cleaner> getCleaners() {
         return cleaners;
     }
 
+    /**
+     * Retrieves the list of dead students in the game.
+     * @return The list of dead students.
+     */
     public ConsoleUI getUI() {
         return UI;
     }
@@ -144,14 +193,13 @@ public class Game {
         }
     }
 
-
     /**
      * Generates a map with a specified number of rooms using the provided IDMaker.
      *
      * @param number the number of rooms to generate.
      */
     public void generateRooms(int number){
-            this.map = new Map(number, idMaker);
+            this.map = new Map(number);
     }
 
 

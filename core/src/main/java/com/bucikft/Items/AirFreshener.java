@@ -7,6 +7,12 @@ import com.bucikft.Person.Student;
  * A single-use item. It neutralizes the gas effect when placed in a gassed room.
  */
 public class AirFreshener extends Item {
+
+    /**
+     * The constructor of the AirFreshener class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public AirFreshener(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }

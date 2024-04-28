@@ -7,6 +7,12 @@ import com.bucikft.Person.Professor;
 import com.bucikft.Room;
 
 public class Spawn implements Command {
+
+    /**
+     * The execute method of the Spawn class.
+     * @param game The game object.
+     * @param args The arguments of the command.
+     */
     @Override
     public void execute(Game game, String[] args) {
         if (!game.getDebugMode()) throw new IllegalArgumentException("debug mode not ON");

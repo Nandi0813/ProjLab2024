@@ -10,13 +10,15 @@ public class Door {
     protected Room roomFrom; // The room from which the door leads.
     protected Room roomTo; // The room to which the door leads.
 
-
-
+    /**
+     * The constructor of the Door class.
+     * @param roomFrom The room from which the door leads.
+     * @param roomTo The room to which the door leads.
+     */
     public Door(Room roomFrom, Room roomTo) {
         this.roomFrom = roomFrom;
         this.roomTo = roomTo;
     }
-
 
     /**
      * Gets the room from which the door leads.
@@ -61,11 +63,19 @@ public class Door {
         this.roomTo = newRoomTo;
     }
 
+    /**
+     * Prints the door.
+     * @param room The room from which the door leads.
+     */
     public void printDoor(Room room) {
         if (room == roomFrom) System.out.println("Door from " + roomFrom + " to " + roomTo);
         else System.out.println("Door from " + roomTo + " to " + roomFrom);
     }
 
+    /**
+     * Returns the string representation of the door.
+     * @return The string representation of the door.
+     */
     @Override
     public String toString() {
         return "Door from " + roomFrom + " to " + roomTo;

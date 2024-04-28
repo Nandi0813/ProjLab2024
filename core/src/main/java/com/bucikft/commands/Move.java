@@ -6,6 +6,12 @@ import com.bucikft.Person.Student;
 import com.bucikft.Room;
 
 public class Move implements Command {
+
+    /**
+     * The execute method of the Move class.
+     * @param game The game object.
+     * @param args The arguments of the command.
+     */
     @Override
     public void execute(Game game, String[] args) {
         if (args.length != 2)

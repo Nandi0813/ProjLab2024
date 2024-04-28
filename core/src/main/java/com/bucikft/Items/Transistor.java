@@ -8,17 +8,19 @@ import com.bucikft.Room;
 /**
  * Represents a Transistor item, which can be used to teleport between rooms.
  */
-public class
-Transistor extends Item {
+public class Transistor extends Item {
 
+    /**
+     * The constructor of the Transistor class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public Transistor(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }
 
     /** The paired Transistor item. */
     public Transistor pair = null;
-
-
 
     public void connect(Transistor t, Student user) throws IllegalStateException {
         if(user.getCurrentRoom().getItemsList().contains(t) && !t.pickedUp) {
@@ -50,8 +52,14 @@ Transistor extends Item {
         this.setBroken(true);
         this.pair.setBroken(true);
     }
+
+    /**
+     * Returns a string representation of the Transistor item.
+     * @return The string
+     */
     @Override
     public String toString() {
         return "Transistor#" + ID;
     }
+
 }

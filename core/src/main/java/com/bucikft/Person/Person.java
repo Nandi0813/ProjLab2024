@@ -14,18 +14,27 @@ import java.util.Scanner;
  */
 public abstract class Person {
 
-    protected String name;
-    protected int movesLeft;
+    protected String name; // Added to track the name of the person
+    protected int movesLeft; // Added so we can track moves and uses separately
     protected int usesLeft; // Added so we can track moves and uses separately
-    protected List<Item> itemList;
-    protected Room currentRoom;
+    protected List<Item> itemList; // Added to track the items in the inventory
+    protected Room currentRoom; // Added to track the current room of the person
     protected int capacity; // Added to track the capacity of the inventory
-    protected boolean godMode = false;
-    protected int stunned = 0;
+    protected boolean godMode = false; // Added to track if the person is in god mode
+    protected int stunned = 0; // Added to track the stun duration
 
+    /**
+     * Sets the god mode of the person.
+     * @param godMode The god mode to set.
+     */
     public void setGodMode(boolean godMode) {
         this.godMode = godMode;
     }
+
+    /**
+     * Gets the god mode of the person.
+     * @return The god mode of the person.
+     */
     public boolean isGodMode() {
         return this.godMode;
     }
@@ -72,6 +81,10 @@ public abstract class Person {
         Menu.getGame().getMap().move(this, room);
     }
 
+    /**
+     * Uses the specified item.
+     * @return The item that was used.
+     */
     public int getUsesLeft() {
         return this.usesLeft;
     }
@@ -151,10 +164,18 @@ public abstract class Person {
         this.movesLeft = movesLeft;
     }
 
+    /**
+     * Sets the number of uses left for the person.
+     * @param i The number of uses left to set.
+     */
     public void setUsesLeft(int i) {
         this.usesLeft = i;
     }
 
+    /**
+     * Gets the capacity of the inventory.
+     * @return The capacity of the inventory.
+     */
     public List<Item> getItemList() {
         return this.itemList;
     }

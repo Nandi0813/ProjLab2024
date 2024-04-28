@@ -10,8 +10,13 @@ public class TVSZ extends Item {
 
     private int health; // The health points of the TVSZ item.
 
-    private boolean tvszUsed = false;
+    private boolean tvszUsed = false; // Indicates whether the TVSZ item has been used.
 
+    /**
+     * The constructor of the TVSZ class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public TVSZ(String ID, final boolean isFalseItem) {
         super(ID, isFalseItem);
         this.falseItem = isFalseItem;
@@ -39,23 +44,9 @@ public class TVSZ extends Item {
     }
 
     /**
-     * Sets the health points of the TVSZ item.
-     *
-     * @param health The health points to set.
+     * Returns a string representation of the TVSZ item.
+     * @return The string representation of the TVSZ item.
      */
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    /**
-     * Gets the health points of the TVSZ item.
-     *
-     * @return The health points of the TVSZ item.
-     */
-    public int getHealth() {
-        return health;
-    }
-
     @Override
     public String toString() {
         System.out.println(tvszUsed ? "The TVSZ has been used once." : "");

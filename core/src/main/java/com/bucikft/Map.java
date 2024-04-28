@@ -13,17 +13,16 @@ import java.util.*;
  */
 public class Map {
 
-    private final List<Room> roomList;
-    private final List<Item> itemList;
+    private final List<Room> roomList; // List of rooms in the map
+    private final List<Item> itemList; // List of items in the map
 
-    private final ArrayList<String> itemNames = new ArrayList<>();
-    private final ArrayList<Item> items = new ArrayList<>();
-
-
-    public Map(int mapSize, IDmaker idMaker){
+    /**
+     * Constructor to initialize a Map object.
+     * @param mapSize The size of the map.
+     */
+    public Map(int mapSize) {
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
-
 
         // generate doors between rooms
         for (int x=0; x<mapSize; x++) {
@@ -166,7 +165,7 @@ public class Map {
         }
 
         Random rand = new Random();
-        for (Person p : room.getPersonList()) {
+        for (Person p : new ArrayList<>(room.getPersonList())) {
             if (rand.nextInt(2) % 2 == 0 && newRoom.getPersonList().size() <= newRoom.getCapacity()) {
                 newRoom.getPersonList().add(p);
             } else {

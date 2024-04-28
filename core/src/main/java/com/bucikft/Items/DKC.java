@@ -8,6 +8,11 @@ import com.bucikft.Person.Student;
  */
 public class DKC extends Item {
 
+    /**
+     * The constructor of the DKC class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public DKC(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }
@@ -29,6 +34,10 @@ public class DKC extends Item {
         this.setBroken(true);
     }
 
+    /**
+     * Returns a string representation of the DKC item.
+     * @return The string representation of the DKC item.
+     */
     @Override
     public String toString() {
         return "DKC#" + ID;

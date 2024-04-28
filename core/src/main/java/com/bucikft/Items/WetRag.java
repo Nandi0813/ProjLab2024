@@ -10,6 +10,11 @@ import com.bucikft.Person.Student;
  */
 public class WetRag extends Item {
 
+    /**
+     * The constructor of the WetRag class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
     public WetRag(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);
     }
@@ -31,8 +36,14 @@ public class WetRag extends Item {
         // Break item
         setBroken(true);
     }
+
+    /**
+     * Returns a string representation of the Wet Rag item.
+     * @return The string representation of the Wet Rag item.
+     */
     @Override
     public String toString() {
         return "WetRag#"+ID;
     }
+
 }

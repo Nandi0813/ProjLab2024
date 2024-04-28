@@ -15,9 +15,14 @@ import java.util.Scanner;
 
 public class ConsoleUI {
 
-    private HashMap<String, Command> commands = new HashMap<String, Command>();
-    private Game game;
-    private Scanner scanner = new Scanner(System.in);
+    private final HashMap<String, Command> commands = new HashMap<String, Command>(); // Added to store the commands
+    private final Game game; // Added to store the game object
+    private final Scanner scanner = new Scanner(System.in); // Added to read user input
+
+    /**
+     * Constructor to initialize a ConsoleUI object.
+     * @param game The game object to store.
+     */
     public ConsoleUI(Game game) {
         this.game = game;
         commands.put("debug", new Debug());
@@ -37,8 +42,13 @@ public class ConsoleUI {
         commands.put("join", new Join());
         commands.put("noai",new NoAI());
     }
+
+    /**
+     * Reads the commands from the user input.
+     * @throws IllegalArgumentException If the command is invalid.
+     */
     public void readCommands() throws IllegalArgumentException {
-        if(game.getProtoTest().getTestMode()){
+        if (game.getProtoTest().getTestMode()){
             try{
                 BufferedReader reader = new BufferedReader(new FileReader(game.getProtoTest().getFilePath()));
                 String line;
@@ -69,6 +79,9 @@ public class ConsoleUI {
         }
     }
 
+    /**
+     * Prints the current state of the game.
+     */
     public void printGameState() {
         for (int i=0; i<4; i++) {
             System.out.println();
@@ -107,4 +120,5 @@ public class ConsoleUI {
 
         System.out.println("Current student: Student#" + game.getFocusedPerson().getName());
     }
+
 }

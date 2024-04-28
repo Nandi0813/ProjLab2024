@@ -14,7 +14,11 @@ import java.util.ArrayList;
 
 public class Force implements Command {
 
-    // Force move, pickup, kill, air, gas
+    /**
+     * The execute method of the Force class.
+     * @param game The game object.
+     * @param args The arguments of the command.
+     */
     @Override
     public void execute(Game game, String[] args) {
         switch (args[1]) {

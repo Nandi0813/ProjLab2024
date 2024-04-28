@@ -10,8 +10,8 @@ import java.util.Scanner;
  */
 public class Student extends Person {
 
-    private boolean alive = true;
-    private boolean masked = false;
+    private boolean alive = true; // Indicates whether the student is alive or not
+    private boolean masked = false; // Indicates whether the student is wearing a mask or not
     private boolean protection = false; // Counter to track protection duration
 
     public Student(String name) {
@@ -130,15 +130,27 @@ public class Student extends Person {
         this.masked = masked;
     }
 
+    /**
+     * Checks if the student is protected.
+     * @param prot The status of the student's protection.
+     */
     public void setProtected(boolean prot) {
         this.protection = prot;
     }
 
+    /**
+     * Checks if the student is protected.
+     * @return true if the student is protected, otherwise false.
+     */
     @Override
     public boolean canMove() {
         return this.isAlive();
     }
 
+    /**
+     * Returns a string representation of the student.
+     * @return The string representation of the student.
+     */
     @Override
     public String toString() {
         if (this.getStunned() <= 0) {
