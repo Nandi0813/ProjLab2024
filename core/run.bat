@@ -5,7 +5,7 @@ IF EXIST bin (
 )
 mkdir bin
 
-SET "sources=src\main\java\com\bucikft\commands\*.java src\main\java\com\bucikft\Door*.java src\main\java\com\bucikft\Items\*.java src\main\java\com\bucikft\Person\*.java src\main\java\com\bucikft\*.java src\main\java\com\bucikft\Items\Interface\*.java"
+SET "sources=src\main\java\com\bucikft\commands\*.java src\main\java\com\bucikft\Door\*.java src\main\java\com\bucikft\Items\*.java src\main\java\com\bucikft\Person\*.java src\main\java\com\bucikft\*.java src\main\java\com\bucikft\Items\Interface\*.java"
 
 javac -encoding UTF-8 -d bin %sources%
 
