@@ -75,7 +75,7 @@ public class RoundManager {
                         if (p.canMove()) {
                             Room randomRoom = roomTo.getRandomNeighbourRoom();
                             game.getMap().move(p, randomRoom);
-                            System.out.printf("\nProfessor#%s moved to room: %s\n", p.getName(), randomRoom.getID());
+                            System.out.printf("\nPerson#%s moved to room: %s by cleaner\n", p.getName(), randomRoom.getID());
                         }
                     }
 
