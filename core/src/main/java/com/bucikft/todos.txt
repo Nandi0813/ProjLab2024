@@ -2,3 +2,9 @@
 debug
 ami nem kell kiszedni
 legyen is false item
+
+
+skip megjavitva
+commandoknak irni kene a szabvanyos outputot
+amikor megol a professzor valakit meg ilyenek akkor is irjon mar ki valamit
+es ja ennyi
