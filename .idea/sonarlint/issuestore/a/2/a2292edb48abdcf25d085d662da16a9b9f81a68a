@@ -1,8 +1,8 @@
 
-u	java:S135."YReduce the total number of break and continue statements in this loop to use at most one.(ŞëãÍ8ÖÛË‰ò1
-¤
-java:S1186„"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Û’±üÿÿÿÿ8ÄÜË‰ò1
-o
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(ôÕëì8ÈÜË‰ò1
-L	java:S1069"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8ĞÜË‰ò1
-L	java:S106|"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8ÙÜË‰ò1
+›	java:S135/"YReduce the total number of break and continue statements in this loop to use at most one.(ŞëãÍ8™¥¤ò1J$956a18e2-fa17-40e4-99b7-4e77ce8e7bc7
+Ê
+java:S1186†"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Û’±üÿÿÿÿ8…¦¤ò1J$795c7ec1-9562-4b36-a8eb-c299e2aa104d
+•
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 57 to the 15 allowed.(ôÕëì8Š¦¤ò1J$6458a30e-69ad-4759-9b48-9baea0bd1c0f
+r	java:S106:"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8¦¤ò1J$0152722e-2aec-4661-b318-432f88d18d3e
+r	java:S106~"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8’¦¤ò1J$bbf74dd6-e201-43e7-855c-500e3977ae2d

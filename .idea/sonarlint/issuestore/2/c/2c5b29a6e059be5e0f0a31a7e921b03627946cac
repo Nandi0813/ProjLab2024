@@ -1,5 +1,0 @@
-
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œé“ıÿÿÿÿ8Š¼ìˆò1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒˆ›ö8¼ìˆò1
-_
-java:S6201 "BReplace this instanceof check and cast with 'instanceof Exit exit'(Ó÷Ú…8¼ìˆò1

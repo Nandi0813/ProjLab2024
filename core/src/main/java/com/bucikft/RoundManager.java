@@ -35,52 +35,54 @@ public class RoundManager {
             student.setUsesLeft(1);
         }
 
-        for (Professor professor: game.getProfessors()) {
-            if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi()) {
-                Room currentRoom = professor.getCurrentRoom();
-                Room roomTo = currentRoom.getRandomNeighbourRoom();
+        if(!game.getNoAi()) {
+            for (Professor professor : game.getProfessors()) {
+                if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi()) {
+                    Room currentRoom = professor.getCurrentRoom();
+                    Room roomTo = currentRoom.getRandomNeighbourRoom();
 
-                game.getMap().move(professor, roomTo);
-                professor.setMovesLeft(professor.getMovesLeft() - 1);
+                    game.getMap().move(professor, roomTo);
+                    professor.setMovesLeft(professor.getMovesLeft() - 1);
 
-                for (Person p : roomTo.getPersonList()) {
-                    if (professor.getMovesLeft() == 0)
-                        break;
+                    for (Person p : roomTo.getPersonList()) {
+                        if (professor.getMovesLeft() == 0)
+                            break;
 
-                    if (professor.getKillsLeft() == 0)
-                        break;
+                        if (professor.getKillsLeft() == 0)
+                            break;
 
-                    if (p instanceof Student s) {
-                        try {
-                            professor.killStudent(s);
-                        } catch (IllegalStateException e) {
-                            System.out.println(e.getMessage());
+                        if (p instanceof Student s) {
+                            try {
+                                professor.killStudent(s);
+                            } catch (IllegalStateException e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
                     }
                 }
             }
-        }
 
-        for (Cleaner cleaner: game.getCleaners()) {
-            if (cleaner.getMovesLeft() > 0) {
-                Room currentRoom = cleaner.getCurrentRoom();
-                Room roomTo = currentRoom.getRandomNeighbourRoom();
+            for (Cleaner cleaner : game.getCleaners()) {
+                if (cleaner.getMovesLeft() > 0) {
+                    Room currentRoom = cleaner.getCurrentRoom();
+                    Room roomTo = currentRoom.getRandomNeighbourRoom();
 
-                game.getMap().move(cleaner, roomTo);
-                cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
+                    game.getMap().move(cleaner, roomTo);
+                    cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
 
-                for (Person p : roomTo.getPersonList()) {
-                    if (p.canMove()) {
-                        Room randomRoom = roomTo.getRandomNeighbourRoom();
-                        game.getMap().move(p, randomRoom);
+                    for (Person p : roomTo.getPersonList()) {
+                        if (p.canMove()) {
+                            Room randomRoom = roomTo.getRandomNeighbourRoom();
+                            game.getMap().move(p, randomRoom);
+                        }
                     }
+
+                    if (roomTo.isGassed())
+                        roomTo.setGassed(false);
+
+                    if (roomTo.isSticky())
+                        roomTo.setSticky(false);
                 }
-
-                if (roomTo.isGassed())
-                    roomTo.setGassed(false);
-
-                if (roomTo.isSticky())
-                    roomTo.setSticky(false);
             }
         }
 
