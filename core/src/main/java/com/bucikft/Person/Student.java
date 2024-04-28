@@ -25,6 +25,9 @@ public class Student extends Person {
      * @throws IllegalStateException If  student cannot use more items in their turn.
      */
     public void use(Item item) throws IllegalStateException {
+        if (this.stunned > 0)
+            throw new IllegalStateException("Student is stunned.");
+
         if (usesLeft <= 0)
             throw new IllegalStateException("The student cannot use more items in their turn.");
 
@@ -42,8 +45,9 @@ public class Student extends Person {
             this.itemList.remove(item);
         }
 
-        usesLeft--;
-    }
+        if (!godMode)
+            usesLeft--;
+   }
 
     /**
      * Drops the specified item.
@@ -52,6 +56,8 @@ public class Student extends Person {
      * @throws IllegalStateException If there is not enough room in the room for the item.
      */
     public void drop(Item item) throws IllegalStateException {
+        if (this.stunned > 0)
+            throw new IllegalStateException("Student is stunend.");
 
         // Test if room has enough room for the item
         if (this.getCurrentRoom().getItemsList().size() >= this.getCurrentRoom().getItemCapacity())

@@ -41,7 +41,7 @@ public class Room {
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
         this.capacity = 5;
-        this.itemCapacity = 5;
+        this.itemCapacity = 6;
         this.ID = "Room#"+x;
     }
 

@@ -147,6 +147,7 @@ public class Map {
      */
     public void split(Room room) {
         Room newRoom = new Room(roomList.size());
+        roomList.add(newRoom);
         newRoom.setGassed(room.isGassed());
         newRoom.setSticky(room.isSticky());
 

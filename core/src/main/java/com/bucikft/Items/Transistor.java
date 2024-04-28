@@ -8,7 +8,8 @@ import com.bucikft.Room;
 /**
  * Represents a Transistor item, which can be used to teleport between rooms.
  */
-public class Transistor extends Item {
+public class
+Transistor extends Item {
 
     public Transistor(String ID, boolean isFalseItem) {
         super(ID, isFalseItem);

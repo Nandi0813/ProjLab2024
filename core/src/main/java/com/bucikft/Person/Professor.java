@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Professor extends Person {
 
-    private List<Student> killedStudents; // List to keep track of killed students
+    private final List<Student> killedStudents; // List to keep track of killed students
     private int killsLeft; // Counter to track the number of kills left in this round
 
     /**
@@ -20,26 +20,6 @@ public class Professor extends Person {
     public Professor(String name) {
         super(name);
         this.killedStudents = new ArrayList<>();
-    }
-
-    private int stunned = 0; // Counter to track stun duration
-
-    /**
-     * Sets the stun duration for the professor.
-     *
-     * @param n The duration of the stun.
-     */
-    public void stun(int n) {
-        stunned = n;
-    }
-
-    /**
-     * Checks if the professor is currently stunned.
-     *
-     * @return The stun duration.
-     */
-    public int isStunned() {
-        return stunned;
     }
 
 
@@ -62,7 +42,7 @@ public class Professor extends Person {
     }
 
     public boolean canMove() {
-        return this.isStunned() == 0;
+        return this.getStunned() == 0;
     }
 
     /**
@@ -79,7 +59,10 @@ public class Professor extends Person {
         if (!student.isAlive()) throw new IllegalStateException("The student is already dead.");
 
         // Check if student is protected
-        if (!student.isKillable()) throw new IllegalStateException("A hallgató védve van.");
+        if (!student.isKillable()) {
+            student.setProtected(false);
+            throw new IllegalStateException("The student is protected");
+        }
 
         // Check if prof has moves left in his turn
         if (this.movesLeft <= 0) throw new IllegalStateException("The professor has no more moves.");

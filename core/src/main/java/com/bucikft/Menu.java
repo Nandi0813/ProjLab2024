@@ -8,8 +8,6 @@ public class Menu {
 
     private static Game game;
 
-    private static boolean testMode = false;
-
     private static int bigChoice = 0;
 
     public static String mapPath = System.getProperty("user.dir") + File.separator +
@@ -73,14 +71,9 @@ public class Menu {
         scanner.close();
     }
 
-    public boolean getTestMode() {
-        return testMode;
-    }
-
     private static void handleTests(Scanner scanner) {
         int choice = 0;
-        testMode = true;
-        while (choice != 15) {
+        while (choice != 16) {
             TestClass tc = new TestClass();
             game = new Game();
             System.out.println("Student interactions:");
@@ -157,6 +150,7 @@ public class Menu {
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
                 case 4:
                     try {
                         System.out.println("Test Four");
@@ -355,7 +349,6 @@ public class Menu {
                     }
                     break;
                 case 16:
-                    choice = 16;
                     bigChoice = 0;
                     break;
                 default:

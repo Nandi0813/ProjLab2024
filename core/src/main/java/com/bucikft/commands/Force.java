@@ -90,7 +90,7 @@ public class Force implements Command {
                 String[] victim = args[3].split("#");
                 if (n[0].equals("Pr")) {
                     boolean found = false;
-                    for (Person p : game.getProfessors()) {
+                    for (Professor p : game.getProfessors()) {
                         if (p.getName().equals(n[1])) {
                             for(Student v : game.getStudents()) {
                                 if (v.getName().equals(victim[1])) {

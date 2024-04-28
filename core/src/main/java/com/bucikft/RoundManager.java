@@ -30,32 +30,42 @@ public class RoundManager {
         currentRound++;
 
         // reset student characters
-        for (Student student: game.getStudents()) {
-            student.setMovesLeft(1);
-            student.setUsesLeft(1);
+        for (Student student : game.getStudents()) {
+            if (student.getCurrentRoom().isGassed()) {
+                student.stun(5);
+            }
         }
 
-        if(!game.getNoAi()) {
             for (Professor professor : game.getProfessors()) {
-                if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi()) {
-                    Room currentRoom = professor.getCurrentRoom();
-                    Room roomTo = currentRoom.getRandomNeighbourRoom();
+                if (professor.getCurrentRoom().isGassed()) {
+                    professor.stun(5);
+                    continue;
+                } else if (professor.getStunned() > 0){
+                    professor.stun(professor.getStunned()-1);
+                    continue;
+                }
 
-                    game.getMap().move(professor, roomTo);
-                    professor.setMovesLeft(professor.getMovesLeft() - 1);
+                if (!game.getNoAi()) {
+                    if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi() && professor.getStunned() < 0) {
+                        Room currentRoom = professor.getCurrentRoom();
+                        Room roomTo = currentRoom.getRandomNeighbourRoom();
 
-                    for (Person p : roomTo.getPersonList()) {
-                        if (professor.getMovesLeft() == 0)
-                            break;
+                        game.getMap().move(professor, roomTo);
+                        professor.setMovesLeft(professor.getMovesLeft() - 1);
 
-                        if (professor.getKillsLeft() == 0)
-                            break;
+                        for (Person p : roomTo.getPersonList()) {
+                            if (professor.getMovesLeft() == 0)
+                                break;
 
-                        if (p instanceof Student s) {
-                            try {
-                                professor.killStudent(s);
-                            } catch (IllegalStateException e) {
-                                System.out.println(e.getMessage());
+                            if (professor.getKillsLeft() == 0)
+                                break;
+
+                            if (p instanceof Student s) {
+                                try {
+                                    professor.killStudent(s);
+                                } catch (IllegalStateException e) {
+                                    System.out.println(e.getMessage());
+                                }
                             }
                         }
                     }
@@ -63,7 +73,7 @@ public class RoundManager {
             }
 
             for (Cleaner cleaner : game.getCleaners()) {
-                if (cleaner.getMovesLeft() > 0) {
+                if (!game.getNoAi() && cleaner.getMovesLeft() > 0) {
                     Room currentRoom = cleaner.getCurrentRoom();
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
 
@@ -86,7 +96,6 @@ public class RoundManager {
                         roomTo.setSticky(false);
                 }
             }
-        }
 
 
         // reset ai characters
