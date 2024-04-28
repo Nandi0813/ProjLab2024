@@ -24,6 +24,7 @@ public class Hammer extends Item {
         // Test if room is big enough for splitting
         if (student.getCurrentRoom().getItemCapacity() >= 2)
             throw new IllegalStateException("The room cannot be split.");
+        }
 
         // Split room
         Menu.getGame().getMap().split(student.getCurrentRoom());

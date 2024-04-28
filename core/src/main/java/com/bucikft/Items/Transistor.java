@@ -39,10 +39,11 @@ public class Transistor extends Item {
 
         for(Room r: Menu.getGame().getMap().getRoomList()){
             if(r.getItemsList().contains(pair))
-                if(r.getCapacity() > r.getPersonList().size())
+                if(r.getCapacity() > r.getPersonList().size()){
                     Menu.getGame().getMap().move(user,r);
-                else
-                    throw new IllegalStateException("Room is full, cannot teleport.");
+                    user.setMovesLeft(user.getMovesLeft()+1);
+                }
+                else throw new IllegalStateException("Room is full, cannot teleport.");
         }
 
         this.setBroken(true);

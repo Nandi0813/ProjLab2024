@@ -99,7 +99,7 @@ public class Menu {
             System.out.println("13. Move Cleaner");
             System.out.println("14. Air Test");
             System.out.println("15. Zyn Test");
-            System.out.println("15. Back");
+            System.out.println("16. Back");
             System.out.print("Choose an interaction: ");
             try {
                 choice = scanner.nextInt();

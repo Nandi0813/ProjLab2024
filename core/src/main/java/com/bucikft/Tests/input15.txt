@@ -2,4 +2,5 @@ debug
 noai
 force kill Pr#1 St#2
 pickup Zyn#13
+move 1
 use Zyn#13

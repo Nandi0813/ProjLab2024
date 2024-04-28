@@ -135,6 +135,10 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead");
+        if (this.getStunned() <= 0) {
+            return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead") + " not stunned";
+        } else {
+            return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead") + " stunned";
+        }
     }
 }

@@ -1,4 +1,5 @@
 debug
 noai
-pickup DKC#4
-use DKC#4
+pickup Hammer#8
+use Hammer#8
+move 2

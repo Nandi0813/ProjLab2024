@@ -1,5 +1,11 @@
 debug
-noai
-skip
+godmode
 pickup TVSZ#11
 use TVSZ#11
+force move Pr#2 0
+force kill Pr#2 St#0
+use TVSZ#11
+force kill Pr#2 St#0
+use TVSZ#11
+force kill Pr#2 St#0
+force kill Pr#2 St#0

@@ -1,30 +1,33 @@
 
-o
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(€©¬¤
-b
-java:S2095+"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(Œ‹ù
-?	java:S106="+Replace this use of System.out by a logger.(£Òø
-N
-java:S1854L"8Remove this useless assignment to local variable "turn".(Øè‹Â
-E	java:S106J"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ
-?
-java:S1481L")Remove this unused "turn" local variable.(Øè‹Â
-@	java:S106P"+Replace this use of System.out by a logger.(àªøë
-E	java:S106Q"+Replace this use of System.out by a logger.(Âª÷›şÿÿÿÿ
-E	java:S106R"+Replace this use of System.out by a logger.(Ñİáøÿÿÿÿ
-E	java:S106S"+Replace this use of System.out by a logger.(Ì×Ûÿÿÿÿÿ
-@	java:S106T"+Replace this use of System.out by a logger.(ÛÂ
-@	java:S106U"+Replace this use of System.out by a logger.(Áşá·
-E	java:S106W"+Replace this use of System.out by a logger.(Æİ…üûÿÿÿÿ
-@	java:S106Y"+Replace this use of System.out by a logger.(ë¹£“
-E	java:S106Z"+Replace this use of System.out by a logger.(¾¶¸íûÿÿÿÿ
-?	java:S106["+Replace this use of System.out by a logger.(«âÌ
-?	java:S106_"+Replace this use of System.out by a logger.(ƒÉø@
-@	java:S106a"+Replace this use of System.out by a logger.(Òà´Ç
-@	java:S106c"+Replace this use of System.out by a logger.(–³‰
-@	java:S106f"+Replace this use of System.out by a logger.(Òà´Ç
-@	java:S106j"+Replace this use of System.out by a logger.(–ñ–à
-M
-java:S1128"7Remove this unused import 'com.bucikft.Person.Student'.(Ÿ­Àª
-J
-java:S1128"/Remove this unused import 'java.sql.SQLOutput'.(ê¤òÃùÿÿÿÿ
+œ
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(€©¬¤8³á×²ò1J$a5481a26-70f8-4be4-b5af-a2f7f951137e
+
+java:S2095+"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(Œ‹ù8ìá×²ò1J$07b09e4a-9da4-4561-a81a-226a6f59aa99
+•
+java:S3776("RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Îüß˜8óá×²ò1J$65bae84e-e43e-42da-a231-73de33243d2a
+l	java:S106="+Replace this use of System.out by a logger.(£Òø8öá×²ò1J$c9ae07f4-e279-4679-aeb3-e5a2ac78cfde
+{
+java:S1854L"8Remove this useless assignment to local variable "turn".(Øè‹Â8÷á×²ò1J$4d651335-d2e6-4984-97dc-0f385e0d12aa
+r	java:S106J"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8÷á×²ò1J$417ea1b7-2564-4010-82fa-7a8700e54f2e
+l
+java:S1481L")Remove this unused "turn" local variable.(Øè‹Â8øá×²ò1J$682ad62a-1c56-4668-bd2d-8480f55ca798
+m	java:S106P"+Replace this use of System.out by a logger.(àªøë8øá×²ò1J$6265ff46-ac9f-4bb6-82b8-04247edf24f5
+r	java:S106Q"+Replace this use of System.out by a logger.(Âª÷›şÿÿÿÿ8øá×²ò1J$aa3640b8-13c1-43e0-a687-75c9ceb704ff
+r	java:S106R"+Replace this use of System.out by a logger.(Ñİáøÿÿÿÿ8øá×²ò1J$1dc63cbf-891a-42e5-bc80-db2953756526
+r	java:S106S"+Replace this use of System.out by a logger.(Ì×Ûÿÿÿÿÿ8øá×²ò1J$a3586375-837d-4261-8f1d-106a431e45fc
+m	java:S106T"+Replace this use of System.out by a logger.(ÛÂ8ùá×²ò1J$5be7c5f7-f4c6-4ff6-ae70-0a6d3b65ea84
+m	java:S106U"+Replace this use of System.out by a logger.(Áşá·8ùá×²ò1J$f2695fb6-784a-4948-8939-a991ff588cfc
+r	java:S106W"+Replace this use of System.out by a logger.(Æİ…üûÿÿÿÿ8ùá×²ò1J$4f423b91-a6e3-4ccf-9d49-6fc70367e93e
+m	java:S106Y"+Replace this use of System.out by a logger.(ë¹£“8ùá×²ò1J$12b5370e-3b14-4cf9-b11f-ea14f7330d63
+r	java:S106Z"+Replace this use of System.out by a logger.(¾¶¸íûÿÿÿÿ8ùá×²ò1J$04b260c8-1915-4b07-a168-66f18d567f52
+l	java:S106["+Replace this use of System.out by a logger.(«âÌ8ùá×²ò1J$57339a3f-6511-4e4d-94dc-974cc492a408
+l	java:S106_"+Replace this use of System.out by a logger.(ƒÉø@8úá×²ò1J$800ecaf7-a75d-4a61-a085-9af16f0a3027
+m	java:S106a"+Replace this use of System.out by a logger.(Òà´Ç8úá×²ò1J$18f3dc1a-6d92-46dc-9939-a6d02afbc5d8
+m	java:S106c"+Replace this use of System.out by a logger.(–³‰8úá×²ò1J$e9b410f1-0676-4d9a-829c-096c72c7904c
+m	java:S106f"+Replace this use of System.out by a logger.(Òà´Ç8úá×²ò1J$c9aa12ce-7516-4492-976d-fb368a2f0dbf
+m	java:S106j"+Replace this use of System.out by a logger.(–ñ–à8úá×²ò1J$bd6cdcb3-4dbe-45cd-8a22-15fcab01103c
+r	java:S106l"+Replace this use of System.out by a logger.(–È¯ÿÿÿÿÿ8úá×²ò1J$513c912e-2c7c-4304-89cf-efdfcae3d44d
+z
+java:S1128"7Remove this unused import 'com.bucikft.Person.Student'.(Ÿ­Àª8ûá×²ò1J$f135496b-5841-48bc-9d6c-63ae501e1278
+w
+java:S1128"/Remove this unused import 'java.sql.SQLOutput'.(ê¤òÃùÿÿÿÿ8ûá×²ò1J$f9be522f-feae-4e8e-8182-cc67f15bbc3b

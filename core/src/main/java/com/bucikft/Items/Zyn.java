@@ -38,6 +38,7 @@ public class Zyn extends Item {
 
         // Revive the dead students in the room
         for (Student deadStudent : deadStudents) {
+            System.out.println("Student#" + deadStudent.getName()+ " has been revived.");
             deadStudent.setAlive(true);
         }
 
