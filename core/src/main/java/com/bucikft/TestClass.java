@@ -6,6 +6,5 @@ public class TestClass {
         game.getProtoTest().MapLoad(path, true, in);
         game.getProtoTest().filePath = in;
         game.getProtoTest().setFilepath(in);
-        System.out.println(game.isStarted());
     }
 }

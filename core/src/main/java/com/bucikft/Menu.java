@@ -220,7 +220,6 @@ public class Menu {
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
-
                     break;
                 case 8:
                     try {
@@ -237,7 +236,6 @@ public class Menu {
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
-
                     break;
                 case 9:
                     try {

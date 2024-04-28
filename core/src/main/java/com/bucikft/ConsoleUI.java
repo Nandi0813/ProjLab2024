@@ -49,7 +49,7 @@ public class ConsoleUI {
                 } else {
                     throw new IllegalArgumentException("invalid command");
                 }
-                game.getUI().printGameState();
+                if (!game.getDebugMode()) game.getUI().printGameState();
             }
             game.getProtoTest().setProtoTestbool(false);
             game.setIsStarted(false);

@@ -24,7 +24,7 @@ public class WetRag extends Item {
         // Stun all professors in the room
         for (Person person : user.getCurrentRoom().getPersonList()) {
             if (person instanceof Professor) {
-                ((Professor) person).stun(3);
+                person.stun(3);
             }
         }
 

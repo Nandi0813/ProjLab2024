@@ -22,7 +22,7 @@ public class Hammer extends Item {
      */
     public void effect(Student student) throws IllegalStateException {
         // Test if room is big enough for splitting
-        if (student.getCurrentRoom().getItemCapacity() >= 2)
+        if (student.getCurrentRoom().getItemCapacity() <= 2) {
             throw new IllegalStateException("The room cannot be split.");
         }
 

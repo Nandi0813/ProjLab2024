@@ -16,7 +16,7 @@ public class PickUp implements Command {
             if (i.getID().equals(item[1])) {
                 try {
                     person.pickUp(i);
-                    System.out.println("item "+ i + " picked up by student " + person);
+                    System.out.println("item "+ i + " picked up by Student#" + person.getName());
                     return;
                 } catch (IllegalStateException e) {
                     System.out.println(e.getMessage());

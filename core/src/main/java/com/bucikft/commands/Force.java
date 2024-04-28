@@ -94,9 +94,13 @@ public class Force implements Command {
                         if (p.getName().equals(n[1])) {
                             for(Student v : game.getStudents()) {
                                 if (v.getName().equals(victim[1])) {
-                                    v.setAlive(false);
-                                    v.getCurrentRoom().getPersonList().remove(v);
-                                    System.out.println("forcekill from" + p + " professor to " + v + " student");
+                                    try {
+                                        p.setKillsLeft(p.getKillsLeft()+1);
+                                        p.killStudent(v);
+                                        System.out.println("forcekill from Professor" + p.getName() + " to " + v.getName());
+                                    } catch (IllegalStateException e) {
+                                        System.out.println(e.getMessage());
+                                    }
                                 }
                             }
                             found = true;
@@ -112,15 +116,7 @@ public class Force implements Command {
                     for (Cleaner p : game.getCleaners()) {
                         if (p.getName().equals(cleaner[1])) {
                             p.getCurrentRoom().setGassed(false);
-                            for (Person s : p.getCurrentRoom().getPersonList()) {
-                                if (s instanceof Student && s instanceof Professor) {
-                                    Room randomRoom = s.getCurrentRoom().getRandomNeighbourRoom();
-                                    s.getCurrentRoom().getPersonList().remove(s);
-                                    s.setCurrentRoom(randomRoom);
-                                    randomRoom.getPersonList().add(s);
-                                    System.out.println("forceair from " + p + " cleaner");
-                                }
-                            }
+                            System.out.println("forceair from " + p + " cleaner");
                             found = true;
                         }
                     }
@@ -137,5 +133,4 @@ public class Force implements Command {
                 break;
             }
         }
-
 }

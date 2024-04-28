@@ -132,6 +132,9 @@ public class Map {
 
         roomTo.getPersonList().add(person);
 
+        if (!person.isGodMode() && person.getMovesLeft() <= 1 )
+            person.setMovesLeft(person.getMovesLeft() - 1);
+
         roomTo.setVisitorsSinceLastCleaning(roomTo.getVisitorsSinceLastCleaning() + 1);
         if (roomTo.getVisitorsSinceLastCleaning() >= Room.STICKY_AT)
             roomTo.setSticky(true);

@@ -12,9 +12,12 @@ public class Use implements Command {
         String[] item = args[1].split("#");
         for (Item i : student.getItemList()) {
             if (i.getID().equals(item[1])) {
-                student.use(i);
-                System.out.println("item "+ i +" used by student "+ student);
-                return;
+                try {
+                    System.out.println("item "+ i +" used by Student#"+ student.getName());
+                    student.use(i);
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }

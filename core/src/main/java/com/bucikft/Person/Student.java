@@ -22,7 +22,7 @@ public class Student extends Person {
      * Uses the specified item.
      *
      * @param item The item to use.
-     * @throws IllegalStateException If the student cannot use more items in their turn.
+     * @throws IllegalStateException If  student cannot use more items in their turn.
      */
     public void use(Item item) throws IllegalStateException {
         if (usesLeft <= 0)

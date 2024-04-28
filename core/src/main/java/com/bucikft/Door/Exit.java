@@ -34,6 +34,6 @@ public class Exit extends Door {
      * Opens the exit door.
      */
     public void open() {
-        // Implementation of opening the exit door goes here
+        System.out.println("The game is over you won!");
     }
 }
