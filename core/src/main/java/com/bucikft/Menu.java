@@ -14,7 +14,6 @@ public class Menu {
      * The path to the map file.
      */
     public static String mapPath = System.getProperty("user.dir") + File.separator +
-            "core" + File.separator +
             "src" + File.separator +
             "main" + File.separator +
             "java" + File.separator +
@@ -120,7 +119,6 @@ public class Menu {
                         System.out.println("Test One");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -136,7 +134,6 @@ public class Menu {
                         System.out.println("Test Two");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -153,7 +150,6 @@ public class Menu {
                         System.out.println("Test Three");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -169,7 +165,6 @@ public class Menu {
                         System.out.println("Test Four");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -185,7 +180,6 @@ public class Menu {
                         System.out.println("Test Five");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -201,7 +195,6 @@ public class Menu {
                         System.out.println("Test Six");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -217,7 +210,6 @@ public class Menu {
                         System.out.println("Test Seven");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -233,7 +225,6 @@ public class Menu {
                         System.out.println("Test Eight");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -249,7 +240,6 @@ public class Menu {
                         System.out.println("Test Nine");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -266,7 +256,6 @@ public class Menu {
                         System.out.println("Test Ten");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -283,7 +272,6 @@ public class Menu {
                         System.out.println("Test Eleven");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -300,7 +288,6 @@ public class Menu {
                         System.out.println("Test Twelve");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -317,7 +304,6 @@ public class Menu {
                         System.out.println("Test Thirteen");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -334,7 +320,6 @@ public class Menu {
                         System.out.println("Test Fourteen");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
@@ -350,7 +335,6 @@ public class Menu {
                         System.out.println("Test Fifteen");
                         String currentDirectory = System.getProperty("user.dir");
                         String inputRelativePath = currentDirectory + File.separator +
-                                "core" + File.separator +
                                 "src" + File.separator +
                                 "main" + File.separator +
                                 "java" + File.separator +
