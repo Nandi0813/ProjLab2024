@@ -2,4 +2,3 @@ debug
 noai
 pickup EnergyDrink#6
 use EnergyDrink#6
-exit

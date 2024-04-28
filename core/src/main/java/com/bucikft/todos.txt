@@ -3,6 +3,8 @@ debug
 ami nem kell kiszedni
 legyen is false item
 
+force move cleanernel kidob mindenkit?
+.gitignore
 
 skip megjavitva
 commandoknak irni kene a szabvanyos outputot

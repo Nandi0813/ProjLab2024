@@ -4,4 +4,3 @@ pickup Transistor#10
 join Transistor#14 Transistor#10
 move 1
 use Transistor#10
-exit

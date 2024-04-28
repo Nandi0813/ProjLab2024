@@ -28,8 +28,10 @@ public class Join implements Command {
                 second = (Transistor) i;
             }
         }
-        if(first != null && second != null)
-            student.join(second,first);
+        if(first != null && second != null) {
+            student.join(second, first);
+            System.out.println("transistor " + first + " joined to transistor " + second);
+        }
         else
             throw new IllegalArgumentException("Failed connection.");
     }

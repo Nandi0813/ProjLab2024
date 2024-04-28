@@ -68,12 +68,14 @@ public class RoundManager {
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
 
                     game.getMap().move(cleaner, roomTo);
+                    System.out.printf("\nCleaner#%s moved to room: %s\n", cleaner.getName(), roomTo.getID());
                     cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
 
                     for (Person p : roomTo.getPersonList()) {
                         if (p.canMove()) {
                             Room randomRoom = roomTo.getRandomNeighbourRoom();
                             game.getMap().move(p, randomRoom);
+                            System.out.printf("\nProfessor#%s moved to room: %s\n", p.getName(), randomRoom.getID());
                         }
                     }
 
@@ -104,7 +106,7 @@ public class RoundManager {
 
     public void nextTurn() {
         currentTurn++;
-        if (currentTurn == game.getStudents().size()) {
+        if (currentTurn >= game.getStudents().size()) {
             nextRound();
         } else {
             game.setFocusedPerson(game.getStudents().get(currentTurn));

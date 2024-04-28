@@ -3,4 +3,3 @@ noai
 force move Cl#3 1
 force gas 1
 force air Cl#3
-exit

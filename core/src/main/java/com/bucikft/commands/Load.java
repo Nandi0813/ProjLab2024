@@ -11,6 +11,7 @@ public class Load implements Command{
         }
         try {
             game.getProtoTest().MapLoad(args[1], true, null);
+            System.out.println("loaded from " + args[1]);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

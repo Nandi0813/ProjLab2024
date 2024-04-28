@@ -13,6 +13,7 @@ public class TVSZ extends Item {
     public TVSZ(String ID, final boolean isFalseItem) {
         super(ID, isFalseItem);
         this.falseItem = isFalseItem;
+        this.health = 3;
     }
 
     /**

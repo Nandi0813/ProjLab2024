@@ -1,4 +1,3 @@
 debug
 noai
-forcekill Pr#2 St#1
-exit
+force kill Pr#2 St#1
