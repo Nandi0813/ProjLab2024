@@ -133,8 +133,7 @@ public abstract class Person {
      *
      * @return The number of moves left.
      */
-    public int getMovesLeft() {
-        return this.movesLeft;
+    public int getMovesLeft() {        return this.movesLeft;
     }
 
     public abstract boolean canMove();
