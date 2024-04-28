@@ -2,6 +2,7 @@ package com.bucikft.Person;
 
 import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Menu;
 import com.bucikft.Room;
 
 import java.util.ArrayList;
@@ -46,8 +47,6 @@ public abstract class Person {
      * @throws IllegalStateException If the player has no moves left or if the rooms are not neighbors.
      */
     public void move(Room room) throws IllegalStateException {
-        Scanner scanner = new Scanner(System.in);
-
         // Test if the player has moves left
         if (!godMode && this.movesLeft <= 0) {
             throw new IllegalStateException("The player has no more moves left.");
@@ -66,9 +65,7 @@ public abstract class Person {
         }
 
         // Move the person to the room
-        this.currentRoom.getPersonList().remove(this);
-        room.getPersonList().add(this);
-        this.currentRoom = room;
+        Menu.getGame().getMap().move(this, room);
 
         // Decrement movesLeft
         if (!godMode) movesLeft--;
@@ -85,7 +82,8 @@ public abstract class Person {
      * @throws IllegalStateException If the player has no moves left, if the item is not in the same room, or if the inventory is full.
      */
     public void pickUp(Item item) throws IllegalStateException {
-        // removed uses left test because they should be able to pick up as many items as they want
+        if (this.currentRoom.isSticky())
+            throw new IllegalStateException("The room is sticky, the item cannot be picked up.");
 
         // Test if the item is in the same room
         if (!this.currentRoom.getItemsList().contains(item)) {
@@ -103,17 +101,11 @@ public abstract class Person {
 
         // Set item to picked up
         item.setPickedUp(true);
-
-        // Decrement usesLeft
-        //this.usesLeft--;
     }
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
     /**
      * Gets the current room of the person.
      *

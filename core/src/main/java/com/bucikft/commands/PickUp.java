@@ -14,14 +14,16 @@ public class PickUp implements Command {
         if (item.length != 2) throw new IllegalArgumentException("Invalid item ID");
         for (Item i : person.getCurrentRoom().getItemsList()) {
             if (i.getID().equals(item[1])) {
-                person.pickUp(i);
-                System.out.println("item "+ i + " picked up by student " + person);
-                return;
+                try {
+                    person.pickUp(i);
+                    System.out.println("item "+ i + " picked up by student " + person);
+                    return;
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
         System.out.println("Item not found");
-
-
     }
 }
 
