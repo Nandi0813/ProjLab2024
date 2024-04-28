@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class ProtoTest {
 
-    private boolean protoTestbool = false;
+    private boolean protoTestbool;
     private boolean testmode = false;
     
     String filePath;

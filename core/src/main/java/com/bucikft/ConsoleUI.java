@@ -52,6 +52,7 @@ public class ConsoleUI {
                 game.getUI().printGameState();
             }
             game.getProtoTest().setProtoTestbool(false);
+            game.setIsStarted(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
