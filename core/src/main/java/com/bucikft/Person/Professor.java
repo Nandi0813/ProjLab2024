@@ -106,6 +106,10 @@ public class Professor extends Person {
 
     @Override
     public String toString() {
-        return "Professor#" + this.getName();
+        if (this.isStunned() <= 0) {
+            return "Professor#" + this.getName() + " not stunned";
+        } else {
+            return "Professor#" + this.getName() + " stunned";
+        }
     }
 }
