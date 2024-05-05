@@ -1,5 +1,7 @@
 package com.bucikft;
 
+import com.bucikft.Views.*;
+
 import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -34,6 +36,7 @@ public class Menu {
      * @param args The arguments of the game.
      */
     public static void main(String[] args) {
+        MenuView menuView = new MenuView();
         Scanner scanner = new Scanner(System.in);
 
         while (bigChoice != 3) {
