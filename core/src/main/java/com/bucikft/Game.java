@@ -4,9 +4,11 @@ import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
+import javafx.beans.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 /**
  * Represents a game session.
@@ -26,6 +28,8 @@ public class Game {
     private final ProtoTest protoTest; // Added to keep track of the proto test
     private final IDmaker idMaker = new IDmaker(); // Added to keep track of the ID maker
     private boolean noAi = false; // Added to keep track of the AI state
+
+    private ArrayList<Observable> observers;
 
     /**
      * Initializes a new game.

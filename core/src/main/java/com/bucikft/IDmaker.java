@@ -1,5 +1,8 @@
 package com.bucikft;
 
+/**
+ * The type Dmaker.
+ */
 public class IDmaker {
 
     /**
@@ -9,6 +12,7 @@ public class IDmaker {
 
     /**
      * The constructor of the ID maker.
+     *
      * @return The ID.
      */
     public String makeID() {

@@ -16,6 +16,9 @@ public class Map {
     private final List<Room> roomList; // List of rooms in the map
     private final List<Item> itemList; // List of items in the map
 
+
+
+
     /**
      * Constructor to initialize a Map object.
      * @param mapSize The size of the map.
