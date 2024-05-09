@@ -132,6 +132,18 @@ public class Game {
     }
 
     /**
+     * Retrieves the student with the specified ID.
+     * @param id The ID of the student to retrieve.
+     * @return The student with the specified ID.
+     */
+    public Student getStudent(String id) {
+        for (Student student : this.students)
+            if (student.getName().equals(id))
+                return student;
+        return null;
+    }
+
+    /**
      * Retrieves the list of dead students in the game.
      * @return The list of dead students.
      */
@@ -148,10 +160,11 @@ public class Game {
     }
 
     /**
-     * Retrieves the list of dead students in the game.
+     * Sets the debug mode.
+     * @param b The debug mode to set.
      */
-    public void setDebugMode() {
-        this.debug = !this.debug;
+    public void setDebugMode(boolean b) {
+        this.debug = b;
     }
 
     /**
@@ -169,11 +182,35 @@ public class Game {
     }
 
     /**
+     * Retrieves the student with the specified ID.
+     * @param id The ID of the professor to retrieve.
+     * @return The professor with the specified ID.
+     */
+    public Professor getProfessor(String id) {
+        for (Professor professor : this.professors)
+            if (professor.getName().equals(id))
+                return professor;
+        return null;
+    }
+
+    /**
      * Retrieves the list of dead students in the game.
      * @return The list of dead students.
      */
     public List<Cleaner> getCleaners() {
         return cleaners;
+    }
+
+    /**
+     * Retrieves the cleaner with the specified ID.
+     * @param id The ID of the cleaner to retrieve.
+     * @return The cleaner with the specified ID.
+     */
+    public Cleaner getCleaner(String id) {
+        for (Cleaner cleaner : this.cleaners)
+            if (cleaner.getName().equals(id))
+                return cleaner;
+        return null;
     }
 
     /**

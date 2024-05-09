@@ -13,15 +13,22 @@ public class Drop implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2) throw new IllegalArgumentException("invalid number of arguments");
-        Student student = (Student) game.getFocusedPerson();
-        String[] item = args[1].split("#");
-        for (Item i : student.getItemList()) {
-            if (i.getID().equals(item[1])) {
-                student.drop(i);
-                System.out.println("item "+ i +" dropped by student "+ student);
-                return;
-            }
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Invalid number of arguments.");
+        }
+
+        if (!(game.getFocusedPerson() instanceof Student student)) {
+            throw new IllegalStateException("The focused person is not a student.");
+        }
+
+        Item item = student.getItem(args[1].split("#")[1]);
+
+        if (item != null) {
+            student.drop(item);
+            System.out.println("Item " + item + " dropped by student " + student + ".");
+        } else {
+            System.out.println("Item: " + args[1] + " not found in student's inventory.");
         }
     }
+
 }

@@ -7,7 +7,6 @@ import com.bucikft.Room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Represents an abstract Person in the game.
@@ -103,7 +102,7 @@ public abstract class Person {
             throw new IllegalStateException("The room is sticky, the item cannot be picked up.");
 
         // Test if the item is in the same room
-        if (!this.currentRoom.getItemsList().contains(item)) {
+        if (!this.currentRoom.getItemList().contains(item)) {
             throw new IllegalStateException("The item is not in the same room.");
         }
 
@@ -113,7 +112,7 @@ public abstract class Person {
         }
 
         // Pick up the item
-        this.currentRoom.getItemsList().remove(item);
+        this.currentRoom.getItemList().remove(item);
         this.itemList.add(item);
 
         // Set item to picked up
@@ -132,6 +131,10 @@ public abstract class Person {
         return this.currentRoom;
     }
 
+    /**
+     * Gets the inventory of the person.
+     * @return The inventory of the person.
+     */
     public List<Item> getInventory() {
         return this.itemList;
     }
@@ -150,7 +153,8 @@ public abstract class Person {
      *
      * @return The number of moves left.
      */
-    public int getMovesLeft() {        return this.movesLeft;
+    public int getMovesLeft() {
+        return this.movesLeft;
     }
 
     public abstract boolean canMove();
@@ -178,6 +182,18 @@ public abstract class Person {
      */
     public List<Item> getItemList() {
         return this.itemList;
+    }
+
+    /**
+     * Gets the item with the specified ID.
+     * @param id The ID of the item to get.
+     * @return The item with the specified ID.
+     */
+    public Item getItem(String id) {
+        for (Item item : this.itemList)
+            if (item.getID().equals(id))
+                return item;
+        return null;
     }
 
     /**

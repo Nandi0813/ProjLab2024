@@ -11,21 +11,22 @@ public class Start implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length!=3) {
-            System.out.println("invalid arguments");
-            return;
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Invalid number of arguments");
         }
+
         try {
             int playerCount = Integer.parseInt(args[1]);
             int mapSize = Integer.parseInt(args[2]);
-            if (mapSize<3 || mapSize>10) {
-                System.out.println("map size has to be between 3 and 10");
-                return;
+
+            if (mapSize < 3 || mapSize > 10) {
+                throw new IllegalStateException("Map size has to be between 3 and 10.");
             }
-            System.out.println("game started with " + playerCount + " players, " + mapSize + " size");
+
+            System.out.println("Game started with " + playerCount + " players, " + mapSize + " size.");
+            // todo start game
         } catch (NumberFormatException e) {
-            System.out.println("invalid arguments");
-            return;
+            System.out.println("Invalid parameters. Please enter a number for player count and map size.");
         }
     }
 }

@@ -11,4 +11,5 @@ public interface Command {
      * @param args The arguments of the command.
      */
     void execute(Game game, String[] args);
+
 }

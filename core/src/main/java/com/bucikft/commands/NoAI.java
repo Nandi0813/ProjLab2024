@@ -13,6 +13,7 @@ public class NoAI implements Command {
     public void execute(Game game, String[] args) {
         game.setNoAi(!game.getNoAi());
 
-        System.out.println("ai turned " + (game.getNoAi() ? "ON" : "OFF"));
+        System.out.println("AI turned " + (game.getNoAi() ? "ON" : "OFF") + ".");
     }
+
 }

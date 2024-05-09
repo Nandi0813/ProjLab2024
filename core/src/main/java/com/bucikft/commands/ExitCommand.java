@@ -12,8 +12,10 @@ public class ExitCommand implements Command {
     @Override
     public void execute(Game game, String[] args) {
         game.endGame();
-        game.getProtoTest().setProtoTestbool(false);
-        System.out.println("exiting...");
+        game.getProtoTest().setProtoTest(false);
+
+        System.out.println("Exiting...");
         System.exit(0);
     }
+
 }

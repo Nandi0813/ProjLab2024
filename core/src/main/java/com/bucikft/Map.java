@@ -110,7 +110,7 @@ public class Map {
                     default:
                 }
 
-                roomList.get(roomNumber-1).getItemsList().add(itemToGenerate);
+                roomList.get(roomNumber-1).getItemList().add(itemToGenerate);
                 itemList.add(itemToGenerate);
             }
         }
@@ -161,9 +161,9 @@ public class Map {
         room.setItemCapacity(room.getItemCapacity()-halfItemCapacity);
         newRoom.setItemCapacity(halfItemCapacity);
 
-        if (room.getItemsList().size() > halfItemCapacity ){
-            for(int i = halfItemCapacity; i < room.getItemsList().size(); i++){
-                newRoom.getItemsList().add(room.getItemsList().remove(i));
+        if (room.getItemList().size() > halfItemCapacity ){
+            for(int i = halfItemCapacity; i < room.getItemList().size(); i++){
+                newRoom.getItemList().add(room.getItemList().remove(i));
             }
         }
 
@@ -196,6 +196,19 @@ public class Map {
      * @return The list of rooms.
      */
     public List<Room> getRoomList() { return this.roomList; }
+
+    /**
+     * Retrieves a room by its ID.
+     * @param id The ID of the room.
+     * @return The room with the given ID.
+     */
+    public Room getRoom(String id) {
+        for (Room room : roomList)
+            if (room.getID().equals(id))
+                return room;
+        return null;
+
+    }
 
     /**
      * Retrieves the list of items in the map.

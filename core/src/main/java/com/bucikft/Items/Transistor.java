@@ -23,7 +23,7 @@ public class Transistor extends Item {
     public Transistor pair = null;
 
     public void connect(Transistor t, Student user) throws IllegalStateException {
-        if(user.getCurrentRoom().getItemsList().contains(t) && !t.pickedUp) {
+        if(user.getCurrentRoom().getItemList().contains(t) && !t.pickedUp) {
             pair = t;
             System.out.println("\n Transistors paired.\n");
         }
@@ -41,7 +41,7 @@ public class Transistor extends Item {
         if (pair.pickedUp) throw new IllegalStateException("The pair has been picked up.");
 
         for(Room r: Menu.getGame().getMap().getRoomList()){
-            if(r.getItemsList().contains(pair))
+            if(r.getItemList().contains(pair))
                 if(r.getCapacity() > r.getPersonList().size()){
                     Menu.getGame().getMap().move(user,r);
                     user.setMovesLeft(user.getMovesLeft()+1);

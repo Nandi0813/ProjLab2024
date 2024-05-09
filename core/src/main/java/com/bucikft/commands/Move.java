@@ -1,5 +1,4 @@
 package com.bucikft.commands;
-import com.bucikft.Door.Door;
 import com.bucikft.Game;
 import com.bucikft.Menu;
 import com.bucikft.Person.Student;
@@ -14,32 +13,36 @@ public class Move implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2)
-            throw new IllegalArgumentException("invalid number of arguments");
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Invalid number of arguments.");
+        }
 
         try {
-            Student student = (Student) game.getFocusedPerson();
+            if (!(game.getFocusedPerson() instanceof Student student)) {
+                throw new IllegalStateException("The focused person is not a student.");
+            }
+
+            if (student.getMovesLeft() <= 0) {
+                throw new IllegalStateException("No moves left.");
+            }
+
             Room room = student.getCurrentRoom();
             Room roomTo = game.getMap().getRoomList().get(Integer.parseInt(args[1]));
 
-            if (student.getMovesLeft() > 0){
-                if (roomTo.getPersonList().size() + 1 <= roomTo.getCapacity()) {
-                    for (Door d : room.getDoorList()) {
-                        if (roomTo == d.getRoomTo() || roomTo == d.getRoomFrom()) {
-                            Menu.getGame().getMap().move(student, roomTo);
-                            System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + " through " + d);
-                        } else {
-                            System.out.println("Door is not a pointing to a neighbouring room.");
-                        }
-                    }
+            if (roomTo.isMaxCapacity()) {
+                throw new IllegalStateException("The room is full.");
+            }
 
-                }
+            if (!room.isNeighbour(roomTo)) {
+                throw new IllegalStateException("The room is not a neighbour.");
             }
-            else{
-                System.out.println("No moves left.");
-            }
+
+            Menu.getGame().getMap().move(student, roomTo);
+            System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid room ID.");
         } catch (IllegalArgumentException e) {
-            System.out.println("invalid direction");
+            System.out.println("Invalid direction.");
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
