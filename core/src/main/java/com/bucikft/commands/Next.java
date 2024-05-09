@@ -11,8 +11,8 @@ public class Next implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        System.out.println("turn ended");
+        System.out.println("Turn ended.");
         game.getRoundManager().nextTurn();
-
     }
+
 }

@@ -11,13 +11,12 @@ public class Load implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2) {
-            System.out.println("invalid arguments");
-            return;
-        }
+        if (args.length != 2)
+            throw new IllegalArgumentException("Invalid number of arguments.");
+
         try {
             game.getProtoTest().MapLoad(args[1], true, null);
-            System.out.println("loaded from " + args[1]);
+            System.out.println("Loaded from " + args[1] + ".");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

@@ -7,7 +7,6 @@ import com.bucikft.Person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Represents a room in the game.
@@ -23,7 +22,7 @@ public class Room {
     private int visitorsSinceLastCleaning;
     private boolean isSticky;
 
-    private final List<Item> itemsList; // Added to track the items in the room
+    private final List<Item> itemList; // Added to track the items in the room
     private final List<Door> doorList; // Added to track the doors in the room
     private final List<Person> personList; // Added to track the persons in the room
 
@@ -35,7 +34,7 @@ public class Room {
     public Room(int x) {
         this.gassed = false;
         this.isSticky = false;
-        this.itemsList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
         this.capacity = 5;
@@ -77,6 +76,13 @@ public class Room {
      */
     public boolean isMaxCapacity() {
         return this.getCapacity() < this.getPersonList().size();
+    }
+
+    public boolean isNeighbour(Room room) {
+        for (Door door : this.getDoorList())
+            if (room == door.getRoomTo() || room == door.getRoomFrom())
+                return true;
+        return false;
     }
 
     /**
@@ -127,8 +133,20 @@ public class Room {
      *
      * @return The list of items.
      */
-    public List<Item> getItemsList() {
-        return this.itemsList;
+    public List<Item> getItemList() {
+        return this.itemList;
+    }
+
+    /**
+     * Gets the item with the specified ID.
+     * @param id The ID of the item to get.
+     * @return The item with the specified ID.
+     */
+    public Item getItem(String id) {
+        for (Item item : this.itemList)
+            if (item.getID().equals(id))
+                return item;
+        return null;
     }
 
     /**

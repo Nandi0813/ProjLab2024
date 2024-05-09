@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class ProtoTest {
 
-    private boolean protoTestbool; // Added to keep track of the proto test state
-    private boolean testmode = false; // Added to keep track of the test mode
+    private boolean protoTest; // Added to keep track of the proto test state
+    private boolean testMode = false; // Added to keep track of the test mode
     
     String filePath; // Added to keep track of the file path
 
@@ -20,14 +20,14 @@ public class ProtoTest {
      */
     public ProtoTest(Game game) {
         this.game = game;
-        this.protoTestbool = true;
+        this.protoTest = true;
     }
 
     /**
      * The main loop of the proto test.
      */
     public void mainLoop() {
-        while (protoTestbool){
+        while (protoTest){
             try {
                 game.getUI().readCommands();
             } catch (IllegalArgumentException e) {
@@ -43,7 +43,7 @@ public class ProtoTest {
      * @param in The input to set.
      */
     public void MapLoad(String filePath, boolean testmode, String in){
-        this.testmode = testmode;
+        this.testMode = testmode;
         if (testmode){
             this.filePath = in;
         }
@@ -93,8 +93,8 @@ public class ProtoTest {
      * Gets the test mode of the proto test.
      * @return The test mode of the proto test.
      */
-    public boolean getTestMode(){
-        return this.testmode;
+    public boolean isTestMode(){
+        return this.testMode;
     }
 
     /**
@@ -115,9 +115,10 @@ public class ProtoTest {
 
     /**
      * Sets the test mode of the proto test.
-     * @param protoTestbool The test mode to set.
+     * @param b The test mode to set.
      */
-    public void setProtoTestbool(boolean protoTestbool){
-        this.protoTestbool = protoTestbool;
+    public void setProtoTest(boolean b){
+        this.protoTest = b;
     }
+
 }

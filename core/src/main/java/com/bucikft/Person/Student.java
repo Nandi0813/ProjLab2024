@@ -3,8 +3,6 @@ package com.bucikft.Person;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
 
-import java.util.Scanner;
-
 /**
  * Represents a student in the game.
  */
@@ -60,11 +58,11 @@ public class Student extends Person {
             throw new IllegalStateException("Student is stunend.");
 
         // Test if room has enough room for the item
-        if (this.getCurrentRoom().getItemsList().size() >= this.getCurrentRoom().getItemCapacity())
+        if (this.getCurrentRoom().getItemList().size() >= this.getCurrentRoom().getItemCapacity())
             throw new IllegalStateException("There is not enough room for the item in the room.");
 
         // Drop item
-        this.getCurrentRoom().getItemsList().add(item);
+        this.getCurrentRoom().getItemList().add(item);
 
         // Remove item from inventory
         this.itemList.remove(item);

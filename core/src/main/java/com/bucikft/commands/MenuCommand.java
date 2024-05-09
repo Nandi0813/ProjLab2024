@@ -12,6 +12,7 @@ public class MenuCommand implements Command {
     @Override
     public void execute(Game game, String[] args){
         game.endGame();
-        System.out.println("quit to main menu");
+        System.out.println("Quit to main menu.");
     }
+
 }

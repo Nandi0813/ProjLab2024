@@ -13,23 +13,23 @@ public class PickUp implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2) throw new IllegalArgumentException("Invalid number of arguments");
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Invalid number of arguments");
+        }
 
         Person person = game.getFocusedPerson();
-        String[] item = args[1].split("#");
-        if (item.length != 2) throw new IllegalArgumentException("Invalid item ID");
-        for (Item i : person.getCurrentRoom().getItemsList()) {
-            if (i.getID().equals(item[1])) {
-                try {
-                    person.pickUp(i);
-                    System.out.println("item "+ i + " picked up by Student#" + person.getName());
-                    return;
-                } catch (IllegalStateException e) {
-                    System.out.println(e.getMessage());
-                }
+        Item item = person.getCurrentRoom().getItem(args[1].split("#")[1]);
+
+        if (item != null) {
+            try {
+                person.pickUp(item);
+                System.out.println("Item "+ item + " picked up by Student#" + person.getName() + ".");
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
+        } else {
+            System.out.println("Item not found");
         }
-        System.out.println("Item not found");
     }
 }
 

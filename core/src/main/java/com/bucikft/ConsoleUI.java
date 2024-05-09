@@ -3,13 +3,11 @@ package com.bucikft;
 import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
-import com.bucikft.Person.Student;
 import com.bucikft.commands.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -48,7 +46,7 @@ public class ConsoleUI {
      * @throws IllegalArgumentException If the command is invalid.
      */
     public void readCommands() throws IllegalArgumentException {
-        if (game.getProtoTest().getTestMode()){
+        if (game.getProtoTest().isTestMode()){
             try{
                 BufferedReader reader = new BufferedReader(new FileReader(game.getProtoTest().getFilePath()));
                 String line;
@@ -61,7 +59,7 @@ public class ConsoleUI {
                 }
                 if (!game.getDebugMode()) game.getUI().printGameState();
             }
-            game.getProtoTest().setProtoTestbool(false);
+            game.getProtoTest().setProtoTest(false);
             game.setIsStarted(false);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -106,7 +104,7 @@ public class ConsoleUI {
             door.printDoor(currentPlayer.getCurrentRoom());
         }
         System.out.println("\nitems in room:");
-        for (Item item : currentPlayer.getCurrentRoom().getItemsList()) {
+        for (Item item : currentPlayer.getCurrentRoom().getItemList()) {
             System.out.println(item);
         }
         System.out.println("\ninventory: ");

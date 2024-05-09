@@ -24,7 +24,7 @@ public class HolyCup extends Item {
     public void effect(Student user) throws IllegalStateException {
         Room slipRoom = null;
         for (Room r : Menu.getGame().getMap().getRoomList()) {
-            for (Item item : r.getItemsList()) {
+            for (Item item : r.getItemList()) {
                 if (item instanceof SlipStick s && !s.isFalse())
                     slipRoom = r;
             }

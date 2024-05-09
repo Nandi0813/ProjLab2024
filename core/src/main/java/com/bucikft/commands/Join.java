@@ -14,32 +14,28 @@ public class Join implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 3) throw new IllegalArgumentException("Invalid number of arguments");
-
-        Student student = (Student) game.getFocusedPerson();
-        String[] t1 = args[1].split("#");
-        String[] t2 = args[2].split("#");
-
-        Transistor first = null;
-        Transistor second = null;
-
-        if (t1.length != 2 || t2.length != 2) throw new IllegalArgumentException("Invalid item ID");
-        for (Item i : student.getCurrentRoom().getItemsList()) {
-            if (i.getID().equals(t1[1])) {
-                first = (Transistor) i;
-            }
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Invalid number of arguments.");
         }
-        for (Item i : student.getInventory()) {
-            if (i.getID().equals(t2[1])) {
-                second = (Transistor) i;
-            }
+
+        if (!(game.getFocusedPerson() instanceof Student student)) {
+            throw new IllegalArgumentException("Invalid person type.");
         }
-        if(first != null && second != null) {
-            student.join(second, first);
-            System.out.println("transistor " + first + " joined to transistor " + second);
+
+        Item first = student.getCurrentRoom().getItem(args[1].split("#")[1]);
+        Item second = student.getCurrentRoom().getItem(args[2].split("#")[1]);
+
+        if (first == null || second == null) {
+            throw new IllegalArgumentException("Invalid item IDs.");
         }
-        else
-            throw new IllegalArgumentException("Failed connection.");
+
+        if (first instanceof Transistor t1 && second instanceof Transistor t2) {
+            student.join(t1, t2);
+            System.out.println("Transistor " + first + " joined to transistor " + second + ".");
+        }
+        else {
+            throw new IllegalArgumentException("Invalid item types.");
+        }
     }
 }
 

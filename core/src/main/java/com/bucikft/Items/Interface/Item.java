@@ -68,7 +68,7 @@ public abstract class Item {
     }
     public void setPickedUp(boolean pickedUp) {
         for (Room r : Menu.getGame().getMap().getRoomList()) {
-            if (r.getItemsList().contains(this)) {
+            if (r.getItemList().contains(this)) {
                 if (r.isSticky()) {
                     return;
                 }
