@@ -30,14 +30,17 @@ public class TVSZ extends Item {
      */
     @Override
     public void effect(Student user) {
-        if (this.isFalse())
+        if (this.isFalse()) {
             throw new IllegalStateException("This item is a false item. No result.");
+        }
+
         // Protect the user from professors
         user.setProtected(true);
 
         // Decrease health and break the item if health reaches zero
         health--;
         tvszUsed = true;
+
         if (health < 0) {
             setBroken(true);
         }
@@ -51,7 +54,7 @@ public class TVSZ extends Item {
     public String toString() {
         System.out.println(tvszUsed ? "The TVSZ has been used once." : "");
         tvszUsed = false;
-        return "TVSZ#"+ID+" remaining uses: "+health;
+        return "TVSZ#" + ID + " remaining uses: " + health + ".";
     }
 
 }

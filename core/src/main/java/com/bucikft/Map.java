@@ -18,6 +18,8 @@ import java.util.*;
  */
 public class Map {
 
+    private static final Random random = new Random();
+
     private final List<Room> roomList; // List of rooms in the map
     private final List<Item> itemList; // List of items in the map
 
@@ -206,6 +208,23 @@ public class Map {
     }
 
     /**
+     *
+     * @param room
+     * @param newRoom
+     * @param door
+     */
+    private static void setDoorToOtherRoom(Room room, Room newRoom, Door door) {
+        room.getDoorList().remove(door);
+        newRoom.getDoorList().add(door);
+
+        if (door.getRoomFrom() == room) {
+            door.setRoomFrom(newRoom);
+        } else {
+            door.setRoomTo(newRoom);
+        }
+    }
+
+    /**
      * Splits a room into two rooms.
      *
      * @param room The room to split.
@@ -216,16 +235,16 @@ public class Map {
         newRoom.setGassed(room.isGassed());
         newRoom.setSticky(room.isSticky());
 
-        int halfCapacity = room.getCapacity()/2;
-        room.setCapacity(room.getCapacity()-halfCapacity);
+        int halfCapacity = room.getCapacity() / 2;
+        room.setCapacity(room.getCapacity() - halfCapacity);
         newRoom.setCapacity(halfCapacity);
 
-        int halfItemCapacity = room.getItemCapacity()/2;
-        room.setItemCapacity(room.getItemCapacity()-halfItemCapacity);
+        int halfItemCapacity = room.getItemCapacity() / 2;
+        room.setItemCapacity(room.getItemCapacity() - halfItemCapacity);
         newRoom.setItemCapacity(halfItemCapacity);
 
-        if (room.getItemList().size() > halfItemCapacity ){
-            for(int i = halfItemCapacity; i < room.getItemList().size(); i++){
+        if (room.getItemList().size() > halfItemCapacity) {
+            for (int i = halfItemCapacity; i < room.getItemList().size(); i++) {
                 newRoom.getItemList().add(room.getItemList().remove(i));
             }
         }
@@ -238,9 +257,52 @@ public class Map {
             }
         }
 
-        Door newDoor = new Door(room, newRoom);
-        room.getDoorList().add(newDoor);
-        newRoom.getDoorList().add(newDoor);
+        if (random.nextInt(2) % 2 == 0) {
+            for (Door door : room.getDoorList()) {
+                int doorChance = random.nextInt(2);
+
+                if (door.getLocationFrom() == DoorLocation.RIGHT && door.getRoomFrom() == room || door.getLocationTo() == DoorLocation.LEFT && door.getRoomTo() == room) {
+                    setDoorToOtherRoom(room, newRoom, door);
+                }
+                else if (door.getLocationFrom() == DoorLocation.BOTTOM && door.getRoomFrom() == room  || door.getLocationTo() == DoorLocation.TOP && door.getRoomTo() == room) {
+                    if (doorChance == 0) {
+                        setDoorToOtherRoom(room, newRoom, door);
+                    }
+                }
+                else if (door.getLocationFrom() == DoorLocation.TOP && door.getRoomFrom() == room  || door.getLocationTo() == DoorLocation.BOTTOM && door.getRoomTo() == room) {
+                    if (doorChance == 1) {
+                        setDoorToOtherRoom(room, newRoom, door);
+                    }
+                }
+            }
+
+            Door newDoor = new Door(room, newRoom, DoorLocation.RIGHT);
+            room.getDoorList().add(newDoor);
+            newRoom.getDoorList().add(newDoor);
+        }
+        else {
+            for (Door door : room.getDoorList()) {
+                int doorChance = random.nextInt(2);
+
+                if (door.getLocationFrom() == DoorLocation.TOP && door.getRoomFrom() == room || door.getLocationTo() == DoorLocation.BOTTOM && door.getRoomTo() == room) {
+                    setDoorToOtherRoom(room, newRoom, door);
+                }
+                else if (door.getLocationFrom() == DoorLocation.RIGHT && door.getRoomFrom() == room  || door.getLocationTo() == DoorLocation.LEFT && door.getRoomTo() == room) {
+                    if (doorChance == 0) {
+                        setDoorToOtherRoom(room, newRoom, door);
+                    }
+                }
+                else if (door.getLocationFrom() == DoorLocation.LEFT && door.getRoomFrom() == room  || door.getLocationTo() == DoorLocation.RIGHT && door.getRoomTo() == room) {
+                    if (doorChance == 1) {
+                        setDoorToOtherRoom(room, newRoom, door);
+                    }
+                }
+            }
+
+            Door newDoor = new Door(room, newRoom, DoorLocation.TOP);
+            room.getDoorList().add(newDoor);
+            newRoom.getDoorList().add(newDoor);
+        }
     }
 
     /**
@@ -269,7 +331,18 @@ public class Map {
             if (room.getID().equals(id))
                 return room;
         return null;
+    }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
+    public Room getRoom(Item item) {
+        for (Room room : roomList)
+            if (room.getItemList().contains(item))
+                return room;
+        return null;
     }
 
     /**

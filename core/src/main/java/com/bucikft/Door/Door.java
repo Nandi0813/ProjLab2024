@@ -44,14 +44,10 @@ public class Door {
     }
 
     /**
-     * Sets the room from which the door leads.
      *
-     * @param newRoomFrom The new room from which the door leads.
+     * @param roomTo
      */
-    public void setRoomFrom(Room newRoomFrom) {
-        roomFrom = newRoomFrom;
-    }
-
+    public void setRoomTo(Room roomTo) { this.roomTo = roomTo; }
     /**
      * Gets the room to which the door leads.
      *
@@ -69,21 +65,15 @@ public class Door {
     }
 
     /**
-     * Sets the room to which the door leads.
-     *
-     * @param newRoomTo The new room to which the door leads.
-     */
-    public void setRoomTo(Room newRoomTo) {
-        this.roomTo = newRoomTo;
-    }
-
-    /**
      * Prints the door.
      * @param room The room from which the door leads.
      */
     public void printDoor(Room room) {
-        if (room == roomFrom) System.out.println("Door from " + roomFrom + " to " + roomTo);
-        else System.out.println("Door from " + roomTo + " to " + roomFrom);
+        if (room == roomFrom) {
+            System.out.println("Door from " + roomFrom + " to " + roomTo);
+        } else {
+            System.out.println("Door from " + roomTo + " to " + roomFrom);
+        }
     }
 
     /**

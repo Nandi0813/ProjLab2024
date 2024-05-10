@@ -25,7 +25,9 @@ public class DKC extends Item {
      */
     public void effect(Student user) throws IllegalStateException {
         // Test if room is filled with gas
-        if (user.getCurrentRoom().isGassed()) throw new IllegalStateException("The room is already filled with gas.");
+        if (user.getCurrentRoom().isGassed()) {
+            throw new IllegalStateException("The room is already filled with gas.");
+        }
 
         // Gas the room
         user.getCurrentRoom().setGassed(true);
@@ -34,12 +36,4 @@ public class DKC extends Item {
         this.setBroken(true);
     }
 
-    /**
-     * Returns a string representation of the DKC item.
-     * @return The string representation of the DKC item.
-     */
-    @Override
-    public String toString() {
-        return "DKC#" + ID;
-    }
 }

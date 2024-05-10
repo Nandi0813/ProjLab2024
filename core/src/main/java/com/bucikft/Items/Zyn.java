@@ -32,11 +32,13 @@ public class Zyn extends Item {
         List<Student> deadStudents = new ArrayList<>();
         for (Person person : user.getCurrentRoom().getPersonList()) {
             if (person instanceof Student student && !student.isAlive()) {
-                    deadStudents.add(student);
-                }
-
+                deadStudents.add(student);
+            }
         }
-        if (deadStudents.isEmpty()) throw new IllegalStateException("There is no dead student in the room.");
+
+        if (deadStudents.isEmpty()) {
+            throw new IllegalStateException("There is no dead student in the room.");
+        }
 
         // Revive the dead students in the room
         for (Student deadStudent : deadStudents) {
@@ -46,15 +48,6 @@ public class Zyn extends Item {
 
         // Break item
         setBroken(true);
-    }
-
-    /**
-     * Returns a string representation of the Zyn item.
-     * @return The string representation of the Zyn item.
-     */
-    @Override
-    public String toString() {
-        return "Zyn#" + ID;
     }
 
 }

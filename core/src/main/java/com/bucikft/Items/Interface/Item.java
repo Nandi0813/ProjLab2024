@@ -1,8 +1,6 @@
 package com.bucikft.Items.Interface;
 
-import com.bucikft.Menu;
 import com.bucikft.Person.Student;
-import com.bucikft.Room;
 
 /**
  * Represents an abstract Item.
@@ -26,21 +24,21 @@ public abstract class Item {
     }
 
     /**
-     * Gets the status of the item (broken or not).
-     *
-     * @return True if the item is broken, false otherwise.
-     */
-    public boolean isBroken() {
-        return broken;
-    }
-
-    /**
      * Sets the status of the item (broken or not).
      *
      * @param newBroken The new status of the item.
      */
     public void setBroken(boolean newBroken) {
         broken = newBroken;
+    }
+
+    /**
+     * Gets the status of the item (broken or not).
+     *
+     * @return True if the item is broken, false otherwise.
+     */
+    public boolean isBroken() {
+        return broken;
     }
 
     /**
@@ -59,21 +57,10 @@ public abstract class Item {
     }
 
     /**
-     * Returns the string representation of the item.
-     * @return The string representation of the item.
+     *
+     * @param pickedUp
      */
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName()+ "#" + ID;
-    }
     public void setPickedUp(boolean pickedUp) {
-        for (Room r : Menu.getGame().getMap().getRoomList()) {
-            if (r.getItemList().contains(this)) {
-                if (r.isSticky()) {
-                    return;
-                }
-            }
-        }
         this.pickedUp = pickedUp;
     }
 
@@ -92,4 +79,14 @@ public abstract class Item {
     public String getID() {
         return ID;
     }
+
+    /**
+     * Returns the string representation of the item.
+     * @return The string representation of the item.
+     */
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+ "#" + ID;
+    }
+
 }

@@ -1,1 +1,4 @@
 pickup nem ellenorzi, hogy milyen itemet akar felvenni csak az ID-t -> Class.getName()
+curse room
+szobak id adást át kell dolgozni teljesen
+mask van e jatekoson amikor gazos szobaba van

@@ -30,17 +30,9 @@ public class HolyCup extends Item {
             }
         }
 
-        System.out.println("The Slip Stick is in " + slipRoom);
+        System.out.println("The Slip Stick is in " + slipRoom + ".");
 
         this.setBroken(true);
     }
 
-    /**
-     * Returns a string representation of the Holy Cup item.
-     * @return The string representation of the Holy Cup item.
-     */
-    @Override
-    public String toString() {
-        return "HolyCup#" + ID;
-    }
 }

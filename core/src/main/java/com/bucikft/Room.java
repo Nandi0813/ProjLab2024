@@ -14,6 +14,8 @@ import java.util.Random;
  */
 public class Room {
 
+    private static final Random random = new Random();
+
     private int capacity; // Added to track the capacity of the room
     private int itemCapacity; // Added to track the how many items can be in room
     private boolean gassed; // Added to track if the room is gassed
@@ -59,13 +61,15 @@ public class Room {
     }
 
     public Room getRandomNeighbourRoom() {
-        for (Door door : this.getDoorList())
-        {
-            if (door instanceof Exit) continue;
+        for (Door door : this.getDoorList()) {
+            if (door instanceof Exit) {
+                continue;
+            }
 
             Room room = door.getWhereTo(this);
-            if (!room.isMaxCapacity())
+            if (!room.isMaxCapacity()) {
                 return room;
+            }
         }
         
         return null;

@@ -24,7 +24,6 @@ public class EnergyDrink extends Item {
      * @throws IllegalStateException If the Energy Drink item is already broken.
      */
     public void effect(Student user) throws IllegalStateException {
-
         // Increase moves left
         user.setMovesLeft(user.getMovesLeft() + 1);
 
@@ -32,12 +31,4 @@ public class EnergyDrink extends Item {
         this.setBroken(true);
     }
 
-    /**
-     * Returns a string representation of the Energy Drink item.
-     * @return The string representation of the Energy Drink item.
-     */
-    @Override
-    public String toString() {
-        return "EnergyDrink#" + ID;
-    }
 }

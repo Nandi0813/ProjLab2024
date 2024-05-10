@@ -3,7 +3,7 @@ package com.bucikft.Items;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
-/*
+/**
  * A single-use item. It neutralizes the gas effect when placed in a gassed room.
  */
 public class AirFreshener extends Item {
@@ -23,15 +23,13 @@ public class AirFreshener extends Item {
      * @param user The student who uses the item.
      */
     @Override
-    public void effect(Student user) throws IllegalStateException{
-        if(user.getCurrentRoom().isGassed()){
+    public void effect(Student user) throws IllegalStateException {
+        if (user.getCurrentRoom().isGassed()) {
             user.getCurrentRoom().setGassed(false);
             this.setBroken(true);
-        }
-        else{
+        } else {
             throw new IllegalStateException("The room is not filled with gas.");
         }
-
     }
 
 }

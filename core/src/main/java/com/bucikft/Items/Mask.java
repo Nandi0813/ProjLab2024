@@ -26,7 +26,10 @@ public class Mask extends Item {
      */
     public void effect(Student user) throws IllegalStateException {
         // Test if user is already wearing a mask
-        if (user.isMasked()) throw new IllegalStateException("The student is already wearing a mask");
+        if (user.isMasked()) {
+            throw new IllegalStateException("The student is already wearing a mask");
+        }
+        
         if (this.isFalse()) {
             throw new IllegalStateException("This item is a false item. No result.");
         }
@@ -36,15 +39,6 @@ public class Mask extends Item {
 
         // Break item
         this.setBroken(true);
-    }
-
-    /**
-     * Returns a string representation of the Mask item.
-     * @return The string representation of the Mask item.
-     */
-    @Override
-    public String toString() {
-        return "Mask#" + ID;
     }
 
 }

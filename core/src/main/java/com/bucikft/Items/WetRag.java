@@ -25,7 +25,6 @@ public class WetRag extends Item {
      * @param user The student who uses the Wet Rag item.
      */
     public void effect(Student user) {
-
         // Stun all professors in the room
         for (Person person : user.getCurrentRoom().getPersonList()) {
             if (person instanceof Professor) {
@@ -35,15 +34,6 @@ public class WetRag extends Item {
 
         // Break item
         setBroken(true);
-    }
-
-    /**
-     * Returns a string representation of the Wet Rag item.
-     * @return The string representation of the Wet Rag item.
-     */
-    @Override
-    public String toString() {
-        return "WetRag#"+ID;
     }
 
 }

@@ -95,11 +95,13 @@ public abstract class Person {
      * @throws IllegalStateException If the player has no moves left, if the item is not in the same room, or if the inventory is full.
      */
     public void pickUp(Item item) throws IllegalStateException {
-        if (this.stunned > 0)
+        if (this.stunned > 0) {
             throw new IllegalStateException("Student is stunned.");
+        }
 
-        if (this.currentRoom.isSticky())
+        if (this.currentRoom.isSticky()) {
             throw new IllegalStateException("The room is sticky, the item cannot be picked up.");
+        }
 
         // Test if the item is in the same room
         if (!this.currentRoom.getItemList().contains(item)) {
@@ -118,6 +120,7 @@ public abstract class Person {
         // Set item to picked up
         item.setPickedUp(true);
     }
+
     public String getName() {
         return this.name;
     }

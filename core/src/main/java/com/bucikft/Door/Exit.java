@@ -1,9 +1,12 @@
 package com.bucikft.Door;
 import com.bucikft.Room;
+
 /**
  * Represents the emergency exit, a special type of door typically used for exiting the labyrinth.
  */
 public class Exit extends Door {
+
+    private boolean open; // Indicates whether the exit door is currently open or closed.
 
     /**
      * The constructor of the Exit class.
@@ -15,30 +18,21 @@ public class Exit extends Door {
         open = false;
     }
 
-    private boolean isOpen; // Indicates whether the exit door is currently open or closed.
-
     /**
      * Gets the status of the exit door (open or closed).
      *
      * @return True if the exit door is open, false otherwise.
      */
-    public boolean getIsOpen() {
-        return isOpen;
-    }
-
-    /**
-     * Sets the status of the exit door (open or closed).
-     *
-     * @param newIsOpen The new status of the exit door.
-     */
-    public void setIsOpen(boolean newIsOpen) {
-        isOpen = newIsOpen;
+    public boolean isOpen() {
+        return open;
     }
 
     /**
      * Opens the exit door.
      */
     public void open() {
-        System.out.println("The game is over you won!");
+        this.open = true;
+        System.out.println("The the exit is open!");
     }
+
 }

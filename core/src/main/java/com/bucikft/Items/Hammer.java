@@ -40,12 +40,4 @@ public class Hammer extends Item {
         this.setBroken(true);
     }
 
-    /**
-     * Returns a string representation of the Hammer item.
-     * @return The string representation of the Hammer item.
-     */
-    @Override
-    public String toString() {
-        return "Hammer#" + ID;
-    }
 }
