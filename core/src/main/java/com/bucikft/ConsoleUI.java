@@ -3,7 +3,7 @@ package com.bucikft;
 import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
-import com.bucikft.commands.*;
+import com.bucikft.Commands.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,26 +46,6 @@ public class ConsoleUI {
      * @throws IllegalArgumentException If the command is invalid.
      */
     public void readCommands() throws IllegalArgumentException {
-        if (game.getProtoTest().isTestMode()){
-            try{
-                BufferedReader reader = new BufferedReader(new FileReader(game.getProtoTest().getFilePath()));
-                String line;
-            while ((line = reader.readLine()) != null) {
-                String[] commandParts = line.split(" ");
-                if (commands.containsKey(commandParts[0])) {
-                    commands.get(commandParts[0]).execute(game, commandParts);
-                } else {
-                    throw new IllegalArgumentException("invalid command");
-                }
-                if (!game.getDebugMode()) game.getUI().printGameState();
-            }
-            game.getProtoTest().setProtoTest(false);
-            game.setIsStarted(false);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else{
             System.out.println("please enter a command:");
             String command = scanner.nextLine();
             String[] commandParts = command.split(" ");
@@ -74,7 +54,6 @@ public class ConsoleUI {
             } else {
                 throw new IllegalArgumentException("invalid command");
             }
-        }
     }
 
     /**

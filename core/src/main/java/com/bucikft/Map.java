@@ -1,11 +1,16 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
-import com.bucikft.Door.Exit;
+import com.bucikft.Door.DoorLocation;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
+import com.bucikft.Person.Professor;
+import com.bucikft.Person.Student;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -17,104 +22,162 @@ public class Map {
     private final List<Item> itemList; // List of items in the map
 
 
-
-
     /**
-     * Constructor to initialize a Map object.
-     * @param mapSize The size of the map.
+     *
+     * @param mapSize
+     * @param students
+     * @param professors
+     * @param cleaners
+     * @param idMaker
      */
-    public Map(int mapSize) {
+    public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners, IDmaker idMaker){
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
 
         // generate doors between rooms
-        for (int x=0; x<mapSize; x++) {
-            Room room = new Room(x);
-            roomList.add(room);
-        }
-    }
-
-    /**
-     * Generate the doors by a given string array
-     *
-     * @param doorLocations string array from config file
-     */
-    public void generateDoors(String[] doorLocations){
-        for (String doorLocation : doorLocations) {
-            if(doorLocation.contains("-")) {
-                String[] parts = doorLocation.split("-");
-                int room1 = Integer.parseInt(parts[0]);
-                int room2 = Integer.parseInt(parts[1]);
-                Door door = new Door(roomList.get(room1-1), roomList.get(room2-1));
-                roomList.get(room1-1).getDoorList().add(door);
-                roomList.get(room2-1).getDoorList().add(door);
-            }
-            else{
-                doorLocation = doorLocation.replace("E", "");
-                int room = Integer.parseInt(doorLocation);
-                Door door = new Exit(roomList.get(room-1), null);
-                roomList.get(room-1).getDoorList().add(door);
+        for (int x = 1; x <= mapSize; x++) {
+            for (int y = 1; y <= mapSize; y++) {
+                Room room = new Room(x,y);
+                roomList.add(room);
             }
         }
-    }
 
-    /**
-     * Generate the items by a given string.
-     *
-     * @param itemsToGenerate string from the config file
-     */
-    public void generateItems(String itemsToGenerate){
-        IDmaker idMaker = Menu.getGame().getIdMaker();
-        String[] parts = itemsToGenerate.split("\\s+");
-        int roomNumber = -1;
-        for (String part : parts) {
-            part = part.replace(",", "").replace(":", "");
-            if (part.matches("\\d+")) {
-                roomNumber = Integer.parseInt(part);
-            } else {
-                Item itemToGenerate = null;
-                switch (part.trim()){
-                    case "AirFreshener":
-                        itemToGenerate = new AirFreshener(idMaker.makeID(), false);
-                        break;
-                    case "DKC":
-                        itemToGenerate = new DKC(idMaker.makeID(), false);
-                        break;
-                    case "EnergyDrink":
-                        itemToGenerate = new EnergyDrink(idMaker.makeID(), false);
-                        break;
-                    case "HolyCup":
-                        itemToGenerate = new HolyCup(idMaker.makeID(), false);
-                        break;
-                    case "Hammer":
-                        itemToGenerate = new Hammer(idMaker.makeID(), false);
-                        break;
-                    case "SlipStick":
-                        itemToGenerate = new SlipStick(idMaker.makeID(), false);
-                        break;
-                    case "Transistor":
-                        itemToGenerate = new Transistor(idMaker.makeID(), false);
-                        break;
-                    case "TVSZ":
-                        itemToGenerate = new TVSZ(idMaker.makeID(), false);
-                        break;
-                    case "WetRag":
-                        itemToGenerate = new WetRag(idMaker.makeID(), false);
-                        break;
-                    case "Zyn":
-                        itemToGenerate = new Zyn(idMaker.makeID(), false);
-                        break;
-                    case "Mask":
-                        itemToGenerate = new Mask(idMaker.makeID(), false);
-                        break;
-                    default:
+        // generate doors between rooms
+        for (Room room : roomList) {
+            int x = room.getX();
+            int y = room.getY();
+            if (x == 1) {
+                if (y != 1) {
+                    generateDoor(room, findRoom(x+1,y), DoorLocation.RIGHT);
                 }
+                if (y != mapSize) {
+                    generateDoor(room, findRoom(x,y+1), DoorLocation.BOTTOM);
+                }
+            }
+            if (y == 1) {
+                if (x != mapSize) {
+                    generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
+                }
+                if (x != 1) {
+                    generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
+                }
+            }
+            if (x > 1 && y > 1) {
+                int doorChance = random.nextInt(4);
 
-                roomList.get(roomNumber-1).getItemList().add(itemToGenerate);
-                itemList.add(itemToGenerate);
+                if (x != mapSize) {
+                    if (y == mapSize || doorChance != 0) {
+                        generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
+                    }
+                }
+                if (y != mapSize) {
+                    if (x == mapSize || doorChance != 1) {
+                        generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
+                    }
+                }
             }
         }
+
+        List<Class<?>> itemClasses = new ArrayList<>(Arrays.asList(AirFreshener.class,DKC.class, Mask.class, SlipStick.class, TVSZ.class, EnergyDrink.class, Hammer.class, HolyCup.class, WetRag.class, Zyn.class, Transistor.class));
+        // generate items and put them in rooms
+        for (Class<?> itemClass : itemClasses) {
+            List<Item> items = generateItem(itemClass, mapSize, idMaker);
+            itemList.addAll(items);
+            for (Item item : items) {
+                // todo test for capacity of room
+                int randomRoomIndex = (int) (Math.random() * roomList.size());
+                Room randomRoom = roomList.get(randomRoomIndex);
+                randomRoom.getItemList().add(item);
+            }
+        }
+
+
+
+        // put students in rooms
+        for (Student student : students) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(student);
+            student.setCurrentRoom(randomRoom);
+        }
+        // put professors in rooms
+        for (Professor professor : professors) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(professor);
+        }
+        // put cleaners in rooms
+        for (Cleaner cleaner : cleaners) {
+            int randomRoomIndex = (int) (Math.random() * roomList.size());
+            Room randomRoom = roomList.get(randomRoomIndex);
+            randomRoom.getPersonList().add(cleaner);
+        }
     }
+
+    /**
+     *
+     * @param itemClass
+     * @param mapSize
+     * @param idMaker
+     * @return
+     * @param <T>
+     */
+    private static <T> List<Item> generateItem(Class<T> itemClass, int mapSize, IDmaker idMaker) {
+        int itemCount = (int)( Math.random() * (mapSize/3)+1);
+        List<Item> items = new ArrayList<>();
+        try {
+            // Get the constructor of the specified class with the appropriate parameter types
+
+            Constructor<T> constructor = itemClass.getDeclaredConstructor(String.class, boolean.class);
+            boolean falseItem = false;
+            if (itemClass.equals(TVSZ.class) || itemClass.equals(SlipStick.class) || itemClass.equals(Mask.class)) {
+                if (itemCount>1) {
+                    falseItem = true;
+                }
+            }
+            if (itemClass.equals(Transistor.class)) itemCount*=2;
+            for (int i = 0; i < itemCount; i++) {
+                // Create a new instance of the specified class using the constructor and provided arguments
+                T newItem = constructor.newInstance(idMaker.makeID(), i == 0 && falseItem);
+                // You can initialize any properties or perform additional setup here
+                items.add((Item)newItem);
+            }
+            return items;
+
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            System.out.println(e.getMessage());// Handle the exception appropriately
+            return null; // Or some default value indicating failure
+        }
+
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    private Room findRoom(int x, int y) {
+        for (Room room : roomList) {
+            if (room.getX() == x && room.getY() == y) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param roomFrom
+     * @param roomTo
+     * @param location
+     */
+    private static void generateDoor(Room roomFrom, Room roomTo, DoorLocation location) {
+        Door door = new Door(roomFrom, roomTo, location);
+        roomFrom.getDoorList().add(door);
+        roomTo.getDoorList().add(door);
+    }
+
 
     /**
      * Moves the person to a certain room.
@@ -148,7 +211,7 @@ public class Map {
      * @param room The room to split.
      */
     public void split(Room room) {
-        Room newRoom = new Room(roomList.size());
+        Room newRoom = new Room(room.getX()+20, room.getY()+20);
         roomList.add(newRoom);
         newRoom.setGassed(room.isGassed());
         newRoom.setSticky(room.isSticky());
@@ -167,9 +230,8 @@ public class Map {
             }
         }
 
-        Random rand = new Random();
         for (Person p : new ArrayList<>(room.getPersonList())) {
-            if (rand.nextInt(2) % 2 == 0 && newRoom.getPersonList().size() <= newRoom.getCapacity()) {
+            if (random.nextInt(2) % 2 == 0 && newRoom.getPersonList().size() <= newRoom.getCapacity()) {
                 newRoom.getPersonList().add(p);
             } else {
                 room.getPersonList().add(p);

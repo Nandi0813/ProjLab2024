@@ -10,9 +10,9 @@ public class Exit extends Door {
      * @param roomFrom The room from which the exit door leads.
      * @param roomTo The room to which the exit door leads.
      */
-    public Exit(Room roomFrom, Room roomTo) {
-        super(roomFrom, roomTo);
-        isOpen = false;
+    public Exit(Room roomFrom, Room roomTo, DoorLocation location) {
+        super(roomFrom, roomTo, location);
+        open = false;
     }
 
     private boolean isOpen; // Indicates whether the exit door is currently open or closed.

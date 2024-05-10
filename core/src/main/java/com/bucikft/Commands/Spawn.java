@@ -1,10 +1,9 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 
 import com.bucikft.Game;
 import com.bucikft.IDmaker;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
-import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Room;
 

@@ -1,4 +1,4 @@
-package com.bucikft.commands.ObserverModel;
+package com.bucikft.Commands.ObserverModel;
 
 public interface RoomClickedEventListener {
     void RoomClickedEventOccured(RoomClickedEvent e);

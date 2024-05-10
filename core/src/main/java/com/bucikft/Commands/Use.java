@@ -1,10 +1,8 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
-
-import java.util.ArrayList;
 
 public class Use implements Command {
 

@@ -1,6 +1,7 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 
 import com.bucikft.Game;
+import com.bucikft.Map;
 
 public class Start implements Command {
 
@@ -24,7 +25,8 @@ public class Start implements Command {
             }
 
             System.out.println("Game started with " + playerCount + " players, " + mapSize + " size.");
-            // todo start game
+            game.setIsStarted(true);
+            game.startGame(playerCount, mapSize);
         } catch (NumberFormatException e) {
             System.out.println("Invalid parameters. Please enter a number for player count and map size.");
         }

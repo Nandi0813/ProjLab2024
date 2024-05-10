@@ -1,4 +1,4 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 
 import com.bucikft.Game;
 
@@ -15,7 +15,6 @@ public class Load implements Command {
             throw new IllegalArgumentException("Invalid number of arguments.");
 
         try {
-            game.getProtoTest().MapLoad(args[1], true, null);
             System.out.println("Loaded from " + args[1] + ".");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

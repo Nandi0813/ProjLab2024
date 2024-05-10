@@ -1,4 +1,4 @@
-package com.bucikft.commands.ObserverModel;
+package com.bucikft.Commands.ObserverModel;
 
 import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
@@ -26,7 +26,7 @@ public class RoomClickedEvent {
     }
 
     public List<Item> getItemsList() {
-        return room.getItemsList();
+        return room.getItemList();
     }
 
 }

@@ -7,6 +7,7 @@ import com.bucikft.Person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents a room in the game.
@@ -28,18 +29,33 @@ public class Room {
 
     private final String ID; // Added to track the ID of the room
 
+    private final boolean isCoursed; // Added to track if the room is coursed
+
+    private final int x;
+    private final int y;
+
+    public int getX() {
+        return this.x;
+    }
+    public int getY() {
+        return this.y;
+    }
+
     /**
      * Initializes a new room.
      */
-    public Room(int x) {
+    public Room(int x, int y) {
         this.gassed = false;
         this.isSticky = false;
         this.itemList = new ArrayList<>();
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
         this.capacity = 5;
-        this.itemCapacity = 6;
-        this.ID = "Room#"+x;
+        this.itemCapacity = 5;
+        this.ID = "Room#"+x+y;
+        this.x = x;
+        this.y = y;
+        this.isCoursed = random.nextInt(4) % 4 == 0;
     }
 
     public Room getRandomNeighbourRoom() {

@@ -1,4 +1,4 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 
 import com.bucikft.Game;
 
@@ -12,7 +12,6 @@ public class ExitCommand implements Command {
     @Override
     public void execute(Game game, String[] args) {
         game.endGame();
-        game.getProtoTest().setProtoTest(false);
 
         System.out.println("Exiting...");
         System.exit(0);

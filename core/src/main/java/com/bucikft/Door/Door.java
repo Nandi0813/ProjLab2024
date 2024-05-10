@@ -10,15 +10,29 @@ public class Door {
     protected Room roomFrom; // The room from which the door leads.
     protected Room roomTo; // The room to which the door leads.
 
-    /**
-     * The constructor of the Door class.
-     * @param roomFrom The room from which the door leads.
-     * @param roomTo The room to which the door leads.
-     */
-    public Door(Room roomFrom, Room roomTo) {
+    protected DoorLocation locationFrom; // The location of the door in the room.
+    protected DoorLocation locationTo; // The location of the door in the room.
+
+
+    public Door(Room roomFrom, Room roomTo, DoorLocation location) {
         this.roomFrom = roomFrom;
         this.roomTo = roomTo;
+        this.locationFrom = location;
+        this.locationTo = DoorLocation.getOpposite(location);
     }
+
+    public DoorLocation getLocationFrom() {
+        return locationFrom;
+    }
+    public DoorLocation getLocationTo() {
+        return locationTo;
+    }
+
+    /**
+     *
+     * @param roomFrom
+     */
+    public void setRoomFrom(Room roomFrom) { this.roomFrom = roomFrom; }
 
     /**
      * Gets the room from which the door leads.

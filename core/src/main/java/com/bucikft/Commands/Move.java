@@ -1,4 +1,4 @@
-package com.bucikft.commands;
+package com.bucikft.Commands;
 import com.bucikft.Game;
 import com.bucikft.Menu;
 import com.bucikft.Person.Student;
