@@ -57,8 +57,8 @@ public abstract class Item {
     }
 
     /**
-     *
-     * @param pickedUp
+     * Sets the status of the item (picked up or not).
+     * @param pickedUp The new status of the item.
      */
     public void setPickedUp(boolean pickedUp) {
         this.pickedUp = pickedUp;

@@ -1,7 +1,7 @@
 package com.bucikft.Commands;
 
 import com.bucikft.Game;
-import com.bucikft.IDmaker;
+import com.bucikft.Utils.IDmaker;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Professor;
@@ -25,46 +25,44 @@ public class Spawn implements Command {
         }
 
         Room room = game.getFocusedPerson().getCurrentRoom();
-        IDmaker idMaker = game.getIdMaker();
         Item item = null;
 
         switch (args[1]) {
             case "DKC":
-                item = new DKC(idMaker.makeID(), false);
+                item = new DKC(IDmaker.makeID(), false);
                 break;
             case "EnergyDrink":
-                item = new EnergyDrink(idMaker.makeID(), false);
+                item = new EnergyDrink(IDmaker.makeID(), false);
                 break;
             case "Hammer":
-                item = new Hammer(idMaker.makeID(), false);
+                item = new Hammer(IDmaker.makeID(), false);
                 break;
             case "HolyCup":
-                item = new HolyCup(idMaker.makeID(), false);
+                item = new HolyCup(IDmaker.makeID(), false);
                 break;
             case "Mask":
-                item = new Mask(idMaker.makeID(), false);
+                item = new Mask(IDmaker.makeID(), false);
                 break;
             case "SlipStick":
-                item = new SlipStick(idMaker.makeID(), false);
+                item = new SlipStick(IDmaker.makeID(), false);
                 break;
             case "Transistor":
-                item = new Transistor(idMaker.makeID(), false);
+                item = new Transistor(IDmaker.makeID(), false);
                 break;
             case "TVSZ":
-                item = new TVSZ(idMaker.makeID(), false);
+                item = new TVSZ(IDmaker.makeID(), false);
                 break;
             case "WetRag":
-                item = new WetRag(idMaker.makeID(), false);
+                item = new WetRag(IDmaker.makeID(), false);
                 break;
             case "Zyn":
-                item = new Zyn(idMaker.makeID(), false);
+                item = new Zyn(IDmaker.makeID(), false);
                 break;
             case "AirFreshener":
-                item = new AirFreshener(idMaker.makeID(), false);
+                item = new AirFreshener(IDmaker.makeID(), false);
                 break;
             case "Professor":
-                Professor professor = new Professor(idMaker.makeID());
-
+                Professor professor = new Professor(IDmaker.makeID());
 
                 game.getProfessors().add(professor);
                 room.getPersonList().add(professor);

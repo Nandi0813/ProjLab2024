@@ -8,7 +8,6 @@ import javafx.beans.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 /**
  * Represents a game session.
@@ -17,18 +16,20 @@ public class Game {
 
     private Map map; // Added to keep track of the map
     private final RoundManager roundManager; // Added to keep track of the round manager
+
     private final List<Student> students; // Added to keep track of students
     private final List<Student> deadStudents; // Added to keep track of dead students
     private final List<Professor> professors; // added to keep track of professors
-    private final List<Cleaner> cleaners; // added to keep track of cleaners
+    private final List<Cleaner> cleaners; // Added to keep track of cleaners
+
     private Person focusedPerson; // Added to keep track of the focused person
+
     private final ConsoleUI UI; // Added to keep track of the UI
+    private ArrayList<Observable> observers; // Added to keep track of the observers
+
     private boolean debug = false; // Added to keep track of the debug mode
     private boolean started = false; // Added to keep track of the game state
-    private final IDmaker idMaker = new IDmaker(); // Added to keep track of the ID maker
     private boolean noAi = false; // Added to keep track of the AI state
-
-    private ArrayList<Observable> observers;
 
     /**
      * Initializes a new game.
@@ -48,14 +49,13 @@ public class Game {
     public void startGame() {
         this.started = true;
         this.roundManager.play();
-
     }
 
     /**
      * Sets the game state.
      * @param started The game state to set.
      */
-    public void setIsStarted(boolean started) {
+    public void setStarted(boolean started) {
         this.started = started;
     }
 
@@ -65,14 +65,6 @@ public class Game {
      */
     public boolean isStarted() {
         return this.started;
-    }
-
-    /**
-     * Retrieves the ID maker.
-     * @return The ID maker.
-     */
-    public IDmaker getIdMaker() {
-        return idMaker;
     }
 
     /**
@@ -104,7 +96,6 @@ public class Game {
 
     /**
      * Retrieves the game map.
-     *
      * @return The game map.
      */
     public Map getMap() {
@@ -113,11 +104,18 @@ public class Game {
 
     /**
      * Retrieves the list of students in the game.
-     *
      * @return The list of students.
      */
     public List<Student> getStudents() {
         return this.students;
+    }
+
+    /**
+     * Retrieves the list of dead students in the game.
+     * @return The list of dead students.
+     */
+    public List<Student> getDeadStudents() {
+        return this.deadStudents;
     }
 
     /**
@@ -210,8 +208,25 @@ public class Game {
         return UI;
     }
 
-    public void startGame(int mapSize, int StudentCount){
-        this.map = new Map(mapSize, students, professors, cleaners, idMaker);
-        this.setIsStarted(true);
+    public void startGame(int playerCount, int mapSize) {
+        for (int i = 1; i <= playerCount; i++) {
+            students.add(new Student(String.valueOf(i)));
+        }
+        for (int i = 1; i <= (playerCount / 2 + 1); i++) {
+            professors.add(new Professor(String.valueOf(i)));
+        }
+        for (int i = 1; i <= (playerCount / 3 + 1); i++) {
+            cleaners.add(new Cleaner(String.valueOf(i)));
+        }
+
+        this.map = new Map(mapSize, students, professors, cleaners);
+        this.setStarted(true);
+
+        System.out.println("Game started with "
+                + students.size() + " players, "
+                + professors.size() + " professors, "
+                + cleaners.size() + " cleaners and "
+                + mapSize + " map size.");
     }
+
 }

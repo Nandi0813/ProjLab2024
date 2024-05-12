@@ -29,73 +29,70 @@ public class RoundManager {
     public void nextRound() {
         currentRound++;
 
-        // reset student characters
         for (Student student : game.getStudents()) {
             if (student.getCurrentRoom().isGassed()) {
-                student.stun(5);
+                student.stun(3);
+            } else if (student.getStunned() > 0) {
+                student.stun(student.getStunned() - 1);
             }
         }
 
-            for (Professor professor : game.getProfessors()) {
-                if (professor.getCurrentRoom().isGassed()) {
-                    professor.stun(5);
-                    continue;
-                } else if (professor.getStunned() > 0){
-                    professor.stun(professor.getStunned()-1);
-                    continue;
-                }
+        for (Professor professor : game.getProfessors()) {
+            if (professor.getCurrentRoom().isGassed()) {
+                professor.stun(5);
+                continue;
+            } else if (professor.getStunned() > 0){
+                professor.stun(professor.getStunned() - 1);
+                continue;
+            }
 
-                if (!game.getNoAi()) {
-                    if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi() && professor.getStunned() < 0) {
-                        Room currentRoom = professor.getCurrentRoom();
-                        Room roomTo = currentRoom.getRandomNeighbourRoom();
+            if (!game.getNoAi()) {
+                if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi() && professor.getStunned() < 0) {
+                    Room currentRoom = professor.getCurrentRoom();
+                    Room roomTo = currentRoom.getRandomNeighbourRoom();
 
-                        game.getMap().move(professor, roomTo);
-                        professor.setMovesLeft(professor.getMovesLeft() - 1);
+                    professor.move(roomTo, false);
+                    professor.setMovesLeft(professor.getMovesLeft() - 1);
 
-                        for (Person p : roomTo.getPersonList()) {
-                            if (professor.getMovesLeft() == 0)
-                                break;
+                    for (Person p : roomTo.getPersonList()) {
+                        if (professor.getMovesLeft() == 0)
+                            break;
 
-                            if (professor.getKillsLeft() == 0)
-                                break;
+                        if (professor.getKillsLeft() == 0)
+                            break;
 
-                            if (p instanceof Student s) {
-                                try {
-                                    professor.killStudent(s);
-                                } catch (IllegalStateException e) {
-                                    System.out.println(e.getMessage());
-                                }
+                        if (p instanceof Student s) {
+                            try {
+                                professor.killStudent(s);
+                            } catch (IllegalStateException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
                     }
                 }
             }
+        }
 
-            for (Cleaner cleaner : game.getCleaners()) {
-                if (!game.getNoAi() && cleaner.getMovesLeft() > 0) {
-                    Room currentRoom = cleaner.getCurrentRoom();
-                    Room roomTo = currentRoom.getRandomNeighbourRoom();
+        for (Cleaner cleaner : game.getCleaners()) {
+            if (!game.getNoAi() && cleaner.getMovesLeft() > 0) {
+                Room currentRoom = cleaner.getCurrentRoom();
+                Room roomTo = currentRoom.getRandomNeighbourRoom();
 
-                    game.getMap().move(cleaner, roomTo);
-                    System.out.printf("\nCleaner#%s moved to room: %s\n", cleaner.getName(), roomTo.getID());
-                    cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
+                cleaner.move(roomTo, false);
+                System.out.printf("\nCleaner#%s moved to room: %s\n", cleaner.getName(), roomTo.getID());
+                cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
 
-                    for (Person p : roomTo.getPersonList()) {
-                        if (p.canMove()) {
-                            Room randomRoom = roomTo.getRandomNeighbourRoom();
-                            game.getMap().move(p, randomRoom);
-                            System.out.printf("\nPerson#%s moved to room: %s by cleaner\n", p.getName(), randomRoom.getID());
-                        }
+                for (Person p : roomTo.getPersonList()) {
+                    if (p.canMove()) {
+                        Room randomRoom = roomTo.getRandomNeighbourRoom();
+                        p.move(randomRoom, true);
+                        System.out.printf("\nPerson#%s moved to room: %s by cleaner\n", p.getName(), randomRoom.getID());
                     }
-
-                    if (roomTo.isGassed())
-                        roomTo.setGassed(false);
-
-                    if (roomTo.isSticky())
-                        roomTo.setSticky(false);
                 }
+
+                roomTo.clean();
             }
+        }
 
 
         // reset ai characters
@@ -104,6 +101,7 @@ public class RoundManager {
             professor.setUsesLeft(1);
             professor.setKillsLeft(1);
         }
+
         for (Person cleaner: game.getCleaners()) {
             cleaner.setMovesLeft(1);
             cleaner.setUsesLeft(1);
@@ -131,7 +129,7 @@ public class RoundManager {
     public void play() {
         ConsoleUI ui = game.getUI();
         game.setFocusedPerson(game.getStudents().get(0));
-        for (Student student: game.getStudents()) {
+        for (Student student : game.getStudents()) {
             student.setMovesLeft(1);
             student.setUsesLeft(1);
         }
@@ -161,4 +159,5 @@ public class RoundManager {
     public int getCurrentTurn() {
         return currentTurn;
     }
+
 }

@@ -1,7 +1,6 @@
 package com.bucikft.Commands;
 
 import com.bucikft.Game;
-import com.bucikft.Map;
 
 public class Start implements Command {
 
@@ -13,7 +12,7 @@ public class Start implements Command {
     @Override
     public void execute(Game game, String[] args) {
         if (args.length != 3) {
-            throw new IllegalArgumentException("Invalid number of arguments");
+            throw new IllegalArgumentException("Invalid number of arguments.");
         }
 
         try {
@@ -24,8 +23,15 @@ public class Start implements Command {
                 throw new IllegalStateException("Map size has to be between 3 and 10.");
             }
 
-            System.out.println("Game started with " + playerCount + " players, " + mapSize + " size.");
-            game.setIsStarted(true);
+            if (playerCount < 1) {
+                throw new IllegalStateException("Player count must be at least 1.");
+            }
+
+            if (playerCount > mapSize) {
+                throw new IllegalStateException("Player count cannot be greater than map size.");
+            }
+
+            game.setStarted(true);
             game.startGame(playerCount, mapSize);
         } catch (NumberFormatException e) {
             System.out.println("Invalid parameters. Please enter a number for player count and map size.");

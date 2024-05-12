@@ -21,16 +21,25 @@ public class Door {
         this.locationTo = DoorLocation.getOpposite(location);
     }
 
+    /**
+     * Gets the location of the door in the room.
+     * @return The location of the door in the room.
+     */
     public DoorLocation getLocationFrom() {
         return locationFrom;
     }
+
+    /**
+     * Gets the location of the door in the room.
+     * @return The location of the door in the room.
+     */
     public DoorLocation getLocationTo() {
         return locationTo;
     }
 
     /**
-     *
-     * @param roomFrom
+     * Sets the room from which the door leads.
+     * @param roomFrom The room from which the door leads.
      */
     public void setRoomFrom(Room roomFrom) { this.roomFrom = roomFrom; }
 
@@ -44,8 +53,8 @@ public class Door {
     }
 
     /**
-     *
-     * @param roomTo
+     * Sets the room to which the door leads.
+     * @param roomTo The room to which the door leads.
      */
     public void setRoomTo(Room roomTo) { this.roomTo = roomTo; }
     /**
@@ -57,6 +66,11 @@ public class Door {
         return this.roomTo;
     }
 
+    /**
+     * Returns the room to which the door leads from the given room.
+     * @param roomFrom The room from which the door leads.
+     * @return The room to which the door leads.
+     */
     public Room getWhereTo(Room roomFrom)
     {
         if (this.roomFrom == roomFrom)

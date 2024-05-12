@@ -1,9 +1,12 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
+import com.bucikft.Door.DoorLocation;
 import com.bucikft.Door.Exit;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
+import com.bucikft.Person.Professor;
+import com.bucikft.Person.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +19,15 @@ public class Room {
 
     private static final Random random = new Random();
 
-    private int capacity; // Added to track the capacity of the room
-    private int itemCapacity; // Added to track the how many items can be in room
+    private int personCapacity = 5; // Added to track the capacity of the room
+    private int itemCapacity = 5; // Added to track how many items can be in the room
+
     private boolean gassed; // Added to track if the room is gassed
 
     // Attributes related to cleaning
     public static final int STICKY_AT = 6;
     private int visitorsSinceLastCleaning;
-    private boolean isSticky;
+    private boolean sticky;
 
     private final List<Item> itemList; // Added to track the items in the room
     private final List<Door> doorList; // Added to track the doors in the room
@@ -48,12 +52,10 @@ public class Room {
      */
     public Room(int x, int y) {
         this.gassed = false;
-        this.isSticky = false;
+        this.sticky = false;
         this.itemList = new ArrayList<>();
         this.doorList = new ArrayList<>();
         this.personList = new ArrayList<>();
-        this.capacity = 5;
-        this.itemCapacity = 5;
         this.ID = "Room#"+x+y;
         this.x = x;
         this.y = y;
@@ -67,7 +69,7 @@ public class Room {
             }
 
             Room room = door.getWhereTo(this);
-            if (!room.isMaxCapacity()) {
+            if (!room.isMaxPersonCapacity()) {
                 return room;
             }
         }
@@ -78,26 +80,31 @@ public class Room {
     /**
      * @return The capacity of the room.
      */
-    public int getCapacity() {
-        return this.capacity;
+    public int getPersonCapacity() {
+        return this.personCapacity;
     }
 
     /**
      * Sets the capacity of the room.
      *
-     * @param capacity The capacity to set.
+     * @param personCapacity The capacity to set.
      */
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setPersonCapacity(int personCapacity) {
+        this.personCapacity = personCapacity;
     }
 
     /**
-     * @return Whether the room is at maximum capacity or not
+     * @return Whether the room is at maximum person capacity or not
      */
-    public boolean isMaxCapacity() {
-        return this.getCapacity() < this.getPersonList().size();
+    public boolean isMaxPersonCapacity() {
+        return this.getPersonCapacity() < this.personList.size();
     }
 
+    /**
+     *
+     * @param room
+     * @return
+     */
     public boolean isNeighbour(Room room) {
         for (Door door : this.getDoorList())
             if (room == door.getRoomTo() || room == door.getRoomFrom())
@@ -105,9 +112,18 @@ public class Room {
         return false;
     }
 
+    public Room getRoom(DoorLocation doorLocation) {
+        for (Door door : doorList) {
+            if (door.getRoomFrom() == this && door.getLocationTo().equals(doorLocation))
+                return door.getRoomTo();
+            else if (door.getRoomTo() == this && door.getLocationFrom().equals(doorLocation))
+                return door.getRoomFrom();
+        }
+        return null;
+    }
+
     /**
      * Checks if the room is gassed.
-     *
      * @return True if the room is gassed, false otherwise.
      */
     public boolean isGassed() {
@@ -116,7 +132,6 @@ public class Room {
 
     /**
      * Sets the gassed status of the room.
-     *
      * @param gassed The gassed status to set.
      */
     public void setGassed(boolean gassed) {
@@ -138,23 +153,39 @@ public class Room {
      * @return True if the room is sticky, false otherwise.
      */
     public boolean isSticky() {
-        return this.isSticky;
+        return this.sticky;
     }
 
     /**
      * Sets the sticky status of the room.
      */
     public void setSticky(boolean sticky) {
-        this.isSticky = sticky;
+        this.sticky = sticky;
+    }
+
+    /**
+     *
+     */
+    public void clean() {
+        this.visitorsSinceLastCleaning = 0;
+
+        this.gassed = false;
+        this.sticky = false;
     }
 
     /**
      * Retrieves the list of items in the room.
-     *
      * @return The list of items.
      */
     public List<Item> getItemList() {
         return this.itemList;
+    }
+
+    /**
+     * @return Whether the room is at maximum item capacity or not
+     */
+    public boolean isMaxItemCapacity() {
+        return this.getItemCapacity() < this.itemList.size();
     }
 
     /**
@@ -171,7 +202,6 @@ public class Room {
 
     /**
      * Retrieves the list of doors in the room.
-     *
      * @return The list of doors.
      */
     public List<Door> getDoorList() {
@@ -185,6 +215,28 @@ public class Room {
      */
     public List<Person> getPersonList() {
         return this.personList;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean containsStudent() {
+        for (Person person : this.personList)
+            if (person instanceof Student)
+                return true;
+        return false;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean containsProfessor() {
+        for (Person person : this.personList)
+            if (person instanceof Professor)
+                return true;
+        return false;
     }
 
     /**

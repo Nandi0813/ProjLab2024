@@ -2,6 +2,7 @@ package com.bucikft.Person;
 
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
+import com.bucikft.Menu;
 
 /**
  * Represents a student in the game.
@@ -108,6 +109,11 @@ public class Student extends Person {
      */
     public void setAlive(final boolean alive) {
         this.alive = alive;
+
+        if (alive)
+            Menu.getGame().getDeadStudents().remove(this);
+        else
+            Menu.getGame().getDeadStudents().add(this);
     }
 
     /**
@@ -142,7 +148,7 @@ public class Student extends Person {
      */
     @Override
     public boolean canMove() {
-        return this.isAlive();
+        return this.isAlive() && this.getStunned() == 0;
     }
 
     /**
@@ -151,10 +157,6 @@ public class Student extends Person {
      */
     @Override
     public String toString() {
-        if (this.getStunned() <= 0) {
-            return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead") + " not stunned";
-        } else {
-            return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead") + " stunned";
-        }
+        return "Student#" + this.getName() + " " + (this.alive ? "alive" : "dead") + " " + (this.getStunned() <= 0 ? "not stunned" : "stunned");
     }
 }

@@ -5,15 +5,12 @@ import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 import com.bucikft.Commands.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class ConsoleUI {
 
-    private final HashMap<String, Command> commands = new HashMap<String, Command>(); // Added to store the commands
+    private final HashMap<String, Command> commands = new HashMap<>(); // Added to store the commands
     private final Game game; // Added to store the game object
     private final Scanner scanner = new Scanner(System.in); // Added to read user input
 
@@ -60,10 +57,10 @@ public class ConsoleUI {
      * Prints the current state of the game.
      */
     public void printGameState() {
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             System.out.println();
         }
-        int turn = game.getRoundManager().getCurrentTurn();
+
         Person currentPlayer = game.getFocusedPerson();
 
         // draw map
@@ -91,9 +88,9 @@ public class ConsoleUI {
             for (Item item : currentPlayer.getItemList()) {
                 System.out.println(item);
             }
-        }
-        else
+        } else {
             System.out.println("empty");
+        }
 
         System.out.println("Current student: Student#" + game.getFocusedPerson().getName());
     }

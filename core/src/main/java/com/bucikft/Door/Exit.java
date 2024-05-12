@@ -32,7 +32,7 @@ public class Exit extends Door {
      */
     public void open() {
         this.open = true;
-        System.out.println("The the exit is open!");
+        System.out.println("The exit is open!");
     }
 
 }

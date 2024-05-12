@@ -1,8 +1,6 @@
 package com.bucikft.Person;
 
-import com.bucikft.Door.Door;
 import com.bucikft.Items.Interface.Item;
-import com.bucikft.Menu;
 import com.bucikft.Room;
 
 import java.util.ArrayList;
@@ -55,29 +53,40 @@ public abstract class Person {
      * @param room The room to move to.
      * @throws IllegalStateException If the player has no moves left or if the rooms are not neighbors.
      */
-    public void move(Room room) throws IllegalStateException {
-        if (this.stunned > 0)
-            throw new IllegalStateException("Person is stunned.");
-
-        // Test if the player has moves left
-        if (!godMode && this.movesLeft <= 0) {
-            throw new IllegalStateException("The player has no more moves left.");
+    public void move(Room room, boolean force) throws IllegalStateException {
+        if (room == null) {
+            throw new IllegalStateException("No room parameter.");
         }
 
         // Test if the rooms are neighbors
-        boolean neighbor = false;
-        for (Door door : this.currentRoom.getDoorList()) {
-            if (room.getDoorList().contains(door)) {
-                neighbor = true;
-                break;
-            }
-        }
-        if (!neighbor) {
+        if (!room.isNeighbour(this.currentRoom)) {
             throw new IllegalStateException("The rooms are not neighbors.");
         }
 
-        // Move the person to the room
-        Menu.getGame().getMap().move(this, room);
+        if (room.isMaxPersonCapacity()) {
+            throw new IllegalStateException("The room is already at max capacity.");
+        }
+
+        if (!force) {
+            if (!this.canMove()) {
+                throw new IllegalStateException(this + " cannot move.");
+            }
+
+            // Test if the player has moves left
+            if (!godMode && this.movesLeft <= 0) {
+                throw new IllegalStateException("The player has no more moves left.");
+            } else {
+                movesLeft--;
+            }
+        }
+
+        currentRoom.getPersonList().remove(this);
+        this.currentRoom = room;
+        room.getPersonList().add(this);
+
+        room.setVisitorsSinceLastCleaning(room.getVisitorsSinceLastCleaning() + 1);
+        if (room.getVisitorsSinceLastCleaning() >= Room.STICKY_AT)
+            room.setSticky(true);
     }
 
     /**

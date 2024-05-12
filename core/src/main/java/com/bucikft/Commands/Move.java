@@ -1,6 +1,6 @@
 package com.bucikft.Commands;
+import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
-import com.bucikft.Menu;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
 
@@ -22,22 +22,18 @@ public class Move implements Command {
                 throw new IllegalStateException("The focused person is not a student.");
             }
 
-            if (student.getMovesLeft() <= 0) {
+            if (student.getMovesLeft() == 0) {
                 throw new IllegalStateException("No moves left.");
             }
 
             Room room = student.getCurrentRoom();
-            Room roomTo = game.getMap().getRoomList().get(Integer.parseInt(args[1]));
+            Room roomTo = room.getRoom(DoorLocation.valueOf(args[1]));
 
-            if (roomTo.isMaxCapacity()) {
-                throw new IllegalStateException("The room is full.");
+            if (roomTo == null) {
+                throw new IllegalStateException("No room in that direction");
             }
 
-            if (!room.isNeighbour(roomTo)) {
-                throw new IllegalStateException("The room is not a neighbour.");
-            }
-
-            Menu.getGame().getMap().move(student, roomTo);
+            student.move(roomTo, false);
             System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");
         } catch (NumberFormatException e) {
             System.out.println("Invalid room ID.");
