@@ -1,7 +1,0 @@
-debug
-noai
-skip
-pickup DKC#4
-use DKC#4
-force move Pr#2 0
-skip

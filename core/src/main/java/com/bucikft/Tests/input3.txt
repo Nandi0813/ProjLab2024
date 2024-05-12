@@ -1,7 +1,0 @@
-debug
-noai
-pickup EnergyDrink#6
-use EnergyDrink#6
-move 1
-move 0
-move 1

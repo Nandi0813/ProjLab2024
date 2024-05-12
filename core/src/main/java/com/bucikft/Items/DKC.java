@@ -1,7 +1,10 @@
 package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Person.Cleaner;
+import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
+import com.bucikft.Room;
 
 /**
  * Represents the DKC item, which fills a room with gas when used by a Student.
@@ -29,8 +32,18 @@ public class DKC extends Item {
             throw new IllegalStateException("The room is already filled with gas.");
         }
 
+        Room room = user.getCurrentRoom();
+
         // Gas the room
-        user.getCurrentRoom().setGassed(true);
+        room.setGassed(true);
+
+        for (Person person : room.getPersonList()) {
+            if (person instanceof Cleaner) {
+                System.out.println("The room cannot be filled with gas because it contains a cleaner.");
+                room.setGassed(false);
+                break;
+            }
+        }
 
         // Break the item
         this.setBroken(true);

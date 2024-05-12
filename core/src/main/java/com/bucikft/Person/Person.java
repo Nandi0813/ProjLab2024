@@ -126,8 +126,8 @@ public abstract class Person {
         this.currentRoom.getItemList().remove(item);
         this.itemList.add(item);
 
-        // Set item to picked up
-        item.setPickedUp(true);
+        // Remove the item from the room
+        currentRoom.getItemList().remove(item);
     }
 
     public String getName() {

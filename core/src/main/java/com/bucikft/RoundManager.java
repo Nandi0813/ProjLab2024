@@ -31,7 +31,12 @@ public class RoundManager {
 
         for (Student student : game.getStudents()) {
             if (student.getCurrentRoom().isGassed()) {
-                student.stun(3);
+                if (!student.isMasked()) {
+                    student.stun(3);
+                } else {
+                    System.out.println("Student " + student + " got saved by his mask.");
+                    student.setMasked(false);
+                }
             } else if (student.getStunned() > 0) {
                 student.stun(student.getStunned() - 1);
             }
@@ -39,7 +44,7 @@ public class RoundManager {
 
         for (Professor professor : game.getProfessors()) {
             if (professor.getCurrentRoom().isGassed()) {
-                professor.stun(5);
+                professor.stun(3);
                 continue;
             } else if (professor.getStunned() > 0){
                 professor.stun(professor.getStunned() - 1);

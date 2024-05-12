@@ -40,28 +40,31 @@ public class Force implements Command {
                     }
                 }
 
-                if (person != null)
-                    move(person, game.getMap().getRoomList().get(Integer.parseInt(args[3])));
-                else
-                    System.out.println("No " + personType + " found with the given ID.");
+                if (person == null)
+                    throw new IllegalStateException("No " + personType + " found with the given ID.");
+
+                Room room = game.getMap().getRoom(args[3]);
+                if (room == null)
+                    throw new IllegalStateException("No room found with the given id: " + args[3]);
+
+                move(person, room);
             }
             case "pickup" -> {
                 if (n[0].equals("Pr")) {
                     Professor professor = game.getProfessor(n[1]);
 
-                    if (professor != null) {
-                        Room currentRoom = professor.getCurrentRoom();
-                        Item item = currentRoom.getItem(args[3].split("#")[1]);
+                    if (professor == null)
+                        throw new IllegalStateException("No professor found with the given ID: " + n[1]);
 
-                        if (item != null) {
-                            currentRoom.getItemList().remove(item);
-                            professor.getInventory().add(item);
-                        } else {
-                            System.out.println("No item found in the room with the given ID");
-                        }
-                    } else {
-                        System.out.println("No professor found with the given ID.");
-                    }
+                    Room currentRoom = professor.getCurrentRoom();
+                    String itemID = args[3];
+                    Item item = currentRoom.getItem(itemID);
+
+                    if (item == null)
+                        throw new IllegalStateException("No item found in the room with the given ID: " + itemID);
+
+                    currentRoom.getItemList().remove(item);
+                    professor.getInventory().add(item);
                 }
             }
             case "kill" -> {
@@ -78,9 +81,9 @@ public class Force implements Command {
                             System.out.println(e.getMessage());
                         }
                     } else if (professor == null) {
-                        System.out.println("No professor found with the given ID.");
+                        throw new IllegalStateException("No professor found with the given ID.");
                     } else {
-                        System.out.println("No student found with the given ID.");
+                        throw new IllegalStateException("No student found with the given ID.");
                     }
                 }
             }
@@ -94,7 +97,7 @@ public class Force implements Command {
                         room.setGassed(false);
                         System.out.println("Force air from Cleaner#" + cleaner + " to Room#" + room + ".");
                     } else {
-                        System.out.println("No cleaner found with the given ID.");
+                        throw new IllegalStateException("No cleaner found with the given ID.");
                     }
                 }
             }

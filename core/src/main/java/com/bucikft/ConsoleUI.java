@@ -46,10 +46,15 @@ public class ConsoleUI {
             System.out.println("please enter a command:");
             String command = scanner.nextLine();
             String[] commandParts = command.split(" ");
-            if (commands.containsKey(commandParts[0])) {
-                commands.get(commandParts[0]).execute(game, commandParts);
-            } else {
-                throw new IllegalArgumentException("invalid command");
+
+            try {
+                if (commands.containsKey(commandParts[0])) {
+                    commands.get(commandParts[0]).execute(game, commandParts);
+                } else {
+                    throw new IllegalArgumentException("invalid command");
+                }
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
     }
 

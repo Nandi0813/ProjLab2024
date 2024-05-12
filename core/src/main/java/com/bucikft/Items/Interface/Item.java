@@ -9,7 +9,6 @@ public abstract class Item {
 
     protected boolean falseItem; // Indicates whether the item is a false item or not.
     protected boolean broken; // Indicates whether the item is broken or not.
-    protected boolean pickedUp; // Indicates whether the item has been picked up or not.
     protected String ID; // The unique identifier of the item.
 
     /**
@@ -57,22 +56,6 @@ public abstract class Item {
     }
 
     /**
-     * Sets the status of the item (picked up or not).
-     * @param pickedUp The new status of the item.
-     */
-    public void setPickedUp(boolean pickedUp) {
-        this.pickedUp = pickedUp;
-    }
-
-    /**
-     * Indicates whether the item has been picked up or not.
-     * @return True if the item has been picked up, false otherwise.
-     */
-    public boolean isPickedUp() {
-        return pickedUp;
-    }
-
-    /**
      * Gets the unique identifier of the item.
      * @return The unique identifier of the item.
      */
@@ -86,7 +69,7 @@ public abstract class Item {
      */
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+ "#" + ID;
+        return this.ID;
     }
 
 }

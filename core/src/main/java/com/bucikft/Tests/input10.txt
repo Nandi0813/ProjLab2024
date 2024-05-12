@@ -1,5 +1,0 @@
-debug
-noai
-skip
-move 1
-move 0

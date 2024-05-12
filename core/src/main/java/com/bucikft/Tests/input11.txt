@@ -1,3 +1,0 @@
-debug
-noai
-force kill Pr#2 St#1

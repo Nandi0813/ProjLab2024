@@ -162,7 +162,7 @@ public class Map {
 
             for (int i = 0; i < itemCount; i++) {
                 // Create a new instance of the specified class using the constructor and provided arguments
-                T newItem = constructor.newInstance(IDmaker.makeID(), i == 0 && falseItem);
+                T newItem = constructor.newInstance(itemClass.getSimpleName() + "#" + IDmaker.makeID(), i == 0 && falseItem);
                 // You can initialize any properties or perform additional setup here
                 items.add((Item) newItem);
             }

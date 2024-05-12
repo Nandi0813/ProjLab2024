@@ -67,9 +67,6 @@ public class Student extends Person {
 
         // Remove item from inventory
         this.itemList.remove(item);
-
-        // Set item to not picked up
-        item.setPickedUp(false);
     }
 
     /**

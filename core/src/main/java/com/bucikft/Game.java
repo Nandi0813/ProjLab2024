@@ -102,6 +102,13 @@ public class Game {
         return this.map;
     }
 
+    public Room getRoom(String id) {
+        for (Room room : this.getMap().getRoomList())
+            if (room.getID().equalsIgnoreCase(id))
+                return room;
+        return null;
+    }
+
     /**
      * Retrieves the list of students in the game.
      * @return The list of students.

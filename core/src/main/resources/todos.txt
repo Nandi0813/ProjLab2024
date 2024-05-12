@@ -1,4 +1,2 @@
-pickup nem ellenorzi, hogy milyen itemet akar felvenni csak az ID-t -> Class.getName()
-curse room
-szobak id adást át kell dolgozni teljesen
-mask van e jatekoson amikor gazos szobaba van
+item felvétel dolgot még át kell gondolni valami alapján, szerintem az lenne a legjobb ha lennének X, Y koordináták
+szobán belül is és ott ahogy bele kattint az alapjan keres egy searchItem(int x, int y) fv.

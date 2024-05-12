@@ -1,5 +1,0 @@
-debug
-noai
-pickup Hammer#8
-use Hammer#8
-move 2

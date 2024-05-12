@@ -1,5 +1,0 @@
-debug
-pickup WetRag#12
-move 1
-use WetRag#12
-skip
