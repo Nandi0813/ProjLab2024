@@ -2,6 +2,7 @@ package com.bucikft.Commands;
 
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Items.Transistor;
 import com.bucikft.Person.Person;
 
 public class PickUp implements Command {
@@ -26,6 +27,9 @@ public class PickUp implements Command {
 
         try {
             person.pickUp(item);
+            if(item instanceof com.bucikft.Items.Transistor){
+                ((Transistor) item).setPickedUp(true);
+            }
             System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());

@@ -22,6 +22,9 @@ public class Transistor extends Item {
     /** The paired Transistor item. */
     public Transistor pair = null;
 
+    /** Indicates whether the Transistor has been picked up. */
+    private boolean pickedUp = false;
+
     public void connect(Transistor t, Student user) throws IllegalStateException {
         if (user.getCurrentRoom().getItemList().contains(t) && !t.pickedUp) {
             pair = t;
@@ -55,6 +58,14 @@ public class Transistor extends Item {
 
         this.setBroken(true);
         this.pair.setBroken(true);
+    }
+
+    /**
+     * Sets the picked up status of the Transistor.
+     * @param pickedUp
+     */
+    public void setPickedUp(boolean pickedUp) {
+        this.pickedUp = pickedUp;
     }
 
 }

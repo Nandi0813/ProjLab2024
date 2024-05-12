@@ -31,7 +31,6 @@ public class Start implements Command {
                 throw new IllegalStateException("Player count cannot be greater than map size.");
             }
 
-            game.setStarted(true);
             game.startGame(playerCount, mapSize);
         } catch (NumberFormatException e) {
             System.out.println("Invalid parameters. Please enter a number for player count and map size.");

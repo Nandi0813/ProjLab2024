@@ -9,6 +9,7 @@ import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -261,6 +262,14 @@ public class Room {
      */
     public void setItemCapacity(int i) {
         this.itemCapacity = i;
+    }
+
+    public DoorLocation emptyDoor() {
+        List<DoorLocation> locations = new ArrayList<>(Arrays.asList(DoorLocation.values()));
+        for (Door door : doorList) {
+            locations.remove(door.getLocationFrom());
+        }
+        return locations.get(0);
     }
 
     @Override

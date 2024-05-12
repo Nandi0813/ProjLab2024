@@ -2,6 +2,7 @@ package com.bucikft;
 
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
+import com.bucikft.Door.Exit;
 import com.bucikft.Items.*;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Cleaner;
@@ -9,6 +10,7 @@ import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 import com.bucikft.Utils.IDmaker;
+import javafx.util.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -24,6 +26,8 @@ public class Map {
     private final List<Room> roomList; // List of rooms in the map
     private final List<Item> itemList; // List of items in the map
 
+    private final int mapSize;
+
     /**
      * The constructor of the map.
      * @param mapSize The size of the map.
@@ -32,6 +36,7 @@ public class Map {
      * @param cleaners The list of cleaners.
      */
     public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners){
+        this.mapSize = mapSize;
         this.roomList = new ArrayList<>();
         this.itemList = new ArrayList<>();
 
@@ -132,6 +137,13 @@ public class Map {
 
             randomRoom.getPersonList().add(cleaner);
             cleaner.setCurrentRoom(randomRoom);
+        }
+
+        generateExit();
+
+        LinkedList<DoorLocation> path = findShortestPathToExit(students.get(0).getCurrentRoom());
+        for (DoorLocation doorLocation : path) {
+            System.out.println(doorLocation);
         }
     }
 
@@ -332,5 +344,112 @@ public class Map {
      * @return The list of items.
      */
     public List<Item> getItemList() { return this.itemList; }
+
+    public void generateExit(){
+        int longestPath = 0;
+        Room furthestRoom = null;
+
+        for (int i = 1; i <= mapSize; i++) {
+            Room room;
+
+            room = findRoom(i, 1);
+            Pair<Integer, Room> result = updateLongestPathIfNeeded(room, longestPath);
+            if(result != null) {
+                longestPath = result.getKey();
+                furthestRoom = result.getValue();
+                result = null;
+            }
+
+            room = findRoom(1, i);
+            result = updateLongestPathIfNeeded(room, longestPath);
+            if(result != null) {
+                longestPath = result.getKey();
+                furthestRoom = result.getValue();
+            }
+
+            room = findRoom(mapSize, i);
+            result = updateLongestPathIfNeeded(room, longestPath);
+            if(result != null) {
+                longestPath = result.getKey();
+                furthestRoom = result.getValue();
+            }
+
+            room = findRoom(i, mapSize);
+            result = updateLongestPathIfNeeded(room, longestPath);
+            if(result != null) {
+                longestPath = result.getKey();
+                furthestRoom = result.getValue();
+            }
+        }
+
+
+        if(furthestRoom != null){
+            Exit exit = new Exit(furthestRoom, null, furthestRoom.emptyDoor());
+            furthestRoom.getDoorList().add(exit);
+        }
+    }
+
+    public int findShortestPathToStudent(Room room){
+        Queue<Room> queue = new LinkedList<>();
+        Set<Room> visited = new HashSet<>();
+        queue.add(room);
+        visited.add(room);
+        int count = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Room currentRoom = queue.poll();
+                for (Door door : currentRoom.getDoorList()) {
+                    Room nextRoom = door.getRoomTo();
+                    if (!visited.contains(nextRoom)) {
+                        if (nextRoom.containsStudent()) {
+                            return count;
+                        }
+                        queue.add(nextRoom);
+                        visited.add(nextRoom);
+                    }
+                }
+            }
+            count++;
+        }
+        return count;
+    }
+
+    public Pair<Integer, Room> updateLongestPathIfNeeded(Room room, int longestPath) {
+        int pathLength = findShortestPathToStudent(room);
+        if (longestPath < pathLength) {
+            longestPath = pathLength;
+            return new Pair<>(longestPath,room);
+        }
+        return null;
+    }
+
+    public LinkedList<DoorLocation> findShortestPathToExit(Room room) {
+        Queue<Pair<Room, LinkedList<DoorLocation>>> queue = new LinkedList<>();
+        Set<Room> visited = new HashSet<>();
+        queue.add(new Pair<>(room, new LinkedList<>()));
+        visited.add(room);
+
+        while (!queue.isEmpty()) {
+            Pair<Room, LinkedList<DoorLocation>> currentPair = queue.poll();
+            Room currentRoom = currentPair.getKey();
+            LinkedList<DoorLocation> currentPath = currentPair.getValue();
+
+            for (Door door : currentRoom.getDoorList()) {
+                Room nextRoom = door.getRoomTo();
+                if (!visited.contains(nextRoom)) {
+                    LinkedList<DoorLocation> nextPath = new LinkedList<>(currentPath);
+                    nextPath.add(door.getLocationTo());
+                    if (door instanceof Exit) {
+                        return nextPath;
+                    }
+                    queue.add(new Pair<>(nextRoom, nextPath));
+                    visited.add(nextRoom);
+                }
+            }
+        }
+        return null; // No exit found
+    }
 
 }

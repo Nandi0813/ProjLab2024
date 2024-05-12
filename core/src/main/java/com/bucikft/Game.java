@@ -44,14 +44,6 @@ public class Game {
     }
 
     /**
-     * Starts the game.
-     */
-    public void startGame() {
-        this.started = true;
-        this.roundManager.play();
-    }
-
-    /**
      * Sets the game state.
      * @param started The game state to set.
      */
@@ -234,6 +226,8 @@ public class Game {
                 + professors.size() + " professors, "
                 + cleaners.size() + " cleaners and "
                 + mapSize + " map size.");
+
+        roundManager.play();
     }
 
 }

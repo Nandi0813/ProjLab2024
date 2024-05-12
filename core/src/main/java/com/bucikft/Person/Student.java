@@ -67,6 +67,11 @@ public class Student extends Person {
 
         // Remove item from inventory
         this.itemList.remove(item);
+
+        // If the item is a transistor, set it as not picked up
+        if (item instanceof Transistor) {
+            ((Transistor) item).setPickedUp(false);
+        }
     }
 
     /**
