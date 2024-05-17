@@ -9,11 +9,14 @@ import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
+import com.bucikft.Utils.GenerateUtil;
 import com.bucikft.Utils.IDmaker;
+import com.bucikft.Utils.PathFinder;
 import javafx.util.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Path;
 import java.util.*;
 
 /**
@@ -52,6 +55,7 @@ public class Map {
         for (Room room : roomList) {
             int x = room.getX();
             int y = room.getY();
+
             if (x == 1) {
                 if (y != 1) {
                     GenerateUtil.generateDoor(room, findRoom(x+1,y), DoorLocation.RIGHT);
@@ -87,7 +91,7 @@ public class Map {
         final List<Class<?>> itemClasses = new ArrayList<>(Arrays.asList(AirFreshener.class,DKC.class, Mask.class, SlipStick.class, TVSZ.class, EnergyDrink.class, Hammer.class, HolyCup.class, WetRag.class, Zyn.class, Transistor.class));
         // generate items and put them in rooms
         for (Class<?> itemClass : itemClasses) {
-            List<Item> items = generateItem(itemClass, mapSize);
+            List<Item> items = GenerateUtil.generateItem(itemClass, mapSize);
             if (items == null) continue;
 
             itemList.addAll(items);
@@ -145,66 +149,15 @@ public class Map {
 
     /**
      * Generates a list of items.
-     * @param itemClass The class of the item.
-     * @param mapSize The size of the map.
-     * @return The list of items.
-     * @param <T> The type of the item.
-     */
-    private static <T> List<Item> generateItem(Class<T> itemClass, int mapSize) {
-        int itemCount = (int) (Math.random() * (mapSize / 3) + 1);
-        List<Item> items = new ArrayList<>();
-        try {
-            // Get the constructor of the specified class with the appropriate parameter types
-            Constructor<T> constructor = itemClass.getDeclaredConstructor(String.class, boolean.class);
-
-            boolean falseItem = false;
-            if (itemClass.equals(TVSZ.class) || itemClass.equals(SlipStick.class) || itemClass.equals(Mask.class)) {
-                if (itemCount>1) {
-                    falseItem = true;
-                }
-            }
-
-            if (itemClass.equals(Transistor.class)) {
-                itemCount *= 2;
-            }
-
-            for (int i = 0; i < itemCount; i++) {
-                // Create a new instance of the specified class using the constructor and provided arguments
-                T newItem = constructor.newInstance(itemClass.getSimpleName() + "#" + IDmaker.makeID(), i == 0 && falseItem);
-                // You can initialize any properties or perform additional setup here
-                items.add((Item) newItem);
-            }
-
-            return items;
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            System.out.println(e.getMessage());// Handle the exception appropriately
-            return null; // Or some default value indicating failure
-        }
-    }
-
-    /**
-     * Generates a list of items.
      * @param x The x coordinate of the room.
      * @param y The y coordinate of the room.
      * @return The list of items.
      */
-    private Room findRoom(int x, int y) {
+    public Room findRoom(int x, int y) {
         for (Room room : roomList)
             if (room.getX() == x && room.getY() == y)
                 return room;
         return null;
-    }
-
-    /**
-     * Generates a list of items.
-     * @param roomFrom The room where the door is from.
-     * @param roomTo The room where the door is to.
-     * @param location The location of the door.
-     */
-    private static void generateDoor(Room roomFrom, Room roomTo, DoorLocation location) {
-        Door door = new Door(roomFrom, roomTo, location);
-        roomFrom.getDoorList().add(door);
-        roomTo.getDoorList().add(door);
     }
 
     /**

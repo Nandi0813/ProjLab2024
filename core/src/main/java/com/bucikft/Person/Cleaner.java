@@ -1,5 +1,7 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.TileType;
+
 /**
  * Represents a cleaner person, who can remove all other people from a room.
  */
@@ -10,7 +12,7 @@ public class Cleaner extends Person {
      * @param name The name of the cleaner.
      */
     public Cleaner(String name) {
-        super(name);
+        super(name, TileType.Cleaner);
     }
 
     /**

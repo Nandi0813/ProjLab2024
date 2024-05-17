@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Room;
 import com.bucikft.Controllers.*;
@@ -41,12 +42,13 @@ public abstract class Person {
     /**
      * Constructor to initialize a Person object.
      */
-    protected Person(String name) {
+    protected Person(String name, TileType tileType) {
         this.itemList = new ArrayList<>();
         this.name = name;
         this.movesLeft = 1;
         this.usesLeft = 1;
         this.capacity = 5;
+        this.type = tileType;
     }
 
     /**
@@ -228,4 +230,11 @@ public abstract class Person {
         return stunned;
     }
 
+    /**
+     *
+     * @return
+     */
+    public TileType getType() {
+        return type;
+    }
 }

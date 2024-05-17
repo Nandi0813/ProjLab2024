@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
 import com.bucikft.Menu;
@@ -14,7 +15,7 @@ public class Student extends Person {
     private boolean protection = false; // Counter to track protection duration
 
     public Student(String name) {
-        super(name);
+        super(name, TileType.Student);
     }
 
     /**

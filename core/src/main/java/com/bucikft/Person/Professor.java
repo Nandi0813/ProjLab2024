@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Professor extends Person {
      * Constructor to initialize a Professor object.
      */
     public Professor(String name) {
-        super(name);
+        super(name, TileType.Professor);
         this.killedStudents = new ArrayList<>();
     }
 
