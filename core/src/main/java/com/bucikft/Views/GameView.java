@@ -50,9 +50,14 @@ public class GameView extends JFrame {
 
         add(taskbar, BorderLayout.SOUTH);
 
-
+        JPanel middle = new JPanel();
+        middle.setLayout(new BoxLayout(middle, BoxLayout.X_AXIS));
         GamePanel gamePanel = new GamePanel(controller);
-        add(gamePanel, BorderLayout.CENTER);
+        middle.add(gamePanel);
+        StatusPanel statpanel = new StatusPanel(controller);
+        middle.add(statpanel);
+        middle.setBackground(Color.BLACK);
+        add(middle, BorderLayout.CENTER);
         this.setResizable(false);
         this.setVisible(true);
     }

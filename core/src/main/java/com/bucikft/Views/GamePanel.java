@@ -21,8 +21,11 @@ public class GamePanel extends JPanel {
     private int gridSize;
     private int dimension;
 
+
     public GamePanel(Controller controller) {
         this.controller = controller;
+        setMinimumSize(new Dimension(tileSize*6,tileSize*6));
+        setMaximumSize(new Dimension(tileSize*6, tileSize*6));
         redraw();
         setBackground(Color.BLACK);
 

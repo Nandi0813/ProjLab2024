@@ -4,6 +4,7 @@ import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
+import com.bucikft.Person.Student;
 import com.bucikft.Room;
 import javafx.util.Pair;
 
@@ -107,6 +108,25 @@ public class Controller {
     public void newGameStart(int playerCount, int mapSize) {
         game = new Game();
         game.startGame(playerCount,mapSize);
+    }
+
+
+    public List<String> getStatusStrings() {
+        Person focusedPerson = game.getFocusedPerson();
+        Room currentRoom = focusedPerson.getCurrentRoom();
+
+        List<String> status = new ArrayList<>();
+        status.add("Current Round "+ game.getRoundManager().getCurrentRound());
+        status.add("Current Turn: " + game.getRoundManager().getCurrentTurn());
+        status.add("Focused Person: " + game.getFocusedPerson().getName());
+        status.add("you are in " + currentRoom);
+        status.add("You are " + ((focusedPerson.getStunned()==0)?"not stunned":"stunnded for"+focusedPerson.getStunned()));
+        status.add("\nMoves left: " + focusedPerson.getMovesLeft());
+        status.add("\nUses left: " + focusedPerson.getUsesLeft());
+        if (focusedPerson instanceof Student) {
+            status.add("\nYou are " + (((Student) focusedPerson).isAlive()?"alive":"dead"));
+        }
+        return status;
     }
 
 
