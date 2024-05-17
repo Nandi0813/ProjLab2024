@@ -1,15 +1,19 @@
 package com.bucikft.Views;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Game;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JFrame {
-    public GameView() {
 
+    private Controller controller;
+
+    public GameView(Controller controller) {
+        this.controller = controller;
         setTitle("Game");
-        setSize(500, 500);
+        setSize(700, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -47,8 +51,9 @@ public class GameView extends JFrame {
         add(taskbar, BorderLayout.SOUTH);
 
 
-        GamePanel gamePanel = new GamePanel();
+        GamePanel gamePanel = new GamePanel(controller);
         add(gamePanel, BorderLayout.CENTER);
+        this.setResizable(false);
         this.setVisible(true);
     }
 }

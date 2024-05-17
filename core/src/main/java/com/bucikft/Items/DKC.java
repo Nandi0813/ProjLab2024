@@ -17,7 +17,7 @@ public class DKC extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public DKC(String ID, boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.DKC);
     }
 
     /**

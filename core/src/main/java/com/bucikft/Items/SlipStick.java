@@ -1,5 +1,6 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Door.Door;
 import com.bucikft.Door.Exit;
 import com.bucikft.Items.Interface.Item;

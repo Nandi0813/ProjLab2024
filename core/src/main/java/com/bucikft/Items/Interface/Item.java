@@ -16,10 +16,11 @@ public abstract class Item {
      * @param ID The unique identifier of the item.
      * @param falseItem Indicates whether the item is a false item or not.
      */
-    protected Item(String ID, boolean falseItem) {
+    protected Item(String ID, boolean falseItem, TileType type) {
         this.falseItem = falseItem;
         this.broken = false;
         this.ID = ID;
+        this.type = type;
     }
 
     /**

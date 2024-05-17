@@ -3,7 +3,7 @@ package com.bucikft.Items;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
-
+import com.bucikft.Controllers.TileType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Zyn extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public Zyn(String ID, boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.Zyn);
     }
 
     /**

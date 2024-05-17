@@ -1,5 +1,6 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Menu;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
@@ -16,7 +17,7 @@ public class Transistor extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public Transistor(String ID, boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.Transistor);
     }
 
     /** The paired Transistor item. */

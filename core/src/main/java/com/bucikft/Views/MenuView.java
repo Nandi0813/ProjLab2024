@@ -15,15 +15,7 @@ import java.io.IOException;
 public class MenuView extends JFrame {
 
     BufferedImage background;
-    Game game;
-    public static String mapPath = System.getProperty("user.dir") + File.separator +
-            "core" + File.separator +
-            "src" + File.separator +
-            "main" + File.separator +
-            "java" + File.separator +
-            "com" + File.separator +
-            "bucikft" + File.separator +
-            "map.txt";
+    Controller controller;
 
     public MenuView() {
         setTitle("A Logarléc");

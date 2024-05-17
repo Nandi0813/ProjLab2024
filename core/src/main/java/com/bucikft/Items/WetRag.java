@@ -1,9 +1,11 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
+import com.bucikft.Controllers.TileType;
 
 /**
  * Represents a Wet Rag item, which can stun all professors in the room when used by a student.
@@ -16,7 +18,7 @@ public class WetRag extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public WetRag(String ID, boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.WetRag);
     }
 
     /**

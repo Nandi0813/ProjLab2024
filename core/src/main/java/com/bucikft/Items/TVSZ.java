@@ -1,7 +1,10 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.Tile;
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
+import com.bucikft.Controllers.TileType;
 
 /**
  * Represents a TVSZ item, which can protect a Student from professors.
@@ -18,7 +21,7 @@ public class TVSZ extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public TVSZ(String ID, final boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.TVSZ);
         this.falseItem = isFalseItem;
         this.health = 3;
     }

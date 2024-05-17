@@ -5,6 +5,8 @@ import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
+import java.util.ArrayList;
+
 /**
  * Manages the rounds in the game.
  */
@@ -87,7 +89,7 @@ public class RoundManager {
                 System.out.printf("\nCleaner#%s moved to room: %s\n", cleaner.getName(), roomTo.getID());
                 cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
 
-                for (Person p : roomTo.getPersonList()) {
+                for (Person p : new ArrayList<>(roomTo.getPersonList())) {
                     if (p.canMove()) {
                         Room randomRoom = roomTo.getRandomNeighbourRoom();
                         p.move(randomRoom, true);
@@ -144,8 +146,9 @@ public class RoundManager {
                 ui.readCommands();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }
-        }
+            }*/
+        //}
+        ui.printGameState();
     }
 
     /**

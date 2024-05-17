@@ -37,6 +37,8 @@ public class Room {
     private final String ID; // Added to track the ID of the room
 
     private final boolean isCoursed; // Added to track if the room is coursed
+    
+    private int cursedTime = 2;
 
     private final int x;
     private final int y;
