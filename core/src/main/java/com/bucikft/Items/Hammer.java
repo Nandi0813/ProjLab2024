@@ -1,19 +1,44 @@
 package com.bucikft.Items;
+
+import com.bucikft.Controllers.TileType;
+import com.bucikft.Items.Interface.Item;
+import com.bucikft.Menu;
 import com.bucikft.Person.Student;
+import com.bucikft.Room;
 
-public class Hammer extends Item{
+/**
+ * Represents a Hammer item, which can split a room when used by a student.
+ */
+public class Hammer extends Item {
 
-    public void effect(Student user){
-        // test if item broken or room unsplittable
-        if( this.getBroken()) throw new IllegalStateException("A kalapács már el lett használva");
-        // simplified for skeleton, will check more conditions
-        if(user.getCurrentRoom().getCapacity()<2) throw new IllegalStateException("A szoba nem kettéosztható!");
+    /**
+     * The constructor of the Hammer class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
+    public Hammer(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem, TileType.Hammer);
+    }
 
-        // split room
-        // todo: implement room splitting
-        System.out.println("*A szoba ketté lett osztva*");
+    /**
+     * Applies the effect of the Hammer item on the user (a student).
+     *
+     * @param student The student who uses the Hammer item.
+     * @throws IllegalStateException If the room cannot be split.
+     */
+    public void effect(Student student) throws IllegalStateException {
+        // Test if room is big enough for splitting
+        if (student.getCurrentRoom().getItemCapacity() <= 2) {
+            throw new IllegalStateException("The room cannot be split.");
+        }
 
-        // break item
+        // Split room
+        Menu.getGame().getMap().split(student.getCurrentRoom());
+
+        System.out.println("*The room has been split*");
+
+        // Break item
         this.setBroken(true);
     }
+
 }

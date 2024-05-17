@@ -1,17 +1,35 @@
 package com.bucikft.Items;
+
+import com.bucikft.Controllers.TileType;
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 
-public class EnergyDrink extends Item{
+/**
+ * Represents an Energy Drink item, which increases the remaining steps of a Student when used by said Student.
+ */
+public class EnergyDrink extends Item {
 
-    public void effect(Student user) throws IllegalStateException{
-        // test if broken
-        if(this.getBroken()) throw new IllegalStateException("Az Endzsó már el lett használva");
+    /**
+     * The constructor of the EnergyDrink class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
+    public EnergyDrink(String ID, boolean isFalseItem) {
+        super(ID, isFalseItem, TileType.EnergyDrink);
+    }
 
-        // increase moves left
+    /**
+     * Applies the effect of the Energy Drink item on the user (a student).
+     *
+     * @param user The student who uses the Energy Drink item.
+     * @throws IllegalStateException If the Energy Drink item is already broken.
+     */
+    public void effect(Student user) throws IllegalStateException {
+        // Increase moves left
         user.setMovesLeft(user.getMovesLeft() + 1);
-        System.out.println("*Az Endzsó elfogyasztása után a hallgató még egy lépést tehet*");
 
-        // break item
+        // Break item
         this.setBroken(true);
     }
+
 }

@@ -1,18 +1,45 @@
 package com.bucikft.Items;
+
+import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
+import com.bucikft.Controllers.TileType;
 
-public class Mask extends Item{
+/**
+ * Represents a Mask item, which can be equipped and used to defend a Student from poison gas.
+ */
+public class Mask extends Item {
 
-    public void effect(Student user){
-        // test if broken or user already masked
-        if (this.getBroken()) throw new IllegalStateException("A Maszk már el lett használva");
-        if (user.isMasked()) throw new IllegalStateException("A hallgató már maszkot visel");
+    /**
+     * The constructor of the Mask class.
+     * @param ID The unique identifier of the item.
+     * @param isFalseItem Indicates whether the item is a false item or not.
+     */
+    public Mask(String ID, final boolean isFalseItem) {
+        super(ID, isFalseItem, TileType.Mask);
+        this.falseItem = isFalseItem;
+    }
 
-        // put on mask
+    /**
+     * Applies the effect of the Mask item on the user (a student).
+     *
+     * @param user The student who uses the Mask item.
+     * @throws IllegalStateException If the student is already wearing a mask.
+     */
+    public void effect(Student user) throws IllegalStateException {
+        // Test if user is already wearing a mask
+        if (user.isMasked()) {
+            throw new IllegalStateException("The student is already wearing a mask");
+        }
+        
+        if (this.isFalse()) {
+            throw new IllegalStateException("This item is a false item. No result.");
+        }
+
+        // Put on mask
         user.setMasked(true);
-        System.out.println("*A hallgató felvette a maszkot*");
 
-        // break item
+        // Break item
         this.setBroken(true);
     }
+
 }

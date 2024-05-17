@@ -1,0 +1,32 @@
+
+>
+java:S1604="(Make this anonymous inner class a lambda(…Ë¶–
+C
+java:S1604F"(Make this anonymous inner class a lambda(ï¡ÏËøÿÿÿÿ
+>
+java:S1604M"(Make this anonymous inner class a lambda(–ÇÕÕ
+C
+java:S1604T"(Make this anonymous inner class a lambda( ŒÜöúÿÿÿÿ
+C
+java:S1604l"(Make this anonymous inner class a lambda(Ô¶µÿþÿÿÿÿ
+n
+java:S1104"SMake mapPath a static final constant or non-public and provide accessors if needed.(ßè­±ýÿÿÿÿ
+H
+java:S1444"-Make this "public static mapPath" field final(ßè­±ýÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‹“‚„
+N
+java:S2387"3"background" is the name of a field in "Component".(Êç ‰ûÿÿÿÿ
+G
+java:S1948",Make "background" transient or serializable.(Êç ‰ûÿÿÿÿ
+<
+java:S1948"&Make "game" transient or serializable.(®®Ä
+S
+java:S1854@"8Remove this useless assignment to local variable "fasz".(¥Øû¼þÿÿÿÿ
+D
+java:S1481@")Remove this unused "fasz" local variable.(¥Øû¼þÿÿÿÿ
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ò»¦°øÿÿÿÿ
+H
+java:S1128"2Remove this unused import 'javax.imageio.ImageIO'.(‘çÔû
+K
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ
