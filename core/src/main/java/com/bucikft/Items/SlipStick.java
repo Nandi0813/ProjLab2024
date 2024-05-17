@@ -17,7 +17,7 @@ public class SlipStick extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public SlipStick(String ID, final boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.SlipStick);
         this.falseItem = isFalseItem;
     }
 

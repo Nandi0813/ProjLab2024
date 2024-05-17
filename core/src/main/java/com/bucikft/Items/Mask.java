@@ -2,6 +2,7 @@ package com.bucikft.Items;
 
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
+import com.bucikft.Controllers.TileType;
 
 /**
  * Represents a Mask item, which can be equipped and used to defend a Student from poison gas.
@@ -14,7 +15,7 @@ public class Mask extends Item {
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public Mask(String ID, final boolean isFalseItem) {
-        super(ID, isFalseItem);
+        super(ID, isFalseItem, TileType.Mask);
         this.falseItem = isFalseItem;
     }
 

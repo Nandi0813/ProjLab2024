@@ -2,6 +2,7 @@ package com.bucikft.Views;
 
 import com.bucikft.Game;
 import com.bucikft.Views.GameView;
+import com.bucikft.Controllers.Controller;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class MenuView extends JFrame {
         setTitle("A Logarléc");
         setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        controller = new Controller();
 
 
         // Háttérkép beolvasása
@@ -53,8 +55,9 @@ public class MenuView extends JFrame {
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameView fasz = new GameView();
+                controller.newGameStart(3,5);
 
+                GameView gw = new GameView(controller);
                 setVisible(false);
             }
         });

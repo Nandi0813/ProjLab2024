@@ -2,6 +2,7 @@ package com.bucikft.Person;
 
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Room;
+import com.bucikft.Controllers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public abstract class Person {
     protected int capacity; // Added to track the capacity of the inventory
     protected boolean godMode = false; // Added to track if the person is in god mode
     protected int stunned = 0; // Added to track the stun duration
+    protected TileType type;
 
     /**
      * Sets the god mode of the person.

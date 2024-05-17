@@ -54,18 +54,18 @@ public class Map {
             int y = room.getY();
             if (x == 1) {
                 if (y != 1) {
-                    generateDoor(room, findRoom(x+1,y), DoorLocation.RIGHT);
+                    GenerateUtil.generateDoor(room, findRoom(x+1,y), DoorLocation.RIGHT);
                 }
                 if (y != mapSize) {
-                    generateDoor(room, findRoom(x,y+1), DoorLocation.BOTTOM);
+                    GenerateUtil.generateDoor(room, findRoom(x,y+1), DoorLocation.BOTTOM);
                 }
             }
             if (y == 1) {
                 if (x != mapSize) {
-                    generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
+                    GenerateUtil.generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
                 }
                 if (x != 1) {
-                    generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
+                    GenerateUtil.generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
                 }
             }
             if (x > 1 && y > 1) {
@@ -73,12 +73,12 @@ public class Map {
 
                 if (x != mapSize) {
                     if (y == mapSize || doorChance != 0) {
-                        generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
+                        GenerateUtil.generateDoor(room, findRoom(x + 1,y), DoorLocation.RIGHT);
                     }
                 }
                 if (y != mapSize) {
                     if (x == mapSize || doorChance != 1) {
-                        generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
+                        GenerateUtil.generateDoor(room, findRoom(x,y + 1), DoorLocation.BOTTOM);
                     }
                 }
             }

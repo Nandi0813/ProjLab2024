@@ -5,6 +5,7 @@ import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
+import com.bucikft.Controllers.TileType;
 
 /**
  * Represents the DKC item, which fills a room with gas when used by a Student.

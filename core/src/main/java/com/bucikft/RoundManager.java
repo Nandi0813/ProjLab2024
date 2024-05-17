@@ -140,8 +140,8 @@ public class RoundManager {
             student.setMovesLeft(1);
             student.setUsesLeft(1);
         }
-        while (game.isStarted()) {
-            try {
+        //while (game.isStarted()) {
+            /*try {
                 if (!game.getDebugMode()) ui.printGameState();
                 ui.readCommands();
             } catch (IllegalArgumentException e) {

@@ -1,6 +1,7 @@
 package com.bucikft.Items.Interface;
 
 import com.bucikft.Person.Student;
+import com.bucikft.Controllers.TileType;
 
 /**
  * Represents an abstract Item.
@@ -10,6 +11,7 @@ public abstract class Item {
     protected boolean falseItem; // Indicates whether the item is a false item or not.
     protected boolean broken; // Indicates whether the item is broken or not.
     protected String ID; // The unique identifier of the item.
+    protected TileType type;
 
     /**
      * The constructor of the Item class.
@@ -72,5 +74,7 @@ public abstract class Item {
     public String toString() {
         return this.ID;
     }
+
+    public TileType getType() {return type;}
 
 }
