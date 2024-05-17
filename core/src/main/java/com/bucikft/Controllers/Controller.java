@@ -1,12 +1,15 @@
 package com.bucikft.Controllers;
+import com.bucikft.Commands.Command;
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Items.Transistor;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
 import javafx.util.Pair;
+import com.bucikft.Commands.Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +25,8 @@ public class Controller {
         Room currentRoom = game.getFocusedPerson().getCurrentRoom();
         int maxCap = currentRoom.getItemCapacity() + currentRoom.getPersonCapacity();
         int roomSize = (int)Math.floor(Math.sqrt(maxCap)+3);
-        System.out.println("Roomsize: "+roomSize);
         Tile[][] tileList = new Tile[roomSize][roomSize];
         List<Pair<Integer,Integer>> usedTiles = new ArrayList<>();
-
-        System.out.println("list size: " + currentRoom.getDoorList().size());
 
         for (Door door : currentRoom.getDoorList()) {
             Pair<Integer, Integer> doorLoc = null;
@@ -129,6 +129,94 @@ public class Controller {
         return status;
     }
 
+    public void tileClicked(Tile tile) {
+        switch (tile.getType()) {
+            case Door:
+                try {
+                    if (!(game.getFocusedPerson() instanceof Student student)) {
+                        throw new IllegalStateException("The focused person is not a student.");
+                    }
 
+                    Room room = student.getCurrentRoom();
+                    Door door = (Door) tile.getRef();
+                    Room roomTo = (door.getRoomTo() == room ? door.getRoomFrom() : door.getRoomTo());
+                    if (roomTo == null) {
+                        throw new IllegalStateException("No room in that direction");
+                    }
+                    student.move(roomTo, false);
+                    System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid room ID.");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid direction.");
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case AirFreshener:
+            case DKC:
+            case EnergyDrink:
+            case Hammer:
+            case HolyCup:
+            case Mask:
+            case SlipStick:
+            case Transistor:
+            case TVSZ:
+            case WetRag:
+            case Zyn:
+                Person person = game.getFocusedPerson();
+                Item item = (Item)tile.getRef(); // pickup Name like pickup AirFreshener
+
+                if (item == null) {
+                    throw new IllegalStateException("Item not found.");
+                }
+
+                try {
+                    person.pickUp(item);
+                    if(item instanceof com.bucikft.Items.Transistor){
+                        ((Transistor) item).setPickedUp(true);
+                    }
+                    System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
+
+        }
+    }
+
+    public void setGodMode() {
+        game.getFocusedPerson().setGodMode(!game.getFocusedPerson().isGodMode());
+        System.out.println("godmode " + (game.getFocusedPerson().isGodMode()?"ON":"OFF"));
+    }
+
+    public void inventoryButtonClicked(int idx, boolean use) {
+        Person person = game.getFocusedPerson();
+        if (person instanceof Student student) {
+            Item item;
+            try {item = student.getInventory().get(idx);}
+            catch (IndexOutOfBoundsException e) {
+                System.out.printf("no item at that slot!");
+                return;
+            }
+            if (!use) {
+                try {
+                    student.drop(item);
+                    System.out.println("Item " + item + " dropped by student " + student + ".");
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+
+            }
+            else {
+                try {
+                    student.use(item);
+                } catch (IllegalStateException e ) {
+                    System.out.println(e.getMessage());
+                }
+                System.out.println("Item " + item + " used by Student#" + student.getName());
+            }
+        }
+    }
 
 }

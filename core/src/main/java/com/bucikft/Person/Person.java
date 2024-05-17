@@ -61,6 +61,7 @@ public abstract class Person {
         if (room == null) {
             throw new IllegalStateException("No room parameter.");
         }
+        if (movesLeft<=0&&!godMode) throw new IllegalStateException("No moves left.");
 
         // Test if the rooms are neighbors
         if (!room.isNeighbour(this.currentRoom)) {
@@ -80,7 +81,7 @@ public abstract class Person {
             if (!godMode && this.movesLeft <= 0) {
                 throw new IllegalStateException("The player has no more moves left.");
             } else {
-                movesLeft--;
+                if (!godMode) movesLeft--;
             }
         }
 

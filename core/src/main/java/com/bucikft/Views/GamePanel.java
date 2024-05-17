@@ -12,9 +12,11 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import com.bucikft.Controllers.Tile;
+import jdk.jshell.Snippet;
 
 public class GamePanel extends JPanel {
 
+    private StatusPanel statpanel;
     private Tile[][] tiles;
     private Controller controller;
     private int tileSize = 75;
@@ -22,8 +24,9 @@ public class GamePanel extends JPanel {
     private int dimension;
 
 
-    public GamePanel(Controller controller) {
+    public GamePanel(Controller controller, StatusPanel statpanel) {
         this.controller = controller;
+        this.statpanel = statpanel;
         setMinimumSize(new Dimension(tileSize*6,tileSize*6));
         setMaximumSize(new Dimension(tileSize*6, tileSize*6));
         redraw();
@@ -35,6 +38,12 @@ public class GamePanel extends JPanel {
                 int x = e.getX();
                 int y = e.getY();
                 System.out.println("Clicked in room at pixel coords: ("+ x + "," + y +")!");
+                int tileX = (int)Math.floor(e.getX()/tileSize);
+                int tileY = (int)Math.floor(e.getY()/tileSize);
+                System.out.println("Clicked on tile (" +tileX+"," +tileY + ")!");
+                controller.tileClicked(tiles[tileX][tileY]);
+                redraw();
+
 
             }
         });
@@ -46,6 +55,7 @@ public class GamePanel extends JPanel {
         System.out.println(dimension);
         gridSize = dimension*tileSize;
         this.repaint();
+        statpanel.redraw();
 
     }
 
@@ -64,7 +74,6 @@ public class GamePanel extends JPanel {
                             "resources" + File.separator +
                             "images" + File.separator +
                             tile.getType().name() + ".png";
-                    System.out.println(imagePath);
                     image = ImageIO.read(new File(imagePath));
                 } catch (IOException e) {
                     throw new RuntimeException(e);

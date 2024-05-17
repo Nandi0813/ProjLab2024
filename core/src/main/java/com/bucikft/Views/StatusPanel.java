@@ -24,8 +24,16 @@ public class StatusPanel extends JPanel {
             txt.setForeground(Color.WHITE);
             add(txt);
         }
-
-
+    }
+    public void redraw() {
+        List<String> lines = controller.getStatusStrings();
+        int i = 0;
+        for (Component comp : this.getComponents()) {
+            if (comp instanceof JLabel txt) {
+                txt.setText(lines.get(i++));
+            }
+        }
+        repaint();
     }
 
 }

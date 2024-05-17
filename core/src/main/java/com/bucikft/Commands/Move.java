@@ -13,10 +13,6 @@ public class Move implements Command {
      */
     @Override
     public void execute(Game game, String[] args) {
-        if (args.length != 2) {
-            throw new IllegalArgumentException("Invalid number of arguments.");
-        }
-
         try {
             if (!(game.getFocusedPerson() instanceof Student student)) {
                 throw new IllegalStateException("The focused person is not a student.");

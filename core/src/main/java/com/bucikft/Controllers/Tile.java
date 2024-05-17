@@ -11,4 +11,5 @@ public class Tile {
     public TileType getType() {
         return type;
     }
+    public Object getRef() {return ref;}
 }
