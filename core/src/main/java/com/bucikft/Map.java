@@ -14,6 +14,7 @@ import com.bucikft.Utils.IDmaker;
 import com.bucikft.Utils.PathFinder;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
@@ -22,7 +23,7 @@ import java.util.*;
 /**
  * Represents the game map.
  */
-public class Map {
+public class Map implements Serializable {
 
     private static final Random random = new Random();
 

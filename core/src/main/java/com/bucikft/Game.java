@@ -6,13 +6,14 @@ import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 import javafx.beans.Observable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents a game session.
  */
-public class Game {
+public class Game implements Serializable {
 
     private Map map; // Added to keep track of the map
     private final RoundManager roundManager; // Added to keep track of the round manager
@@ -23,8 +24,6 @@ public class Game {
     private final List<Cleaner> cleaners; // Added to keep track of cleaners
 
     private Person focusedPerson; // Added to keep track of the focused person
-
-    private final ConsoleUI UI; // Added to keep track of the UI
     private ArrayList<Observable> observers; // Added to keep track of the observers
 
     private boolean debug = false; // Added to keep track of the debug mode
@@ -40,7 +39,6 @@ public class Game {
         this.deadStudents = new ArrayList<>();
         this.professors = new ArrayList<>();
         this.cleaners = new ArrayList<>();
-        this.UI = new ConsoleUI(this);
     }
 
     /**
@@ -199,14 +197,6 @@ public class Game {
         return null;
     }
 
-    /**
-     * Retrieves the list of dead students in the game.
-     * @return The list of dead students.
-     */
-    public ConsoleUI getUI() {
-        return UI;
-    }
-
     public void startGame(int playerCount, int mapSize) {
         for (int i = 1; i <= playerCount; i++) {
             students.add(new Student(String.valueOf(i)));
@@ -226,8 +216,8 @@ public class Game {
                 + professors.size() + " professors, "
                 + cleaners.size() + " cleaners and "
                 + mapSize + " map size.");
-
-        roundManager.play();
+        focusedPerson = students.get(0);
     }
+
 
 }

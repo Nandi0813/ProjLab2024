@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Professor extends Person {
 
     private final List<Student> killedStudents; // List to keep track of killed students
-    private int killsLeft; // Counter to track the number of kills left in this round
+    private int killsLeft = 1; // Counter to track the number of kills left in this round
 
     /**
      * Constructor to initialize a Professor object.
@@ -66,7 +66,7 @@ public class Professor extends Person {
         }
 
         // Check if prof has moves left in his turn
-        if (this.movesLeft <= 0) throw new IllegalStateException("The professor has no more moves.");
+        if (this.killsLeft <= 0) throw new IllegalStateException("The professor has no more moves.");
 
         // Kill student
         student.setAlive(false);

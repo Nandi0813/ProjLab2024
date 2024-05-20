@@ -5,6 +5,8 @@ import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
 import com.bucikft.Menu;
 
+import java.io.Serializable;
+
 /**
  * Represents a student in the game.
  */

@@ -1,20 +1,24 @@
 package com.bucikft;
 
+import com.bucikft.Door.Door;
 import com.bucikft.Person.Cleaner;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Manages the rounds in the game.
  */
-public class RoundManager {
+public class RoundManager implements Serializable {
 
     private final Game game; // The game to manage rounds for
     private int currentRound = 0; // The current round number
     private int currentTurn = 0; // The current turn number
+    private Random random = new Random();
 
     /**
      * Initializes a new round manager for the specified game.
@@ -30,6 +34,16 @@ public class RoundManager {
      */
     public void nextRound() {
         currentRound++;
+
+        for (Room room : game.getMap().getRoomList()) {
+            if (room.isCursed()) {
+                Door door = room.getDoorList().get(random.nextInt(room.getDoorList().size()));
+                door.setDisappeared(3);
+                for (Door door1:room.getDoorList()) {
+                    if (door1.getDisappeared()>0) door1.setDisappeared(door1.getDisappeared()-1);
+                }
+            }
+        }
 
         for (Student student : game.getStudents()) {
             if (student.getCurrentRoom().isGassed()) {
@@ -54,7 +68,7 @@ public class RoundManager {
             }
 
             if (!game.getNoAi()) {
-                if (professor.getMovesLeft() > 0 && !Menu.getGame().getNoAi() && professor.getStunned() < 0) {
+                if (professor.getMovesLeft() > 0 && professor.getStunned() == 0) {
                     Room currentRoom = professor.getCurrentRoom();
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
 
@@ -62,8 +76,6 @@ public class RoundManager {
                     professor.setMovesLeft(professor.getMovesLeft() - 1);
 
                     for (Person p : roomTo.getPersonList()) {
-                        if (professor.getMovesLeft() == 0)
-                            break;
 
                         if (professor.getKillsLeft() == 0)
                             break;
@@ -127,28 +139,8 @@ public class RoundManager {
             nextRound();
         } else {
             game.setFocusedPerson(game.getStudents().get(currentTurn));
-        }
-    }
 
-    /**
-     * Starts the game.
-     */
-    public void play() {
-        ConsoleUI ui = game.getUI();
-        game.setFocusedPerson(game.getStudents().get(0));
-        for (Student student : game.getStudents()) {
-            student.setMovesLeft(1);
-            student.setUsesLeft(1);
         }
-        //while (game.isStarted()) {
-            /*try {
-                if (!game.getDebugMode()) ui.printGameState();
-                ui.readCommands();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }*/
-        //}
-        ui.printGameState();
     }
 
     /**

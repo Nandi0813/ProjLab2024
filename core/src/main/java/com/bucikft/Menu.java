@@ -11,7 +11,6 @@ public class Menu {
 
         while (!game.isStarted()) {
             try {
-                game.getUI().readCommands();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

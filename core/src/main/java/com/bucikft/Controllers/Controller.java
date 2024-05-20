@@ -11,6 +11,7 @@ import com.bucikft.Room;
 import javafx.util.Pair;
 import com.bucikft.Commands.Move;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -62,9 +63,8 @@ public class Controller {
                         }
                         break;
                     case Door:
-                        if (!currentRoom.getDoorList().contains((Door)tile.getRef())) {
-                            initial[x][y] = new Tile(TileType.Floor,null);
-                            unusedTiles.add(new Pair(x,y));
+                        if (!currentRoom.getDoorList().contains((Door)tile.getRef()) || ((Door)tile.getRef()).getDisappeared()>0) {
+                            initial[x][y] = new Tile(TileType.Wall,null);
                         } else {
                             drawnObjects.add(tile.getRef());
                         }
@@ -90,9 +90,29 @@ public class Controller {
         }
         for (Door door: currentRoom.getDoorList()) {
             if (!drawnObjects.contains(door)) {
+                if (door.getDisappeared()>0) continue;
                 drawnObjects.add(door);
-                Pair<Integer,Integer> randomTile = unusedTiles.get(random.nextInt(unusedTiles.size()));
-                initial[randomTile.getKey()][randomTile.getValue()] = new Tile(TileType.Door,door);
+                Pair<Integer, Integer> doorLoc = null;
+                DoorLocation loc = (door.getRoomFrom()==currentRoom)?door.getLocationFrom():door.getLocationTo();
+
+                switch (loc) {
+                    case TOP:
+                        doorLoc = new Pair<>(roomSize/2, 0);
+                        break;
+                    case RIGHT:
+                        doorLoc = new Pair<>(roomSize-1, roomSize/2);
+                        break;
+                    case BOTTOM:
+                        doorLoc = new Pair<>(roomSize/2, roomSize-1);
+                        break;
+                    case LEFT:
+                        doorLoc = new Pair<>(0, roomSize/2);
+                        break;
+                }
+
+                if (doorLoc != null) {
+                    initial[doorLoc.getKey()][doorLoc.getValue()] = new Tile(TileType.Door,door);
+                }
             }
         }
         return initial;
@@ -107,6 +127,7 @@ public class Controller {
         List<Pair<Integer,Integer>> usedTiles = new ArrayList<>();
 
         for (Door door : currentRoom.getDoorList()) {
+            if (door.getDisappeared()>0) continue;
             Pair<Integer, Integer> doorLoc = null;
             DoorLocation loc = (door.getRoomFrom()==currentRoom)?door.getLocationFrom():door.getLocationTo();
 
@@ -201,6 +222,7 @@ public class Controller {
         status.add("You are " + ((focusedPerson.getStunned()==0)?"not stunned":"stunnded for"+focusedPerson.getStunned()));
         status.add("\nMoves left: " + focusedPerson.getMovesLeft());
         status.add("\nUses left: " + focusedPerson.getUsesLeft());
+        status.add("\nThis room is " + (currentRoom.isCursed()?"cursed":"not cursed"));
         if (focusedPerson instanceof Student) {
             status.add("\nYou are " + (((Student) focusedPerson).isAlive()?"alive":"dead"));
         }
@@ -299,6 +321,31 @@ public class Controller {
                 }
                 System.out.println("Item " + item + " used by Student#" + student.getName());
             }
+        }
+    }
+
+    public void nextButtonPressed() {
+        game.getRoundManager().nextTurn();
+    }
+
+    public void saveGame(File file) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(game);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadGame(File file) {
+        game = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            game = (Game) in.readObject();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

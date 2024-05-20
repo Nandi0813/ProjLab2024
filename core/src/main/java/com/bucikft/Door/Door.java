@@ -2,10 +2,12 @@ package com.bucikft.Door;
 
 import com.bucikft.Room;
 
+import java.io.Serializable;
+
 /**
  * The Door class represents a door connecting two rooms.
  */
-public class Door {
+public class Door implements Serializable {
 
     protected Room roomFrom; // The room from which the door leads.
     protected Room roomTo; // The room to which the door leads.
@@ -13,6 +15,14 @@ public class Door {
     protected DoorLocation locationFrom; // The location of the door in the room.
     protected DoorLocation locationTo; // The location of the door in the room.
 
+    protected int disappeared = 0;
+
+    public void setDisappeared(int n) {
+        disappeared = n;
+    }
+    public int getDisappeared() {
+        return disappeared;
+    }
 
     public Door(Room roomFrom, Room roomTo, DoorLocation location) {
         this.roomFrom = roomFrom;

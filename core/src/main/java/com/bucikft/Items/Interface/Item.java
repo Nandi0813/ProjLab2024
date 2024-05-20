@@ -3,10 +3,12 @@ package com.bucikft.Items.Interface;
 import com.bucikft.Person.Student;
 import com.bucikft.Controllers.TileType;
 
+import java.io.Serializable;
+
 /**
  * Represents an abstract Item.
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
 
     protected boolean falseItem; // Indicates whether the item is a false item or not.
     protected boolean broken; // Indicates whether the item is broken or not.

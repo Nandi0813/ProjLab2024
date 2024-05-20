@@ -56,7 +56,6 @@ public class MenuView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.newGameStart(3,5);
-
                 GameView gw = new GameView(controller);
                 setVisible(false);
             }
@@ -65,7 +64,14 @@ public class MenuView extends JFrame {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Írd ide a játék betöltésével kapcsolatos kódot
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(MenuView.this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    controller.loadGame(selectedFile);
+                    GameView gw = new GameView(controller);
+                    setVisible(false);
+                }
             }
         });
 

@@ -8,6 +8,7 @@ import com.bucikft.Person.Person;
 import com.bucikft.Person.Professor;
 import com.bucikft.Person.Student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Random;
 /**
  * Represents a room in the game.
  */
-public class Room {
+public class Room implements Serializable {
 
     private static final Random random = new Random();
 
@@ -24,6 +25,9 @@ public class Room {
     private int itemCapacity = 5; // Added to track how many items can be in the room
 
     private boolean gassed; // Added to track if the room is gassed
+    private boolean cursed;
+
+
 
     // Attributes related to cleaning
     public static final int STICKY_AT = 6;
@@ -36,9 +40,6 @@ public class Room {
 
     private final String ID; // Added to track the ID of the room
 
-    private final boolean isCoursed; // Added to track if the room is coursed
-    
-    private int cursedTime = 2;
 
     private final int x;
     private final int y;
@@ -62,7 +63,7 @@ public class Room {
         this.ID = "Room#"+x+y;
         this.x = x;
         this.y = y;
-        this.isCoursed = random.nextInt(4) % 4 == 0;
+        this.cursed = random.nextInt(6) % 6 == 0;
     }
 
     public Room getRandomNeighbourRoom() {
@@ -124,6 +125,15 @@ public class Room {
         }
         return null;
     }
+
+    public boolean isCursed() {
+        return this.cursed;
+    }
+
+    public void setCursed(boolean cursed) {
+        this.cursed = cursed;
+    }
+
 
     /**
      * Checks if the room is gassed.

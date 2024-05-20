@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,26 @@ public class GameView extends JFrame {
 
         JToggleButton useDrop = new JToggleButton("Use");
 
+        useDrop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                useMode = !useMode;
+                if (useMode) {
+                    useDrop.setText("Drop");
+                } else {
+                    useDrop.setText("Use");
+                }
+            }
+        });
+
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.nextButtonPressed();
+                gamePanel.draw();
+            }
+        });
+
         godMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,6 +104,20 @@ public class GameView extends JFrame {
         taskbar.add(useDrop);
         taskbar.add(nextButton);
         taskbar.add(godMode);
+
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(GameView.this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    controller.saveGame(selectedFile);
+                }
+                // Show the file chooser dialog
+        }});
+        taskbar.add(saveButton);
 
         JPanel middle = new JPanel();
         middle.setLayout(new BoxLayout(middle, BoxLayout.X_AXIS));

@@ -5,13 +5,14 @@ import com.bucikft.Items.Interface.Item;
 import com.bucikft.Room;
 import com.bucikft.Controllers.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents an abstract Person in the game.
  */
-public abstract class Person {
+public abstract class Person implements Serializable {
 
     protected String name; // Added to track the name of the person
     protected int movesLeft; // Added so we can track moves and uses separately
@@ -61,7 +62,7 @@ public abstract class Person {
         if (room == null) {
             throw new IllegalStateException("No room parameter.");
         }
-        if (movesLeft<=0&&!godMode) throw new IllegalStateException("No moves left.");
+        if ((movesLeft<=0&&!godMode)&&!force) throw new IllegalStateException("No moves left.");
 
         // Test if the rooms are neighbors
         if (!room.isNeighbour(this.currentRoom)) {
