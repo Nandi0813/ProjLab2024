@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class Controller {
 
-    private Game game;
+    private static Game game;
     private static final Random random = new Random();
 
     public Tile[][] getTileList(Tile[][] initial) {
@@ -349,4 +349,8 @@ public class Controller {
         }
     }
 
+
+    public static Game getGame() {
+        return game;
+    }
 }

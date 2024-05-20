@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Items.Transistor;
@@ -116,9 +117,9 @@ public class Student extends Person {
         this.alive = alive;
 
         if (alive)
-            Menu.getGame().getDeadStudents().remove(this);
+            Controller.getGame().getDeadStudents().remove(this);
         else
-            Menu.getGame().getDeadStudents().add(this);
+            Controller.getGame().getDeadStudents().add(this);
     }
 
     /**

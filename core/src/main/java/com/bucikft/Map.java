@@ -123,11 +123,14 @@ public class Map implements Serializable {
         // Put the professors in random rooms where aren't any students
         for (Professor professor : professors) {
             Room randomRoom;
-
-            do {
+            if (students.size() + professors.size() + cleaners.size() >= mapSize*mapSize){
                 randomRoom = roomList.get(random.nextInt(roomList.size()));
-            } while (randomRoom.isMaxPersonCapacity() || randomRoom.containsStudent());
+            } else {
 
+                do {
+                    randomRoom = roomList.get(random.nextInt(roomList.size()));
+                } while (randomRoom.isMaxPersonCapacity() || randomRoom.containsStudent());
+            }
             randomRoom.getPersonList().add(professor);
             professor.setCurrentRoom(randomRoom);
         }
@@ -135,11 +138,14 @@ public class Map implements Serializable {
         // Put the cleaners in random rooms where aren't any students or professors
         for (Cleaner cleaner : cleaners) {
             Room randomRoom;
-
+            if (students.size() + professors.size() + cleaners.size() >= mapSize*mapSize){
+                randomRoom = roomList.get(random.nextInt(roomList.size()));
+            } else {
             do {
                 randomRoom = roomList.get(random.nextInt(roomList.size()));
             } while (randomRoom.isMaxPersonCapacity() || randomRoom.containsStudent() || randomRoom.containsProfessor());
 
+            }
             randomRoom.getPersonList().add(cleaner);
             cleaner.setCurrentRoom(randomRoom);
         }
