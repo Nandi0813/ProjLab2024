@@ -1,9 +1,9 @@
 package com.bucikft.Views;
 
+import com.bucikft.Controllers.ActionType;
 import com.bucikft.Controllers.Controller;
 import javax.imageio.ImageIO;
 import java.io.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
         this.statpanel = statpanel;
         setMinimumSize(new Dimension(tileSize*6,tileSize*6));
         setMaximumSize(new Dimension(tileSize*6, tileSize*6));
-        redraw();
+        draw();
         setBackground(Color.BLACK);
 
         this.addMouseListener(new MouseAdapter() {
@@ -41,18 +41,26 @@ public class GamePanel extends JPanel {
                 int tileX = (int)Math.floor(e.getX()/tileSize);
                 int tileY = (int)Math.floor(e.getY()/tileSize);
                 System.out.println("Clicked on tile (" +tileX+"," +tileY + ")!");
-                controller.tileClicked(tiles[tileX][tileY]);
-                redraw();
+                if (controller.tileClicked(tiles[tileX][tileY])== ActionType.Move) draw();
+                else redraw();
+
 
 
             }
         });
     }
-
+    public void draw() {
+        tiles = controller.initializeTileList();
+        dimension=tiles.length;
+        gridSize=dimension*tileSize;
+        this.repaint();
+        statpanel.redraw();
+    }
     public void redraw() {
-        tiles = controller.getTileList();
+        tiles = controller.getTileList(tiles);
         dimension = tiles.length;
-        System.out.println(dimension);
+        //System.out.println(dimension);
+        System.out.println("redrawn");
         gridSize = dimension*tileSize;
         this.repaint();
         statpanel.redraw();

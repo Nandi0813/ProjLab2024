@@ -20,12 +20,90 @@ public class Controller {
     private Game game;
     private static final Random random = new Random();
 
+    public Tile[][] getTileList(Tile[][] initial) {
+        Room currentRoom = game.getFocusedPerson().getCurrentRoom();
+        int roomSize = initial.length;
+        List<Pair<Integer,Integer>> unusedTiles= new ArrayList<>();
+        List<Object> drawnObjects = new ArrayList<>();
+        for (int x=0;x<roomSize;x++) {
+            for (int y=0;y<roomSize;y++) {
+                Tile tile = initial[x][y];
+                switch (tile.getType()) {
+                    case Floor:
+                        unusedTiles.add(new Pair(x, y));
+                        break;
+                    case Student:
+                    case Professor:
+                    case Cleaner:
+                        if (!currentRoom.getPersonList().contains((Person)tile.getRef())) {
+                            initial[x][y] = new Tile(TileType.Floor,null);
+                            unusedTiles.add(new Pair(x,y));
+                        } else {
+                            drawnObjects.add(tile.getRef());
+                        }
+                        break;
+                    case AirFreshener:
+                    case DKC:
+                    case EnergyDrink:
+                    case Hammer:
+                    case HolyCup:
+                    case Mask:
+                    case SlipStick:
+                    case Transistor:
+                    case TVSZ:
+                    case WetRag:
+                    case Zyn:
+                        if (!currentRoom.getItemList().contains((Item)tile.getRef())) {
+                            initial[x][y] = new Tile(TileType.Floor,null);
+                            unusedTiles.add(new Pair(x,y));
+                        }
+                        else {
+                            drawnObjects.add(tile.getRef());
+                        }
+                        break;
+                    case Door:
+                        if (!currentRoom.getDoorList().contains((Door)tile.getRef())) {
+                            initial[x][y] = new Tile(TileType.Floor,null);
+                            unusedTiles.add(new Pair(x,y));
+                        } else {
+                            drawnObjects.add(tile.getRef());
+                        }
+                        break;
+                }
+
+            }
+        }
+
+        for (Person person : currentRoom.getPersonList()) {
+            if (!drawnObjects.contains(person)) {
+                drawnObjects.add(person);
+                Pair<Integer,Integer> randomTile = unusedTiles.get(random.nextInt(unusedTiles.size()));
+                initial[randomTile.getKey()][randomTile.getValue()] = new Tile(person.getType(),person);
+            }
+        }
+        for (Item item:currentRoom.getItemList()) {
+            if (!drawnObjects.contains(item)) {
+                drawnObjects.add(item);
+                Pair<Integer,Integer> randomTile = unusedTiles.get(random.nextInt(unusedTiles.size()));
+                initial[randomTile.getKey()][randomTile.getValue()] = new Tile(item.getType(),item);
+            }
+        }
+        for (Door door: currentRoom.getDoorList()) {
+            if (!drawnObjects.contains(door)) {
+                drawnObjects.add(door);
+                Pair<Integer,Integer> randomTile = unusedTiles.get(random.nextInt(unusedTiles.size()));
+                initial[randomTile.getKey()][randomTile.getValue()] = new Tile(TileType.Door,door);
+            }
+        }
+        return initial;
+    }
     // converts current room to list of tiles
-    public Tile[][] getTileList() {
+    public Tile[][] initializeTileList() {
         Room currentRoom = game.getFocusedPerson().getCurrentRoom();
         int maxCap = currentRoom.getItemCapacity() + currentRoom.getPersonCapacity();
         int roomSize = (int)Math.floor(Math.sqrt(maxCap)+3);
         Tile[][] tileList = new Tile[roomSize][roomSize];
+
         List<Pair<Integer,Integer>> usedTiles = new ArrayList<>();
 
         for (Door door : currentRoom.getDoorList()) {
@@ -129,7 +207,8 @@ public class Controller {
         return status;
     }
 
-    public void tileClicked(Tile tile) {
+    public ActionType tileClicked(Tile tile) {
+        System.out.println("Clicked tile: " + tile.getType() + " " + tile.getRef());
         switch (tile.getType()) {
             case Door:
                 try {
@@ -152,7 +231,7 @@ public class Controller {
                 } catch (IllegalStateException e) {
                     System.out.println(e.getMessage());
                 }
-                break;
+                return ActionType.Move;
             case AirFreshener:
             case DKC:
             case EnergyDrink:
@@ -177,12 +256,16 @@ public class Controller {
                         ((Transistor) item).setPickedUp(true);
                     }
                     System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
+                    return ActionType.PickUp;
                 } catch (IllegalStateException e) {
                     System.out.println(e.getMessage());
                 }
                 break;
 
+
+
         }
+        return ActionType.None;
     }
 
     public void setGodMode() {
