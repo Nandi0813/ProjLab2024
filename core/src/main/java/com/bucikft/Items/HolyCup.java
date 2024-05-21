@@ -1,5 +1,6 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
@@ -39,7 +40,7 @@ public class HolyCup extends Item {
         }
         path += "Exit";
         this.setBroken(true);
-        throw new IllegalStateException("The shortest path to the SlipStick is: " + path);
+        Controller.showDialog(path, "HolyCup path to Exit");
     }
 
 }

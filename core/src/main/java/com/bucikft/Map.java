@@ -191,6 +191,12 @@ public class Map implements Serializable {
      * @param room The room to split.
      */
     public void split(Room room) {
+
+        for (Door door : room.getDoorList()) {
+            if (door instanceof Exit) {
+                throw new IllegalStateException("this room cannot be split, it contains an exit");
+            }
+        }
         Room newRoom = new Room(room.getX()+20, room.getY()+20);
         roomList.add(newRoom);
         newRoom.setGassed(room.isGassed());

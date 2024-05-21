@@ -13,8 +13,6 @@ public class TVSZ extends Item {
 
     private int health; // The health points of the TVSZ item.
 
-    private boolean tvszUsed = false; // Indicates whether the TVSZ item has been used.
-
     /**
      * The constructor of the TVSZ class.
      *
@@ -43,7 +41,6 @@ public class TVSZ extends Item {
 
         // Decrease health and break the item if health reaches zero
         health--;
-        tvszUsed = true;
 
         if (health < 0) {
             setBroken(true);
@@ -56,9 +53,7 @@ public class TVSZ extends Item {
      */
     @Override
     public String toString() {
-        System.out.println(tvszUsed ? "The TVSZ has been used once." : "");
-        tvszUsed = false;
-        return "TVSZ#" + ID + " remaining uses: " + health + ".";
+        return ID;
     }
 
 }

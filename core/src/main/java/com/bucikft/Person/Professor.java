@@ -49,7 +49,7 @@ public class Professor extends Person {
      */
     public void killStudent(Student student) throws IllegalStateException {
         // Check if student is in the same room
-        if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("Student and professor are not in the same room.");
+        if (!this.getCurrentRoom().equals(student.getCurrentRoom())) return;
 
         // Check if student is alive
         if (!student.isAlive()) return;
@@ -57,11 +57,12 @@ public class Professor extends Person {
         // Check if student is protected
         if (!student.isKillable()) {
             student.setProtected(false);
-            throw new IllegalStateException("The student is protected");
+            OutputHandler.addOutputMessage("Student# " + student.getName() + " protected from attack");
+            return;
         }
 
         // Check if prof has moves left in his turn
-        if (this.killsLeft <= 0) throw new IllegalStateException("The professor has no more moves.");
+        if (this.killsLeft <= 0) return;
 
         // Kill student
         student.setAlive(false);

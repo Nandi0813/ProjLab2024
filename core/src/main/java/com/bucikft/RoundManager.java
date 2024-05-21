@@ -48,7 +48,7 @@ public class RoundManager implements Serializable {
         for (Student student : game.getStudents()) {
             if (student.getCurrentRoom().isGassed()) {
                 if (!student.isMasked()) {
-                    student.stun(3);
+                    student.stun(1);
                 } else {
                     //System.out.println("Student " + student + " got saved by his mask.");
                     student.setMasked(false);
@@ -65,7 +65,7 @@ public class RoundManager implements Serializable {
 
         for (Professor professor : game.getProfessors()) {
             if (professor.getCurrentRoom().isGassed()) {
-                professor.stun(3);
+                professor.stun(1);
                 continue;
             } else if (professor.getStunned() > 0){
                 professor.stun(professor.getStunned() - 1);
@@ -109,7 +109,8 @@ public class RoundManager implements Serializable {
                 cleaner.setMovesLeft(cleaner.getMovesLeft() - 1);
 
                 for (Person p : new ArrayList<>(roomTo.getPersonList())) {
-                    if (p.canMove()) {
+
+                    if (p.canMove() && !(p instanceof Cleaner)) {
                         Room randomRoom = roomTo.getRandomNeighbourRoom();
                         p.move(randomRoom, true);
                         //System.out.printf("\nPerson#%s moved to room: %s by cleaner\n", p.getName(), randomRoom.getID());
@@ -130,8 +131,10 @@ public class RoundManager implements Serializable {
             cleaner.setMovesLeft(1);
             cleaner.setUsesLeft(1);
         }
+
         currentTurn = 0;
         game.setFocusedPerson(game.getStudents().get(0));
+
     }
 
     /**

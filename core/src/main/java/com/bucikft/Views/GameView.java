@@ -80,6 +80,7 @@ public class GameView extends JFrame {
             try {
                 controller.nextButtonPressed();
                 gamePanel.draw();
+                redraw();
             } catch (Exception err) {
                 JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }

@@ -312,7 +312,7 @@ public class Controller {
                     throw new IllegalStateException("Item not found.");
                 }
                 person.pickUp(item);
-                OutputHandler.addOutputMessage(item + "picked up by Student#" + person.getName());
+                OutputHandler.addOutputMessage(item + " picked up by Student#" + person.getName());
                 if (item instanceof com.bucikft.Items.Transistor) {
                     ((Transistor) item).setPickedUp(true);
                 }
