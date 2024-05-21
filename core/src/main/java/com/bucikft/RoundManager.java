@@ -88,7 +88,7 @@ public class RoundManager implements Serializable {
                     Room currentRoom = professor.getCurrentRoom();
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
                     if(random.nextInt(4) % 4 == 0) {
-                        ((BossProfessor) professor).mergeRoom(game.getMap(), roomTo);
+                        ((BossProfessor) professor).mergeRoom(game.getMap());
                     }
 
                 }
