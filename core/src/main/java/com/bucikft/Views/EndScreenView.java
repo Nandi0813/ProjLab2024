@@ -19,12 +19,12 @@ public class EndScreenView extends JFrame {
                 "main" + File.separator +
                 "resources" + File.separator +
                 "images" + File.separator +
-                 "endscreen.png";
-        // Kép beolvasása
+                "endscreen.png";
+
         ImageIcon imageIcon = new ImageIcon(imagePath);
         image = imageIcon.getImage();
 
-        // Kép és szöveg megjelenítése
+
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -37,8 +37,15 @@ public class EndScreenView extends JFrame {
                 String text = "You won!";
                 FontMetrics fm = g.getFontMetrics();
                 int x = (getWidth() - fm.stringWidth(text)) / 2;
-                int y = fm.getAscent(); // A szöveg magasságának megfelelő függőleges elhelyezés
+                int y = fm.getAscent();
                 g.drawString(text, x, y);
+
+                String creators = "Készítők: Dukát Nándor, Benedek Olivér, Kurtos András, Gaszner Ádám, Zalaváry Dániel";
+                g.setFont(new Font("Arial", Font.PLAIN, 20));
+                fm = g.getFontMetrics();
+                x = (getWidth() - fm.stringWidth(creators)) / 2;
+                y = getHeight() - fm.getHeight();
+                g.drawString(creators, x, y);
             }
         };
 

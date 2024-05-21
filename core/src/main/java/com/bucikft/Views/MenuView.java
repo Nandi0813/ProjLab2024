@@ -14,9 +14,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MenuView extends JFrame {
-
-    BufferedImage background;
-    Controller controller;
+    private Controller controller;
+    private static GameView gameView;
 
     public MenuView() {
         setTitle("A Logarléc");
@@ -24,13 +23,8 @@ public class MenuView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         controller = new Controller();
 
-
-        // Háttérkép beolvasása
-
-
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(500, 500));
-
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -65,13 +59,11 @@ public class MenuView extends JFrame {
 
         JButton newGameButton = new JButton("New Game");
         JButton loadButton = new JButton("Load Game");
-        JButton creditsButton = new JButton("Credits");
         JButton exitButton = new JButton("Exit");
 
         sizePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        creditsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         sizeField.setMaximumSize(new Dimension(60, 30));
         playerField.setMaximumSize(new Dimension(60, 30));
@@ -83,15 +75,8 @@ public class MenuView extends JFrame {
                 int selectedPlayers = (Integer) playerField.getSelectedItem();
                 controller.newGameStart(selectedPlayers,selectedSize);
 
-                GameView gw = new GameView(controller);
+                gameView = new GameView(controller);
                 setVisible(false);
-            }
-        });
-
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Írd ide a játék betöltésével kapcsolatos kódot
             }
         });
 
@@ -118,13 +103,6 @@ public class MenuView extends JFrame {
             }
         });
 
-        creditsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Írd ide a kreditek megjelenítésével kapcsolatos kódot
-            }
-        });
-
 
         panel.add(Box.createVerticalStrut(50)); // Üres hely az első gomb felett
         panel.add(sizePanel);
@@ -132,8 +110,6 @@ public class MenuView extends JFrame {
         panel.add(newGameButton);
         panel.add(Box.createVerticalStrut(10)); // Üres hely az első és második gomb között
         panel.add(loadButton);
-        panel.add(Box.createVerticalStrut(10)); // Üres hely a második és harmadik gomb között
-        panel.add(creditsButton);
         panel.add(Box.createVerticalStrut(10)); // Üres hely a harmadik és negyedik gomb között
         panel.add(exitButton);
 
@@ -142,6 +118,10 @@ public class MenuView extends JFrame {
 
         setVisible(true);
 
+    }
+
+    public static GameView getGameView() {
+        return gameView;
     }
 
 

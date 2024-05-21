@@ -11,8 +11,8 @@ import com.bucikft.Person.Student;
 import com.bucikft.Room;
 import com.bucikft.Views.EndScreenView;
 import com.bucikft.Views.GameView;
+import com.bucikft.Views.MenuView;
 import javafx.util.Pair;
-import com.bucikft.Commands.Move;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -255,8 +255,11 @@ public class Controller {
                         }
                         if (slipstick){
                             EndScreenView endScreenView = new EndScreenView();
+                            MenuView.getGameView().setVisible(false);
                         }
-                        throw new IllegalStateException("you don't have a slipstick, you can't leave the room.");
+                        else{
+                            throw new IllegalStateException("you don't have a slipstick, you can't leave the room.");
+                        }
                     }
                     student.move(roomTo, false);
                     System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");

@@ -1,4 +1,7 @@
-item felvétel dolgot még át kell gondolni valami alapján, szerintem az lenne a legjobb ha lennének X, Y koordináták
-szobán belül is és ott ahogy bele kattint az alapjan keres egy searchItem(int x, int y) fv.
-szoba osszevonas egy professzor által
-cursed szoba
+- boss megjaviasa (kesz)
+- merge (kesz)
+- sikeres akciók utani / ai utani kiirasok
+- kód atnezese szépítése
+- jatszhatóvá tétel
+- kiszedni amik bentmaradtak
+- holycup
