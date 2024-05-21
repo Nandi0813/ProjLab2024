@@ -5,6 +5,8 @@ IF EXIST bin (
 )
 mkdir bin
 
+xcopy src\main\resources bin /s /e /y
+
 SET "sources=src\main\java\com\bucikft\Controllers\*.java src\main\java\com\bucikft\Door\*.java src\main\java\com\bucikft\Items\*.java src\main\java\com\bucikft\Person\*.java src\main\java\com\bucikft\*.java src\main\java\com\bucikft\Items\Interface\*.java src\main\java\com\bucikft\Views\*.java src\main\java\com\bucikft\Utils\*.java"
 
 javac -encoding UTF-8 -d bin %sources%

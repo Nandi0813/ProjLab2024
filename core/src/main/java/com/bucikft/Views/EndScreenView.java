@@ -23,7 +23,6 @@ public class EndScreenView extends JFrame {
         this.lost = lost;
 
         String imagePath = System.getProperty("user.dir") + File.separator +
-                "core" + File.separator +
                 "src" + File.separator +
                 "main" + File.separator +
                 "resources" + File.separator +

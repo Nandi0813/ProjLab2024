@@ -12,7 +12,6 @@ public class InventoryButton extends JButton {
     private Image texture;
     private Controller controller;
     private final String imagePath = System.getProperty("user.dir") + File.separator +
-            "core" + File.separator +
             "src" + File.separator +
             "main" + File.separator +
             "resources" + File.separator +

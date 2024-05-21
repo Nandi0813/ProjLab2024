@@ -97,10 +97,9 @@ public class GamePanel extends JPanel {
         for (int x = 0; x<dimension; x++) {
             for (int y = 0; y<dimension; y++) {
                 Tile tile = tiles[x][y];
-                BufferedImage image;
+                BufferedImage image = null;
                 try {
                     String imagePath = System.getProperty("user.dir") + File.separator +
-                            "core" + File.separator +
                             "src" + File.separator +
                             "main" + File.separator +
                             "resources" + File.separator +
@@ -108,13 +107,11 @@ public class GamePanel extends JPanel {
                             tile.getType().name() + ".png";
                     image = ImageIO.read(new File(imagePath));
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e.getMessage());
                 }
 
                 g.drawImage(image, x*tileSize, y*tileSize, (x+1)*tileSize, (y+1)*tileSize,0,0, image.getWidth(), image.getHeight(), this);
             }
         }
     }
-
-
 }
