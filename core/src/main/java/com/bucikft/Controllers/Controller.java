@@ -229,10 +229,6 @@ public class Controller {
         if (focusedPerson instanceof Student) {
             status.add("\nYou are " + (((Student) focusedPerson).isAlive()?"alive":"dead"));
         }
-        status.add("\nItems in your intventory:");
-        for(Item item : focusedPerson.getInventory()) {
-            status.add("\n" + item);
-        }
         return status;
     }
 

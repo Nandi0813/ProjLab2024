@@ -108,7 +108,7 @@ public class MenuView extends JFrame {
                 int result = fileChooser.showOpenDialog(MenuView.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    controller.loadGame(selectedFile);
+                    try { controller.loadGame(selectedFile);
                     GameView gw = new GameView(controller);
                     setVisible(false);
                 }

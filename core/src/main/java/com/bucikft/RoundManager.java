@@ -1,10 +1,7 @@
 package com.bucikft;
 
 import com.bucikft.Door.Door;
-import com.bucikft.Person.Cleaner;
-import com.bucikft.Person.Person;
-import com.bucikft.Person.Professor;
-import com.bucikft.Person.Student;
+import com.bucikft.Person.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -72,6 +69,8 @@ public class RoundManager implements Serializable {
                     Room currentRoom = professor.getCurrentRoom();
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
 
+                    if(roomTo == null) continue;
+
                     professor.move(roomTo, false);
                     professor.setMovesLeft(professor.getMovesLeft() - 1);
 
@@ -88,6 +87,14 @@ public class RoundManager implements Serializable {
                             }
                         }
                     }
+                }
+                if(professor instanceof BossProfessor){
+                    Room currentRoom = professor.getCurrentRoom();
+                    Room roomTo = currentRoom.getRandomNeighbourRoom();
+                    if(random.nextInt(4) % 4 == 0) {
+                        ((BossProfessor) professor).mergeRoom(game.getMap(), roomTo);
+                    }
+
                 }
             }
         }

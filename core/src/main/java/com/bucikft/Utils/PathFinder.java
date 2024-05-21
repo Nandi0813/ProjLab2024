@@ -110,4 +110,35 @@ public class PathFinder
         return null; // No exit found
     }
 
+    public static Room findShortestRoomToStudent(Room room){
+        Queue<Room> queue = new LinkedList<>();
+        Set<Room> visited = new HashSet<>();
+        queue.add(room);
+        visited.add(room);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Room currentRoom = queue.poll();
+                for (Door door : currentRoom.getDoorList()) {
+                    Room nextRoom;
+                    if (door.getRoomTo() == currentRoom){
+                        nextRoom = door.getRoomFrom();
+                    }
+                    else{
+                        nextRoom = door.getRoomTo();
+                    }
+                    if (!visited.contains(nextRoom)) {
+                        if (nextRoom.containsStudent()) {
+                            return nextRoom;
+                        }
+                        queue.add(nextRoom);
+                        visited.add(nextRoom);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 }

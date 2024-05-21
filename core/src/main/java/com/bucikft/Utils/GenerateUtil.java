@@ -96,6 +96,7 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
+                result = null;
             }
 
             room = map.findRoom(mapSize, i);
@@ -103,6 +104,7 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
+                result = null;
             }
 
             room = map.findRoom(i, mapSize);
@@ -110,13 +112,13 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
+                result = null;
             }
         }
 
         if (furthestRoom != null){
             Exit exit = new Exit(furthestRoom, null, furthestRoom.emptyDoor());
             furthestRoom.getDoorList().add(exit);
-            System.out.println("Exit is at " + furthestRoom);
         }
     }
 

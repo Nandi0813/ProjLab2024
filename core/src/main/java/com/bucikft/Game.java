@@ -1,9 +1,6 @@
 package com.bucikft;
 
-import com.bucikft.Person.Cleaner;
-import com.bucikft.Person.Person;
-import com.bucikft.Person.Professor;
-import com.bucikft.Person.Student;
+import com.bucikft.Person.*;
 import javafx.beans.Observable;
 
 import java.io.Serializable;
@@ -202,7 +199,12 @@ public class Game implements Serializable {
             students.add(new Student(String.valueOf(i)));
         }
         for (int i = 1; i <= (playerCount / 2 + 1); i++) {
-            professors.add(new Professor(String.valueOf(i)));
+            if(i == 1){
+                professors.add(new BossProfessor(String.valueOf(i)));
+            }
+            else{
+                professors.add(new Professor(String.valueOf(i)));
+            }
         }
         for (int i = 1; i <= (playerCount / 3 + 1); i++) {
             cleaners.add(new Cleaner(String.valueOf(i)));
