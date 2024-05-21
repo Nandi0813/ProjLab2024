@@ -2,6 +2,7 @@ package com.bucikft.Person;
 
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
+import com.bucikft.Door.Exit;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Map;
 import com.bucikft.Room;
@@ -20,13 +21,24 @@ public class BossProfessor extends Professor{
         super(name);
     }
     
-    public void mergeRoom(Map map, Room room){
+    public void mergeRoom(Map map){
         for(Door d : this.currentRoom.getDoorList()){
-            if(d.getRoomTo() == this.currentRoom && room == d.getRoomFrom()){
-                map.mergeRooms(this.currentRoom, room);
+            if(d instanceof Exit){
+                continue;
             }
-            else if(d.getRoomFrom() == this.currentRoom && room == d.getRoomTo()){
-                map.mergeRooms(this.currentRoom, room);
+            if(d.getRoomTo() == this.currentRoom){
+                for(Person p : d.getRoomFrom().getPersonList()){
+                    if(p instanceof Student){
+                        map.mergeRooms(this.currentRoom, d.getRoomFrom());
+                    }
+                }
+            }
+            else if(d.getRoomFrom() == this.currentRoom){
+                for(Person p : d.getRoomTo().getPersonList()){
+                    if(p instanceof Student){
+                        map.mergeRooms(this.currentRoom, d.getRoomTo());
+                    }
+                }
             }
         }
 
