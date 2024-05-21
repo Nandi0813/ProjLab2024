@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.bucikft.Controllers.Controller;
+import com.bucikft.Controllers.OutputHandler;
 
 import java.awt.*;
 import java.util.List;
@@ -32,6 +33,12 @@ public class StatusPanel extends JPanel {
             txt.setForeground(Color.WHITE);
             add(txt);
         }
+        for (int i=0;i<6;i++) {
+            JLabel txt = new JLabel(" ");
+            txt.setFont(new Font("Arial", Font.PLAIN, 15));
+            txt.setForeground(Color.RED);
+            add(txt);
+        }
     }
 
     /**
@@ -39,10 +46,21 @@ public class StatusPanel extends JPanel {
      */
     public void redraw() {
         List<String> lines = controller.getStatusStrings();
+        List<String> output = OutputHandler.getOutputMessages();
         int i = 0;
-        for (Component comp : this.getComponents()) {
-            if (comp instanceof JLabel txt) {
-                txt.setText(lines.get(i++));
+        for (String line: lines) {
+            if (this.getComponents()[i++] instanceof JLabel txt) {
+                txt.setText(line);
+            }
+        }
+        for (int j=0;j<6-output.size();j++) {
+            if (this.getComponents()[i++] instanceof JLabel txt) {
+                txt.setText(" ");
+            }
+        }
+        for (String line : output) {
+            if (this.getComponents()[i++] instanceof JLabel txt) {
+                txt.setText(line);
             }
         }
         repaint();

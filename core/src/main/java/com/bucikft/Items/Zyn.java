@@ -38,7 +38,7 @@ public class Zyn extends Item {
         }
 
         if (deadStudents.isEmpty()) {
-            throw new IllegalStateException("There is no dead student in the room.");
+            throw new IllegalStateException("There are no dead students in the room.");
         }
 
         // Revive the dead students in the room

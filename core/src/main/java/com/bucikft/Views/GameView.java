@@ -23,7 +23,8 @@ public class GameView extends JFrame {
 
     private final Controller controller;
     private boolean useMode = false;
-    private final GamePanel gamePanel;
+    private static GamePanel gamePanel;
+    private StatusPanel statusPanel;
 
     /**
      * The Inv buttons.
@@ -38,10 +39,10 @@ public class GameView extends JFrame {
      */
     public GameView(Controller controller) {
         this.controller = controller;
-        StatusPanel statusPanel = new StatusPanel(controller);
+        statusPanel = new StatusPanel(controller);
         gamePanel = new GamePanel(controller, statusPanel, this);
         setTitle("Game");
-        setSize(700, 520);
+        setSize(800, 550);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -60,8 +61,10 @@ public class GameView extends JFrame {
             invButtons.add(invButton);
         }
 
+
         JButton nextButton = new JButton("Next");
         JToggleButton godMode = new JToggleButton("GodMode");
+
         JToggleButton useDrop = new JToggleButton("Use");
 
         useDrop.addActionListener(e -> {
@@ -83,7 +86,12 @@ public class GameView extends JFrame {
 
         });
 
-        godMode.addActionListener(e -> controller.setGodMode());
+        godMode.addActionListener(e-> {
+            {
+                controller.setGodMode();
+                statusPanel.redraw();
+            }
+        });
 
 
 
@@ -153,5 +161,9 @@ public class GameView extends JFrame {
             InventoryButton b = invButtons.get(i);
             b.changeTexture(textures.get(i));
         }
+    }
+
+    public static void showDialog(String msg, String title) {
+        JOptionPane.showMessageDialog(gamePanel, msg,title,JOptionPane.PLAIN_MESSAGE);
     }
 }

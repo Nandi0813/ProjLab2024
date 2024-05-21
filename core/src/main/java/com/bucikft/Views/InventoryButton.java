@@ -22,8 +22,10 @@ public class InventoryButton extends JButton {
      * Instantiates a new Inventory button.
      */
     public InventoryButton() {
-        texture = new ImageIcon(imagePath + "Floor.png").getImage();
-        setPreferredSize(new Dimension(20,20));
+        texture = new ImageIcon(imagePath+"Floor.png").getImage();
+        setPreferredSize(new Dimension(50,50));
+        setMaximumSize(new Dimension(50,50));
+        setMaximumSize(new Dimension(50,50));
         setBorderPainted(false);
         setContentAreaFilled(false);
         setFocusPainted(false);

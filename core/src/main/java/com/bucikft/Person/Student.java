@@ -42,11 +42,7 @@ public class Student extends Person {
         if (item.isBroken())
             throw new IllegalStateException("The item is broken.");
 
-        try {
-            item.effect(this);
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-        }
+        item.effect(this);
 
         if (item.isBroken()) {
             this.itemList.remove(item);
