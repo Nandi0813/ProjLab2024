@@ -88,7 +88,6 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
-                result = null;
             }
 
             room = map.findRoom(1, i);
@@ -96,7 +95,6 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
-                result = null;
             }
 
             room = map.findRoom(mapSize, i);
@@ -104,7 +102,6 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
-                result = null;
             }
 
             room = map.findRoom(i, mapSize);
@@ -112,7 +109,6 @@ public class GenerateUtil
             if (result != null) {
                 longestPath = result.getKey();
                 furthestRoom = result.getValue();
-                result = null;
             }
         }
 

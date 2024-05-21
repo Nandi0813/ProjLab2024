@@ -285,7 +285,6 @@ public class Controller {
                 if(item instanceof com.bucikft.Items.Transistor){
                     ((Transistor) item).setPickedUp(true);
                 }
-                System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
                 return ActionType.PickUp;
         }
         return ActionType.None;

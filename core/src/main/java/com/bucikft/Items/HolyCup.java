@@ -27,11 +27,13 @@ public class HolyCup extends Item {
      */
     public void effect(Student user) throws IllegalStateException {
         LinkedList<DoorLocation> shortestPath = PathFinder.findShortestPathToExit(user.getCurrentRoom());
+        String path = "";
         for (DoorLocation doorLocation : shortestPath) {
-            System.out.println(doorLocation);
+            path += doorLocation.toString() + " -> ";
         }
-
+        path += "Exit";
         this.setBroken(true);
+        throw new IllegalStateException("The shortest path to the SlipStick is: " + path);
     }
 
 }
