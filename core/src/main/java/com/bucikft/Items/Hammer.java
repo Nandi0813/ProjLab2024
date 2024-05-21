@@ -33,12 +33,9 @@ public class Hammer extends Item {
         if (student.getCurrentRoom().getItemCapacity() <= 2) {
             throw new IllegalStateException("The room cannot be split.");
         }
-
         // Split room
         Controller.getGame().getMap().split(student.getCurrentRoom());
-
         System.out.println("*The room has been split*");
-
         // Break item
         this.setBroken(true);
     }
