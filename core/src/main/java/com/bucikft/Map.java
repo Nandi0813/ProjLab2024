@@ -191,12 +191,12 @@ public class Map implements Serializable {
      * @param room The room to split.
      */
     public void split(Room room) {
-
+/*
         for (Door door : room.getDoorList()) {
             if (door instanceof Exit) {
                 throw new IllegalStateException("this room cannot be split, it contains an exit");
             }
-        }
+        }*/
         Room newRoom = new Room(room.getX()+20, room.getY()+20);
         roomList.add(newRoom);
         newRoom.setGassed(room.isGassed());
@@ -225,7 +225,7 @@ public class Map implements Serializable {
         }
 
         if (random.nextInt(2) % 2 == 0) {
-            for (Door door : room.getDoorList()) {
+            for (Door door : new ArrayList<>(room.getDoorList())) {
                 int doorChance = random.nextInt(2);
 
                 if (door.getLocationFrom() == DoorLocation.RIGHT && door.getRoomFrom() == room || door.getLocationTo() == DoorLocation.LEFT && door.getRoomTo() == room) {
@@ -248,7 +248,7 @@ public class Map implements Serializable {
             newRoom.getDoorList().add(newDoor);
         }
         else {
-            for (Door door : room.getDoorList()) {
+            for (Door door : new ArrayList<>(room.getDoorList())) {
                 int doorChance = random.nextInt(2);
 
                 if (door.getLocationFrom() == DoorLocation.TOP && door.getRoomFrom() == room || door.getLocationTo() == DoorLocation.BOTTOM && door.getRoomTo() == room) {

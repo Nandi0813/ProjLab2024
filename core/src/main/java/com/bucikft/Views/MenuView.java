@@ -50,7 +50,7 @@ public class MenuView extends JFrame {
         playerField.setSelectedIndex(2);
 
         JLabel sizeLabel = new JLabel("Méret:");
-        JComboBox<Integer> sizeField = new JComboBox<>(new Integer[]{2,3, 4, 5, 6, 7, 8, 9, 10});
+        JComboBox<Integer> sizeField = new JComboBox<>(new Integer[]{3, 4, 5, 6, 7, 8, 9, 10});
         sizeField.setSelectedIndex(3);
 
 
