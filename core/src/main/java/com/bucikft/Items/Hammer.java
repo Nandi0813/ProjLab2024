@@ -1,10 +1,11 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
-import com.bucikft.Menu;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
+import com.bucikft.Views.GameView;
 
 /**
  * Represents a Hammer item, which can split a room when used by a student.
@@ -33,7 +34,7 @@ public class Hammer extends Item {
         }
 
         // Split room
-        Menu.getGame().getMap().split(student.getCurrentRoom());
+        Controller.getGame().getMap().split(student.getCurrentRoom());
 
         System.out.println("*The room has been split*");
 

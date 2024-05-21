@@ -289,6 +289,18 @@ public class Room implements Serializable {
         return locations.get(0);
     }
 
+    public boolean hasDoorAtLocation(DoorLocation location) {
+        for (Door door : doorList) {
+            if (door.getRoomFrom() == this && door.getLocationFrom() == location) {
+                return true;
+            }
+            else if (door.getRoomTo() == this && door.getLocationTo() == location) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return this.ID;

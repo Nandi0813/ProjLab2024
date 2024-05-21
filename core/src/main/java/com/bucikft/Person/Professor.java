@@ -57,7 +57,7 @@ public class Professor extends Person {
         if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("A hallgató és a professzor nem egy szobában vannak.");
 
         // Check if student is alive
-        if (!student.isAlive()) throw new IllegalStateException("The student is already dead.");
+        if (!student.isAlive()) return;
 
         // Check if student is protected
         if (!student.isKillable()) {

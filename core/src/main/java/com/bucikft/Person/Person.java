@@ -59,8 +59,8 @@ public abstract class Person implements Serializable {
      * @throws IllegalStateException If the player has no moves left or if the rooms are not neighbors.
      */
     public void move(Room room, boolean force) throws IllegalStateException {
-        if (room == null) {
-            throw new IllegalStateException("No room parameter.");
+        if (room == null ) {
+            return;
         }
         if ((movesLeft<=0&&!godMode)&&!force) throw new IllegalStateException("No moves left.");
 

@@ -39,6 +39,7 @@ public class Controller {
                         break;
                     case Student:
                     case Professor:
+                    case BossProfessor:
                     case Cleaner:
                         if (!currentRoom.getPersonList().contains((Person)tile.getRef())) {
                             initial[x][y] = new Tile(TileType.Floor,null);

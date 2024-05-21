@@ -1,7 +1,7 @@
 package com.bucikft.Items;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Controllers.TileType;
-import com.bucikft.Menu;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
@@ -49,7 +49,7 @@ public class Transistor extends Item {
             throw new IllegalStateException("The pair has been picked up.");
         }
 
-        Room room = Menu.getGame().getMap().getRoom(pair);
+        Room room = Controller.getGame().getMap().getRoom(pair);
         if (room.isMaxPersonCapacity()) {
             throw new IllegalStateException("Room is full, cannot teleport.");
         }

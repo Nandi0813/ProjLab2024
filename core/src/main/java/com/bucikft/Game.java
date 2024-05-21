@@ -198,7 +198,7 @@ public class Game implements Serializable {
         for (int i = 1; i <= playerCount; i++) {
             students.add(new Student(String.valueOf(i)));
         }
-        for (int i = 1; i <= (playerCount / 2 + 1); i++) {
+        for (int i = 1; i <= (playerCount / 3 + 1); i++) {
             if(i == 1){
                 professors.add(new BossProfessor(String.valueOf(i)));
             }
@@ -206,7 +206,7 @@ public class Game implements Serializable {
                 professors.add(new Professor(String.valueOf(i)));
             }
         }
-        for (int i = 1; i <= (playerCount / 3 + 1); i++) {
+        for (int i = 1; i <= (playerCount / 4 + 1); i++) {
             cleaners.add(new Cleaner(String.valueOf(i)));
         }
 

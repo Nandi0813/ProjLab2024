@@ -9,6 +9,7 @@ import com.bucikft.Map;
 import com.bucikft.Room;
 import com.bucikft.Utils.PathFinder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BossProfessor extends Professor{
@@ -24,22 +25,20 @@ public class BossProfessor extends Professor{
     }
     
     public void mergeRoom(Map map){
-        for(Door d : this.currentRoom.getDoorList()){
+        for(Door d : new ArrayList<>(this.currentRoom.getDoorList())){
             if(d instanceof Exit){
                 continue;
             }
             if(d.getRoomTo() == this.currentRoom){
-                for(Person p : d.getRoomFrom().getPersonList()){
-                    if(p instanceof Student){
-                        map.mergeRooms(this.currentRoom, d.getRoomFrom());
-                    }
+                if(d.getRoomFrom().containsStudent()){
+                    map.mergeRooms(this.currentRoom, d.getRoomFrom());
+                    return;
                 }
             }
             else if(d.getRoomFrom() == this.currentRoom){
-                for(Person p : d.getRoomTo().getPersonList()){
-                    if(p instanceof Student){
-                        map.mergeRooms(this.currentRoom, d.getRoomTo());
-                    }
+                if(d.getRoomTo().containsStudent()){
+                    map.mergeRooms(this.currentRoom, d.getRoomTo());
+                    return;
                 }
             }
         }

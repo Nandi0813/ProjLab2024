@@ -50,8 +50,13 @@ public class RoundManager implements Serializable {
                     System.out.println("Student " + student + " got saved by his mask.");
                     student.setMasked(false);
                 }
-            } else if (student.getStunned() > 0) {
+            }
+            else if (student.getStunned() > 0) {
                 student.stun(student.getStunned() - 1);
+            }
+            else {
+                student.setMovesLeft(1);
+                student.setUsesLeft(1);
             }
         }
 
@@ -66,6 +71,12 @@ public class RoundManager implements Serializable {
 
             if (!game.getNoAi()) {
                 if (professor.getMovesLeft() > 0 && professor.getStunned() == 0) {
+                    if(professor instanceof BossProfessor){
+                        if(random.nextInt(3) % 3 == 0){
+                            ((BossProfessor) professor).mergeRoom(game.getMap());
+                            break;
+                        }
+                    }
                     Room currentRoom = professor.getCurrentRoom();
                     Room roomTo = currentRoom.getRandomNeighbourRoom();
 
@@ -83,14 +94,6 @@ public class RoundManager implements Serializable {
                                 professor.killStudent(s);
                         }
                     }
-                }
-                if(professor instanceof BossProfessor){
-                    Room currentRoom = professor.getCurrentRoom();
-                    Room roomTo = currentRoom.getRandomNeighbourRoom();
-                    if(random.nextInt(4) % 4 == 0) {
-                        ((BossProfessor) professor).mergeRoom(game.getMap());
-                    }
-
                 }
             }
         }
