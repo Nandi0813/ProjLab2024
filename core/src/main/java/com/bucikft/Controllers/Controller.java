@@ -4,10 +4,13 @@ import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
 import com.bucikft.Items.Interface.Item;
+import com.bucikft.Items.SlipStick;
 import com.bucikft.Items.Transistor;
 import com.bucikft.Person.Person;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
+import com.bucikft.Views.EndScreenView;
+import com.bucikft.Views.GameView;
 import javafx.util.Pair;
 import com.bucikft.Commands.Move;
 
@@ -228,7 +231,7 @@ public class Controller {
         }
         status.add("\nItems in your intventory:");
         for(Item item : focusedPerson.getInventory()) {
-            status.add("\nInventory: " + item);
+            status.add("\n" + item);
         }
         return status;
     }
@@ -246,7 +249,17 @@ public class Controller {
                     Door door = (Door) tile.getRef();
                     Room roomTo = (door.getRoomTo() == room ? door.getRoomFrom() : door.getRoomTo());
                     if (roomTo == null) {
-                        throw new IllegalStateException("No room in that direction");
+                        boolean slipstick = false;
+                        for (Item i : student.getItemList()) {
+                            if(i instanceof SlipStick) {
+                                slipstick = true;
+                                break;
+                            }
+                        }
+                        if (slipstick){
+                            EndScreenView endScreenView = new EndScreenView();
+                        }
+                        throw new IllegalStateException("You does't have a slipstick, you can't leave the room.");
                     }
                     student.move(roomTo, false);
                     System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");
