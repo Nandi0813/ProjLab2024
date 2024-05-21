@@ -23,15 +23,14 @@ public class GameView extends JFrame {
     private GamePanel gamePanel;
     private StatusPanel statusPanel;
 
-    List<JButton> invButtons = new ArrayList<>();
+    List<InventoryButton> invButtons = new ArrayList<>();
 
 
 
     public GameView(Controller controller) {
         this.controller = controller;
         statusPanel = new StatusPanel(controller);
-        gamePanel = new GamePanel(controller, statusPanel);
-        redraw();
+        gamePanel = new GamePanel(controller, statusPanel, this);
         setTitle("Game");
         setSize(700, 520);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -48,13 +47,18 @@ public class GameView extends JFrame {
         taskbar.setBackground(Color.LIGHT_GRAY);
 
         for (int i=0;i<5;i++) {
-            JButton invButton = new JButton(Integer.toString(i));
+            InventoryButton invButton = new InventoryButton();
             int finalI = i;
             invButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    controller.inventoryButtonClicked(finalI,useMode);
-                    gamePanel.redraw();
+                    try {
+                        controller.inventoryButtonClicked(finalI, useMode);
+                        redraw();
+                        gamePanel.redraw();
+                    } catch (Exception err) {
+                        JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
             invButtons.add(invButton);
@@ -81,8 +85,13 @@ public class GameView extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.nextButtonPressed();
-                gamePanel.draw();
+                try {
+                    controller.nextButtonPressed();
+                    gamePanel.draw();
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         });
 
@@ -90,7 +99,6 @@ public class GameView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.setGodMode();
-
             }
         });
 
@@ -98,7 +106,7 @@ public class GameView extends JFrame {
 
 
         taskbar.add(inventoryLabel);
-        for (JButton invButton: invButtons) {
+        for (InventoryButton invButton: invButtons) {
             taskbar.add(invButton);
         }
         taskbar.add(useDrop);
@@ -113,7 +121,11 @@ public class GameView extends JFrame {
                 int result = fileChooser.showOpenDialog(GameView.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    controller.saveGame(selectedFile);
+                    try {
+                        controller.saveGame(selectedFile);
+                    } catch (Exception err) {
+                        JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // Show the file chooser dialog
         }});
@@ -128,13 +140,12 @@ public class GameView extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         add(taskbar, BorderLayout.SOUTH);
-
-
-
     }
-
     public void redraw() {
-        // somehow make inventory buttons display items inside
-
+        List<String> textures = controller.getInventoryTextures();
+        for (int i=0;i<5;i++) {
+            InventoryButton b = invButtons.get(i);
+            b.changeTexture(textures.get(i));
+        }
     }
 }

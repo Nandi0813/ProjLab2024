@@ -22,11 +22,13 @@ public class GamePanel extends JPanel {
     private int tileSize = 75;
     private int gridSize;
     private int dimension;
+    private GameView gameView;
 
 
-    public GamePanel(Controller controller, StatusPanel statpanel) {
+    public GamePanel(Controller controller, StatusPanel statpanel, GameView gw) {
         this.controller = controller;
         this.statpanel = statpanel;
+        gameView = gw;
         setMinimumSize(new Dimension(tileSize*6,tileSize*6));
         setMaximumSize(new Dimension(tileSize*6, tileSize*6));
         draw();
@@ -41,14 +43,22 @@ public class GamePanel extends JPanel {
                 int tileX = (int)Math.floor(e.getX()/tileSize);
                 int tileY = (int)Math.floor(e.getY()/tileSize);
                 System.out.println("Clicked on tile (" +tileX+"," +tileY + ")!");
-                if (controller.tileClicked(tiles[tileX][tileY])== ActionType.Move) draw();
-                else redraw();
-
-
-
+                try {
+                    ActionType ac = controller.tileClicked(tiles[tileX][tileY]);
+                    if ( ac == ActionType.Move) draw();
+                    else {
+                        if (ac==ActionType.PickUp) {
+                            gameView.redraw();
+                        }
+                        redraw();
+                    }
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(GamePanel.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
+
     public void draw() {
         tiles = controller.initializeTileList();
         dimension=tiles.length;
@@ -56,6 +66,7 @@ public class GamePanel extends JPanel {
         this.repaint();
         statpanel.redraw();
     }
+
     public void redraw() {
         tiles = controller.getTileList(tiles);
         dimension = tiles.length;

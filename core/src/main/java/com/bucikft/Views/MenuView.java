@@ -111,6 +111,9 @@ public class MenuView extends JFrame {
                     try { controller.loadGame(selectedFile);
                     GameView gw = new GameView(controller);
                     setVisible(false);
+                    } catch (Exception err) {
+                        JOptionPane.showMessageDialog(MenuView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });

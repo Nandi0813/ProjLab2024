@@ -32,7 +32,7 @@ public class TVSZ extends Item {
      * @param user The student who uses the TVSZ item.
      */
     @Override
-    public void effect(Student user) {
+    public void effect(Student user) throws IllegalStateException{
         if (this.isFalse()) {
             throw new IllegalStateException("This item is a false item. No result.");
         }

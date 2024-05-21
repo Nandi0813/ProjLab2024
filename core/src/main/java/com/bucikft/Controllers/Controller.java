@@ -15,6 +15,7 @@ import javafx.util.Pair;
 import com.bucikft.Commands.Move;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -232,18 +233,17 @@ public class Controller {
         return status;
     }
 
-    public ActionType tileClicked(Tile tile) {
+    public ActionType tileClicked(Tile tile) throws IllegalStateException, NumberFormatException, IllegalArgumentException {
         System.out.println("Clicked tile: " + tile.getType() + " " + tile.getRef());
         switch (tile.getType()) {
             case Door:
-                try {
-                    if (!(game.getFocusedPerson() instanceof Student student)) {
-                        throw new IllegalStateException("The focused person is not a student.");
-                    }
+                if (!(game.getFocusedPerson() instanceof Student student)) {
+                    throw new IllegalStateException("the focused person is not a student.");
+                }
 
-                    Room room = student.getCurrentRoom();
-                    Door door = (Door) tile.getRef();
-                    Room roomTo = (door.getRoomTo() == room ? door.getRoomFrom() : door.getRoomTo());
+                Room room = student.getCurrentRoom();
+                Door door = (Door) tile.getRef();
+                Room roomTo = (door.getRoomTo() == room ? door.getRoomFrom() : door.getRoomTo());
                     if (roomTo == null) {
                         boolean slipstick = false;
                         for (Item i : student.getItemList()) {
@@ -255,17 +255,10 @@ public class Controller {
                         if (slipstick){
                             EndScreenView endScreenView = new EndScreenView();
                         }
-                        throw new IllegalStateException("You does't have a slipstick, you can't leave the room.");
+                        throw new IllegalStateException("you don't have a slipstick, you can't leave the room.");
                     }
                     student.move(roomTo, false);
                     System.out.println("Student#" + student.getName() + " moved to " + student.getCurrentRoom() + ".");
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid room ID.");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Invalid direction.");
-                } catch (IllegalStateException e) {
-                    System.out.println(e.getMessage());
-                }
                 return ActionType.Move;
             case AirFreshener:
             case DKC:
@@ -284,21 +277,12 @@ public class Controller {
                 if (item == null) {
                     throw new IllegalStateException("Item not found.");
                 }
-
-                try {
-                    person.pickUp(item);
-                    if(item instanceof com.bucikft.Items.Transistor){
-                        ((Transistor) item).setPickedUp(true);
-                    }
-                    System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
-                    return ActionType.PickUp;
-                } catch (IllegalStateException e) {
-                    System.out.println(e.getMessage());
+                person.pickUp(item);
+                if(item instanceof com.bucikft.Items.Transistor){
+                    ((Transistor) item).setPickedUp(true);
                 }
-                break;
-
-
-
+                System.out.println("Item " + item + " picked up by Student#" + person.getName() + ".");
+                return ActionType.PickUp;
         }
         return ActionType.None;
     }
@@ -308,63 +292,61 @@ public class Controller {
         System.out.println("godmode " + (game.getFocusedPerson().isGodMode()?"ON":"OFF"));
     }
 
-    public void inventoryButtonClicked(int idx, boolean use) {
+    public String inventoryButtonClicked(int idx, boolean use) throws IndexOutOfBoundsException, IllegalStateException {
         Person person = game.getFocusedPerson();
         if (person instanceof Student student) {
             Item item;
             try {item = student.getInventory().get(idx);}
             catch (IndexOutOfBoundsException e) {
-                System.out.printf("no item at that slot!");
-                return;
+                throw new IndexOutOfBoundsException("no item at that slot!");
             }
+            String name = item.getType().name() + ".png";
             if (!use) {
-                try {
-                    student.drop(item);
-                    System.out.println("Item " + item + " dropped by student " + student + ".");
-
-                } catch (IllegalStateException e) {
-                    System.out.println(e.getMessage());
-                }
-
+                student.drop(item);
+                System.out.println("Item " + item + " dropped by student " + student + ".");
             }
             else {
-                try {
-                    student.use(item);
-                } catch (IllegalStateException e ) {
-                    System.out.println(e.getMessage());
-                }
+                student.use(item);
                 System.out.println("Item " + item + " used by Student#" + student.getName());
             }
+            return name;
         }
+        return "Floor.png";
     }
 
     public void nextButtonPressed() {
         game.getRoundManager().nextTurn();
     }
 
-    public void saveGame(File file) {
-        try {
+    public void saveGame(File file) throws IOException {
             FileOutputStream fileOut = new FileOutputStream(file);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(game);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
-    public void loadGame(File file) {
+    public void loadGame(File file) throws IOException, ClassNotFoundException {
         game = null;
-        try {
             FileInputStream fileIn = new FileInputStream(file);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             game = (Game) in.readObject();
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
 
     public static Game getGame() {
         return game;
+    }
+
+    public List<String> getInventoryTextures() {
+        Person focusedPerson = game.getFocusedPerson();
+        List<String> textures = new ArrayList<>();
+        for (Item item: focusedPerson.getInventory()) {
+            textures.add(item.getType().name()+".png");
+        }
+        if (textures.size()<5) {
+            for (int i = textures.size()-1;i<5; i++) {
+                textures.add("Floor.png");
+            }
+        }
+        return textures;
     }
 }

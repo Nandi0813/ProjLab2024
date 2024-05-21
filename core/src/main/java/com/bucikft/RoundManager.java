@@ -29,7 +29,7 @@ public class RoundManager implements Serializable {
     /**
      * Moves to the next round.
      */
-    public void nextRound() {
+    public void nextRound() throws IllegalStateException {
         currentRound++;
 
         for (Room room : game.getMap().getRoomList()) {
@@ -80,11 +80,7 @@ public class RoundManager implements Serializable {
                             break;
 
                         if (p instanceof Student s) {
-                            try {
                                 professor.killStudent(s);
-                            } catch (IllegalStateException e) {
-                                System.out.println(e.getMessage());
-                            }
                         }
                     }
                 }
@@ -140,7 +136,7 @@ public class RoundManager implements Serializable {
     /**
      * Moves to the next turn.
      */
-    public void nextTurn() {
+    public void nextTurn() throws IllegalStateException {
         currentTurn++;
         if (currentTurn >= game.getStudents().size()) {
             nextRound();

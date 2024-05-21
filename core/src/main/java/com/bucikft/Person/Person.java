@@ -66,7 +66,7 @@ public abstract class Person implements Serializable {
 
         // Test if the rooms are neighbors
         if (!room.isNeighbour(this.currentRoom)) {
-            throw new IllegalStateException("The rooms are not neighbors.");
+            throw new IllegalStateException("The rooms are not neighbours.");
         }
 
         if (room.isMaxPersonCapacity()) {
