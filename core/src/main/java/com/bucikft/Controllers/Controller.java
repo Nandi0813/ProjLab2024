@@ -226,6 +226,10 @@ public class Controller {
         if (focusedPerson instanceof Student) {
             status.add("\nYou are " + (((Student) focusedPerson).isAlive()?"alive":"dead"));
         }
+        status.add("\nItems in your intventory:");
+        for(Item item : focusedPerson.getInventory()) {
+            status.add("\nInventory: " + item);
+        }
         return status;
     }
 
@@ -308,6 +312,7 @@ public class Controller {
                 try {
                     student.drop(item);
                     System.out.println("Item " + item + " dropped by student " + student + ".");
+
                 } catch (IllegalStateException e) {
                     System.out.println(e.getMessage());
                 }

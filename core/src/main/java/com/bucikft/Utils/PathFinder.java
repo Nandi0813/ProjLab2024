@@ -31,7 +31,13 @@ public class PathFinder
             for (int i = 0; i < size; i++) {
                 Room currentRoom = queue.poll();
                 for (Door door : currentRoom.getDoorList()) {
-                    Room nextRoom = door.getRoomTo();
+                    Room nextRoom;
+                    if (door.getRoomTo() == currentRoom){
+                        nextRoom = door.getRoomFrom();
+                    }
+                    else{
+                        nextRoom = door.getRoomTo();
+                    }
                     if (!visited.contains(nextRoom)) {
                         if (nextRoom.containsStudent()) {
                             return count;
@@ -78,10 +84,21 @@ public class PathFinder
             LinkedList<DoorLocation> currentPath = currentPair.getValue();
 
             for (Door door : currentRoom.getDoorList()) {
-                Room nextRoom = door.getRoomTo();
+                Room nextRoom;
+                if (door.getRoomTo() == currentRoom){
+                    nextRoom = door.getRoomFrom();
+                }
+                else{
+                    nextRoom = door.getRoomTo();
+                }
                 if (!visited.contains(nextRoom)) {
                     LinkedList<DoorLocation> nextPath = new LinkedList<>(currentPath);
-                    nextPath.add(door.getLocationFrom());
+                    if (door.getRoomTo() == currentRoom){
+                        nextPath.add(door.getLocationTo());
+                    }
+                    else{
+                        nextPath.add(door.getLocationFrom());
+                    }
                     if (door instanceof Exit) {
                         return nextPath;
                     }

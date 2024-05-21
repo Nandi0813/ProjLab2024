@@ -279,7 +279,12 @@ public class Room implements Serializable {
     public DoorLocation emptyDoor() {
         List<DoorLocation> locations = new ArrayList<>(Arrays.asList(DoorLocation.values()));
         for (Door door : doorList) {
-            locations.remove(door.getLocationFrom());
+            if (door.getRoomFrom() == this){
+                locations.remove(door.getLocationFrom());
+            }
+            else{
+                locations.remove(door.getLocationTo());
+            }
         }
         return locations.get(0);
     }

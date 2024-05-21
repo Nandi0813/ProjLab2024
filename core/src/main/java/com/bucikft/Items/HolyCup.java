@@ -1,10 +1,14 @@
 package com.bucikft.Items;
 
+import com.bucikft.Door.DoorLocation;
 import com.bucikft.Items.Interface.Item;
 import com.bucikft.Menu;
 import com.bucikft.Person.Student;
 import com.bucikft.Room;
 import com.bucikft.Controllers.TileType;
+import com.bucikft.Utils.PathFinder;
+
+import java.util.LinkedList;
 
 /**
  * Represents a Holy Cup item, which shows the shortest path to the SlipStick when used by a Student.
@@ -23,15 +27,10 @@ public class HolyCup extends Item {
      * @throws IllegalStateException If the item is already broken.
      */
     public void effect(Student user) throws IllegalStateException {
-        Room slipRoom = null;
-        for (Room r : Menu.getGame().getMap().getRoomList()) {
-            for (Item item : r.getItemList()) {
-                if (item instanceof SlipStick s && !s.isFalse())
-                    slipRoom = r;
-            }
+        LinkedList<DoorLocation> shortestPath = PathFinder.findShortestPathToExit(user.getCurrentRoom());
+        for (DoorLocation doorLocation : shortestPath) {
+            System.out.println(doorLocation);
         }
-
-        System.out.println("The Slip Stick is in " + slipRoom + ".");
 
         this.setBroken(true);
     }

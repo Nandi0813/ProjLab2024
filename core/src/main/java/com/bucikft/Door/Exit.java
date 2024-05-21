@@ -15,6 +15,7 @@ public class Exit extends Door {
      */
     public Exit(Room roomFrom, Room roomTo, DoorLocation location) {
         super(roomFrom, roomTo, location);
+        this.locationTo = null;
         open = false;
     }
 

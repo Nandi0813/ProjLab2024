@@ -116,6 +116,7 @@ public class GenerateUtil
         if (furthestRoom != null){
             Exit exit = new Exit(furthestRoom, null, furthestRoom.emptyDoor());
             furthestRoom.getDoorList().add(exit);
+            System.out.println("Exit is at " + furthestRoom);
         }
     }
 
