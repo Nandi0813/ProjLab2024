@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.OutputHandler;
 import com.bucikft.Controllers.TileType;
 import com.bucikft.Items.Interface.Item;
 
@@ -66,7 +67,7 @@ public class Professor extends Person {
         student.setAlive(false);
 
         //System.out.printf("Professor#%s killed Student#%s\n", this.getName(), student.getName());
-
+        OutputHandler.addOutputMessage("Professor#" + this.getName() +" killed Student#" + student.getName());
         // Decrease moves of professor
         this.killsLeft--;
         // Add to killed students

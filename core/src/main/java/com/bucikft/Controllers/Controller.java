@@ -278,7 +278,7 @@ public class Controller {
                 Room roomTo = (door.getRoomTo() == room ? door.getRoomFrom() : door.getRoomTo());
                 if (roomTo == null) {
                     boolean slipstick = false;
-                    for (Item i : student.getItemList()) {
+                    for (Item i : student.getInventory()) {
                         if (i instanceof SlipStick) {
                             slipstick = true;
                             break;
@@ -426,5 +426,26 @@ public class Controller {
 
     public static void showDialog(String msg, String title) {
         GameView.showDialog(msg, title);
+    }
+
+    public void pairTransistors() {
+        Person person = game.getFocusedPerson();
+        List<Transistor> transistors = new ArrayList<>();
+        for (Item item : person.getInventory()) {
+            if (item instanceof Transistor t) {
+                transistors.add(t);
+            }
+        }
+        for (Item item: person.getCurrentRoom().getItemList()) {
+            if (item instanceof Transistor t) {
+                transistors.add(t);
+            }
+        }
+        if (transistors.size()==2) {
+            if (person instanceof Student s) {
+                transistors.get(0).connect(transistors.get(1),s);
+                OutputHandler.addOutputMessage(transistors.get(0)+" paired with " + transistors.get(1));
+            }
+        }
     }
 }

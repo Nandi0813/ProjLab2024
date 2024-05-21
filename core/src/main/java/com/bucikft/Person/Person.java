@@ -98,7 +98,7 @@ public abstract class Person implements Serializable {
         if ((movesLeft<=0&&!godMode)&&!force) throw new IllegalStateException("No moves left.");
 
         // Test if the rooms are neighbors
-        if (!room.isNeighbour(this.currentRoom)) {
+        if (!room.isNeighbour(this.currentRoom) && !force) {
             throw new IllegalStateException("The rooms are not neighbours.");
         }
 

@@ -100,8 +100,17 @@ public class GameView extends JFrame {
         for (InventoryButton invButton: invButtons) {
             taskbar.add(invButton);
         }
+
+        JButton pairButton = new JButton("Pair");
+        pairButton.addActionListener(e-> {
+            controller.pairTransistors();
+            statusPanel.redraw();
+            redraw();
+        });
+
         taskbar.add(useDrop);
         taskbar.add(nextButton);
+        taskbar.add(pairButton);
         taskbar.add(godMode);
 
         JButton saveButton = getSaveButton(controller);

@@ -64,7 +64,8 @@ public class Transistor extends Item {
             throw new IllegalStateException("Room is full, cannot teleport.");
         }
 
-        user.move(room, false);
+        user.move(room, true);
+
         user.setMovesLeft(user.getMovesLeft() + 1);
 
         this.setBroken(true);
