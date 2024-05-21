@@ -24,12 +24,9 @@ import java.util.*;
  * Represents the game map.
  */
 public class Map implements Serializable {
-
     private static final Random random = new Random();
-
     private final List<Room> roomList; // List of rooms in the map
     private final List<Item> itemList; // List of items in the map
-
     private final int mapSize;
 
     /**
@@ -94,7 +91,10 @@ public class Map implements Serializable {
         // generate items and put them in rooms
         for (Class<?> itemClass : itemClasses) {
             List<Item> items = GenerateUtil.generateItem(itemClass, mapSize);
-            if (items == null) continue;
+
+            if (items == null) {
+                continue;
+            }
 
             itemList.addAll(items);
 
@@ -150,9 +150,7 @@ public class Map implements Serializable {
             randomRoom.getPersonList().add(cleaner);
             cleaner.setCurrentRoom(randomRoom);
         }
-
         GenerateUtil.generateExit(this);
-
     }
 
     /**
@@ -164,8 +162,9 @@ public class Map implements Serializable {
      */
     public Room findRoom(int x, int y) {
         for (Room room : roomList)
-            if (room.getX() == x && room.getY() == y)
+            if (room.getX() == x && room.getY() == y) {
                 return room;
+            }
         return null;
     }
 
@@ -278,23 +277,18 @@ public class Map implements Serializable {
         room.setPersonCapacity(room.getPersonCapacity() + roomToMerge.getPersonCapacity());
 
         for (Door door : new ArrayList<>(roomToMerge.getDoorList())) {
-
             if (door.getRoomFrom() == roomToMerge) {
                 if(door.getRoomTo() == room){
                     room.getDoorList().remove(door);
-                }
-
-                else if(!room.hasDoorAtLocation(door.getLocationFrom())){
+                } else if(!room.hasDoorAtLocation(door.getLocationFrom())){
                     door.setRoomFrom(room);
                     room.getDoorList().add(door);
                 }
             }
-
             else if (door.getRoomTo() == roomToMerge){
                 if(door.getRoomFrom() == room){
                     room.getDoorList().remove(door);
                 }
-
                 else if(!room.hasDoorAtLocation(door.getLocationTo())){
                     door.setRoomTo(room);
                     room.getDoorList().add(door);
@@ -312,7 +306,6 @@ public class Map implements Serializable {
             person.setCurrentRoom(room);
         }
         roomToMerge.getPersonList().clear();
-
         room.setGassed(room.isGassed() || roomToMerge.isGassed());
         room.setSticky(room.isSticky() || roomToMerge.isSticky());
 
@@ -326,7 +319,6 @@ public class Map implements Serializable {
                 }
             }
         }
-
         roomList.remove(roomToMerge);
     }
 
@@ -336,19 +328,6 @@ public class Map implements Serializable {
      * @return The list of rooms.
      */
     public List<Room> getRoomList() { return this.roomList; }
-
-    /**
-     * Retrieves a room by its ID.
-     *
-     * @param id The ID of the room.
-     * @return The room with the given ID.
-     */
-    public Room getRoom(String id) {
-        for (Room room : roomList)
-            if (room.getID().equals(id))
-                return room;
-        return null;
-    }
 
     /**
      * Retrieves the room of the item.
@@ -362,13 +341,6 @@ public class Map implements Serializable {
                 return room;
         return null;
     }
-
-    /**
-     * Retrieves the list of items in the map.
-     *
-     * @return The list of items.
-     */
-    public List<Item> getItemList() { return this.itemList; }
 
     /**
      * Gets map size.

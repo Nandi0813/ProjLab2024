@@ -17,7 +17,7 @@ import java.io.IOException;
  * The type Menu view.
  */
 public class MenuView extends JFrame {
-    private Controller controller;
+    private final Controller controller;
     private static GameView gameView;
 
     /**
@@ -34,12 +34,12 @@ public class MenuView extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setOpaque(false); // Áttetszővé tétele, hogy a háttérkép látszódjon
+        panel.setOpaque(false);
 
         JLabel titleLabel = new JLabel("A Logarléc");
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(Box.createVerticalStrut(100)); // Üres hely a cím felett
+        panel.add(Box.createVerticalStrut(100)); // Space above the title
         panel.add(titleLabel);
 
         JPanel sizePanel = new JPanel();
@@ -74,37 +74,27 @@ public class MenuView extends JFrame {
         sizeField.setMaximumSize(new Dimension(60, 30));
         playerField.setMaximumSize(new Dimension(60, 30));
 
-        newGameButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedSize = (Integer) sizeField.getSelectedItem();
-                int selectedPlayers = (Integer) playerField.getSelectedItem();
-                controller.newGameStart(selectedPlayers,selectedSize);
+        newGameButton.addActionListener(e -> {
+            int selectedSize = (Integer) sizeField.getSelectedItem();
+            int selectedPlayers = (Integer) playerField.getSelectedItem();
+            controller.newGameStart(selectedPlayers,selectedSize);
 
-                gameView = new GameView(controller);
+            gameView = new GameView(controller);
+            setVisible(false);
+        });
+
+        exitButton.addActionListener(e -> System.exit(0));
+
+        loadButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(MenuView.this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                try { controller.loadGame(selectedFile);
+                GameView gw = new GameView(controller);
                 setVisible(false);
-            }
-        });
-
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                int result = fileChooser.showOpenDialog(MenuView.this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    try { controller.loadGame(selectedFile);
-                    GameView gw = new GameView(controller);
-                    setVisible(false);
-                    } catch (Exception err) {
-                        JOptionPane.showMessageDialog(MenuView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(MenuView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -142,12 +132,7 @@ public class MenuView extends JFrame {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MenuView();
-            }
-        });
+        SwingUtilities.invokeLater(MenuView::new);
     }
 
 

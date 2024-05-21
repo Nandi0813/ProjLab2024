@@ -13,7 +13,7 @@ import java.util.List;
  * The type Status panel.
  */
 public class StatusPanel extends JPanel {
-    private Controller controller;
+    private final Controller controller;
 
     /**
      * Instantiates a new Status panel.

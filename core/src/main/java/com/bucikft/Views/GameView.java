@@ -21,10 +21,9 @@ import java.util.List;
  */
 public class GameView extends JFrame {
 
-    private Controller controller;
+    private final Controller controller;
     private boolean useMode = false;
-    private GamePanel gamePanel;
-    private StatusPanel statusPanel;
+    private final GamePanel gamePanel;
 
     /**
      * The Inv buttons.
@@ -39,7 +38,7 @@ public class GameView extends JFrame {
      */
     public GameView(Controller controller) {
         this.controller = controller;
-        statusPanel = new StatusPanel(controller);
+        StatusPanel statusPanel = new StatusPanel(controller);
         gamePanel = new GamePanel(controller, statusPanel, this);
         setTitle("Game");
         setSize(700, 520);
@@ -57,60 +56,34 @@ public class GameView extends JFrame {
         taskbar.setBackground(Color.LIGHT_GRAY);
 
         for (int i=0;i<5;i++) {
-            InventoryButton invButton = new InventoryButton();
-            int finalI = i;
-            invButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        controller.inventoryButtonClicked(finalI, useMode);
-                        redraw();
-                        gamePanel.redraw();
-                    } catch (Exception err) {
-                        JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
+            InventoryButton invButton = getInventoryButton(controller, i);
             invButtons.add(invButton);
         }
 
-
         JButton nextButton = new JButton("Next");
         JToggleButton godMode = new JToggleButton("GodMode");
-
         JToggleButton useDrop = new JToggleButton("Use");
 
-        useDrop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                useMode = !useMode;
-                if (useMode) {
-                    useDrop.setText("Drop");
-                } else {
-                    useDrop.setText("Use");
-                }
+        useDrop.addActionListener(e -> {
+            useMode = !useMode;
+            if (useMode) {
+                useDrop.setText("Drop");
+            } else {
+                useDrop.setText("Use");
             }
         });
 
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    controller.nextButtonPressed();
-                    gamePanel.draw();
-                } catch (Exception err) {
-                    JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
+        nextButton.addActionListener(e -> {
+            try {
+                controller.nextButtonPressed();
+                gamePanel.draw();
+            } catch (Exception err) {
+                JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+
         });
 
-        godMode.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.setGodMode();
-            }
-        });
+        godMode.addActionListener(e -> controller.setGodMode());
 
 
 
@@ -123,22 +96,7 @@ public class GameView extends JFrame {
         taskbar.add(nextButton);
         taskbar.add(godMode);
 
-        JButton saveButton = new JButton("Save");
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                int result = fileChooser.showOpenDialog(GameView.this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    try {
-                        controller.saveGame(selectedFile);
-                    } catch (Exception err) {
-                        JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-                // Show the file chooser dialog
-        }});
+        JButton saveButton = getSaveButton(controller);
         taskbar.add(saveButton);
 
         JPanel middle = new JPanel();
@@ -150,6 +108,40 @@ public class GameView extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         add(taskbar, BorderLayout.SOUTH);
+    }
+
+    private InventoryButton getInventoryButton(Controller controller, int i) {
+        InventoryButton invButton = new InventoryButton();
+        int finalI = i;
+        invButton.addActionListener(e -> {
+            try {
+                controller.inventoryButtonClicked(finalI, useMode);
+                redraw();
+                gamePanel.redraw();
+            } catch (Exception err) {
+                JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        return invButton;
+    }
+
+    private JButton getSaveButton(Controller controller) {
+        JButton saveButton = new JButton("Save");
+
+        saveButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(GameView.this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    controller.saveGame(selectedFile);
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(GameView.this, err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            // Show the file chooser dialog
+    });
+        return saveButton;
     }
 
     /**

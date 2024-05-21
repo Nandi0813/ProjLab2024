@@ -18,31 +18,18 @@ import java.util.Random;
  * Represents a room in the game.
  */
 public class Room implements Serializable {
-
     private static final Random random = new Random();
-
     private int personCapacity = 5; // Added to track the capacity of the room
     private int itemCapacity = 5; // Added to track how many items can be in the room
-
     private boolean gassed; // Added to track if the room is gassed
     private boolean cursed;
-
-
-    /**
-     * The constant STICKY_AT.
-     */
-// Attributes related to cleaning
     public static final int STICKY_AT = 6;
     private int visitorsSinceLastCleaning;
     private boolean sticky;
-
     private final List<Item> itemList; // Added to track the items in the room
     private final List<Door> doorList; // Added to track the doors in the room
     private final List<Person> personList; // Added to track the persons in the room
-
     private final String ID; // Added to track the ID of the room
-
-
     private final int x;
     private final int y;
 
@@ -98,7 +85,6 @@ public class Room implements Serializable {
                 return room;
             }
         }
-        
         return null;
     }
 
@@ -143,22 +129,6 @@ public class Room implements Serializable {
     }
 
     /**
-     * Gets room.
-     *
-     * @param doorLocation the door location
-     * @return the room
-     */
-    public Room getRoom(DoorLocation doorLocation) {
-        for (Door door : doorList) {
-            if (door.getRoomFrom() == this && door.getLocationTo().equals(doorLocation))
-                return door.getRoomTo();
-            else if (door.getRoomTo() == this && door.getLocationFrom().equals(doorLocation))
-                return door.getRoomFrom();
-        }
-        return null;
-    }
-
-    /**
      * Is cursed boolean.
      *
      * @return the boolean
@@ -166,16 +136,6 @@ public class Room implements Serializable {
     public boolean isCursed() {
         return this.cursed;
     }
-
-    /**
-     * Sets cursed.
-     *
-     * @param cursed the cursed
-     */
-    public void setCursed(boolean cursed) {
-        this.cursed = cursed;
-    }
-
 
     /**
      * Checks if the room is gassed.
@@ -228,7 +188,7 @@ public class Room implements Serializable {
     }
 
     /**
-     * Clean.
+     * Cleaner cleans the room.
      */
     public void clean() {
         this.visitorsSinceLastCleaning = 0;
@@ -253,19 +213,6 @@ public class Room implements Serializable {
      */
     public boolean isMaxItemCapacity() {
         return this.getItemCapacity() < this.itemList.size();
-    }
-
-    /**
-     * Gets the item with the specified ID.
-     *
-     * @param id The ID of the item to get.
-     * @return The item with the specified ID.
-     */
-    public Item getItem(String id) {
-        for (Item item : this.itemList)
-            if (item.getID().equals(id))
-                return item;
-        return null;
     }
 
     /**
@@ -338,7 +285,7 @@ public class Room implements Serializable {
     }
 
     /**
-     * Empty door door location.
+     * Empty door location.
      *
      * @return the door location
      */

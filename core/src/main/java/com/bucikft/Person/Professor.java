@@ -35,14 +35,6 @@ public class Professor extends Person {
         killedStudents.add(killedStudent);
     }
 
-    /**
-     * Removes a killed student from the list.
-     *
-     * @param killedStudent The student to remove.
-     */
-    public void removeKilledStudent(Student killedStudent) {
-        killedStudents.remove(killedStudent);
-    }
 
     public boolean canMove() {
         return this.getStunned() == 0;
@@ -56,7 +48,7 @@ public class Professor extends Person {
      */
     public void killStudent(Student student) throws IllegalStateException {
         // Check if student is in the same room
-        if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("A hallgató és a professzor nem egy szobában vannak.");
+        if (!this.getCurrentRoom().equals(student.getCurrentRoom())) throw new IllegalStateException("Student and professor are not in the same room.");
 
         // Check if student is alive
         if (!student.isAlive()) return;
@@ -73,7 +65,7 @@ public class Professor extends Person {
         // Kill student
         student.setAlive(false);
 
-        System.out.printf("Professor#%s killed Student#%s\n", this.getName(), student.getName());
+        //System.out.printf("Professor#%s killed Student#%s\n", this.getName(), student.getName());
 
         // Decrease moves of professor
         this.killsLeft--;

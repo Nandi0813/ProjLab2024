@@ -11,7 +11,7 @@ import com.bucikft.Controllers.Controller;
 public class InventoryButton extends JButton {
     private Image texture;
     private Controller controller;
-    private String imagePath = System.getProperty("user.dir") + File.separator +
+    private final String imagePath = System.getProperty("user.dir") + File.separator +
             "core" + File.separator +
             "src" + File.separator +
             "main" + File.separator +
@@ -22,7 +22,7 @@ public class InventoryButton extends JButton {
      * Instantiates a new Inventory button.
      */
     public InventoryButton() {
-        texture = new ImageIcon(imagePath+"Floor.png").getImage();
+        texture = new ImageIcon(imagePath + "Floor.png").getImage();
         setPreferredSize(new Dimension(20,20));
         setBorderPainted(false);
         setContentAreaFilled(false);
@@ -36,7 +36,7 @@ public class InventoryButton extends JButton {
      * @param tex the tex
      */
     public void changeTexture(String tex){
-        texture = new ImageIcon(imagePath+tex).getImage();
+        texture = new ImageIcon(imagePath + tex).getImage();
         repaint();
     }
 

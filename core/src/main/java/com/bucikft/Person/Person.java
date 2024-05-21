@@ -250,19 +250,6 @@ public abstract class Person implements Serializable {
     }
 
     /**
-     * Gets the item with the specified ID.
-     *
-     * @param id The ID of the item to get.
-     * @return The item with the specified ID.
-     */
-    public Item getItem(String id) {
-        for (Item item : this.itemList)
-            if (item.getID().equals(id))
-                return item;
-        return null;
-    }
-
-    /**
      * Sets the stun duration for the professor.
      *
      * @param n The duration of the stun.
@@ -283,7 +270,7 @@ public abstract class Person implements Serializable {
     /**
      * Gets type.
      *
-     * @return type type
+     * @return type
      */
     public TileType getType() {
         return type;

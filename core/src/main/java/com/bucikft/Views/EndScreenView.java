@@ -9,7 +9,7 @@ import java.io.File;
  */
 public class EndScreenView extends JFrame {
 
-    private Image image;
+    private final Image image;
 
     /**
      * Instantiates a new End screen view.

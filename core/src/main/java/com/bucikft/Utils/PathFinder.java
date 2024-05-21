@@ -18,7 +18,7 @@ public class PathFinder
 {
 
     /**
-     * Find shortest path to student int.
+     * Find the shortest path to student int.
      *
      * @param room the room
      * @return int int
@@ -31,8 +31,7 @@ public class PathFinder
         int count = 0;
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < queue.size(); i++) {
                 Room currentRoom = queue.poll();
                 for (Door door : currentRoom.getDoorList()) {
                     Room nextRoom;
@@ -57,11 +56,11 @@ public class PathFinder
     }
 
     /**
-     * Update longest path if needed pair.
+     * Update the longest path if needed pair.
      *
      * @param room        the room
      * @param longestPath the longest path
-     * @return pair pair
+     * @return pair
      */
     public static Pair<Integer, Room> updateLongestPathIfNeeded(Room room, int longestPath) {
         int pathLength = findShortestPathToStudent(room);
@@ -73,7 +72,7 @@ public class PathFinder
     }
 
     /**
-     * Find shortest path to exit linked list.
+     * Find the shortest path to exit linked list.
      *
      * @param room the room
      * @return linked list
@@ -114,43 +113,6 @@ public class PathFinder
             }
         }
         return null; // No exit found
-    }
-
-    /**
-     * Find shortest room to student room.
-     *
-     * @param room the room
-     * @return the room
-     */
-    public static Room findShortestRoomToStudent(Room room){
-        Queue<Room> queue = new LinkedList<>();
-        Set<Room> visited = new HashSet<>();
-        queue.add(room);
-        visited.add(room);
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                Room currentRoom = queue.poll();
-                for (Door door : currentRoom.getDoorList()) {
-                    Room nextRoom;
-                    if (door.getRoomTo() == currentRoom){
-                        nextRoom = door.getRoomFrom();
-                    }
-                    else{
-                        nextRoom = door.getRoomTo();
-                    }
-                    if (!visited.contains(nextRoom)) {
-                        if (nextRoom.containsStudent()) {
-                            return nextRoom;
-                        }
-                        queue.add(nextRoom);
-                        visited.add(nextRoom);
-                    }
-                }
-            }
-        }
-        return null;
     }
 
 }

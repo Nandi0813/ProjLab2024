@@ -19,13 +19,12 @@ import jdk.jshell.Snippet;
  */
 public class GamePanel extends JPanel {
 
-    private StatusPanel statpanel;
+    private final StatusPanel statpanel;
     private Tile[][] tiles;
-    private Controller controller;
-    private int tileSize = 75;
-    private int gridSize;
+    private final Controller controller;
+    private final int tileSize = 75;
     private int dimension;
-    private GameView gameView;
+    private final GameView gameView;
 
 
     /**
@@ -49,10 +48,10 @@ public class GamePanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
-                System.out.println("Clicked in room at pixel coords: ("+ x + "," + y +")!");
+                //System.out.println("Clicked in room at pixel coords: ("+ x + "," + y +")!");
                 int tileX = (int)Math.floor(e.getX()/tileSize);
                 int tileY = (int)Math.floor(e.getY()/tileSize);
-                System.out.println("Clicked on tile (" +tileX+"," +tileY + ")!");
+                //System.out.println("Clicked on tile (" +tileX+"," +tileY + ")!");
                 try {
                     ActionType ac = controller.tileClicked(tiles[tileX][tileY]);
                     if ( ac == ActionType.Move) draw();
@@ -75,7 +74,6 @@ public class GamePanel extends JPanel {
     public void draw() {
         tiles = controller.initializeTileList();
         dimension=tiles.length;
-        gridSize=dimension*tileSize;
         this.repaint();
         statpanel.redraw();
     }
@@ -88,7 +86,6 @@ public class GamePanel extends JPanel {
         dimension = tiles.length;
         //System.out.println(dimension);
         System.out.println("redrawn");
-        gridSize = dimension*tileSize;
         this.repaint();
         statpanel.redraw();
 

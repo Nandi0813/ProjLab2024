@@ -52,9 +52,10 @@ public class Student extends Person {
             this.itemList.remove(item);
         }
 
-        if (!godMode)
+        if (!godMode) {
             usesLeft--;
-   }
+        }
+    }
 
     /**
      * Drops the specified item.
@@ -63,12 +64,14 @@ public class Student extends Person {
      * @throws IllegalStateException If there is not enough room in the room for the item.
      */
     public void drop(Item item) throws IllegalStateException {
-        if (this.stunned > 0)
+        if (this.stunned > 0) {
             throw new IllegalStateException("Student is stunend.");
+        }
 
         // Test if room has enough room for the item
-        if (this.getCurrentRoom().getItemList().size() >= this.getCurrentRoom().getItemCapacity())
+        if (this.getCurrentRoom().getItemList().size() >= this.getCurrentRoom().getItemCapacity()) {
             throw new IllegalStateException("There is not enough room for the item in the room.");
+        }
 
         // Drop item
         this.getCurrentRoom().getItemList().add(item);
@@ -92,16 +95,6 @@ public class Student extends Person {
         return !protection;
     }
 
-    /**
-     * Joins two transistors.
-     *
-     * @param t1 The first transistor.
-     * @param t2 The second transistor.
-     * @throws IllegalStateException If either of the transistors already has a pair.
-     */
-    public void join(Transistor t1, Transistor t2) throws IllegalStateException {
-        t1.connect(t2,this );
-    }
 
     /**
      * Checks if the student is alive.
@@ -120,10 +113,12 @@ public class Student extends Person {
     public void setAlive(final boolean alive) {
         this.alive = alive;
 
-        if (alive)
+        if (alive) {
             Controller.getGame().getDeadStudents().remove(this);
-        else
+        }
+        else {
             Controller.getGame().getDeadStudents().add(this);
+        }
     }
 
     /**
@@ -147,10 +142,10 @@ public class Student extends Person {
     /**
      * Checks if the student is protected.
      *
-     * @param prot The status of the student's protection.
+     * @param protection The status of the student's protection.
      */
-    public void setProtected(boolean prot) {
-        this.protection = prot;
+    public void setProtected(boolean protection) {
+        this.protection = protection;
     }
 
     /**
