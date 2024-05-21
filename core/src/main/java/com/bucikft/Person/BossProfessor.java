@@ -1,5 +1,6 @@
 package com.bucikft.Person;
 
+import com.bucikft.Controllers.TileType;
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Door.Exit;
@@ -19,6 +20,7 @@ public class BossProfessor extends Professor{
      */
     public BossProfessor(String name) {
         super(name);
+        type = TileType.BossProfessor;
     }
     
     public void mergeRoom(Map map){
