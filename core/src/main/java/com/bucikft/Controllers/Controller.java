@@ -11,7 +11,7 @@ import com.bucikft.Room;
 import com.bucikft.Views.EndScreenView;
 import com.bucikft.Views.GameView;
 import com.bucikft.Views.MenuView;
-import javafx.util.Pair;
+import com.bucikft.Utils.Pair;
 
 import java.awt.*;
 import java.io.*;

@@ -1,8 +1,6 @@
 package com.bucikft;
 
 import com.bucikft.Person.*;
-import javafx.beans.Observable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

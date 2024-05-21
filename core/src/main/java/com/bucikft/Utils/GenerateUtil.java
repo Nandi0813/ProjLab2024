@@ -10,7 +10,7 @@ import com.bucikft.Items.TVSZ;
 import com.bucikft.Items.Transistor;
 import com.bucikft.Map;
 import com.bucikft.Room;
-import javafx.util.Pair;
+import com.bucikft.Utils.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

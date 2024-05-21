@@ -11,6 +11,6 @@ javac -encoding UTF-8 -d bin %sources%
 
 java -cp bin com.bucikft.Views.MenuView
 
-echo Press Ctrl+C to exit or any key to restart...
+echo Press Ctrl+C to exit or any key to restart..
 pause > nul
 goto loop

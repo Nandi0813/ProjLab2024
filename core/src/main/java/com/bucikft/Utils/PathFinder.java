@@ -4,7 +4,7 @@ import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Door.Exit;
 import com.bucikft.Room;
-import javafx.util.Pair;
+import com.bucikft.Utils.Pair;
 
 import java.util.HashSet;
 import java.util.LinkedList;

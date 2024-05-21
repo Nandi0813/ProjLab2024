@@ -12,7 +12,7 @@ import com.bucikft.Person.Student;
 import com.bucikft.Utils.GenerateUtil;
 import com.bucikft.Utils.IDmaker;
 import com.bucikft.Utils.PathFinder;
-import javafx.util.Pair;
+import com.bucikft.Utils.Pair;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
