@@ -84,8 +84,6 @@ public class GamePanel extends JPanel {
     public void redraw() {
         tiles = controller.getTileList(tiles);
         dimension = tiles.length;
-        //System.out.println(dimension);
-        System.out.println("redrawn");
         this.repaint();
         statpanel.redraw();
 
