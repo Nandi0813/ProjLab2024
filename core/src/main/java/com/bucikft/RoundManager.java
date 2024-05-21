@@ -15,7 +15,7 @@ public class RoundManager implements Serializable {
     private final Game game; // The game to manage rounds for
     private int currentRound = 0; // The current round number
     private int currentTurn = 0; // The current turn number
-    private final Random random = new Random();
+    private Random random = new Random();
 
     /**
      * Initializes a new round manager for the specified game.
@@ -80,16 +80,18 @@ public class RoundManager implements Serializable {
                             break;
 
                         if (p instanceof Student s) {
-                            professor.killStudent(s);
+                                professor.killStudent(s);
                         }
                     }
                 }
-            }
-            if(professor instanceof BossProfessor){
-                if(random.nextInt(2) % 2 == 0) {
-                    ((BossProfessor) professor).mergeRoom(game.getMap());
-                }
+                if(professor instanceof BossProfessor){
+                    Room currentRoom = professor.getCurrentRoom();
+                    Room roomTo = currentRoom.getRandomNeighbourRoom();
+                    if(random.nextInt(4) % 4 == 0) {
+                        ((BossProfessor) professor).mergeRoom(game.getMap(), roomTo);
+                    }
 
+                }
             }
         }
 
@@ -115,7 +117,7 @@ public class RoundManager implements Serializable {
         }
 
 
-        // reset AI characters
+        // reset ai characters
         for (Professor professor: game.getProfessors()) {
             professor.setMovesLeft(1);
             professor.setUsesLeft(1);
