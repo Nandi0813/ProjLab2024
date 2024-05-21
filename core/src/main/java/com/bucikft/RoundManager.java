@@ -1,5 +1,6 @@
 package com.bucikft;
 
+import com.bucikft.Controllers.Controller;
 import com.bucikft.Door.Door;
 import com.bucikft.Person.*;
 
@@ -132,6 +133,9 @@ public class RoundManager implements Serializable {
             cleaner.setUsesLeft(1);
         }
 
+        if (game.getDeadStudents().size()==game.getStudents().size()) {
+            Controller.loseGame();
+        }
         currentTurn = 0;
         game.setFocusedPerson(game.getStudents().get(0));
 

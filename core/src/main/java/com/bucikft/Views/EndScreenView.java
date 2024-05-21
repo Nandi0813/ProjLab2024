@@ -10,15 +10,17 @@ import java.io.File;
 public class EndScreenView extends JFrame {
 
     private final Image image;
+    private boolean lost;
 
     /**
      * Instantiates a new End screen view.
      */
-    public EndScreenView(){
+    public EndScreenView(boolean lost){
         setTitle("EndScreen");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.lost = lost;
 
         String imagePath = System.getProperty("user.dir") + File.separator +
                 "core" + File.separator +
@@ -41,7 +43,7 @@ public class EndScreenView extends JFrame {
                 }
                 g.setFont(new Font("Arial", Font.BOLD, 50));
                 g.setColor(Color.WHITE);
-                String text = "You won!";
+                String text = !lost?"You won!":"You lost!";
                 FontMetrics fm = g.getFontMetrics();
                 int x = (getWidth() - fm.stringWidth(text)) / 2;
                 int y = fm.getAscent();

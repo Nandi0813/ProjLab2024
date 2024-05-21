@@ -13,6 +13,7 @@ import com.bucikft.Views.GameView;
 import com.bucikft.Views.MenuView;
 import javafx.util.Pair;
 
+import java.awt.*;
 import java.io.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -285,7 +286,7 @@ public class Controller {
                         }
                     }
                     if (slipstick) {
-                        EndScreenView endScreenView = new EndScreenView();
+                        EndScreenView endScreenView = new EndScreenView(false);
                         MenuView.getGameView().setVisible(false);
                     } else {
                         throw new IllegalStateException("you don't have a slipstick, you can't leave the room.");
@@ -447,5 +448,10 @@ public class Controller {
                 OutputHandler.addOutputMessage(transistors.get(0)+" paired with " + transistors.get(1));
             }
         }
+    }
+
+    public static void loseGame() {
+        EndScreenView ew = new EndScreenView(true);
+        MenuView.getGameView().setVisible(false);
     }
 }

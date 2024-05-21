@@ -134,5 +134,4 @@ public class Game implements Serializable {
         focusedPerson = students.get(0);
     }
 
-
 }
