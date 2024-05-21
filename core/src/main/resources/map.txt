@@ -1,4 +1,0 @@
-2 2 1 1
-1-2 2E
-1: DKC, AirFreshener, EnergyDrink, HolyCup, Hammer, SlipStick, Transistor, TVSZ, WetRag, Zyn, Transistor
-1:St#1 2:St#2, Te#1, Cl#1

@@ -10,8 +10,10 @@ public class Exit extends Door {
 
     /**
      * The constructor of the Exit class.
+     *
      * @param roomFrom The room from which the exit door leads.
-     * @param roomTo The room to which the exit door leads.
+     * @param roomTo   The room to which the exit door leads.
+     * @param location the location
      */
     public Exit(Room roomFrom, Room roomTo, DoorLocation location) {
         super(roomFrom, roomTo, location);

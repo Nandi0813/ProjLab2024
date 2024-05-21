@@ -14,18 +14,46 @@ import java.util.List;
  */
 public abstract class Person implements Serializable {
 
+    /**
+     * The Name.
+     */
     protected String name; // Added to track the name of the person
+    /**
+     * The Moves left.
+     */
     protected int movesLeft; // Added so we can track moves and uses separately
+    /**
+     * The Uses left.
+     */
     protected int usesLeft; // Added so we can track moves and uses separately
+    /**
+     * The Item list.
+     */
     protected List<Item> itemList; // Added to track the items in the inventory
+    /**
+     * The Current room.
+     */
     protected Room currentRoom; // Added to track the current room of the person
+    /**
+     * The Capacity.
+     */
     protected int capacity; // Added to track the capacity of the inventory
+    /**
+     * The God mode.
+     */
     protected boolean godMode = false; // Added to track if the person is in god mode
+    /**
+     * The Stunned.
+     */
     protected int stunned = 0; // Added to track the stun duration
+    /**
+     * The Type.
+     */
     protected TileType type;
 
     /**
      * Sets the god mode of the person.
+     *
      * @param godMode The god mode to set.
      */
     public void setGodMode(boolean godMode) {
@@ -34,6 +62,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Gets the god mode of the person.
+     *
      * @return The god mode of the person.
      */
     public boolean isGodMode() {
@@ -42,6 +71,9 @@ public abstract class Person implements Serializable {
 
     /**
      * Constructor to initialize a Person object.
+     *
+     * @param name     the name
+     * @param tileType the tile type
      */
     protected Person(String name, TileType tileType) {
         this.itemList = new ArrayList<>();
@@ -55,7 +87,8 @@ public abstract class Person implements Serializable {
     /**
      * Moves the person to the specified room.
      *
-     * @param room The room to move to.
+     * @param room  The room to move to.
+     * @param force the force
      * @throws IllegalStateException If the player has no moves left or if the rooms are not neighbors.
      */
     public void move(Room room, boolean force) throws IllegalStateException {
@@ -97,6 +130,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Uses the specified item.
+     *
      * @return The item that was used.
      */
     public int getUsesLeft() {
@@ -136,6 +170,11 @@ public abstract class Person implements Serializable {
         currentRoom.getItemList().remove(item);
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
@@ -151,6 +190,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Gets the inventory of the person.
+     *
      * @return The inventory of the person.
      */
     public List<Item> getInventory() {
@@ -175,6 +215,11 @@ public abstract class Person implements Serializable {
         return this.movesLeft;
     }
 
+    /**
+     * Can move boolean.
+     *
+     * @return the boolean
+     */
     public abstract boolean canMove();
 
     /**
@@ -188,6 +233,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Sets the number of uses left for the person.
+     *
      * @param i The number of uses left to set.
      */
     public void setUsesLeft(int i) {
@@ -196,6 +242,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Gets the capacity of the inventory.
+     *
      * @return The capacity of the inventory.
      */
     public List<Item> getItemList() {
@@ -204,6 +251,7 @@ public abstract class Person implements Serializable {
 
     /**
      * Gets the item with the specified ID.
+     *
      * @param id The ID of the item to get.
      * @return The item with the specified ID.
      */
@@ -233,8 +281,9 @@ public abstract class Person implements Serializable {
     }
 
     /**
+     * Gets type.
      *
-     * @return
+     * @return type type
      */
     public TileType getType() {
         return type;

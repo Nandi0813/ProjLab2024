@@ -17,6 +17,8 @@ public class Professor extends Person {
 
     /**
      * Constructor to initialize a Professor object.
+     *
+     * @param name the name
      */
     public Professor(String name) {
         super(name, TileType.Professor);
@@ -86,12 +88,14 @@ public class Professor extends Person {
 
     /**
      * Resets the professor's moves and the list of killed students.
+     *
      * @return The number of kills left.
      */
     public int getKillsLeft() { return this.killsLeft; }
 
     /**
      * Sets the number of kills left for the professor.
+     *
      * @param i The number of kills left.
      */
     public void setKillsLeft(int i) {

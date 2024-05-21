@@ -15,6 +15,12 @@ import java.util.LinkedList;
  */
 public class HolyCup extends Item {
 
+    /**
+     * Instantiates a new Holy cup.
+     *
+     * @param ID          the id
+     * @param isFalseItem the is false item
+     */
     public HolyCup(String ID, boolean isFalseItem) {
         super(ID, isFalseItem, TileType.HolyCup);
     }

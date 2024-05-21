@@ -9,6 +9,7 @@ public class Cleaner extends Person {
 
     /**
      * The constructor of the Cleaner class.
+     *
      * @param name The name of the cleaner.
      */
     public Cleaner(String name) {

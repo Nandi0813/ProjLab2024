@@ -5,6 +5,9 @@ import java.io.File;
 
 import com.bucikft.Controllers.Controller;
 
+/**
+ * The type Inventory button.
+ */
 public class InventoryButton extends JButton {
     private Image texture;
     private Controller controller;
@@ -14,6 +17,10 @@ public class InventoryButton extends JButton {
             "main" + File.separator +
             "resources" + File.separator +
             "images" + File.separator;
+
+    /**
+     * Instantiates a new Inventory button.
+     */
     public InventoryButton() {
         texture = new ImageIcon(imagePath+"Floor.png").getImage();
         setPreferredSize(new Dimension(20,20));
@@ -23,6 +30,11 @@ public class InventoryButton extends JButton {
         setOpaque(false);
     }
 
+    /**
+     * Change texture.
+     *
+     * @param tex the tex
+     */
     public void changeTexture(String tex){
         texture = new ImageIcon(imagePath+tex).getImage();
         repaint();

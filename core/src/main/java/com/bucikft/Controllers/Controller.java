@@ -20,11 +20,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The type Controller.
+ */
 public class Controller {
 
     private static Game game;
     private static final Random random = new Random();
 
+    /**
+     * Get tile list tile [ ] [ ].
+     *
+     * @param initial the initial
+     * @return the tile [ ] [ ]
+     */
     public Tile[][] getTileList(Tile[][] initial) {
         Room currentRoom = game.getFocusedPerson().getCurrentRoom();
         int roomSize = initial.length;
@@ -122,7 +131,13 @@ public class Controller {
         }
         return initial;
     }
-    // converts current room to list of tiles
+
+    /**
+     * Initialize tile list tile [ ] [ ].
+     *
+     * @return the tile [ ] [ ]
+     */
+// converts current room to list of tiles
     public Tile[][] initializeTileList() {
         Room currentRoom = game.getFocusedPerson().getCurrentRoom();
         int maxCap = 10;
@@ -209,12 +224,23 @@ public class Controller {
         return randomTile;
     }
 
+    /**
+     * New game start.
+     *
+     * @param playerCount the player count
+     * @param mapSize     the map size
+     */
     public void newGameStart(int playerCount, int mapSize) {
         game = new Game();
         game.startGame(playerCount,mapSize);
     }
 
 
+    /**
+     * Gets status strings.
+     *
+     * @return the status strings
+     */
     public List<String> getStatusStrings() {
         Person focusedPerson = game.getFocusedPerson();
         Room currentRoom = focusedPerson.getCurrentRoom();
@@ -234,6 +260,15 @@ public class Controller {
         return status;
     }
 
+    /**
+     * Tile clicked action type.
+     *
+     * @param tile the tile
+     * @return the action type
+     * @throws IllegalStateException    the illegal state exception
+     * @throws NumberFormatException    the number format exception
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public ActionType tileClicked(Tile tile) throws IllegalStateException, NumberFormatException, IllegalArgumentException {
         System.out.println("Clicked tile: " + tile.getType() + " " + tile.getRef());
         switch (tile.getType()) {
@@ -290,11 +325,23 @@ public class Controller {
         return ActionType.None;
     }
 
+    /**
+     * Sets god mode.
+     */
     public void setGodMode() {
         game.getFocusedPerson().setGodMode(!game.getFocusedPerson().isGodMode());
         System.out.println("godmode " + (game.getFocusedPerson().isGodMode()?"ON":"OFF"));
     }
 
+    /**
+     * Inventory button clicked string.
+     *
+     * @param idx the idx
+     * @param use the use
+     * @return the string
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws IllegalStateException     the illegal state exception
+     */
     public String inventoryButtonClicked(int idx, boolean use) throws IndexOutOfBoundsException, IllegalStateException {
         Person person = game.getFocusedPerson();
         if (person instanceof Student student) {
@@ -317,16 +364,32 @@ public class Controller {
         return "Floor.png";
     }
 
+    /**
+     * Next button pressed.
+     */
     public void nextButtonPressed() {
         game.getRoundManager().nextTurn();
     }
 
+    /**
+     * Save game.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
     public void saveGame(File file) throws IOException {
             FileOutputStream fileOut = new FileOutputStream(file);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(game);
     }
 
+    /**
+     * Load game.
+     *
+     * @param file the file
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
+     */
     public void loadGame(File file) throws IOException, ClassNotFoundException {
         game = null;
             FileInputStream fileIn = new FileInputStream(file);
@@ -335,10 +398,20 @@ public class Controller {
     }
 
 
+    /**
+     * Gets game.
+     *
+     * @return the game
+     */
     public static Game getGame() {
         return game;
     }
 
+    /**
+     * Gets inventory textures.
+     *
+     * @return the inventory textures
+     */
     public List<String> getInventoryTextures() {
         Person focusedPerson = game.getFocusedPerson();
         List<String> textures = new ArrayList<>();

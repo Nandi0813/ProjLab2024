@@ -11,7 +11,8 @@ public class Mask extends Item {
 
     /**
      * The constructor of the Mask class.
-     * @param ID The unique identifier of the item.
+     *
+     * @param ID          The unique identifier of the item.
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public Mask(String ID, final boolean isFalseItem) {

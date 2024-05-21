@@ -28,6 +28,8 @@ public class RoundManager implements Serializable {
 
     /**
      * Moves to the next round.
+     *
+     * @throws IllegalStateException the illegal state exception
      */
     public void nextRound() throws IllegalStateException {
         currentRound++;
@@ -138,6 +140,8 @@ public class RoundManager implements Serializable {
 
     /**
      * Moves to the next turn.
+     *
+     * @throws IllegalStateException the illegal state exception
      */
     public void nextTurn() throws IllegalStateException {
         currentTurn++;
@@ -160,6 +164,7 @@ public class RoundManager implements Serializable {
 
     /**
      * Retrieves the current turn number.
+     *
      * @return The current turn number.
      */
     public int getCurrentTurn() {

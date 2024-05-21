@@ -40,6 +40,7 @@ public class Game implements Serializable {
 
     /**
      * Sets the game state.
+     *
      * @param started The game state to set.
      */
     public void setStarted(boolean started) {
@@ -48,6 +49,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the game state.
+     *
      * @return The game state.
      */
     public boolean isStarted() {
@@ -56,6 +58,7 @@ public class Game implements Serializable {
 
     /**
      * Sets the focused person.
+     *
      * @param person The person to set as focused.
      */
     public void setFocusedPerson(Person person) {
@@ -64,12 +67,14 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the focused person.
+     *
      * @return The focused person.
      */
     public boolean getNoAi() { return noAi; }
 
     /**
      * Sets the AI state.
+     *
      * @param newai The AI state to set.
      */
     public void setNoAi(boolean newai) { noAi = newai; }
@@ -83,12 +88,19 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the game map.
+     *
      * @return The game map.
      */
     public Map getMap() {
         return this.map;
     }
 
+    /**
+     * Gets room.
+     *
+     * @param id the id
+     * @return the room
+     */
     public Room getRoom(String id) {
         for (Room room : this.getMap().getRoomList())
             if (room.getID().equalsIgnoreCase(id))
@@ -98,6 +110,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the list of students in the game.
+     *
      * @return The list of students.
      */
     public List<Student> getStudents() {
@@ -106,6 +119,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the list of dead students in the game.
+     *
      * @return The list of dead students.
      */
     public List<Student> getDeadStudents() {
@@ -114,6 +128,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the student with the specified ID.
+     *
      * @param id The ID of the student to retrieve.
      * @return The student with the specified ID.
      */
@@ -126,6 +141,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the list of dead students in the game.
+     *
      * @return The list of dead students.
      */
     public RoundManager getRoundManager() {
@@ -134,6 +150,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the list of dead students in the game.
+     *
      * @return The list of dead students.
      */
     public Person getFocusedPerson() {
@@ -142,6 +159,7 @@ public class Game implements Serializable {
 
     /**
      * Sets the debug mode.
+     *
      * @param b The debug mode to set.
      */
     public void setDebugMode(boolean b) {
@@ -150,12 +168,14 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the debug mode.
+     *
      * @return The debug mode.
      */
     public boolean getDebugMode() { return this.debug; }
 
     /**
      * Retrieves the list of dead students in the game.
+     *
      * @return The list of dead students.
      */
     public List<Professor> getProfessors() {
@@ -164,6 +184,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the student with the specified ID.
+     *
      * @param id The ID of the professor to retrieve.
      * @return The professor with the specified ID.
      */
@@ -176,6 +197,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the list of dead students in the game.
+     *
      * @return The list of dead students.
      */
     public List<Cleaner> getCleaners() {
@@ -184,6 +206,7 @@ public class Game implements Serializable {
 
     /**
      * Retrieves the cleaner with the specified ID.
+     *
      * @param id The ID of the cleaner to retrieve.
      * @return The cleaner with the specified ID.
      */
@@ -194,6 +217,12 @@ public class Game implements Serializable {
         return null;
     }
 
+    /**
+     * Start game.
+     *
+     * @param playerCount the player count
+     * @param mapSize     the map size
+     */
     public void startGame(int playerCount, int mapSize) {
         for (int i = 1; i <= playerCount; i++) {
             students.add(new Student(String.valueOf(i)));

@@ -9,9 +9,17 @@ import java.awt.*;
 import java.util.List;
 
 
+/**
+ * The type Status panel.
+ */
 public class StatusPanel extends JPanel {
     private Controller controller;
 
+    /**
+     * Instantiates a new Status panel.
+     *
+     * @param controller the controller
+     */
     public StatusPanel(Controller controller) {
         this.controller = controller;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -25,6 +33,10 @@ public class StatusPanel extends JPanel {
             add(txt);
         }
     }
+
+    /**
+     * Redraw.
+     */
     public void redraw() {
         List<String> lines = controller.getStatusStrings();
         int i = 0;

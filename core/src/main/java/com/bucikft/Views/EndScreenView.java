@@ -4,9 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**
+ * The type End screen view.
+ */
 public class EndScreenView extends JFrame {
 
     private Image image;
+
+    /**
+     * Instantiates a new End screen view.
+     */
     public EndScreenView(){
         setTitle("EndScreen");
         setSize(800, 600);

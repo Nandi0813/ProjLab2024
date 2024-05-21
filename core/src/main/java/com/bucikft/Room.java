@@ -28,8 +28,10 @@ public class Room implements Serializable {
     private boolean cursed;
 
 
-
-    // Attributes related to cleaning
+    /**
+     * The constant STICKY_AT.
+     */
+// Attributes related to cleaning
     public static final int STICKY_AT = 6;
     private int visitorsSinceLastCleaning;
     private boolean sticky;
@@ -44,15 +46,29 @@ public class Room implements Serializable {
     private final int x;
     private final int y;
 
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
     public int getX() {
         return this.x;
     }
+
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
     public int getY() {
         return this.y;
     }
 
     /**
      * Initializes a new room.
+     *
+     * @param x the x
+     * @param y the y
      */
     public Room(int x, int y) {
         this.gassed = false;
@@ -66,6 +82,11 @@ public class Room implements Serializable {
         this.cursed = random.nextInt(6) % 6 == 0;
     }
 
+    /**
+     * Gets random neighbour room.
+     *
+     * @return the random neighbour room
+     */
     public Room getRandomNeighbourRoom() {
         for (Door door : this.getDoorList()) {
             if (door instanceof Exit) {
@@ -82,6 +103,8 @@ public class Room implements Serializable {
     }
 
     /**
+     * Gets person capacity.
+     *
      * @return The capacity of the room.
      */
     public int getPersonCapacity() {
@@ -98,6 +121,8 @@ public class Room implements Serializable {
     }
 
     /**
+     * Is max person capacity boolean.
+     *
      * @return Whether the room is at maximum person capacity or not
      */
     public boolean isMaxPersonCapacity() {
@@ -105,9 +130,10 @@ public class Room implements Serializable {
     }
 
     /**
+     * Is neighbour boolean.
      *
-     * @param room
-     * @return
+     * @param room the room
+     * @return boolean
      */
     public boolean isNeighbour(Room room) {
         for (Door door : this.getDoorList())
@@ -116,6 +142,12 @@ public class Room implements Serializable {
         return false;
     }
 
+    /**
+     * Gets room.
+     *
+     * @param doorLocation the door location
+     * @return the room
+     */
     public Room getRoom(DoorLocation doorLocation) {
         for (Door door : doorList) {
             if (door.getRoomFrom() == this && door.getLocationTo().equals(doorLocation))
@@ -126,10 +158,20 @@ public class Room implements Serializable {
         return null;
     }
 
+    /**
+     * Is cursed boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCursed() {
         return this.cursed;
     }
 
+    /**
+     * Sets cursed.
+     *
+     * @param cursed the cursed
+     */
     public void setCursed(boolean cursed) {
         this.cursed = cursed;
     }
@@ -137,6 +179,7 @@ public class Room implements Serializable {
 
     /**
      * Checks if the room is gassed.
+     *
      * @return True if the room is gassed, false otherwise.
      */
     public boolean isGassed() {
@@ -145,6 +188,7 @@ public class Room implements Serializable {
 
     /**
      * Sets the gassed status of the room.
+     *
      * @param gassed The gassed status to set.
      */
     public void setGassed(boolean gassed) {
@@ -152,17 +196,22 @@ public class Room implements Serializable {
     }
 
     /**
+     * Gets visitors since last cleaning.
+     *
      * @return The number of visitors since the last cleaning happened by a cleaner.
      */
     public int getVisitorsSinceLastCleaning() { return this.visitorsSinceLastCleaning; }
 
     /**
+     * Sets visitors since last cleaning.
+     *
      * @param visitorsSinceLastCleaning The number of visitors since the last cleaning.
      */
     public void setVisitorsSinceLastCleaning(int visitorsSinceLastCleaning) { this.visitorsSinceLastCleaning = visitorsSinceLastCleaning; }
 
     /**
      * Checks if the room is sticky.
+     *
      * @return True if the room is sticky, false otherwise.
      */
     public boolean isSticky() {
@@ -171,13 +220,15 @@ public class Room implements Serializable {
 
     /**
      * Sets the sticky status of the room.
+     *
+     * @param sticky the sticky
      */
     public void setSticky(boolean sticky) {
         this.sticky = sticky;
     }
 
     /**
-     *
+     * Clean.
      */
     public void clean() {
         this.visitorsSinceLastCleaning = 0;
@@ -188,6 +239,7 @@ public class Room implements Serializable {
 
     /**
      * Retrieves the list of items in the room.
+     *
      * @return The list of items.
      */
     public List<Item> getItemList() {
@@ -195,6 +247,8 @@ public class Room implements Serializable {
     }
 
     /**
+     * Is max item capacity boolean.
+     *
      * @return Whether the room is at maximum item capacity or not
      */
     public boolean isMaxItemCapacity() {
@@ -203,6 +257,7 @@ public class Room implements Serializable {
 
     /**
      * Gets the item with the specified ID.
+     *
      * @param id The ID of the item to get.
      * @return The item with the specified ID.
      */
@@ -215,6 +270,7 @@ public class Room implements Serializable {
 
     /**
      * Retrieves the list of doors in the room.
+     *
      * @return The list of doors.
      */
     public List<Door> getDoorList() {
@@ -231,8 +287,9 @@ public class Room implements Serializable {
     }
 
     /**
+     * Contains student boolean.
      *
-     * @return
+     * @return boolean
      */
     public boolean containsStudent() {
         for (Person person : this.personList)
@@ -242,8 +299,9 @@ public class Room implements Serializable {
     }
 
     /**
+     * Contains professor boolean.
      *
-     * @return
+     * @return boolean
      */
     public boolean containsProfessor() {
         for (Person person : this.personList)
@@ -254,6 +312,7 @@ public class Room implements Serializable {
 
     /**
      * Retrieves the capacity of the room.
+     *
      * @return The capacity of the room.
      */
     public int getItemCapacity() {
@@ -262,6 +321,7 @@ public class Room implements Serializable {
 
     /**
      * Retrieves the ID of the room.
+     *
      * @return The ID of the room.
      */
     public String getID() {
@@ -270,12 +330,18 @@ public class Room implements Serializable {
 
     /**
      * Sets the item capacity of the room.
+     *
      * @param i The item capacity to set.
      */
     public void setItemCapacity(int i) {
         this.itemCapacity = i;
     }
 
+    /**
+     * Empty door door location.
+     *
+     * @return the door location
+     */
     public DoorLocation emptyDoor() {
         List<DoorLocation> locations = new ArrayList<>(Arrays.asList(DoorLocation.values()));
         for (Door door : doorList) {
@@ -289,6 +355,12 @@ public class Room implements Serializable {
         return locations.get(0);
     }
 
+    /**
+     * Has door at location boolean.
+     *
+     * @param location the location
+     * @return the boolean
+     */
     public boolean hasDoorAtLocation(DoorLocation location) {
         for (Door door : doorList) {
             if (door.getRoomFrom() == this && door.getLocationFrom() == location) {

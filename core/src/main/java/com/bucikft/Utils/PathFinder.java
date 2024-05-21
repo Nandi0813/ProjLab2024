@@ -11,13 +11,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * The type Path finder.
+ */
 public class PathFinder
 {
 
     /**
+     * Find shortest path to student int.
      *
-     * @param room
-     * @return
+     * @param room the room
+     * @return int int
      */
     public static int findShortestPathToStudent(Room room){
         Queue<Room> queue = new LinkedList<>();
@@ -53,10 +57,11 @@ public class PathFinder
     }
 
     /**
+     * Update longest path if needed pair.
      *
-     * @param room
-     * @param longestPath
-     * @return
+     * @param room        the room
+     * @param longestPath the longest path
+     * @return pair pair
      */
     public static Pair<Integer, Room> updateLongestPathIfNeeded(Room room, int longestPath) {
         int pathLength = findShortestPathToStudent(room);
@@ -68,9 +73,10 @@ public class PathFinder
     }
 
     /**
+     * Find shortest path to exit linked list.
      *
-     * @param room
-     * @return
+     * @param room the room
+     * @return linked list
      */
     public static LinkedList<DoorLocation> findShortestPathToExit(Room room) {
         Queue<Pair<Room, LinkedList<DoorLocation>>> queue = new LinkedList<>();
@@ -110,6 +116,12 @@ public class PathFinder
         return null; // No exit found
     }
 
+    /**
+     * Find shortest room to student room.
+     *
+     * @param room the room
+     * @return the room
+     */
     public static Room findShortestRoomToStudent(Room room){
         Queue<Room> queue = new LinkedList<>();
         Set<Room> visited = new HashSet<>();

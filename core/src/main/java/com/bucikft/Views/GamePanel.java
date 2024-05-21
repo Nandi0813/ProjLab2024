@@ -14,6 +14,9 @@ import java.util.List;
 import com.bucikft.Controllers.Tile;
 import jdk.jshell.Snippet;
 
+/**
+ * The type Game panel.
+ */
 public class GamePanel extends JPanel {
 
     private StatusPanel statpanel;
@@ -25,6 +28,13 @@ public class GamePanel extends JPanel {
     private GameView gameView;
 
 
+    /**
+     * Instantiates a new Game panel.
+     *
+     * @param controller the controller
+     * @param statpanel  the statpanel
+     * @param gw         the gw
+     */
     public GamePanel(Controller controller, StatusPanel statpanel, GameView gw) {
         this.controller = controller;
         this.statpanel = statpanel;
@@ -59,6 +69,9 @@ public class GamePanel extends JPanel {
         });
     }
 
+    /**
+     * Draw.
+     */
     public void draw() {
         tiles = controller.initializeTileList();
         dimension=tiles.length;
@@ -67,6 +80,9 @@ public class GamePanel extends JPanel {
         statpanel.redraw();
     }
 
+    /**
+     * Redraw.
+     */
     public void redraw() {
         tiles = controller.getTileList(tiles);
         dimension = tiles.length;

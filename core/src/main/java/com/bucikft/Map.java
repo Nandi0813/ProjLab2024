@@ -34,10 +34,11 @@ public class Map implements Serializable {
 
     /**
      * The constructor of the map.
-     * @param mapSize The size of the map.
-     * @param students The list of students.
+     *
+     * @param mapSize    The size of the map.
+     * @param students   The list of students.
      * @param professors The list of professors.
-     * @param cleaners The list of cleaners.
+     * @param cleaners   The list of cleaners.
      */
     public Map(int mapSize, List<Student> students, List<Professor> professors, List<Cleaner> cleaners){
         this.mapSize = mapSize;
@@ -156,6 +157,7 @@ public class Map implements Serializable {
 
     /**
      * Generates a list of items.
+     *
      * @param x The x coordinate of the room.
      * @param y The y coordinate of the room.
      * @return The list of items.
@@ -186,6 +188,7 @@ public class Map implements Serializable {
 
     /**
      * Splits a room into two rooms.
+     *
      * @param room The room to split.
      */
     public void split(Room room) {
@@ -264,6 +267,12 @@ public class Map implements Serializable {
         }
     }
 
+    /**
+     * Merge rooms.
+     *
+     * @param room        the room
+     * @param roomToMerge the room to merge
+     */
     public void mergeRooms(Room room, Room roomToMerge){
         room.setItemCapacity(room.getItemCapacity() + roomToMerge.getItemCapacity());
         room.setPersonCapacity(room.getPersonCapacity() + roomToMerge.getPersonCapacity());
@@ -330,6 +339,7 @@ public class Map implements Serializable {
 
     /**
      * Retrieves a room by its ID.
+     *
      * @param id The ID of the room.
      * @return The room with the given ID.
      */
@@ -342,6 +352,7 @@ public class Map implements Serializable {
 
     /**
      * Retrieves the room of the item.
+     *
      * @param item The item to get the room of.
      * @return The room of the item.
      */
@@ -354,10 +365,16 @@ public class Map implements Serializable {
 
     /**
      * Retrieves the list of items in the map.
+     *
      * @return The list of items.
      */
     public List<Item> getItemList() { return this.itemList; }
-    
+
+    /**
+     * Gets map size.
+     *
+     * @return the map size
+     */
     public int getMapSize() { return this.mapSize; }
 
 }

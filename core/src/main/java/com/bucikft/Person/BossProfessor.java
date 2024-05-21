@@ -12,18 +12,26 @@ import com.bucikft.Utils.PathFinder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Boss professor.
+ */
 public class BossProfessor extends Professor{
 
     /**
      * Constructor to initialize a Professor object.
      *
-     * @param name
+     * @param name the name
      */
     public BossProfessor(String name) {
         super(name);
         type = TileType.BossProfessor;
     }
-    
+
+    /**
+     * Merge room.
+     *
+     * @param map the map
+     */
     public void mergeRoom(Map map){
         for(Door d : new ArrayList<>(this.currentRoom.getDoorList())){
             if(d instanceof Exit){

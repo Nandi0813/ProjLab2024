@@ -13,10 +13,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Menu view.
+ */
 public class MenuView extends JFrame {
     private Controller controller;
     private static GameView gameView;
 
+    /**
+     * Instantiates a new Menu view.
+     */
     public MenuView() {
         setTitle("A Logarléc");
         setSize(500, 500);
@@ -120,11 +126,21 @@ public class MenuView extends JFrame {
 
     }
 
+    /**
+     * Gets game view.
+     *
+     * @return the game view
+     */
     public static GameView getGameView() {
         return gameView;
     }
 
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

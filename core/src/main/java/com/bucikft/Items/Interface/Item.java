@@ -10,15 +10,29 @@ import java.io.Serializable;
  */
 public abstract class Item implements Serializable {
 
+    /**
+     * The False item.
+     */
     protected boolean falseItem; // Indicates whether the item is a false item or not.
+    /**
+     * The Broken.
+     */
     protected boolean broken; // Indicates whether the item is broken or not.
+    /**
+     * The Id.
+     */
     protected String ID; // The unique identifier of the item.
+    /**
+     * The Type.
+     */
     protected TileType type;
 
     /**
      * The constructor of the Item class.
-     * @param ID The unique identifier of the item.
+     *
+     * @param ID        The unique identifier of the item.
      * @param falseItem Indicates whether the item is a false item or not.
+     * @param type      the type
      */
     protected Item(String ID, boolean falseItem, TileType type) {
         this.falseItem = falseItem;
@@ -54,6 +68,7 @@ public abstract class Item implements Serializable {
 
     /**
      * Indicates whether the item is a false item or not.
+     *
      * @return True if the item is a false item, false otherwise.
      */
     public boolean isFalse() {
@@ -62,6 +77,7 @@ public abstract class Item implements Serializable {
 
     /**
      * Gets the unique identifier of the item.
+     *
      * @return The unique identifier of the item.
      */
     public String getID() {
@@ -77,6 +93,11 @@ public abstract class Item implements Serializable {
         return this.ID;
     }
 
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
     public TileType getType() {return type;}
 
 }

@@ -14,7 +14,8 @@ public class WetRag extends Item {
 
     /**
      * The constructor of the WetRag class.
-     * @param ID The unique identifier of the item.
+     *
+     * @param ID          The unique identifier of the item.
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public WetRag(String ID, boolean isFalseItem) {

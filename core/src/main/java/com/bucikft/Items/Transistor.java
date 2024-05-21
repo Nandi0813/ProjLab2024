@@ -13,19 +13,29 @@ public class Transistor extends Item {
 
     /**
      * The constructor of the Transistor class.
-     * @param ID The unique identifier of the item.
+     *
+     * @param ID          The unique identifier of the item.
      * @param isFalseItem Indicates whether the item is a false item or not.
      */
     public Transistor(String ID, boolean isFalseItem) {
         super(ID, isFalseItem, TileType.Transistor);
     }
 
-    /** The paired Transistor item. */
+    /**
+     * The paired Transistor item.
+     */
     public Transistor pair = null;
 
     /** Indicates whether the Transistor has been picked up. */
     private boolean pickedUp = false;
 
+    /**
+     * Connect.
+     *
+     * @param t    the t
+     * @param user the user
+     * @throws IllegalStateException the illegal state exception
+     */
     public void connect(Transistor t, Student user) throws IllegalStateException {
         if (user.getCurrentRoom().getItemList().contains(t) && !t.pickedUp) {
             pair = t;
@@ -63,7 +73,8 @@ public class Transistor extends Item {
 
     /**
      * Sets the picked up status of the Transistor.
-     * @param pickedUp
+     *
+     * @param pickedUp the picked up
      */
     public void setPickedUp(boolean pickedUp) {
         this.pickedUp = pickedUp;

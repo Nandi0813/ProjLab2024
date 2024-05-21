@@ -16,6 +16,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Game view.
+ */
 public class GameView extends JFrame {
 
     private Controller controller;
@@ -23,10 +26,17 @@ public class GameView extends JFrame {
     private GamePanel gamePanel;
     private StatusPanel statusPanel;
 
+    /**
+     * The Inv buttons.
+     */
     List<InventoryButton> invButtons = new ArrayList<>();
 
 
-
+    /**
+     * Instantiates a new Game view.
+     *
+     * @param controller the controller
+     */
     public GameView(Controller controller) {
         this.controller = controller;
         statusPanel = new StatusPanel(controller);
@@ -141,6 +151,10 @@ public class GameView extends JFrame {
         this.setVisible(true);
         add(taskbar, BorderLayout.SOUTH);
     }
+
+    /**
+     * Redraw.
+     */
     public void redraw() {
         List<String> textures = controller.getInventoryTextures();
         for (int i=0;i<5;i++) {

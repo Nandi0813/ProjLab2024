@@ -16,6 +16,11 @@ public class Student extends Person {
     private boolean masked = false; // Indicates whether the student is wearing a mask or not
     private boolean protection = false; // Counter to track protection duration
 
+    /**
+     * Instantiates a new Student.
+     *
+     * @param name the name
+     */
     public Student(String name) {
         super(name, TileType.Student);
     }
@@ -141,6 +146,7 @@ public class Student extends Person {
 
     /**
      * Checks if the student is protected.
+     *
      * @param prot The status of the student's protection.
      */
     public void setProtected(boolean prot) {

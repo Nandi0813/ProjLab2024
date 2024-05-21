@@ -1,7 +1,8 @@
 - boss megjaviasa (kesz)
 - merge (kesz)
+- javadoc (kesz)
 - sikeres akciók utani / ai utani kiirasok
 - kód atnezese szépítése
 - jatszhatóvá tétel
-- kiszedni amik bentmaradtak
-- holycup
+- kiszedni amik bentmaradtak (kesz)
+- holycup (majdnem kesz, ugy csinaltam meg, hogy exceptiont dob de nem tudtam, hogy kell felugro ablakot csinalni neki)

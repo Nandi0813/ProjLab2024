@@ -17,15 +17,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Generate util.
+ */
 public class GenerateUtil
 {
 
     /**
      * Generates a list of items.
+     *
+     * @param <T>       The type of the item.
      * @param itemClass The class of the item.
-     * @param mapSize The size of the map.
+     * @param mapSize   The size of the map.
      * @return The list of items.
-     * @param <T> The type of the item.
      */
     public static <T> List<Item> generateItem(Class<T> itemClass, int mapSize) {
         int itemCount = (int) (Math.random() * (mapSize / 3) + 1);
@@ -61,8 +65,9 @@ public class GenerateUtil
 
     /**
      * Generates a list of items.
+     *
      * @param roomFrom The room where the door is from.
-     * @param roomTo The room where the door is to.
+     * @param roomTo   The room where the door is to.
      * @param location The location of the door.
      */
     public static void generateDoor(Room roomFrom, Room roomTo, DoorLocation location) {
@@ -72,8 +77,9 @@ public class GenerateUtil
     }
 
     /**
+     * Generate exit.
      *
-     * @param map
+     * @param map the map
      */
     public static void generateExit(Map map){
         int longestPath = 0;
