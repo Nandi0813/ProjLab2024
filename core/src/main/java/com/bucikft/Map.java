@@ -265,28 +265,40 @@ public class Map implements Serializable {
     }
 
     public void mergeRooms(Room room, Room roomToMerge){
-        for (Door door : new ArrayList<>(roomToMerge.getDoorList())) {
+        room.setItemCapacity(room.getItemCapacity() + roomToMerge.getItemCapacity());
+        room.setPersonCapacity(room.getPersonCapacity() + roomToMerge.getPersonCapacity());
 
+        for (Door door : new ArrayList<>(roomToMerge.getDoorList())) {
+            boolean added = false;
             if (door.getRoomFrom() == roomToMerge) {
                 int doorChance = random.nextInt(2);
 
                 for (Door d : new ArrayList<>(room.getDoorList())) {
+
                     if (d.getLocationFrom() == door.getLocationFrom()) {
-                        if (doorChance == 0) {
+
+                        if(door.getRoomTo() == room){
+                            room.getDoorList().remove(door);
+                            added = true;
+                            break;
+                        }
+                        else if (doorChance == 0) {
                             door.setRoomFrom(room);
                             room.getDoorList().add(door);
                             d.getRoomTo().getDoorList().remove(d);
                             room.getDoorList().remove(d);
+                            added = true;
+                            break;
                         }
-                    }
-                    else{
-                        door.setRoomFrom(room);
-                        room.getDoorList().add(door);
                     }
 
                     if(door.getRoomTo() == room){
                         room.getDoorList().remove(door);
                     }
+                }
+                if(!added){
+                    door.setRoomFrom(room);
+                    room.getDoorList().add(door);
                 }
             }
 
@@ -295,22 +307,29 @@ public class Map implements Serializable {
 
                     for(Door d : new ArrayList<>(room.getDoorList())){
 
-                        if(d.getLocationTo() == door.getLocationTo()){
-                            if(doorChance == 0){
-                                door.setRoomFrom(room);
-                                room.getDoorList().add(door);
-                                d.getRoomFrom().getDoorList().remove(d);
-                                room.getDoorList().remove(d);
-                            }
+                        if(door.getRoomTo() == room){
+                            room.getDoorList().remove(door);
+                            added = true;
+                            break;
                         }
-                        else{
-                            door.setRoomFrom(room);
-                            room.getDoorList().add(door);
+                        else if(d.getLocationTo() == door.getLocationTo()){
+                            if(doorChance == 0){
+                                door.setRoomTo(room);
+                                room.getDoorList().add(door);
+                                d.getRoomTo().getDoorList().remove(d);
+                                room.getDoorList().remove(d);
+                                added = true;
+                                break;
+                            }
                         }
 
                         if(door.getRoomFrom() == room){
                             room.getDoorList().remove(door);
                         }
+                    }
+                    if (!added){
+                        door.setRoomFrom(room);
+                        room.getDoorList().add(door);
                     }
             }
         }
@@ -332,15 +351,17 @@ public class Map implements Serializable {
         for (Room r : roomList) {
             for (Door d : r.getDoorList()) {
                 if (d.getRoomFrom() == roomToMerge) {
-                    d.setRoomFrom(room);
+                    r.getDoorList().remove(d);
                 }
                 if (d.getRoomTo() == roomToMerge) {
-                    d.setRoomTo(room);
+                    r.getDoorList().remove(d);
                 }
             }
         }
 
         roomList.remove(roomToMerge);
+
+        System.out.println("Rooms merged" + room.getID() + " " + roomToMerge.getID());
     }
 
     /**

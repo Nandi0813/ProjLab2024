@@ -124,7 +124,7 @@ public class Controller {
     // converts current room to list of tiles
     public Tile[][] initializeTileList() {
         Room currentRoom = game.getFocusedPerson().getCurrentRoom();
-        int maxCap = currentRoom.getItemCapacity() + currentRoom.getPersonCapacity();
+        int maxCap = 10;
         int roomSize = (int)Math.floor(Math.sqrt(maxCap)+3);
         Tile[][] tileList = new Tile[roomSize][roomSize];
 
