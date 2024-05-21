@@ -1,5 +1,4 @@
 package com.bucikft.Controllers;
-import com.bucikft.Commands.Command;
 import com.bucikft.Door.Door;
 import com.bucikft.Door.DoorLocation;
 import com.bucikft.Game;
